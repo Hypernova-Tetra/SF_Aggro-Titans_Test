@@ -7,6 +7,11 @@
 - Another adjustment Supreme's Event files to implement gradual changes to the Bitlaser Event Slot for Phase 1 and 2. BIG shoutout to Holoska for this implementation.
 - Adjusted Address Memory code scripts for Unused Supreme Grand Slam Event.
 - Adjusted audio for Knight's Grand Slam Event Scene.
+- Parrymiss QTE options updated, the "Edited" version is now a Phase 2 QTE during the fight.
+- New QTE added, reuses "bo6160" for a new QTE in-place of Parrymiss for Phase 2 of The End's fight only after the player gets hit with the homing laser attack to start the cutscene of Sonic surviving The End's Dark Ball.
+- Adjustments made to Wyvern's boss file and hmm code file.
+- Several adjustments have been made across other hmm code files.
+- Fixed Supreme from disappearing in Phase 2.
 
 # Aggro-Titans Version 1.20 (Test)
 - Supreme's scratch attacks are slightly faster.

@@ -153,8 +153,7 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 				int maxrings = pBlackboardItem->RingCapacity;
 				int rings = pBlackboardItem->RingCount;
 				
-				bool eventGrandSp = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp00") == 1;
-				if (eventGrandSp)
+				if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 				{
 					pBlackboardItem->RingCount += 10;
 					

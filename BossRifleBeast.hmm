@@ -1,3 +1,99 @@
+Code "Parrymiss Phase Switch" by "Hypernova"
+//
+	#lib "GameManager"
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	
+    static long Address = 0;
+//
+{
+	string currentStage = LevelInfo.GetCurrentStageID();
+	if (LevelInfo.GetCurrentStageID() == "w1r06")
+	{
+		if (Address == 0)
+		{ /* 0x141466710 */ Address = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
+
+		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
+		bool isReset1 = Lua.Call<int>("IsPlayingDiEvent", "bo6150") == 1;
+		bool isReset2 = Lua.Call<int>("IsPlayingDiEvent", "bo6155") == 1;
+		bool isReset3 = Lua.Call<int>("IsPlayingDiEvent", "bo6170") == 1;
+		bool isReset4 = Lua.Call<int>("IsPlayingDiEvent", "bo6180") == 1;
+		bool isFinale = Lua.Call<int>("IsPlayingDiEvent", "bo6190") == 1;
+
+		if ((isPhase1) || (isReset1) || (isReset2) || (isReset3) || (isReset4) || (isFinale))
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
+
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
+		if (isPhase2)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02")); }
+
+		bool isPhaseDarkBall = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
+		if (isPhaseDarkBall)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_darkball_riflebeast")); }
+	}
+	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
+}
+
+Code "Riflebeast Special Phase Switch" by "Hypernova"
+//
+	#lib "GameManager"
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	
+    static long Address = 0;
+//
+{
+	if (LevelInfo.GetCurrentStageID() == "w1r06")
+	{
+		if (Address == 0)
+		{ /* 0x1414636B8  */ Address = ScanSignature ("zev_sp_riflebeast", "xxxxxxxxxxxxxxxxx"); }
+
+		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
+		if (isPhase1)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
+		if (isPhase2)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst02")); }
+		
+		bool isFinale = Lua.Call<int>("IsPlayingDiEvent", "bo6190") == 1;
+		if (isFinale)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+	}
+	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+}
+
+Code "Riflebeast Barrier Death Phase Switch" by "Hypernova"
+//
+	#lib "GameManager"
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	
+    static long Address = 0;
+//
+{
+	if (LevelInfo.GetCurrentStageID() == "w1r06")
+	{
+		if (Address == 0)
+		{ /* 0x141466D30 */ Address = ScanSignature ("bo6150", "xxxx"); }
+
+		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
+		if (isPhase1)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("bo6155")); }
+
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
+		if (isPhase2)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("bo6150")); }
+	}
+	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("bo6150")); }
+}
+
 Code "Supreme_End_Combat"
 //
 	#include "Reflection" noemit

@@ -97,7 +97,7 @@ Code "No Winglaser for w1r04" by "Hypernova"
 	{
 		if (Address == 0)
 		{ /* 0x141461F00 */ Address = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02")); }
 	}
 	else
 	{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
@@ -131,7 +131,7 @@ Code "Zev_Sp02 Phase Switch" by "Hypernova"
 	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 }
 
-Code "Bitlaser RNG w1r04" by "Holoska and Hypernova"
+Code "Bitlaser Phase Switch" by "Holoska and Hypernova"
 //
 	#lib "GameManager"
 	#import "Services"
@@ -140,54 +140,56 @@ Code "Bitlaser RNG w1r04" by "Holoska and Hypernova"
 	#import "Plugins"
 	
     static long Address = 0;
-	static string[] qte_L = new[]
 	
-	{ /* sup */ "zev_rfl_bitlaser00", "zev_rfl_bitlaser00", "zev_rfl_bitlaser01", "zev_rfl_bitlaser01", "zev_rfl_bitlaser02", "zev_rfl_bitlaser02",};
+	//zev_Btlsr00 to Bitlaser01//
+	//zev_Laser02 to Bitlaser02//
+	//zev_spQTE02 to zevlaser02//
 //
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
-    if (LevelInfo.GetCurrentStageID() == "w1r04")
-	{
-		if (Address == 0)
-		{ 
-			/* 0x14125CA48 */ Address = ScanSignature
-			("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx");
-		}
-		else
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
-	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
-}
-
-Code "Bitlaser Phase Switch w1r06" by "Holoska and Hypernova"
-//
-	#lib "GameManager"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	
-    static long Address = 0;
-//
-{
-	string currentStage = LevelInfo.GetCurrentStageID();
-	if (LevelInfo.GetCurrentStageID() == "w1r06")
+	if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1r06"))
 	{
 		if (Address == 0)
 		{ /* 0x141462108 */ Address = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
 
 		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
 		if (isPhase1)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser00")); }
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01")); }
 
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00")); }
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
 		
 		bool isPhaseLast1 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_shoot02") == 1;
 		bool isPhaseLast2 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spQTE02") == 1;
 		if ((isPhaseLast1) || (isPhaseLast2))
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02\x00\x00\x00")); }	
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00")); }	
+	}
+	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
+}
+
+Code "Bitlaser Phase Switch" by "Holoska and Hypernova"
+//
+	#lib "GameManager"
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	
+    static long Address = 0;
+//
+{
+	string currentStage = LevelInfo.GetCurrentStageID();
+	if (LevelInfo.GetCurrentStageID() == "w1b02")
+	{
+		if (Address == 0)
+		{ /* 0x141462108 */ Address = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
+		
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser00")); }
+
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
+		if (isPhase2)
+		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
 	}
 	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
 }

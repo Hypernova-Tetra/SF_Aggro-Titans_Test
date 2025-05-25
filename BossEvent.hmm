@@ -36,29 +36,12 @@ Code "Skippable Phase 2 cutscene" by "Hypernova and Ashrindy"
 		System.Text.Encoding.UTF8.GetBytes("bo2141\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
 	);
 
-	bool eventDragonPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
-	if (eventDragonPhase2)
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01"))
 	{
-		var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-		var setupData = new EventPlayer.EventSetupData("bo2141");
-		evtPlayer->PlayEvent(ref setupData);
-	}
-	
-	WriteProtected<byte>
-	(
-		/* 0x141534D0 */ ScanSignature    ("boss_giant01_bo1120","xxxxxxxxxxxxxxxxxxx"),
-		System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser")
-	);
-	
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{	
-		bool eventQTELaser = Lua.Call<int>("IsPlayingDiEvent", "bo2141") == 1;
-		if (eventQTELaser)
-		{	
-			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-			var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_laser");
-			setupData.playFlags |= EventPlayer.EventSetupData.PlayFlag.CantSkip;
-			evtPlayer->PlayEvent(ref setupData);
+		bool eventDragonPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
+		if (eventDragonPhase2)
+		{
+			Lua.Call("PlayDiEventFrozen", "bo2141")
 		}
 	}
 
@@ -67,18 +50,35 @@ Code "Skippable Phase 2 cutscene" by "Hypernova and Ashrindy"
 		/* 0x14145C238 */ ScanSignature   ("boss_giant03_bo3140", "xxxxxxxxxxxxxxxxxxx"),
 		System.Text.Encoding.UTF8.GetBytes("bo3141\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
 	);
-	
-	bool eventKnightPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
-	if (eventKnightPhase2)
-	{
-		var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-		var setupData = new EventPlayer.EventSetupData("bo3141");
-		evtPlayer->PlayEvent(ref setupData);
+
+	if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01"))
+	{	
+		bool eventKnightPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
+		if (eventKnightPhase2)
+		{
+			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+			var setupData = new EventPlayer.EventSetupData("bo3141");
+			evtPlayer->PlayEvent(ref setupData);
+		}
 	}
 	
+	WriteProtected<byte>
+    (
+        /* 0x14145C108 */ ScanSignature   ("boss_giant03_bo3120", "xxxxxxxxxxxxxxxxxxx"),
+        System.Text.Encoding.UTF8.GetBytes("bo3145\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
+    );
+
 	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{	
-		bool eventQTEKnight2 = Lua.Call<int>("IsPlayingDiEvent", "bo3141") == 1;
+		bool eventKnightTrial2 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
+		if (eventKnightTrial2)
+		{
+			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+			var setupData = new EventPlayer.EventSetupData("bo3145");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+
+		bool eventQTEKnight2 = Lua.Call<int>("IsPlayingDiEvent", "bo3145") == 1;
 		if (eventQTEKnight2)
 		{	
 			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
