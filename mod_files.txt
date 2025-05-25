@@ -247,7 +247,7 @@ add MBoss_QTE_Miss_0rgn/raw/movie/zev_sp_riflebst02_4k.usm
 
 add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_darkball_riflebeast.pac
 add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebeast.pac
-add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebst02.pac
+add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebs02.pac
 add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_sp_riflebeast.pac
 add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_sp_riflebs02.pac
 add MBoss_QTE_Miss_0rgnB/raw/movie/zev_sp_riflebeast.usm
