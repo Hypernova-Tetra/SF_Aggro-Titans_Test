@@ -84,6 +84,7 @@ add MBoss_Audio_0rgn/raw/sound/dragon01_sound/se_rangers_giant02.acb
 add MBoss_Audio_0rgn/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_0rgn/raw/sound/rifle01_sound/se_rangers_giant04.acb
 add MBoss_Audio_0rgn/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
+add MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 add MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant00.acb
 add MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
@@ -103,9 +104,10 @@ add MBoss_Audio_Edit/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_Edit/raw/sound/dragon01_sound/se_rangers_giant02.acb
 add MBoss_Audio_Edit/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_Edit/raw/sound/rifle01_sound/se_rangers_giant04.acb
+add MBoss_Audio_Edit/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
 add MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
 add MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
-add MBoss_Audio_Edit/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
+add MBoss_Audio_Edit/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 add MBoss_Audio_Edit/raw/sound/amy_sound/se_rangers_player_amy.acb
 add MBoss_Audio_Edit/raw/sound/tails_sound/se_rangers_player_tails.acb
 add MBoss_Audio_Edit/raw/sound/knuckles_sound/se_rangers_player_knuckles.acb

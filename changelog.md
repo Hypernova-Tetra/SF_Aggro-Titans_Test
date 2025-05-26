@@ -12,6 +12,7 @@
 - Adjustments made to Wyvern's boss file and hmm code file.
 - Several adjustments have been made across other hmm code files.
 - Fixed Supreme from disappearing in Phase 2.
+- "extra_sound" directory added.
 
 # Aggro-Titans Version 1.20 (Test)
 - Supreme's scratch attacks are slightly faster.
