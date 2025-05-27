@@ -201,6 +201,43 @@ Code "Wyvern_Combat"
 	}
 };
 
+Code "Wyvern Special Extra" by Hypernova
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossDragonConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+
+    static bool IsConfigInitialised = false;
+//
+{
+    var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
+		
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01"))
+	{
+		if (BossDragonConfigInfo.pData == null)
+			return;
+		{
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
+		}
+	}
+	
+	if (LevelInfo.GetCurrentStageID() == "w2t01")
+	{
+		if (BossDragonConfigInfo.pData == null)
+			return;
+		{
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.49f);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
+		}
+	}
+};
+
 Code "Gamemode Battle Rush Wyvern" 
 //
     using System.Numerics;

@@ -1,4 +1,4 @@
-Code "Parrymiss Phase Switch" by "Hypernova"
+Code "Riflebeast Event Phase Switch" by "Hypernova"
 //
 	#lib "GameManager"
 	#import "Services"
@@ -6,65 +6,47 @@ Code "Parrymiss Phase Switch" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 	
-    static long Address = 0;
+    static long AddressParryMs = 0;
+	static long AddressGrandSp = 0;
 //
 {
-	string currentStage = LevelInfo.GetCurrentStageID();
 	if (LevelInfo.GetCurrentStageID() == "w1r06")
 	{
-		if (Address == 0)
-		{ /* 0x141466710 */ Address = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
+		if (AddressParryMs == 0)
+		{ /* 0x141466710 */ AddressParryMs = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
+		
+		if (AddressGrandSp == 0)
+		{ /* 0x1414636B8 */ AddressGrandSp = ScanSignature ("zev_sp_riflebeast", "xxxxxxxxxxxxxxxxx"); }
 
 		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
 		bool isReset1 = Lua.Call<int>("IsPlayingDiEvent", "bo6150") == 1;
 		bool isReset2 = Lua.Call<int>("IsPlayingDiEvent", "bo6155") == 1;
+		bool isDrkQTE = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
 		bool isReset3 = Lua.Call<int>("IsPlayingDiEvent", "bo6170") == 1;
 		bool isReset4 = Lua.Call<int>("IsPlayingDiEvent", "bo6180") == 1;
 		bool isFinale = Lua.Call<int>("IsPlayingDiEvent", "bo6190") == 1;
 
 		if ((isPhase1) || (isReset1) || (isReset2) || (isReset3) || (isReset4) || (isFinale))
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
+		{
+			{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
+			{ WriteProtected<byte>(AddressGrandSp, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+		}
 
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
 		if (isPhase2)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02")); }
-
-		bool isPhaseDarkBall = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
-		if (isPhaseDarkBall)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_darkball_riflebeast")); }
-	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
-}
-
-Code "Riflebeast Special Phase Switch" by "Hypernova"
-//
-	#lib "GameManager"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	
-    static long Address = 0;
-//
-{
-	if (LevelInfo.GetCurrentStageID() == "w1r06")
-	{
-		if (Address == 0)
-		{ /* 0x1414636B8  */ Address = ScanSignature ("zev_sp_riflebeast", "xxxxxxxxxxxxxxxxx"); }
-
-		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
-		if (isPhase1)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
-
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
-		if (isPhase2)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst02")); }
+		{
+			{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02")); }
+			{ WriteProtected<byte>(AddressGrandSp, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst02")); }
+		}
 		
-		bool isFinale = Lua.Call<int>("IsPlayingDiEvent", "bo6190") == 1;
-		if (isFinale)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+		if (isDrkQTE)
+		{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_darkball_riflebeast")); }
 	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+	else
+	{
+		{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
+		{ WriteProtected<byte>(AddressGrandSp, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+	}
 }
 
 Code "Riflebeast Barrier Death Phase Switch" by "Hypernova"
@@ -283,22 +265,6 @@ Code "SS2 Ring Refill"
                 }
             }
         }
-
-		string Anim = Lua.Call<string>("GetCurrentAnimationName");
-		if (Anim == "PARRY_JUST")
-		{
-			bool parryPerfect = (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateParry);
-			if ((parryPerfect) && (rings < 150))
-			{
-				pBlackboardItem->RingCount += 1;
-					
-				if(rings > maxrings)
-				{pBlackboardItem->RingCount = maxrings;}
-
-				if(rings < 0)
-				{pBlackboardItem->RingCount = 0;}
-			}
-		}	
 	}
 }
 

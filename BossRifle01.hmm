@@ -140,10 +140,6 @@ Code "Bitlaser Phase Switch" by "Holoska and Hypernova"
 	#import "Plugins"
 	
     static long Address = 0;
-	
-	//zev_Btlsr00 to Bitlaser01//
-	//zev_Laser02 to Bitlaser02//
-	//zev_spQTE02 to zevlaser02//
 //
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
