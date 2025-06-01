@@ -2,7 +2,7 @@
 - This is simply filler text until the Titans update fully releases.
 - Currently on "Test Version 1.21h".
 
-# Aggro-Titans Starfall Update (Test) 1.21
+# Aggro-Titans Update (Test) 1.21
 - Fixed the Edited "parrymiss" QTE having missing sounds when Riflebeast strikes Sonic to start the QTE.
 - Fixed the Edited "Final Blow" Riflebeast QTE having the wrong sound effects that used different names.
 - Updated "master.levels" in the Hedgehog folder.
@@ -20,7 +20,7 @@
 - Wyvern Phase 2 Grand Slam added.
 - File and Code Adjustments made.
 
-# Aggro-Titans Starfall Update (Test) 1.20
+# Aggro-Titans Update (Test) 1.20
 - Supreme's scratch attacks are slightly faster.
 - Supreme's Bit Drone projectiles have been retextured.
 - Supreme's Bit Drone attacks are slightly more aggressive.
