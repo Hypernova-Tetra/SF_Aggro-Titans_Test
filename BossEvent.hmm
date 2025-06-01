@@ -1,77 +1,111 @@
-Code "Skippable Phase 2 cutscene" by "Hypernova and Ashrindy"
+Code "Skippable Phase 2 Cutscenes" by "Hypernova"
 //
 	#lib "GameManager"
-    #lib "EventPlayer"
+	#lib "EventPlayer"
 	#lib "Lua"
 	#lib "GameObject"
 	#lib "BlackboardStatus"
+	
 	#import "Services"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
+	
+    static long Address1140 = 0;
+	static long Address2140 = 0;
+	static long Address3140 = 0;
+	static long Address4140 = 0;
+	static long Address4160 = 0;
 //
 {
+	// bo1140 - Giganto Phase 2 //
+	
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
-	WriteProtected<byte>
-	(
-		/* 0x141534F0 */ ScanSignature    ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"),
-		System.Text.Encoding.UTF8.GetBytes("bo1141\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
-	);
+	if (Address1140 == 0)
+	{ /* 0x1414534E4 */ Address1140 = ScanSignature ("bo1140", "xxxxxx"); }
 	
-	if ((LevelInfo.GetCurrentStageID() == "w1t01") || (LevelInfo.GetCurrentStageID() == "w1b01"))
+    if ((LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
+	{ WriteProtected<byte>(Address1140, System.Text.Encoding.UTF8.GetBytes("bo1141")); }
+	else
+	{ WriteProtected<byte>(Address1140, System.Text.Encoding.UTF8.GetBytes("bo1140")); }
+	
+	WriteProtected<byte>
+	( /* 0x141534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00") );
+	
+	if ((LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
 	{
-		bool eventGiantPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo1140") == 1;
-		if (eventGiantPhase2)
+		bool eventGiantRushTrial= Lua.Call<int>("IsPlayingDiEvent", "bo1141") == 1;
+		if (eventGiantRushTrial)
 		{
 			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-			var setupData = new EventPlayer.EventSetupData("bo1141");
+			var setupData = new EventPlayer.EventSetupData("bo1140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
-
+	
+	// bo2140 - Wyvern Phase 2 //
+	
+	if (Address2140 == 0)
+	{ /* 0x14144C97C */ Address2140 = ScanSignature ("bo2140", "xxxxxx");}
+	
 	WriteProtected<byte>
-	(
-		/* 0x14144C988 */ ScanSignature   ("boss_giant02_bo2140", "xxxxxxxxxxxxxxxxxxx"),
-		System.Text.Encoding.UTF8.GetBytes("bo2141\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
-	);
+	( /* 0x14144C988 */ ScanSignature ("boss_giant02_bo2140", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00") );
 
-	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01"))
+	if (LevelInfo.GetCurrentStageID() == "w2r01")
 	{
-		bool eventDragonPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
+		bool eventDragonPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo2141") == 1;
 		if (eventDragonPhase2)
+		{ Lua.Call("PlayDiEventFrozen", "bo2140"); }
+	}
+	
+	if ((LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
+	{
+		bool eventDragonRushTrial = Lua.Call<int>("IsPlayingDiEvent", "bo2141") == 1;
+		if (eventDragonRushTrial)
 		{
-			Lua.Call("PlayDiEventFrozen", "bo2141")
+			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+			var setupData = new EventPlayer.EventSetupData("bo2140");
+			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
-
+	
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
+	{ WriteProtected<byte>(Address2140, System.Text.Encoding.UTF8.GetBytes("bo2141")); }
+	else
+	{ WriteProtected<byte>(Address2140, System.Text.Encoding.UTF8.GetBytes("bo2140")); }
+	
+	// bo3140 - Knight Phase 2 //
+	
+	if (Address3140 == 0)
+	{ /* 0x14145C230*/ Address3140 = ScanSignature ("bo3140", "xxxxxx"); }
+	
+    if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01") || (LevelInfo.GetCurrentStageID() == "w3t01"))
+	{ WriteProtected<byte>(Address3140, System.Text.Encoding.UTF8.GetBytes("bo3141")); }
+	else
+	{ WriteProtected<byte>(Address3140, System.Text.Encoding.UTF8.GetBytes("bo3140")); }
+	
 	WriteProtected<byte>
-	(
-		/* 0x14145C238 */ ScanSignature   ("boss_giant03_bo3140", "xxxxxxxxxxxxxxxxxxx"),
-		System.Text.Encoding.UTF8.GetBytes("bo3141\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
-	);
+	( /* 0x14145C238 */ ScanSignature ("boss_giant03_bo3140", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00") );
 
 	if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01"))
 	{	
-		bool eventKnightPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
+		bool eventKnightPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo3141") == 1;
 		if (eventKnightPhase2)
 		{
 			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-			var setupData = new EventPlayer.EventSetupData("bo3141");
+			var setupData = new EventPlayer.EventSetupData("bo3140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
 	
 	WriteProtected<byte>
-    (
-        /* 0x14145C108 */ ScanSignature   ("boss_giant03_bo3120", "xxxxxxxxxxxxxxxxxxx"),
-        System.Text.Encoding.UTF8.GetBytes("bo3145\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
-    );
+    ( /* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3145\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00") );
 
 	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{	
-		bool eventKnightTrial2 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
-		if (eventKnightTrial2)
+		bool eventKnightMKT = Lua.Call<int>("IsPlayingDiEvent", "bo3141") == 1;
+		if (eventKnightMKT)
 		{
 			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 			var setupData = new EventPlayer.EventSetupData("bo3145");
@@ -83,78 +117,40 @@ Code "Skippable Phase 2 cutscene" by "Hypernova and Ashrindy"
 		{	
 			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 			var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride02_aerial");
-			setupData.playFlags |= EventPlayer.EventSetupData.PlayFlag.CantSkip;
 			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
 	
-	if (LevelInfo.GetCurrentStageID() == "w1r04" || LevelInfo.GetCurrentStageID() == "w1r06")
-	{	
-		bool eventRiflePhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
+	// bo4140 - Supreme Phase 2 //
+
+	if (Address4140 == 0)
+	{ /* 0x1414534E4 */ Address4140 = ScanSignature ("bo4140", "xxxxxx");}
+	
+    if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
+	{ WriteProtected<byte>(Address4140, System.Text.Encoding.UTF8.GetBytes("bo4141")); }
+	else
+	{ WriteProtected<byte>(Address4140, System.Text.Encoding.UTF8.GetBytes("bo4140")); }
+	
+	if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
+	{
+		bool eventRiflePhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1;
 		if (eventRiflePhase2)
 		{
 			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-			var setupData = new EventPlayer.EventSetupData("bo4141");
+			var setupData = new EventPlayer.EventSetupData("bo4140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
-}
 
-Code "Supreme Finale w1r06" by "Hypernova"
-//
-	#lib "GameManager"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	
-    static long Address = 0;
-	static string[] qte_L = new[]
-	
-	{ /* sup */ "bo4162" };
-//
-{
-	string currentStage = LevelInfo.GetCurrentStageID();
-    if (LevelInfo.GetCurrentStageID() == "w1r06")
-	{
-		if (Address == 0)
-		{
-			/* 0x1414624B8 */ Address = ScanSignature
-			("bo4160", "xxxxxx");
-		}
-		else
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
-	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("bo4160")); }
-}
+	// bo4160 - Supreme's defeat //
 
-Code "Unskippable Giganto Phase 2 in base Kronos" by "Hypernova"
-//
-	#lib "GameManager"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
+	if (Address4160 == 0)
+	{ /* 0x1414624B8 */ Address4160 = ScanSignature ("bo4160", "xxxxxx"); }
 	
-    static long Address = 0;
-	static string[] qte_L = new[]
-	
-	{ /* sup */ "bo1141" };
-//
-{
-	string currentStage = LevelInfo.GetCurrentStageID();
-		
-    if (LevelInfo.GetCurrentStageID() == "w1r03")
-	{
-		if (Address == 0)
-		{
-			/* 0x1414534E4 */ Address = ScanSignature
-			("bo1140", "xxxxxx");
-		}
-		else
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
-	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("bo1140")); }
+	if (LevelInfo.GetCurrentStageID() == "w1r06")
+	{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162")); }
+	else
+	{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160")); }
 }
 
 Library "EventPlayer" by "Ashrindy"

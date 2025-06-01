@@ -42,11 +42,6 @@ Code "Riflebeast Event Phase Switch" by "Hypernova"
 		if (isDrkQTE)
 		{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_darkball_riflebeast")); }
 	}
-	else
-	{
-		{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
-		{ WriteProtected<byte>(AddressGrandSp, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
-	}
 }
 
 Code "Riflebeast Barrier Death Phase Switch" by "Hypernova"

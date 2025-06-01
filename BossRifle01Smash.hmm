@@ -35,7 +35,8 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	static bool initialized = false;
 	static bool IsConfigInitialised = false;
 
-	static long Address = 0;
+	static long AddressSplDmg = 0;
+	static long Address1150 = 0;
 //
 {
 	var pBlackboardStatus = BlackboardStatus.Get();
@@ -90,35 +91,43 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	if (!smashBool)
 		return;
 	{
-		WriteProtected<byte>
-		(
-			/* 0x141556068 */ ScanSignature   ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"),
-			System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp00\x00\x00\x00\x00")
-		);
-
-		if (LevelInfo.GetCurrentStageID() == "w1r04" || LevelInfo.GetCurrentStageID() == "w1r06")
+		// Phase-Switch Grand Slam Event Part 1 // 
+		if (Address1150 == 0)
+		{ /* 0x141556068 */ Address1150 = ScanSignature ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"); }
+		
+		if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
 		{
-			if (Address == 0)
-			{ /* 0x14140F5D0 */ Address = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
+			bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
+			if (isPhase1)
+			{ WriteProtected<byte>(Address1150, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp00\x00\x00\x00\x00")); }
+		}
+		else
+		{ WriteProtected<byte>(Address1150, System.Text.Encoding.UTF8.GetBytes("obj_event_ga3220")); }
+
+		// Phase-Switch Grand Slam Event Part 2 // 
+		if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
+		{
+			if (AddressSplDmg == 0)
+			{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 			
 			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 			{
-				{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
-				
+				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
+
 				if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 				{	
 					var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_sp00");
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 					evtPlayer->PlayEvent(ref setupData);
-					setupData.playFlags |= EventPlayer.EventSetupData.PlayFlag.CantSkip;
 				}
-				
-				bool eventGrandSp = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp00") == 1;
-				if (eventGrandSp)
+
+				bool eventGrandS1 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp00") == 1;
+				if (eventGrandS1)
 				{
-					Lua.Call("HideObjectInEvent", "Rifle", !eventGrandSp);
-					Lua.Call("HideObjectInEvent", "Rifle0", !eventGrandSp);
-					Lua.Call("HideObjectInEvent", "ARifle", !eventGrandSp);
+					Lua.Call("HideObjectInEvent", "Rifle", !eventGrandS1);
+					Lua.Call("HideObjectInEvent", "Rifle0", !eventGrandS1);
+					Lua.Call("HideObjectInEvent", "ARifle", !eventGrandS1);
 				}
 				else 
 				{
@@ -127,19 +136,15 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 					Lua.Call("HideObjectInEvent", "ARifle", !false);
 				}
 
-				bool eventAddressSp = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp00") == 1;
-				if (eventAddressSp)
-				{
-					{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
-				}
+				bool eventSp00 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp00") == 1;
+				if (eventSp00)
+				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 				else 
-				{
-					{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
-				}
+				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
 			}
-			else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+			else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 		}
-		else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+		else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 	}
 
 	if (!healthBool && !smashBool)
@@ -158,10 +163,10 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 					pBlackboardItem->RingCount += 10;
 					
 					if(rings > maxrings)
-					{pBlackboardItem->RingCount = maxrings;}
+					pBlackboardItem->RingCount = maxrings;
 					
 					if(rings < 0)
-					{pBlackboardItem->RingCount = 0;}
+					pBlackboardItem->RingCount = 0;
 				}
 			}
 		}

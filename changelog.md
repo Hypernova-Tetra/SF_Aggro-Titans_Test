@@ -1,4 +1,8 @@
-## Aggro-Titans Version 1.21 (Test)
+## Aggro-Titans Starfall Update (Release Date Unconfirmed)
+- This is simply filler text until the Titans update fully releases.
+- Currently on "Test Version 1.21h".
+
+# Aggro-Titans Starfall Update (Test) Version 1.21
 - Fixed the Edited "parrymiss" QTE having missing sounds when Riflebeast strikes Sonic to start the QTE.
 - Fixed the Edited "Final Blow" Riflebeast QTE having the wrong sound effects that used different names.
 - Updated "master.levels" in the Hedgehog folder.
@@ -13,8 +17,10 @@
 - Several adjustments have been made across other hmm code files.
 - Fixed Supreme from disappearing in Phase 2.
 - "extra_sound" directory added.
+- Wyvern Phase 2 Grand Slam added.
+- File and Code Adjustments made.
 
-# Aggro-Titans Version 1.20 (Test)
+# Aggro-Titans Starfall Update (Test) Version 1.20
 - Supreme's scratch attacks are slightly faster.
 - Supreme's Bit Drone projectiles have been retextured.
 - Supreme's Bit Drone attacks are slightly more aggressive.
@@ -25,6 +31,7 @@
 - Final Horizons Cutscenes updated.
 - bo6120: Added new effects from Sonic's stat boost cutscenes. Will be red when using the "Edited" option. Will be Red/Blue for the "Hyper_Blue Aura" options. The Power Boost eye effect has been repositioned properly so that it better overlaps the eyes better. (Can't change their color for now though.)
 - bo6165: The "blue-eye" effect for SS2 has been properly positioned to overlap the eyes.
+
 - Giganto, Wyvern, and Knight added to the mod.
 - Giganto received adjustments to restore unused attacks and have his attacks more aggressive.
 - New animation for Giganto's defeat using leftover files possibly from the beta have been added.
@@ -35,6 +42,7 @@
 - bo1150: Added as a variant for Giganto's defeat. This is primarily based off of leftover beta files left in the game.
 - bo1170: Added as another variant for Giganto's defeat. This is a mixed version of the Beta and the Final's animations.
 - bo1180: Added the unused "Zero Ring Warning" sound effect. Other than that, mostly remains unchanged.
+
 - Wyvern's attack patterns are slightly adjusted.
 - Wyvern's scratch attack animation and animation speed are slightly adjusted.
 - Added more chances to attack Wyvern after failing to parry his attacks.
@@ -45,9 +53,10 @@
 - Parry slow effect adjusted.
 - Wyvern will counter attack more times before the laser.
 - New animation added in Wyvern's Missile QTE when failing.
-- New QTE Added to Wyvern and may play at a random chance instead of the Missile QTE.
+- Wyvern's Events may change briefly after Phase 2 in the Master King's trials.
 - Restored Unused "Counter_Laser" animation if you're on Wyvern's LEFT side.
 - Unused Beta-inspired Finale implemented and configurable.
+
 - Knight's climb phase updated to have the hand slam go by a bit faster
 - Knight's sword slash animations are adjusted a little. (Still in a WIP. I'll adjust them based on feedback.)
 - Knight's Battle Start animation was moved in to cutscene bo3120, making the fight start sooner instead of waiting for Knight to pull his sword out.

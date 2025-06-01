@@ -39,7 +39,7 @@ As of version 1.20 and onward of this mod, "Aggro Titans+" now includes all 4 of
 - Restored unused "Howl" attack
 - Slightly overhauled his "immediateActions" parameters and some attack params.
 - Phase 2 can now be skippable (in Battle Rush and Master King Trials only)
-- Restored some beta elements of Giganto's defeat.
+- Restored some beta elements of Giganto's defeat. (Has a config option)
 
 # Wyvern (Dragon01)
 - Road phase slightly faster
@@ -49,9 +49,10 @@ As of version 1.20 and onward of this mod, "Aggro Titans+" now includes all 4 of
 - Adjusted attack parameters, Wyvern may counter multiple times.
 - Wyvern's Counter Laser has an alternate unused animation that will play if you're on Wyvern's left side. 
 - Wyvern's Phase 2 is skippable
+- New animation for Grand Slam in Phase 2
 - Wyvern may perform a new QTE after the Phase 2 cutscene if you're on Master King's Trials
 - Wyvern may perform a different QTE instead of the Missile QTE at a random chance.
-- Restored unused Beta animation of Wyvern's defeat with some slight camera alterations at the start for uniqueness.
+- Restored unused Beta animation of Wyvern's defeat with some slight camera alterations at the start for uniqueness. (Configurable)
 - Missile QTE has an updated fail animation since this attack is an insta-kill when failed.
 
 # Knight (Knight01)
@@ -103,8 +104,8 @@ As of version 1.20 and onward of this mod, "Aggro Titans+" now includes all 4 of
 - Utilizes unused "Homing_Laser" pattern slots.
 - Cyloop Finisher animations have been adjusted to flow a bit faster.
 - Fixed Phase 2 transition in which Sonic was erroneously shown as "Super Sonic" and not "Super Sonic 2"
-- Parrymiss QTE has a shorter variant version in the settings.
-- Parrymiss QTE changes after being hit with the "Dark Ball" cutscene (bo6160 / bo6165).
+- Parrymiss QTE now Phase-changes. A shorter animation will play after Phase 2, but before the next change below.
+- Parrymiss QTE in Phase 2 changes after being hit with the "Dark Ball" cutscene and surviving. (bo6165).
 - All "bo6xxx.pac" uses the "Realtime Definitive Edition" mod.
 - Cutscene "bo6190" (The End's defeat) has a small prerendered section where Eggman aims his shot at the titans.
 - Grand Slam event is fully in real-time.

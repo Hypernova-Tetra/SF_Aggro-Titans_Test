@@ -79,16 +79,6 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 	static long AddressMsle = 0;
 //
 {
-	string currentStage = LevelInfo.GetCurrentStageID();
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{
-		bool eventDragonPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
-		if (eventDragonPhase2)
-		{
-			Lua.Call("PlayDiEventFrozen", "bo2141")
-		}
-	}
-
 	if (LevelInfo.GetCurrentStageID() == "w2t01")
 	{
 		if (AddressSp01 == 0)
@@ -96,7 +86,7 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 
 		bool isPhase2a = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
 		if (isPhase2a)
-		{ WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_laser")); }
+		{ WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02")); }
 	}
 	else { WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01")); }
 
@@ -121,26 +111,6 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); }
 	}
 	else { WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
-
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{
-		if (AddressSp01 == 0)
-		{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_laser", "xxxxxxxxxxxxxxxx"); }
-
-		bool isRestore1 = Lua.Call<int>("IsPlayingDiEvent", "zev_dragon_laser") == 1;
-		if (isRestore1)
-		{ WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01")); }
-	}
-	
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{
-		if (AddressSnd1 == 0)
-		{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
-
-		bool isRestore2 = Lua.Call<int>("IsPlayingDiEvent", "zev_dragon_laser") == 1;
-		if (isRestore2)
-		{ WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing")); }
-	}
 	
 	if (LevelInfo.GetCurrentStageID() == "w2t01")
 	{
@@ -196,8 +166,8 @@ Code "Wyvern_Combat"
 		return;
 	{
 		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 7800);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3700);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2750);
 	}
 };
 
@@ -231,7 +201,7 @@ Code "Wyvern Special Extra" by Hypernova
 		if (BossDragonConfigInfo.pData == null)
 			return;
 		{
-			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.49f);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
 			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
 			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
 		}

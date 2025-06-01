@@ -19,12 +19,18 @@ Patch "Hardcoded Audio Patch" by "Hypernova"
 		System.Text.Encoding.UTF8.GetBytes("update_event_signal")
 	);
 	
-    WriteProtected<byte>
+	WriteProtected<byte>
+    (
+        /* 0x141556030 */ ScanSignature   ("boss_giant02_bo2110","xxxxxxxxxxxxxxxxxxx"),
+        System.Text.Encoding.UTF8.GetBytes("update_event_signal")
+    );
+	
+	WriteProtected<byte>
     (
         /* 0x14144C948 */ ScanSignature   ("boss_giant02_bo2115","xxxxxxxxxxxxxxxxxxx"),
         System.Text.Encoding.UTF8.GetBytes("update_event_signal")
     );
-
+	
     WriteProtected<byte>
     (
         /* 0x14144C968 */ ScanSignature   ("boss_giant02_bo2120","xxxxxxxxxxxxxxxxxxx"),
