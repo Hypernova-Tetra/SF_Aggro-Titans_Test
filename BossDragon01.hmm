@@ -79,7 +79,7 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 	static long AddressMsle = 0;
 //
 {
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
 	{
 		if (AddressSp01 == 0)
 		{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
@@ -90,7 +90,7 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 	}
 	else { WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01")); }
 
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
 	{
 		if (AddressSnd1 == 0)
 		{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }

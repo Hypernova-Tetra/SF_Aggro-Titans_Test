@@ -121,24 +121,24 @@ Code "Zev_Sp02 Phase Switch" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 	
-    static long Address = 0;
+    static long AddressSp02 = 0;
 //
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
 	if (LevelInfo.GetCurrentStageID() == "w1r06")
 	{
-		if (Address == 0)
-		{ /* 0x14125C830 */ Address = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+		if (AddressSp02  == 0)
+		{ /* 0x14125C830 */ AddressSp02  = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
 		
 		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
 		if (isPhase1)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); }
+		{ WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); }
 		
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
+		{ WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
+	else { WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 }
 
 Code "Bitlaser Phase Switch" by "Holoska and Hypernova"
@@ -286,16 +286,6 @@ Code "Supreme_Combat"
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
-
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[3], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[5], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
-		
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[3], 0);
 	}
 };
 
