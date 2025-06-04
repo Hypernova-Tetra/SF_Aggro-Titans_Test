@@ -39,21 +39,21 @@ Code "Shoot01 Phase Switch" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 	
-    static long Address = 0;
+    static long AdShoot01 = 0;
 //
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
     if (LevelInfo.GetCurrentStageID() == "w1r06")
 	{
-		if (Address == 0)
-		{ /* 0x14125C840 */ Address = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
+		if (AdShoot01 == 0)
+		{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
 		
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1;
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
+		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 	}
 	else
-	{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
+	{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
 }
 
 Code "Shoot02 RNG" by "Holoska"
@@ -64,7 +64,7 @@ Code "Shoot02 RNG" by "Holoska"
 	#import "Graphics"
 	#import "Plugins"
 	
-    static long Address = 0;
+    static long AdShoot02 = 0;
 	static string[] qte_L = new[]
 	
 	{ /* sup */ "zev_rfl_shoot02", "zev_rfl_shoot02", "zev_rfl_shoot02", "zev_rfl_spQTE02", "zev_rfl_spQTE02", "zev_rfl_spQTE02" };
@@ -73,15 +73,15 @@ Code "Shoot02 RNG" by "Holoska"
 	string currentStage = LevelInfo.GetCurrentStageID();
     if (LevelInfo.GetCurrentStageID() == "w1r06")
 	{
-		if (Address == 0)
-		{ /* 0x14125C830 */ Address = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
+		if (AdShoot02 == 0)
+		{ /* 0x14125C830 */ AdShoot02 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
 		else
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
+		{ WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
 	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
+	else { WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
 }
 
-Code "No Winglaser for w1r04 and w1b02" by "Hypernova"
+Code "Winglaser for Final Horizon DLC" by "Hypernova"
 //
 	#lib "GameManager"
 	#import "Services"
@@ -136,6 +136,10 @@ Code "Zev_Sp02 Phase Switch" by "Hypernova"
 		
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
+		{ WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
+		
+		bool isLaserWing = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp01") == 1;
+		if (isLaserWing)
 		{ WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 	}
 	else { WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
