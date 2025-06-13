@@ -48,6 +48,19 @@ Code "Shoot01 Phase Switch" by "Hypernova"
 		if (AdShoot01 == 0)
 		{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
 		
+		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
+		bool isRflBst = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
+		if ((isPhase1) || (isRflBst))
+		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
+		
+		bool islaser01 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser01") == 1;
+		if (islaser01)
+		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); }
+		
+		bool isSpQTE01 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spQTE01") == 1;
+		if (isSpQTE01)
+		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
+		
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
 		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
@@ -56,8 +69,6 @@ Code "Shoot01 Phase Switch" by "Hypernova"
 		if (isLaserWing)
 		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
 	}
-	else
-	{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
 }
 
 Code "Shoot02 RNG" by "Holoska"
@@ -82,7 +93,6 @@ Code "Shoot02 RNG" by "Holoska"
 		else
 		{ WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
 	}
-	else { WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
 }
 
 Code "Winglaser for Final Horizon DLC" by "Hypernova"
@@ -103,18 +113,22 @@ Code "Winglaser for Final Horizon DLC" by "Hypernova"
 		if (Address1 == 0)
 		{ /* 0x141461F00 */ Address1 = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
 		{ WriteProtected<byte>(Address1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02")); }
+		
+		bool isFinaleBase = Lua.Call<int>("IsPlayingDiEvent", "bo4160") == 1;
+		if (isFinaleBase)
+		{ WriteProtected<byte>(Address1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
 	}
-	else
-	{ WriteProtected<byte>(Address1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
-	
+
 	if (LevelInfo.GetCurrentStageID() == "w1b02")
 	{
 		if (Address2 == 0)
 		{ /* 0x141461F00 */ Address2 = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
 		{ WriteProtected<byte>(Address2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
+		
+		bool isFinaleBase = Lua.Call<int>("IsPlayingDiEvent", "bo4160") == 1;
+		if (isFinaleBase)
+		{ WriteProtected<byte>(Address1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
 	}
-	else
-	{ WriteProtected<byte>(Address2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
 }
 
 Code "Zev_Sp02 Phase Switch" by "Hypernova"
@@ -146,7 +160,6 @@ Code "Zev_Sp02 Phase Switch" by "Hypernova"
 		if (isLaserWing)
 		{ WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 	}
-	else { WriteProtected<byte>(AddressSp02 , System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 }
 
 Code "Bitlaser Phase Switch" by "Holoska and Hypernova"
@@ -177,7 +190,6 @@ Code "Bitlaser Phase Switch" by "Holoska and Hypernova"
 		bool isFinale = Lua.Call<int>("IsPlayingDiEvent", "bo4160") == 1;
 		bool isFinDLC = Lua.Call<int>("IsPlayingDiEvent", "bo4162") == 1;
 		bool isRflBst = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
-		
 		if ((isPhase2) || (isFinale) || (isFinDLC) || (isRflBst))
 		{ WriteProtected<byte>(AddressDrone, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
 		
