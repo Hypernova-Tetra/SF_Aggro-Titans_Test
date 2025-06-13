@@ -10,6 +10,8 @@ Code "Riflebeast Event Phase Switch" by "Hypernova"
 	static long AddressGrandSp = 0;
 //
 {
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
 	if (LevelInfo.GetCurrentStageID() == "w1r06")
 	{
 		if (AddressParryMs == 0)
@@ -18,16 +20,12 @@ Code "Riflebeast Event Phase Switch" by "Hypernova"
 		if (AddressGrandSp == 0)
 		{ /* 0x1414636B8 */ AddressGrandSp = ScanSignature ("zev_sp_riflebeast", "xxxxxxxxxxxxxxxxx"); }
 
+		bool isReset0 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
 		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
-		bool isReset1 = Lua.Call<int>("IsPlayingDiEvent", "bo6150") == 1;
-		bool isReset2 = Lua.Call<int>("IsPlayingDiEvent", "bo6155") == 1;
-		bool isDrkQTE = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
-		bool isReset3 = Lua.Call<int>("IsPlayingDiEvent", "bo6170") == 1;
-		bool isReset4 = Lua.Call<int>("IsPlayingDiEvent", "bo6180") == 1;
-		bool isFinale = Lua.Call<int>("IsPlayingDiEvent", "bo6190") == 1;
+		bool isDrkBal = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
 
-		if ((isPhase1) || (isReset1) || (isReset2) || (isReset3) || (isReset4) || (isFinale))
+		if ((isPhase1) || (isReset0))
 		{
 			{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
 			{ WriteProtected<byte>(AddressGrandSp, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
@@ -39,8 +37,8 @@ Code "Riflebeast Event Phase Switch" by "Hypernova"
 			{ WriteProtected<byte>(AddressGrandSp, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst02")); }
 		}
 		
-		if (isDrkQTE)
-		{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_darkball_riflebeast")); }
+		if (isDrkBal)
+		{ WriteProtected<byte>(AddressParryMs, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs03")); }
 	}
 }
 
@@ -55,6 +53,8 @@ Code "Riflebeast Barrier Death Phase Switch" by "Hypernova"
     static long Address = 0;
 //
 {
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
 	if (LevelInfo.GetCurrentStageID() == "w1r06")
 	{
 		if (Address == 0)

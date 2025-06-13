@@ -51,6 +51,10 @@ Code "Shoot01 Phase Switch" by "Hypernova"
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
 		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
+		
+		bool isLaserWing = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp01") == 1;
+		if (isLaserWing)
+		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
 	}
 	else
 	{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }

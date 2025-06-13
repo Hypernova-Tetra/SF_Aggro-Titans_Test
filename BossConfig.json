@@ -32,6 +32,15 @@
 				"DefaultValue":"MBoss_Audio_0rgn"
 				},
 				{
+				"Name":"BossX40",
+				"DisplayName":"Titans Phase 2 Scene Skip",
+				"Description":["An experimental feature to skip the boss's Phase 2 cutscenes."],
+				"Type":"BossPhase2",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"1"
+				},
+				{
 				"Name":"BossGiant1160",
 				"DisplayName":"Giganto Finale",
 				"Description":["Choose the scene of Giganto's defeat."],
@@ -146,6 +155,19 @@
 			"Value":"1",
 			"Description":["Lowered HP for certain combat mods that change Sonic's combat style."]
 			}
+		],
+		"BossPhase2":
+		[
+			{
+			"DisplayName":"Off",
+			"Value":"0",
+			"Description":["As default. Unskippable Phase 2 cutscenes for all Titans except Final Horizon 'THE END'."]
+			},
+			{
+			"DisplayName":"On (Experimental)",
+			"Value":"1",
+			"Description":["A rough implimentation of the Phase 2 cutscenes being skippable, may have some issues I can't fully flesh out."]
+			},
 		],
 		"BossGiantFinale":
 		[

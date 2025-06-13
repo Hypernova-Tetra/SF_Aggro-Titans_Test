@@ -1,6 +1,11 @@
 ## Aggro-Titans Starfall Update (Release Date Unconfirmed)
 - This is simply filler text until the Titans update fully releases.
-- Currently on "Test Version 1.21h".
+- Currently on "Test Version 1.22".
+
+# Aggro-Titans Update (Test) 1.22
+- Attempting to adjust and fix random crash issues with Riflebeast
+- New Sword RNG attacks for Knight in Phase 1.
+- New Sword Counter Attack for Knight in Phase 2
 
 # Aggro-Titans Update (Test) 1.21
 - Fixed the Edited "parrymiss" QTE having missing sounds when Riflebeast strikes Sonic to start the QTE.
