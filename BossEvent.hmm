@@ -69,7 +69,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	if ((LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
 	{ WriteProtected<byte>(Address1140, System.Text.Encoding.UTF8.GetBytes("bo1141")); }
 
-	bool eventGiantRushTrial= Lua.Call<int>("IsPlayingDiEvent", "bo1141") == 1;
+	bool eventGiantRushTrial = Lua.Call<int>("IsPlayingDiEvent", "bo1141") == 1;
 	if (eventGiantRushTrial)
 	{
 		var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
