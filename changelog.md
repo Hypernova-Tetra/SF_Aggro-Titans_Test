@@ -1,6 +1,6 @@
 ## Aggro-Titans Starfall Update (Release Date Unconfirmed)
 - This is simply filler text until the Titans update fully releases.
-- Currently on "Test Version 1.22b".
+- Currently on "Test Version 1.22c".
 
 # Aggro-Titans Update (Test) 1.22
 - Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak)
