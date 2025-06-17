@@ -1,9 +1,12 @@
 ## Aggro-Titans Starfall Update (Release Date Unconfirmed)
 - This is simply filler text until the Titans update fully releases.
-- Currently on "Test Version 1.22c".
+- Currently on "Test Version 1.23".
+
+# Aggro-Titans Update (Test) 1.23
+- New option added in Riflebeast's config setting. (Darkball QTE) (Currently Experimental)
 
 # Aggro-Titans Update (Test) 1.22
-- Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak)
+- Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak problem.)
 - New Sword RNG attacks for Knight in Phase 1.
 - New Sword Counter Attack for Knight in Phase 2
 - Adjusted scene: "zev_parrymiss_riflebs03"

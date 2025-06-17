@@ -129,6 +129,15 @@
 				"DefaultValue":"MBoss_QTE_Miss_0rgn"
 				},
 				{
+				"Name":"BossBeastBall",
+				"DisplayName":"Riflebeast Darkball QTE",
+				"Description":["Experimental QTE option"],
+				"Type":"BossDarkballQTE",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"0"
+				},
+				{
 				"Name":"IncludeDir6",
 				"DisplayName":"The Final Blow QTE",
 				"Description":["The Final QTE has small changes."],
@@ -268,6 +277,19 @@
 			"DisplayName":"On",
 			"Value":"1",
 			"Description":["Use only when your game crashes when trying to parry Supreme's arms when stopping him from tackling Sage and Friend's barrier."]
+			}
+		],
+		"BossDarkballQTE":
+		[
+			{
+			"DisplayName":"Off",
+			"Value":"0",
+			"Description":["Disabled"]
+			},
+			{
+			"DisplayName":"On",
+			"Value":"1",
+			"Description":["Enabled"]
 			}
 		],
 		"ZevMiss":

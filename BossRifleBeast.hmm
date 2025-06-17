@@ -1,3 +1,52 @@
+Code "Darkball QTE" by "Hypernova"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+    #lib "HMM"
+	#lib "INI"
+	#lib "GameManager"
+    #import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+    static bool IsConfigInitialised = false;
+    static bool beastBallQTE = false;
+	static int BossDarkballQTE = 0;
+
+    static long AddressParryMs1 = 0;
+//
+{
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		BossDarkballQTE = INI.Parse<int>(ini["Main"]["BossBeastBall"], BossDarkballQTE);
+        IsConfigInitialised = true;
+
+        if (BossDarkballQTE == 1)
+        { beastBallQTE = true; }
+        else
+        { beastBallQTE = false; }
+    }
+	
+	if (!beastBallQTE)
+		return;
+
+	{
+		if (AddressParryMs1 == 0)
+		{ /* 0x141466710 */ AddressParryMs1 = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
+
+		bool isDrkQTE = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
+		if (isDrkQTE)
+		{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs03")); }
+	}
+}
+
 Code "Riflebeast Event Phase Switch" by "Hypernova"
 //
 	#lib "GameManager"
@@ -6,7 +55,6 @@ Code "Riflebeast Event Phase Switch" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 	
-	static long AddressParryMs0 = 0;
     static long AddressParryMs1 = 0;
 	static long AddressGrandSp0 = 0;
 //
@@ -21,7 +69,6 @@ Code "Riflebeast Event Phase Switch" by "Hypernova"
 
 		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
-		bool isDrkQTE = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
 
 		if (isPhase1)
 		{
@@ -34,9 +81,6 @@ Code "Riflebeast Event Phase Switch" by "Hypernova"
 			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02")); }
 			{ WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst02")); }
 		}
-		
-		if (isDrkQTE)
-		{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs03")); }
 	}
 }
 
