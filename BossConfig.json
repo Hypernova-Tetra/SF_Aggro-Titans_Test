@@ -135,7 +135,7 @@
 				"Type":"BossDarkballQTE",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"0"
+				"DefaultValue":"1"
 				},
 				{
 				"Name":"IncludeDir6",

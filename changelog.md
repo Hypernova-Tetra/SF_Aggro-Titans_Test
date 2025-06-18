@@ -1,9 +1,10 @@
 ## Aggro-Titans Starfall Update (Release Date Unconfirmed)
 - This is simply filler text until the Titans update fully releases.
-- Currently on "Test Version 1.23".
+- Currently on "Test Version 1.23a".
 
 # Aggro-Titans Update (Test) 1.23
 - New option added in Riflebeast's config setting. (Darkball QTE) (Currently Experimental)
+- Adjusted Cutscene bo6190 to fix an error.
 
 # Aggro-Titans Update (Test) 1.22
 - Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak problem.)

@@ -206,13 +206,14 @@ Code "Misc Cutscenes" by "Hypernova"
 	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
 	
-	if (LevelInfo.GetCurrentStageID() == "w3t01")
+	if (LevelInfo.GetCurrentStageID() == "w3r01")
 	{
 		bool eventQTEKnight2 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
 		if (eventQTEKnight2)
 		{	
 			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 			var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride01_aerial");
+			setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
