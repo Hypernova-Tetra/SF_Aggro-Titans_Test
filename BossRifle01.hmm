@@ -64,8 +64,6 @@ Code "Shoot01 Dynamic" by "Hypernova"
 		if (isPhase2)
 		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
 	}
-	else
-	{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
 }
 
 Code "Shoot02 Dynamic" by "Hypernova"
@@ -139,24 +137,23 @@ Code "Zev_Sp02 Dynamic" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 	
-    static long Address = 0;
+    static long AdSp02 = 0;
 //
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
 	if (LevelInfo.GetCurrentStageID() == "w1r06")
 	{
-		if (Address == 0)
-		{ /* 0x14125C830 */ Address = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+		if (AdSp02 == 0)
+		{ /* 0x14125C830 */ AdSp02 = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
 		
 		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
 		if (isPhase1)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); }
+		{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); }
 		
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1;
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
+		{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
 }
 
 Code "Dynamic Bitlaser (Open Zone)" by "Holoska and Hypernova"
