@@ -1,4 +1,4 @@
-Code "BossBitConfig-11243229042025"
+Code "Moveset_BossBit" by "Hypernova"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

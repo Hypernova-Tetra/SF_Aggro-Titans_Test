@@ -1,14 +1,31 @@
 Code "Darkball QTE" by "Hypernova"
 //
 	#include "Reflection" noemit
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-	#lib "GameManager"
-    #import "Services"
-	#import "GOComponents"
+	#include "BlackboardStatus" noemit
+    #import "GOComponents"
+    #import "PlayerVisuals"
+	#import "Services"
 	#import "Graphics"
 	#import "Plugins"
+	#lib "GameManager"
+    #lib "GameObject"
+    #lib "Player"
+    #lib "BlackboardStatus"
+    #lib "Reflection"
+	#lib "Time"
+    #lib "SonicParameters"
+    #lib "Sonic"
+    #lib "Time"
+    #lib "Lua"
+	#lib "HMM"
+	#lib "INI"
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
+    #load "WindowsBase.dll"
+    #load "PresentationCore.dll"
+    #load "System.Numerics.dll"
+	
     static bool IsConfigInitialised = false;
     static bool beastBallQTE = false;
 	static int BossDarkballQTE = 0;
@@ -38,44 +55,90 @@ Code "Darkball QTE" by "Hypernova"
 		return;
 
 	{
+		var data = Player.GetPlayerData();
+		if (data == null)
+			return;
+
+		var gocVisual = GameObject.GetGOC<GOCPlayerVisual>(&data->GameObject);
+		if (gocVisual == null)
+			return;
+
+		var visual = gocVisual->GetVisual<VisualSuperSonic>();
+		if (visual == null)
+			return;
+		
 		if (AddressParryMs1 == 0)
 		{ /* 0x141466710 */ AddressParryMs1 = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
 
-		bool isDrkQTE = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
-		if (isDrkQTE)
-		{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs03")); }
+		if (visual->IsSuperSonic2)
+		{
+			bool isDrkQTE = Lua.Call<int>("IsPlayingDiEvent", "bo6165") == 1;
+			if (isDrkQTE)
+			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs03")); }
+		}
 	}
 }
 
 Code "Riflebeast Event Phase Switch" by "Hypernova"
 //
-	#lib "GameManager"
+	#include "Reflection" noemit
+	#include "BlackboardStatus" noemit
+    #import "GOComponents"
+    #import "PlayerVisuals"
 	#import "Services"
-	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
+	#lib "GameManager"
+    #lib "GameObject"
+    #lib "Player"
+    #lib "BlackboardStatus"
+    #lib "Reflection"
+	#lib "Time"
+    #lib "SonicParameters"
+    #lib "Sonic"
+    #lib "Time"
+    #lib "Lua"
+	#lib "HMM"
+	#lib "INI"
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
+    #load "WindowsBase.dll"
+    #load "PresentationCore.dll"
+    #load "System.Numerics.dll"
 	
     static long AddressParryMs1 = 0;
 	static long AddressGrandSp0 = 0;
 //
 {
-	if (LevelInfo.GetCurrentStageID() == "w1r06")
-	{
-		if (AddressParryMs1 == 0)
-		{ /* 0x141466710 */ AddressParryMs1 = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
-		
-		if (AddressGrandSp0 == 0)
-		{ /* 0x1414636B8 */ AddressGrandSp0 = ScanSignature ("zev_sp_riflebeast", "xxxxxxxxxxxxxxxxx"); }
+	var data = Player.GetPlayerData();
+    if (data == null)
+        return;
 
-		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
+    var gocVisual = GameObject.GetGOC<GOCPlayerVisual>(&data->GameObject);
+    if (gocVisual == null)
+        return;
 
+    var visual = gocVisual->GetVisual<VisualSuperSonic>();
+    if (visual == null)
+        return;
+	
+	if (AddressParryMs1 == 0)
+	{ /* 0x141466710 */ AddressParryMs1 = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
+	
+	if (AddressGrandSp0 == 0)
+	{ /* 0x1414636B8 */ AddressGrandSp0 = ScanSignature ("zev_sp_riflebeast", "xxxxxxxxxxxxxxxxx"); }
+	
+    if (visual->IsSuperSonic2)
+    {
+		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo6120") == 1;
 		if (isPhase1)
 		{
 			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
 			{ WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
 		}
-
+		
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo6140") == 1;
 		if (isPhase2)
 		{
 			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02")); }
