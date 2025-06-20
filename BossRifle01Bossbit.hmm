@@ -12,7 +12,7 @@ Code "Moveset_BossBit" by "Hypernova"
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
 
-	if (LevelInfo.GetCurrentStageID() == "w1r04")
+	if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02"))
 	{
 		var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
 		if (BossBitConfigInfo.pData == null)

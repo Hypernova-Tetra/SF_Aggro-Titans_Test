@@ -252,5 +252,4 @@ Library "BossRushParameter"
         [FieldOffset(0x1A8)] public float kodamaFightTextTime;
         [FieldOffset(0x1AC)] public float kodamaSplendidTextTime;
     }
-
 }

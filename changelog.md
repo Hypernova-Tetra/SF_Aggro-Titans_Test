@@ -1,13 +1,15 @@
 ## Aggro-Titans Starfall Update (Release Date Unconfirmed)
 - This is simply filler text until the Titans update fully releases.
-- Currently on "Test Version 1.23c".
+- Currently on "Test Version 1.23d".
 
 # Aggro-Titans Update (Test) 1.23
 - New option added in Riflebeast's config setting. (Darkball QTE) (Currently Experimental)
 - Adjusted Cutscene bo6190 to fix an error.
 - Fixed an oversight with code "Dynamic_Sp02" in BossRifle01.hmm
 - Fixed a 1 frame camera error in Cutscene bo4140.
-- Small Adjustments to certain Code Files.
+- Adjusted "Counter_Attack" RNG code for Giganto and Supreme
+- Optimized .hmm code files for "Rifle01.hmm" and "BossRifleBeast.hmm" to fix instability problems in Final Horizons Ouranos Island.
+(Did I finally fix the Crash Problem on Final Horizons Ouranos Island?)
 
 # Aggro-Titans Update (Test) 1.22
 - Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak problem.)

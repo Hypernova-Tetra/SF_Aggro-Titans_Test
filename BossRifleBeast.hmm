@@ -175,13 +175,9 @@ Code "Supreme_End_Combat"
         IsConfigInitialised = true;
 
         if (BossHP == 1)
-        {
-            healthBool = true;
-        }
+        { healthBool = true; }
         else
-        {
-            healthBool = false;
-        }
+        { healthBool = false; }
     }
 	
 	if (!healthBool)
@@ -228,13 +224,9 @@ Code "No_Tackle"
         IsConfigInitialised = true;
 
         if (NoTackle == 1)
-        {
-            shieldBool = true;
-        }
+        { shieldBool = true; }
         else
-        {
-            shieldBool = false;
-        }
+        { shieldBool = false; }
     }
 	
 	if (!shieldBool)
@@ -248,94 +240,6 @@ Code "No_Tackle"
 		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[0], BossRifleBeastConfig.AtackType.AT_CROW_L);
 		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[4], BossRifleBeastConfig.AtackType.AT_CROW_R);
 		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[8], BossRifleBeastConfig.AtackType.AT_HIMING05);
-	}
-}
-
-Code "SS2 Ring Refill"
-// 
-    #include "Reflection" noemit
-    #import "GOComponents"
-    #import "PlayerVisuals"
-	#import "Services"
-    #lib "GameObject"
-    #lib "Player"
-    #lib "BlackboardStatus"
-    #lib "Reflection"
-	#lib "Time"
-    #lib "SonicParameters"
-    #lib "Sonic"
-    #lib "Time"
-    #lib "Lua"
-	#lib "HMM"
-	#lib "INI"
-	using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-    #load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-	#include "Reflection" noemit
-    #include "BlackboardStatus" noemit
-	
-    static bool Ring = false;
-    static float counter = 0f;
-    
-
-    var data = Player.GetPlayerData();
-    if (data == null)
-        return;
-
-    var gocVisual = GameObject.GetGOC<GOCPlayerVisual>(&data->GameObject);
-    if (gocVisual == null)
-        return;
-
-    var visual = gocVisual->GetVisual<VisualSuperSonic>();
-    if (visual == null)
-        return;
-
-    var pBlackboardItem = BlackboardItem.Get();
-    if (pBlackboardItem == null)
-	    return;
-		
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-//
-{
-    // Check if the player type is Sonicw
-    if (Player.GetPlayerType() == Player.PlayerType.Sonic)
-    {
-		bool eventSS2Power = Lua.Call<int>("IsPlayingDiEvent", "bo6120") == 1;
-		int rings = pBlackboardItem->RingCount;
-		int maxrings = pBlackboardItem->RingCapacity;
-		
-		if ((eventSS2Power) && (rings < 300))
-		{pBlackboardItem->RingCount += 150;}
-		
-        if (visual->IsSuperSonic2)
-        {
-            if (!Ring)
-            {				
-				if(rings > maxrings)
-				{pBlackboardItem->RingCount = maxrings;}
-				
-				if(rings < 0)
-				{pBlackboardItem->RingCount = 0;}
-            }
-            else if (Ring)
-            {
-                counter += Time.GetDeltaTime();
-                if(counter > 170.5f)
-				{
-                    Ring = false;   
-                    counter = 0f;
-                }
-                else
-                {
-                   //NothingHappensHere
-                }
-            }
-        }
 	}
 }
 

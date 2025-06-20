@@ -1,10 +1,15 @@
-Code "Supreme Counter_Blow (Final Horizons)" by "Holoska"
+Code "Counter_Blow" by "Holoska"
 //
     using System.Numerics;
     using System.Collections.Generic;
     using System.IO;
 	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
 	#include "Reflection" noemit
+	#lib "GameManager"
+	#lib "GameObject"
 	#lib "Reflection"
     #lib "HMM"
 	#lib "INI"
@@ -16,8 +21,8 @@ Code "Supreme Counter_Blow (Final Horizons)" by "Holoska"
     #load "PresentationCore.dll"
     #load "System.Numerics.dll"
 	
-    static long Address = 0;
-	static string[] qte_L = new[]
+    static long AdRightHand = 0;
+	static string[] rng_counter = new[]
 	
 	{ /* sup */ "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03" };
 //
@@ -26,19 +31,33 @@ Code "Supreme Counter_Blow (Final Horizons)" by "Holoska"
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
 	
+	var pBlackboardItem = BlackboardItem.Get();
+	if (pBlackboardItem == null)
+		return;
+	
 	string currentStage = LevelInfo.GetCurrentStageID();
-    if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1r06"))
+	
+	if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 	{
-		if (Address == 0)
-		{/* 0x14144FCF8 */ Address = ScanSignature ("attack_counter_righthand_01", "xxxxxxxxxxxxxxxxxxxxxxxxxxx");}
+		if ((LevelInfo.GetCurrentStageID() == "w1r06") || (LevelInfo.GetCurrentStageID() == "w1t01"))
+		{
+			if (AdRightHand == 0)
+			{/* 0x14144FCF8 */ AdRightHand = ScanSignature ("attack_counter_righthand_01", "xxxxxxxxxxxxxxxxxxxxxxxxxxx");}
+			
+			{ WriteProtected<byte>(AdRightHand, System.Text.Encoding.UTF8.GetBytes(rng_counter[new Random().Next(0, rng_counter.Length)])); }
+		}
 		
-		else
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
+		if (LevelInfo.GetCurrentStageID() == "w1r03")
+		{
+			if (AdRightHand == 0)
+			{/* 0x14144FCF8 */ AdRightHand = ScanSignature ("attack_counter_righthand_01", "xxxxxxxxxxxxxxxxxxxxxxxxxxx");}
+			
+			{ WriteProtected<byte>(AdRightHand, System.Text.Encoding.UTF8.GetBytes("attack_counter_righthand_01")); }
+		}
 	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("attack_counter_righthand_01")); }
 }
 
-Code "Shoot01 Dynamic" by "Hypernova"
+Code "Dynamic Event DLC" by "Hypernova"
 //
 	#lib "GameManager"
 	#lib "GameObject"
@@ -53,6 +72,8 @@ Code "Shoot01 Dynamic" by "Hypernova"
 	#include "Reflection" noemit
 	
     static long AdShoot01 = 0;
+	static long AdShoot02 = 0;
+	static long AdSp02 = 0;
 //
 {
 	var pBlackboardStatus = BlackboardStatus.Get();
@@ -68,10 +89,19 @@ Code "Shoot01 Dynamic" by "Hypernova"
 	{
 		if (AdShoot01 == 0)
 		{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
-		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
+
+		if (AdShoot02 == 0)
+		{ /* 0x14125C830 */ AdShoot02 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
 		
+		if (AdSp02 == 0)
+		{ /* 0x14125C830 */ AdSp02 = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+		
+		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
 		if (isPhase1)
-		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
+		{
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
+		}
 		
 		bool isLaser01 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser01") == 1;
 		if (isLaser01)
@@ -83,45 +113,12 @@ Code "Shoot01 Dynamic" by "Hypernova"
 		
 		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
 		if (isPhase2)
-		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
-	}
-}
+		{
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00"));
+		}
 
-Code "Shoot02 Dynamic" by "Hypernova"
-//
-	#lib "GameManager"
-	#lib "GameObject"
-	#lib "BlackboardStatus"
-	#lib "Player"
-	#lib "Sonic"
-	#lib "Reflection"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	#include "Reflection" noemit
-	
-    static long AdShoot02 = 0;
-//
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-		
-	var pBlackboardItem = BlackboardItem.Get();
-	if (pBlackboardItem == null)
-		return;
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
-	if ((LevelInfo.GetCurrentStageID() == "w1r06") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
-	{
-		if (AdShoot02 == 0)
-		{ /* 0x14125C830 */ AdShoot02 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
-	
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
-		if (isPhase2)
-		{ WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
-	
 		bool isShoot02 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_shoot02") == 1;
 		if (isShoot02)
 		{ WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02")); }
@@ -129,6 +126,16 @@ Code "Shoot02 Dynamic" by "Hypernova"
 		bool isSpQTE02 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spQTE02") == 1;
 		if (isSpQTE02)
 		{ WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
+	}
+	
+	if (LevelInfo.GetCurrentStageID() == "w1b02")
+	{
+		bool isRushCheck = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser00") == 1;
+		if (isRushCheck)
+		{
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+		}
 	}
 }
 
@@ -179,48 +186,7 @@ Code "No Winglaser for w1r04" by "Hypernova"
 	{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
 }
 
-Code "Zev_Sp02 Dynamic" by "Hypernova"
-//
-	#lib "GameManager"
-	#lib "GameObject"
-	#lib "BlackboardStatus"
-	#lib "Player"
-	#lib "Sonic"
-	#lib "Reflection"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	#include "Reflection" noemit
-	
-    static long AdSp02 = 0;
-//
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-		
-	var pBlackboardItem = BlackboardItem.Get();
-	if (pBlackboardItem == null)
-		return;
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
-	if ((LevelInfo.GetCurrentStageID() == "w1r06") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
-	{
-		if (AdSp02 == 0)
-		{ /* 0x14125C830 */ AdSp02 = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
-		
-		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
-		if (isPhase1)
-		{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); }
-		
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
-		if (isPhase2)
-		{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
-	}
-}
-
-Code "Dynamic Bitlaser (Open Zone)" by "Holoska and Hypernova"
+Code "Dynamic Bitlaser" by "Holoska and Hypernova"
 //
 	#lib "GameManager"
 	#lib "GameObject"
@@ -249,6 +215,8 @@ Code "Dynamic Bitlaser (Open Zone)" by "Holoska and Hypernova"
 	
 	if (Address == 0)
 	{ /* 0x141462108 */ Address = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
+	
+	
 	
 	if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 	{
@@ -269,54 +237,22 @@ Code "Dynamic Bitlaser (Open Zone)" by "Holoska and Hypernova"
 			if ((isPhaseLast1) || (isPhaseLast2))
 			{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00")); }	
 		}
+		
+		if (LevelInfo.GetCurrentStageID() == "w1b02")
+		{
+			bool isRushCheck = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser00") == 1;
+			if (isRushCheck)
+			{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01")); }
+			
+			bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
+			if (isPhase2)
+			{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
+		}
 	}
 	
 	bool isReset = Lua.Call<int>("IsPlayingDiEvent", "bo6120") == 1;
 	if (isReset)
 	{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
-}
-
-Code "Dynamic Bitlaser (Battle Rush)" by "Holoska and Hypernova"
-//
-	#lib "GameManager"
-	#lib "GameObject"
-	#lib "BlackboardStatus"
-	#lib "Player"
-	#lib "Sonic"
-	#lib "Reflection"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	#include "Reflection" noemit
-	
-    static long Address = 0;
-//
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-		
-	var pBlackboardItem = BlackboardItem.Get();
-	if (pBlackboardItem == null)
-		return;
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
-	
-	if (Address == 0)
-	{ /* 0x141462108 */ Address = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
-		
-	if ((LevelInfo.GetCurrentStageID() == "w1b02") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
-	{
-		bool isRushCheck = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser00") == 1;
-		if (isRushCheck)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01")); }
-		
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
-		if (isPhase2)
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
-	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
 }
 
 Code "Supreme Wing Laser for Final Horizons Ouranos" by "Hypernova"
@@ -409,7 +345,7 @@ Code "Supreme Wing Laser for Final Horizons Ouranos" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[7].attackType, BossRifleConfig.ActionType.AT_HAND_R);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[8].attackType, BossRifleConfig.ActionType.AT_HAND_L);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[9].attackType, BossRifleConfig.ActionType.AT_HAND_L);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_BIT_WAVE);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SP01);
 			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 75);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);

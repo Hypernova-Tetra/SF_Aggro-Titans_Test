@@ -1,36 +1,3 @@
-Code "RNG Giganto Counter_Blow" by "Holoska"
-//
-    using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-	#import "Services"
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BlackboardStatus"
-    #lib "HMM"
-	#lib "INI"
-    #load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-	
-    static long Address = 0;
-	static string[] qte_L = new[]
-	
-	{ /* sup */ "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_02", "attack_counter_righthand_02" };
-//
-{
-	string currentStage = LevelInfo.GetCurrentStageID();
-    if (LevelInfo.GetCurrentStageID() == "w1r03")
-	{
-		if (Address == 0)
-		{/* 0x14144FCF8 */ Address = ScanSignature ("attack_counter_righthand_01", "xxxxxxxxxxxxxxxxxxxxxxxxxxx");}
-		
-		else
-		{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)])); }
-	}
-	else { WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("attack_counter_righthand_01")); }
-}
-
 Code "Giganto_Combat"
 //
 	#include "Reflection" noemit
