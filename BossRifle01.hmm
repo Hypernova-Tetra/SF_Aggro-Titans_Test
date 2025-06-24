@@ -173,6 +173,13 @@ Code "No Winglaser for w1r04" by "Hypernova"
 			if (Address == 0)
 			{ /* 0x141461F00 */ Address = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
 			{ WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
+
+			if (AdShoot01 == 0)
+			{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
+			
+			bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
+			if (isPhase2)
+			{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
 		}
 		
 		if (LevelInfo.GetCurrentStageID() == "w1b02")
@@ -215,9 +222,7 @@ Code "Dynamic Bitlaser" by "Holoska and Hypernova"
 	
 	if (Address == 0)
 	{ /* 0x141462108 */ Address = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
-	
-	
-	
+
 	if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 	{
 		if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1r06"))
@@ -333,7 +338,7 @@ Code "Supreme Wing Laser for Final Horizons Ouranos" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].attackDatas[7].attackType, BossRifleConfig.ActionType.AT_HAND_R);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].attackDatas[8].attackType, BossRifleConfig.ActionType.AT_HAND_L);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].attackDatas[9].attackType, BossRifleConfig.ActionType.AT_HAND_R);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT3);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SP01);
 
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[0].attackType, BossRifleConfig.ActionType.AT_BIT_WAVE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[1].attackType, BossRifleConfig.ActionType.AT_LASER);
@@ -345,7 +350,7 @@ Code "Supreme Wing Laser for Final Horizons Ouranos" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[7].attackType, BossRifleConfig.ActionType.AT_HAND_R);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[8].attackType, BossRifleConfig.ActionType.AT_HAND_L);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].attackDatas[9].attackType, BossRifleConfig.ActionType.AT_HAND_L);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SP01);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[3].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT3);
 			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 75);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
