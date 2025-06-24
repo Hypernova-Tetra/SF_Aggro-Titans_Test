@@ -154,6 +154,7 @@ Code "No Winglaser for w1r04" by "Hypernova"
 	#include "Reflection" noemit
 	
     static long Address = 0;
+	static long AdShoot01 = 0;
 //
 {
 	var pBlackboardStatus = BlackboardStatus.Get();
