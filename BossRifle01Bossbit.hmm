@@ -12,7 +12,7 @@ Code "Moveset_BossBit" by "Hypernova"
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
 
-	if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02"))
+	if (LevelInfo.GetCurrentStageID() == "w1r04")
 	{
 		var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
 		if (BossBitConfigInfo.pData == null)
@@ -118,6 +118,52 @@ Code "Moveset_BossBit" by "Hypernova"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isHomingLowFly, true);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.waveRotationSpeed, 30.5f);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.flyMoveSpeed, 0);
+	}
+}
+
+Code "BossBit_Combat"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossBitConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+
+    static bool IsConfigInitialised = false;
+	static int BossHP = 0;
+    static bool healthBool = false;
+//
+{
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
+        IsConfigInitialised = true;
+
+        if (BossHP == 1)
+        { healthBool = true; }
+        else
+        { healthBool = false; }
+    }
+	
+	if (!healthBool)
+		return;
+
+	var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
+
+	if (BossBitConfigInfo.pData == null)
+		return;
+	{
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.bitHp, 750.0f);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
 	}
 }
 
@@ -314,5 +360,4 @@ Library "BossBitConfig"
 
         [FieldOffset(0x1E38)] public SmallBitFormationParameter smallBitFormation;
     }
-
 }
