@@ -13,6 +13,7 @@
 - Very small barely noticeable tweaks made to 3 animation files for Supreme.
 - Fixed a Battle Rush QTE error in which a Phase 1 QTE appeared in Phase 2.
 - Adjustments to Knight.
+- Alternate Sword QTE added for Battle Rush.
 
 # Aggro-Titans Update (Test) 1.22
 - Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak problem.)
