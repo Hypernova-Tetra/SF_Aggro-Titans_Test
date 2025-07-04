@@ -180,6 +180,7 @@ Code "Misc Cutscenes" by "Hypernova"
 	#import "Plugins"
 	static long Address4160 = 0;
 	static long AddressGS2 = 0;
+	static long AdSwordFinal = 0;
 //
 {
 	WriteProtected<byte>
@@ -190,7 +191,10 @@ Code "Misc Cutscenes" by "Hypernova"
 	if (AddressGS2 == 0)
     {/* 0x14145C1F8 */ AddressGS2 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
 	
-	if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01"))
+	if (AdSwordFinal == 0)
+    {/* 0x14145C278 */ AdSwordFinal = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
+	
+	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{
 		bool eventQTEKnightT1 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
 		bool eventQTEKnightT2 = Lua.Call<int>("IsPlayingDiEvent", "bo3145") == 1;
@@ -203,21 +207,14 @@ Code "Misc Cutscenes" by "Hypernova"
 		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
 	}
 	
-	if (LevelInfo.GetCurrentStageID() == "w3t01")
+	if (LevelInfo.GetCurrentStageID() == "w3r01")
 	{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
 	
-	if (LevelInfo.GetCurrentStageID() == "w3r01")
-	{
-		bool eventQTEKnight2 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
-		if (eventQTEKnight2)
-		{	
-			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-			var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride01_aerial");
-			setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-			evtPlayer->PlayEvent(ref setupData);
-		}
-	}
-	
+	if (LevelInfo.GetCurrentStageID() == "w3b01")
+	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
+	else
+	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+
 	if (Address4160 == 0)
 	{ /* 0x1414624B8 */ Address4160 = ScanSignature ("bo4160", "xxxxxx"); }
 		

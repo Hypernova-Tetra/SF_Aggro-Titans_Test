@@ -29,12 +29,11 @@ Code "Sword Attack Rage" by "Hypernova"
 	
 	if (AddressB1SwordRage == 0)
     {/* 0x141459870 */ AddressB1SwordRage = ScanSignature ("battle1_sword_rage", "xxxxxxxxxxxxxxxxxx");}
-
-	if (LevelInfo.GetCurrentStageID() == "w3b01")
-	{WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));}
 	
-	if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3r01"))
-	{WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle2_sword_vert"));}	
+	if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01") || (LevelInfo.GetCurrentStageID() == "w3t01"))
+	{WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle2_sword_vert"));}
+	else
+	{WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));}
 }
 
 Code "Sword Attack Side Phase 1" by "Hypernova"
