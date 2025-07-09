@@ -16,7 +16,7 @@ Code "Giganto_Combat"
 		{RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);}
 	}
 	
-	if (LevelInfo.GetCurrentStageID() == "w1t01")
+	if ((LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
 	{
 		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
 		if (BossGiantConfigInfo.pData == null)

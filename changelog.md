@@ -1,6 +1,13 @@
-## Aggro-Titans Starfall Update (Release Date Unconfirmed)
-- This is simply filler text until the Titans update fully releases.
-- Currently on "Test Version 1.24".
+## Aggro-Titans Starfall Update (Release Date still Unconfirmed)
+- Hoping to finalize this mod on version 1.25, still no ETA.
+- Currently on "Test Version 1.24b".
+
+# Aggro-Titans Update (Test) 1.24
+- File: "BossEventRifle01.hmm" added after pinpointing the source of random crashes after prolonged play in the DLC's final battle, not related to parrying Riflebeast's arms.
+- Slight tweaks to Rifle01 attack patterns.
+- Changed Riflebeast's "AT_Tackle" frequency to play as only the first attack in Phase 2's attack pattern loop.
+- Un-lua's your Final Horizons scripts, Part 1. Burned to Ash Edition.
+- Partial "Lua.Call" Function scraping on section w1r06 in Dynamic Supreme Events code.
 
 # Aggro-Titans Update (Test) 1.23
 - New option added in Riflebeast's config setting. (Darkball QTE) (Currently Experimental)

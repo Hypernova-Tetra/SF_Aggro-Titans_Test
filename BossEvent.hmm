@@ -63,7 +63,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	if (Address1140 == 0)
 	{ /* 0x1414534E4 */ Address1140 = ScanSignature ("bo1140", "xxxxxx"); }
 
-	if ((LevelInfo.GetCurrentStageID() == "w1r03") || (LevelInfo.GetCurrentStageID() == "w1r06"))
+	if (LevelInfo.GetCurrentStageID() == "w1r03")
 	{ WriteProtected<byte>(Address1140, System.Text.Encoding.UTF8.GetBytes("bo1140")); }
 	
 	if ((LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
@@ -153,19 +153,16 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	{ /* 0x1414534E4 */ Address4140 = ScanSignature ("bo4140", "xxxxxx");}
 	
 	if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
-	{ WriteProtected<byte>(Address4140, System.Text.Encoding.UTF8.GetBytes("bo4141")); }
-	else
-	{ WriteProtected<byte>(Address4140, System.Text.Encoding.UTF8.GetBytes("bo4140")); }
-	
-	if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
-	{
+	{ 	
+		WriteProtected<byte>(Address4140, System.Text.Encoding.UTF8.GetBytes("bo4141"));
+		
 		bool eventRiflePhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1;
-		if (eventRiflePhase2)
-		{
-			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-			var setupData = new EventPlayer.EventSetupData("bo4140");
-			evtPlayer->PlayEvent(ref setupData);
-		}
+			if (eventRiflePhase2)
+			{
+				var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+				var setupData = new EventPlayer.EventSetupData("bo4140");
+				evtPlayer->PlayEvent(ref setupData);
+			}
 	}
 }
 
@@ -216,173 +213,6 @@ Code "Misc Cutscenes" by "Hypernova"
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
 }
 
-Code "Dynamic Supreme Events" by "Hypernova"
-//
-	#lib "GameMode"
-	#lib "GameManager"
-	#lib "GameObject"
-	#lib "BossRifleConfig"
-	#lib "BlackboardStatus"
-	#lib "Player"
-	#lib "Sonic"
-	#lib "Reflection"
-	#lib "HMM"
-	#lib "INI"
-	
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	
-	#include "Reflection" noemit
-	
-	#load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-
-	using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-
-	static long AdBitlaser = 0;
-    static long AdShoot01 = 0;
-	static long AdShoot02 = 0;
-	static long AdSp01 = 0;
-	static long AdSp02 = 0;
-	static long Address4160 = 0;
-//
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-		
-	var pBlackboardItem = BlackboardItem.Get();
-	if (pBlackboardItem == null)
-		return;
-	
-	if (Address4160 == 0)
-	{ /* 0x1414624B8 */ Address4160 = ScanSignature ("bo4160", "xxxxxx"); }
-	
-	if (AdBitlaser == 0)
-	{ /* 0x141462108 */ AdBitlaser = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
-	
-	if (AdShoot01 == 0)
-	{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
-
-	if (AdShoot02 == 0)
-	{ /* 0x14125C830 */ AdShoot02 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
-	
-	if (AdSp01 == 0)
-	{ /* 0x141461F00 */ AdSp01 = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
-		
-	if (AdSp02 == 0)
-	{ /* 0x14125C830 */ AdSp02 = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
-	
-	if ((LevelInfo.GetCurrentStageID() == "w1r06") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
-	{
-		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162")); }
-		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
-			
-		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
-		if (isPhase1)
-		{
-			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
-			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
-			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
-		}
-			
-		bool isLaser01 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser01") == 1;
-		if (isLaser01)
-		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); }
-			
-		bool isSpQTE01 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spQTE01") == 1;
-		if (isSpQTE01)
-		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
-			
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
-		if (isPhase2)
-		{
-			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
-			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
-			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
-			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00"));
-		}
-			
-		bool isPhaseLast1 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_shoot02") == 1;
-		bool isPhaseLast2 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spQTE02") == 1;
-		if ((isPhaseLast1) || (isPhaseLast2))
-		{ WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00")); }	
-
-		bool isShoot02 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_shoot02") == 1;
-		if (isShoot02)
-		{ WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02")); }
-			
-		bool isSpQTE02 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spQTE02") == 1;
-		if (isSpQTE02)
-		{ WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
-	}
-	
-	if ((LevelInfo.GetCurrentStageID() == "w1r04") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
-	{
-		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
-		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160")); }
-			
-		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
-		if (isPhase1)
-		{
-			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
-			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
-		}
-			
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
-		if (isPhase2)
-		{
-			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
-			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); 
-		}
-	}
-	
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	if (gameModeBattleRush)
-	{	
-		if (AdSp01 == 0)
-		{ /* 0x141461F00 */ AdSp01 = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
-		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
-			
-		if (AdShoot01 == 0)
-		{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
-		
-		if (AdBitlaser == 0)
-		{ /* 0x141462108 */ AdBitlaser = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
-		
-		if (Address4160 == 0)
-		{ /* 0x1414624B8 */ Address4160 = ScanSignature ("bo4160", "xxxxxx"); }
-			
-		bool isRushCheck = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser00") == 1;
-		if (isRushCheck)
-		{
-			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
-			WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00"));
-			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
-			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
-			WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
-		}
-			
-		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
-		if (isPhase2)
-		{
-			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
-			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
-		}
-		
-		bool isWin = Lua.Call<int>("IsPlayingDiEvent", "bo4160") == 1;
-		if (isWin)
-		{ WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
-	}
-}
-
 Library "EventPlayer" by "Ashrindy"
 {
     #include "Helpers" noemit
@@ -428,9 +258,9 @@ Library "EventPlayer" by "Ashrindy"
         [FieldOffset(0x70)] public Vector3 scale;
         [FieldOffset(0x84)] public float speed;
         [FieldOffset(0x88)] public PlayFlag playFlags;
-        [FieldOffset(0x110)] public Vector3 playerPosition;
-        [FieldOffset(0x120)] public Quaternion playerRotation;
-        [FieldOffset(0x130)] public PlayerFlag playerFlags;
+        [FieldOffset(0x100)] public Vector3 playerPosition;
+        [FieldOffset(0x110)] public Quaternion playerRotation;
+        [FieldOffset(0x120)] public PlayerFlag playerFlags;
 
         public void Setup(string cutsceneName){
             fixed(EventSetupData* pThis = &this){
@@ -467,13 +297,19 @@ Library "EventPlayer" by "Ashrindy"
 
     [StructLayout(LayoutKind.Explicit, Size = 0x160)]
     public struct Data {
-        [FieldOffset(0xD0)] public Memory.Pointer<EventSceneManager> evtSceneMgr;
+        [FieldOffset(0x130)] public Memory.Pointer<EventSceneManager> evtSceneMgr;
 
         public void PlayEvent(ref EventSetupData setupData){
             fixed(EventSetupData* pSetupData = &setupData)
             fixed(Data* pThis = &this){
                 GET_FUNCTION_PTR(fpPlayEvent)(pThis, pSetupData);
             }
+        }
+
+        public bool IsEventPlaying(string name){
+            if(evtSceneMgr.Get() != null)
+                return evtSceneMgr.Get()->IsEventPlaying(name);
+            return false;
         }
     }
 }

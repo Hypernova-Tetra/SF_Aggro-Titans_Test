@@ -1,0 +1,278 @@
+Code "Dynamic Supreme Events" by "Hypernova"
+//
+	#lib "GameMode"
+	#lib "GameManager"
+	#lib "GameObject"
+	#lib "BossRifleConfig"
+	#lib "BlackboardStatus"
+	#lib "Player"
+	#lib "Sonic"
+	#lib "Reflection"
+	#lib "HMM"
+	#lib "INI"
+	
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	
+	#include "Reflection" noemit
+	
+	#load "WindowsBase.dll"
+    #load "PresentationCore.dll"
+    #load "System.Numerics.dll"
+
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
+
+	static long AdBitlaser = 0;
+    static long AdShoot01 = 0;
+	static long AdShoot02 = 0;
+	static long AdSp01 = 0;
+	static long AdSp02 = 0;
+	static long Address4160 = 0;
+//
+{
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
+		
+	var pBlackboardItem = BlackboardItem.Get();
+	if (pBlackboardItem == null)
+		return;
+
+	if (Address4160 == 0)
+	{ /* 0x1414624B8 */ Address4160 = ScanSignature ("bo4160", "xxxxxx"); }
+	
+	if (AdBitlaser == 0)
+	{ /* 0x141462108 */ AdBitlaser = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
+	
+	if (AdShoot01 == 0)
+	{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
+
+	if (AdShoot02 == 0)
+	{ /* 0x14125C830 */ AdShoot02 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
+	
+	if (AdSp01 == 0)
+	{ /* 0x141461F00 */ AdSp01 = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+		
+	if (AdSp02 == 0)
+	{ /* 0x14125C830 */ AdSp02 = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+	
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
+	if ((LevelInfo.GetCurrentStageID() == "w1r06") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
+	{
+		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162")); }
+		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00")); }
+
+		var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+		if (evtPlayer == null)
+		return;
+	
+		bool isPhase1 = evtPlayer->IsEventPlaying("bo4110");
+		if (isPhase1)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+			WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00"));
+			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
+		}
+		
+		bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01");
+		if (isLaser01)
+		{WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));}
+		
+		bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
+		if (isSpQTE01)
+		{WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));}
+
+		bool isPhase2 = evtPlayer->IsEventPlaying("bo4140");
+		if (isPhase2)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
+			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00"));
+		}
+	
+		bool isLastPhase = evtPlayer->IsEventPlaying("zev_rfl_spQTE02");
+		if (isLastPhase)
+		{
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00"));
+		}
+		
+		bool isLastPhase2 = evtPlayer->IsEventPlaying("zev_rfl_shoot02");
+		if (isLastPhase2)
+		{
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00"));
+		}
+		
+		bool isSp02 = evtPlayer->IsEventPlaying("zev_rfl_sp02");
+		if (isSp02)
+		{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
+		
+		bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01");
+		if (isShoot01)
+		{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
+	}
+	
+	if ((LevelInfo.GetCurrentStageID() == "w1r04") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
+	{
+		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
+		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160")); }
+			
+		bool isPhase1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1;
+		if (isPhase1)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+		}
+			
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
+		if (isPhase2)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); 
+		}
+	}
+	
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	if (gameModeBattleRush)
+	{	
+		if (AdSp01 == 0)
+		{ /* 0x141461F00 */ AdSp01 = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
+			
+		if (AdShoot01 == 0)
+		{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
+		
+		if (AdBitlaser == 0)
+		{ /* 0x141462108 */ AdBitlaser = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
+		
+		if (Address4160 == 0)
+		{ /* 0x1414624B8 */ Address4160 = ScanSignature ("bo4160", "xxxxxx"); }
+			
+		bool isRushCheck = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser00") == 1;
+		if (isRushCheck)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
+			WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+			WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+		}
+			
+		bool isPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1;
+		if (isPhase2)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+		}
+	}
+}
+
+Library "EventPlayer" by "Ashrindy"
+{
+    #include "Helpers" noemit
+
+    #lib "GameManager"
+    #lib "Memory"
+    #lib "GameService"
+    #lib "Helpers"
+
+    #import "Allocators"
+    #import "Collections"
+
+    #load "System.Numerics.dll"
+
+    using System.Numerics;
+    using System.Runtime.InteropServices;
+    using System.Runtime.CompilerServices;
+
+    FUNCTION_PTR(void, fpPlayEvent, 0x140139010, Data* self, EventSetupData* setupData)
+    FUNCTION_PTR(void, fpSetupEventSetupData, 0x1401370C0, EventSetupData* self, Helpers.UnmanagedString cutsceneName)
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x160)]
+    public struct EventSetupData {
+        [Flags]
+        public enum PlayFlag : uint {
+            UseSetupTransform = 0x01,
+            StopFadeOut = 0x02,
+            CantSkip = 0x04,
+            EnableHUD = 0x20,
+            CappedFPS = 0x4000
+        }
+
+        [Flags]
+        public enum PlayerFlag : uint {
+            UsePosition = 0x01,
+            UseRotation = 0x02
+        }
+
+        [FieldOffset(0)] public fixed byte cutsceneName[40];
+        [FieldOffset(0x28)] public fixed byte soundName[40];
+        [FieldOffset(0x50)] public Vector3 position;
+        [FieldOffset(0x60)] public Quaternion rotation;
+        [FieldOffset(0x70)] public Vector3 scale;
+        [FieldOffset(0x84)] public float speed;
+        [FieldOffset(0x88)] public PlayFlag playFlags;
+        [FieldOffset(0x100)] public Vector3 playerPosition;
+        [FieldOffset(0x110)] public Quaternion playerRotation;
+        [FieldOffset(0x120)] public PlayerFlag playerFlags;
+
+        public void Setup(string cutsceneName){
+            fixed(EventSetupData* pThis = &this){
+                GET_FUNCTION_PTR(fpSetupEventSetupData)(pThis, new Helpers.UnmanagedString(cutsceneName));
+            }
+        }
+
+        public EventSetupData(){}
+
+        public EventSetupData(string cutsceneName){
+            Setup(cutsceneName);
+        }
+    }
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x10)]
+    public struct VariableString {
+        [FieldOffset(0)] public Helpers.UnmanagedString buffer;
+        [FieldOffset(0x8)] public long allocator;
+    }
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x58)]
+    public struct EventSceneManager {
+        [FieldOffset(0x38)] public ObjectMoveArray<VariableString> eventNames;
+
+        public bool IsEventPlaying(string name) {
+            foreach(var x in eventNames) {
+                if(x.buffer.Value == name){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x160)]
+    public struct Data {
+        [FieldOffset(0x130)] public Memory.Pointer<EventSceneManager> evtSceneMgr;
+
+        public void PlayEvent(ref EventSetupData setupData){
+            fixed(EventSetupData* pSetupData = &setupData)
+            fixed(Data* pThis = &this){
+                GET_FUNCTION_PTR(fpPlayEvent)(pThis, pSetupData);
+            }
+        }
+
+        public bool IsEventPlaying(string name){
+            if(evtSceneMgr.Get() != null)
+                return evtSceneMgr.Get()->IsEventPlaying(name);
+            return false;
+        }
+    }
+}
