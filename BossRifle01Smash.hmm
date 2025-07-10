@@ -28,6 +28,9 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
     #load "WindowsBase.dll"
     #load "PresentationCore.dll"
     #load "System.Numerics.dll"
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
 	static int BossHP = 0;
 	static int BossRifleSp00 = 0;
     static bool healthBool = false;
@@ -45,6 +48,10 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 
 	var pBlackboardItem = BlackboardItem.Get();
 	if (pBlackboardItem == null)
+		return;
+	
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
 		return;
 	
 	int maxrings = pBlackboardItem->RingCapacity;
@@ -102,31 +109,26 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 
 				if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 				{	
-					var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_sp00");
 					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 					evtPlayer->PlayEvent(ref setupData);
 				}
 
-				bool eventGrandS1 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp00") == 1;
+				bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_sp00");
 				if (eventGrandS1)
 				{
 					Lua.Call("HideObjectInEvent", "Rifle", !eventGrandS1);
 					Lua.Call("HideObjectInEvent", "Rifle0", !eventGrandS1);
 					Lua.Call("HideObjectInEvent", "ARifle", !eventGrandS1);
+					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
 				}
 				else 
 				{
 					Lua.Call("HideObjectInEvent", "Rifle", !false);
 					Lua.Call("HideObjectInEvent", "Rifle0", !false);
 					Lua.Call("HideObjectInEvent", "ARifle", !false);
+					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00"));
 				}
-
-				bool eventSp00 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp00") == 1;
-				if (eventSp00)
-				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
-				else 
-				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
 			}
 			else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 		}
@@ -154,7 +156,7 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	if (!healthBool)
 	return;
 	{
-		bool isBeastIntro = Lua.Call<int>("IsPlayingDiEvent", "bo6110") == 1;
+		bool isBeastIntro = evtPlayer->IsEventPlaying("bo6110");
 		if ((isBeastIntro) && (rings < 400))
 		{
 			pBlackboardItem->RingCount += 400;
@@ -213,9 +215,9 @@ Library "EventPlayer" by "Ashrindy"
         [FieldOffset(0x70)] public Vector3 scale;
         [FieldOffset(0x84)] public float speed;
         [FieldOffset(0x88)] public PlayFlag playFlags;
-        [FieldOffset(0x110)] public Vector3 playerPosition;
-        [FieldOffset(0x120)] public Quaternion playerRotation;
-        [FieldOffset(0x130)] public PlayerFlag playerFlags;
+        [FieldOffset(0x100)] public Vector3 playerPosition;
+        [FieldOffset(0x110)] public Quaternion playerRotation;
+        [FieldOffset(0x120)] public PlayerFlag playerFlags;
 
         public void Setup(string cutsceneName){
             fixed(EventSetupData* pThis = &this){
@@ -252,13 +254,19 @@ Library "EventPlayer" by "Ashrindy"
 
     [StructLayout(LayoutKind.Explicit, Size = 0x160)]
     public struct Data {
-        [FieldOffset(0xD0)] public Memory.Pointer<EventSceneManager> evtSceneMgr;
+        [FieldOffset(0x130)] public Memory.Pointer<EventSceneManager> evtSceneMgr;
 
         public void PlayEvent(ref EventSetupData setupData){
             fixed(EventSetupData* pSetupData = &setupData)
             fixed(Data* pThis = &this){
                 GET_FUNCTION_PTR(fpPlayEvent)(pThis, pSetupData);
             }
+        }
+
+        public bool IsEventPlaying(string name){
+            if(evtSceneMgr.Get() != null)
+                return evtSceneMgr.Get()->IsEventPlaying(name);
+            return false;
         }
     }
 }
