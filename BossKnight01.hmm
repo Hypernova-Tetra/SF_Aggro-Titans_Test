@@ -1,17 +1,14 @@
 Code "Knight Damage Scene RNG" by "Hypernova"
 //
-    static long Address = 0;
-    static string[] qte_L = new[]
-    {
-        /* sup */
-        "zev_knight_sonic_damage01", "zev_knight_sonic_damage01", "zev_knight_sonic_damage02", "zev_knight_sonic_damage02", "zev_knight_sonic_damage03", "zev_knight_sonic_damage03", "zev_knight_sonic_damage04", "zev_knight_sonic_damage04", "zev_knight_sonic_damage05", "zev_knight_sonic_damage05", "zev_knight_sonic_damage06", "zev_knight_sonic_damage06", "zev_knight_sonic_damage07"
-    };
+    static long AdSonicDmg = 0;
+    static string[] DmgRNG = new[]
+    { /* sup */ "zev_knight_sonic_damage01", "zev_knight_sonic_damage01", "zev_knight_sonic_damage02", "zev_knight_sonic_damage02", "zev_knight_sonic_damage03", "zev_knight_sonic_damage03", "zev_knight_sonic_damage04", "zev_knight_sonic_damage04", "zev_knight_sonic_damage05", "zev_knight_sonic_damage05", "zev_knight_sonic_damage06", "zev_knight_sonic_damage06", "zev_knight_sonic_damage07"};
 //
 {
-    if (Address == 0)
-    {/* 0x141455908 */ Address = ScanSignature ("zev_knight_sonic_damage01", "xxxxxxxxxxxxxxxxxxxxxxxxx");}
+    if (AdSonicDmg == 0)
+    {/* 0x141455908 */ AdSonicDmg = ScanSignature ("zev_knight_sonic_damage01", "xxxxxxxxxxxxxxxxxxxxxxxxx");}
     else
-    {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
+    {WriteProtected<byte>(AdSonicDmg, System.Text.Encoding.UTF8.GetBytes(DmgRNG[new Random().Next(0, DmgRNG.Length)]));}
 }
 
 Code "Sword Attack Rage" by "Hypernova"
@@ -39,33 +36,27 @@ Code "Sword Attack Rage" by "Hypernova"
 Code "Sword Attack Side Phase 1" by "Hypernova"
 //
     static long AddressB1SwordSide = 0;
-	static string[] qte_L = new[]
-    {
-        /* sup */
-        "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert"
-    };
+	static string[] SideRNG = new[]
+    { /* sup */ "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert" };
 //
 {
     if (AddressB1SwordSide == 0)
     {/* 0x1414598A0 */ AddressB1SwordSide = ScanSignature ("battle1_sword_side", "xxxxxxxxxxxxxxxxxx");}
 	else
-    {WriteProtected<byte>(AddressB1SwordSide, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
+    {WriteProtected<byte>(AddressB1SwordSide, System.Text.Encoding.UTF8.GetBytes(SideRNG[new Random().Next(0, SideRNG.Length)]));}
 }
 
 Code "Sword Attack Vertical Phase 1" by "Hypernova"
 //
     static long AddressB1SwordVert = 0;
-	static string[] qte_L = new[]
-    {
-        /* sup */
-        "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage",
-    };
+	static string[] VertRNG = new[]
+    { /* sup */ "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", };
 //
 {
     if (AddressB1SwordVert == 0)
     {/* 0x141459888 */ AddressB1SwordVert = ScanSignature ("battle1_sword_vert", "xxxxxxxxxxxxxxxxxx");}
 	else
-    {WriteProtected<byte>(AddressB1SwordVert, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
+    {WriteProtected<byte>(AddressB1SwordVert, System.Text.Encoding.UTF8.GetBytes(VertRNG[new Random().Next(0, VertRNG.Length)]));}
 }
 
 Code "Knight_Combat"

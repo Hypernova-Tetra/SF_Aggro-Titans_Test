@@ -2,15 +2,11 @@ Code "ATK_Scratch 1" by "Ashrindy"
 //
     static long Address = 0;
     static string[] qte_L = new[]
-    {
-        /* sup */
-        "attack_light_scratch01_l",  
-    };
+    { /* sup */ "attack_light_scratch01_l", };
 //
 {
     if (Address == 0)
     { /* 0x14144AB18 */ Address = ScanSignature ("attack_light_scratch01_l", "xxxxxxxxxxxxxxxxxxxxxxxx");}
-	
     else
     {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
 }
@@ -19,15 +15,11 @@ Code "ATK_Scratch 2" by "Ashrindy"
 //
     static long Address = 0;
     static string[] qte_L = new[]
-    {
-        /* sup */
-        "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l",
-    };
+    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
 //
 {
     if (Address == 0)
     {/* 0x14144AB00 */ Address = ScanSignature ("attack_scratch02_l","xxxxxxxxxxxxxxxxxx");}
-	
     else
     {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
 }
@@ -36,15 +28,11 @@ Code "Counter_Tail Attack" by "Ashrindy"
 //
     static long Address = 0;
     static string[] qte_L = new[]
-    {
-        /* sup */
-        "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l"
-    };
+    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l"};
 //
 {
     if (Address == 0)
     {/* 0x14144ABF8 */ Address = ScanSignature ("attack_armer02_l", "xxxxxxxxxxxxxxxx");}
-	
     else
     {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
 } 
@@ -53,74 +41,13 @@ Code "QTE_Psycho" by "Hypernova"
 //
     static long Address = 0;
     static string[] qte_L = new[]
-    {
-        /* sup */
-        "zev_dragon_sp_psycho",  
-    };
+    { /* sup */ "zev_dragon_sp_psycho", };
 //
 {
     if (Address == 0)
     {/* 0x14144CA10 */ Address = ScanSignature ("zev_dragon_sp_psycho", "xxxxxxxxxxxxxxxxxxxx");}
-	
     else
     {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
-}
-
-Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
-//
-	#lib "GameManager"
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	
-	static long AddressSp01 = 0;
-	static long AddressSnd1 = 0;
-	static long AddressMsle = 0;
-//
-{
-	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
-	{
-		if (AddressSp01 == 0)
-		{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
-
-		bool isPhase2a = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
-		if (isPhase2a)
-		{ WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02")); }
-	}
-	else { WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01")); }
-
-	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
-	{
-		if (AddressSnd1 == 0)
-		{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
-
-		bool isPhase2b = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
-		if (isPhase2b)
-		{ WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00")); }
-	}
-	else { WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing")); }
-	
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{
-		if (AddressMsle == 0)
-		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
-
-		bool isPhase2c = Lua.Call<int>("IsPlayingDiEvent", "bo2140") == 1;
-		if (isPhase2c)
-		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); }
-	}
-	else { WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
-	
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{
-		if (AddressMsle == 0)
-		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_laser01", "xxxxxxxxxxxxxxxxxxxxx");}
-
-		bool isRestore3 = Lua.Call<int>("IsPlayingDiEvent", "zev_dragon_sp_laser01") == 1;
-		if (isRestore3)
-		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
-	}
 }
 
 Code "Wyvern_Combat"

@@ -3,7 +3,6 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	#include "Reflection" noemit
 	#lib "GameManager"
 	#lib "EventPlayer"
-	#lib "Lua"
 	#lib "GameObject"
 	#lib "BlackboardStatus"
 	#lib "Reflection"
@@ -62,17 +61,18 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 
 	if (Address1140 == 0)
 	{ /* 0x1414534E4 */ Address1140 = ScanSignature ("bo1140", "xxxxxx"); }
-
-	if (LevelInfo.GetCurrentStageID() == "w1r03")
-	{ WriteProtected<byte>(Address1140, System.Text.Encoding.UTF8.GetBytes("bo1140")); }
 	
-	if ((LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
+	if ((LevelInfo.GetCurrentStageID() == "w1r03") || (LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
 	{ WriteProtected<byte>(Address1140, System.Text.Encoding.UTF8.GetBytes("bo1141")); }
 
-	bool eventGiantRushTrial = Lua.Call<int>("IsPlayingDiEvent", "bo1141") == 1;
-	if (eventGiantRushTrial)
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+
+
+	bool eventGiantPhase2 = evtPlayer->IsEventPlaying("bo1141");
+	if (eventGiantPhase2)
 	{
-		var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 		var setupData = new EventPlayer.EventSetupData("bo1140");
 		evtPlayer->PlayEvent(ref setupData);
 	}
@@ -90,17 +90,16 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 
 	if (LevelInfo.GetCurrentStageID() == "w2r01")
 	{
-		bool eventDragonPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo2141") == 1;
+		bool eventDragonPhase2 = evtPlayer->IsEventPlaying("bo2141");
 		if (eventDragonPhase2)
 		{ Lua.Call("PlayDiEventFrozen", "bo2140"); }
 	}
 
 	if ((LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
 	{
-		bool eventDragonRushTrial = Lua.Call<int>("IsPlayingDiEvent", "bo2141") == 1;
+		bool eventDragonRushTrial = evtPlayer->IsEventPlaying("bo2141");
 		if (eventDragonRushTrial)
 		{
-			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 			var setupData = new EventPlayer.EventSetupData("bo2140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
@@ -120,10 +119,9 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	
 	if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01"))
 	{	
-		bool eventKnightPhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo3141") == 1;
+		bool eventKnightPhase2 = evtPlayer->IsEventPlaying("bo3141");
 		if (eventKnightPhase2)
 		{
-			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 			var setupData = new EventPlayer.EventSetupData("bo3140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
@@ -131,10 +129,9 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	
 	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{	
-		bool eventKnightMKT = Lua.Call<int>("IsPlayingDiEvent", "bo3141") == 1;
+		bool eventKnightMKT = evtPlayer->IsEventPlaying("bo3141");
 		if (eventKnightMKT)
 		{
-			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 			var setupData = new EventPlayer.EventSetupData("bo3145");
 			evtPlayer->PlayEvent(ref setupData);
 		}
@@ -142,7 +139,6 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 		bool eventQTEKnight2 = Lua.Call<int>("IsPlayingDiEvent", "bo3145") == 1;
 		if (eventQTEKnight2)
 		{	
-			var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 			var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride02_aerial");
 			setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 			evtPlayer->PlayEvent(ref setupData);
@@ -156,10 +152,9 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	{ 	
 		WriteProtected<byte>(Address4140, System.Text.Encoding.UTF8.GetBytes("bo4141"));
 		
-		bool eventRiflePhase2 = Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1;
+		bool eventRiflePhase2 = evtPlayer->IsEventPlaying("bo4141");
 			if (eventRiflePhase2)
 			{
-				var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 				var setupData = new EventPlayer.EventSetupData("bo4140");
 				evtPlayer->PlayEvent(ref setupData);
 			}
@@ -168,18 +163,40 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 
 Code "Misc Cutscenes" by "Hypernova"
 //
+	#lib "GameMode"
 	#lib "GameManager"
-	#lib "EventPlayer"
+	#lib "GameObject"
+	#lib "BossRifleConfig"
+	#lib "BlackboardStatus"
+	#lib "Player"
+	#lib "Sonic"
+	#lib "Reflection"
+	#lib "HMM"
+	#lib "INI"
 	
 	#import "Services"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
+	
+	#include "Reflection" noemit
+	
+	#load "WindowsBase.dll"
+    #load "PresentationCore.dll"
+    #load "System.Numerics.dll"
+
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
 	static long Address4160 = 0;
 	static long AddressGS2 = 0;
 	static long AdSwordFinal = 0;
 //
 {
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+	
 	WriteProtected<byte>
 	(/* 0x14145C140 */ ScanSignature ("zev_knight_shieldride02_aerial","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("zev_knight_shieldride02_aerial"));
 	
@@ -193,13 +210,13 @@ Code "Misc Cutscenes" by "Hypernova"
 	
 	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{
-		bool eventQTEKnightT1 = Lua.Call<int>("IsPlayingDiEvent", "bo3140") == 1;
-		bool eventQTEKnightT2 = Lua.Call<int>("IsPlayingDiEvent", "bo3145") == 1;
+		bool eventQTEKnightT1 = evtPlayer->IsEventPlaying("bo3140");
+		bool eventQTEKnightT2 = evtPlayer->IsEventPlaying("bo3145");
 		if ((eventQTEKnightT1) || (eventQTEKnightT2))
 		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2")); }
 		
-		bool eventDefeatKnt = Lua.Call<int>("IsPlayingDiEvent", "bo3160") == 1;
-		bool eventKnightEnd = Lua.Call<int>("IsPlayingDiEvent", "bo3180") == 1;
+		bool eventDefeatKnt = evtPlayer->IsEventPlaying("bo3160");
+		bool eventKnightEnd = evtPlayer->IsEventPlaying("bo3180");
 		if ((eventDefeatKnt) || (eventKnightEnd))
 		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
 	}
@@ -211,6 +228,65 @@ Code "Misc Cutscenes" by "Hypernova"
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
 	else
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+}
+
+Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
+//
+	#lib "GameManager"
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	#include "Reflection" noemit
+	#lib "EventPlayer"
+	#lib "Reflection"
+	static long AddressSp01 = 0;
+	static long AddressSnd1 = 0;
+	static long AddressMsle = 0;
+//
+{
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+	
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
+	{
+		if (AddressSp01 == 0)
+		{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
+	
+		if (AddressSnd1 == 0)
+		{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
+
+		bool isPhase2 = evtPlayer->IsEventPlaying("bo2140");
+		if (isPhase2)
+		{
+			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
+			WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+		}
+	}
+	else 
+	{
+		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
+		WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
+	}
+	
+	if (LevelInfo.GetCurrentStageID() == "w2t01")
+	{
+		if (AddressMsle == 0)
+		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
+	
+		if (AddressMsle == 0)
+		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_laser01", "xxxxxxxxxxxxxxxxxxxxx");}
+
+		bool isFaze2 = evtPlayer->IsEventPlaying("bo2140");
+		if (isFaze2)
+		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); }
+	
+		bool isRestore = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
+		if (isRestore)
+		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
+	}
+	else { WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
 }
 
 Library "EventPlayer" by "Ashrindy"

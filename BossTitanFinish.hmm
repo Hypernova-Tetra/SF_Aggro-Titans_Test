@@ -23,26 +23,12 @@ Code "Giganto Finale Beta"
         IsConfigInitialised = true;
 
         if (BossGiantFinale == 1)
-        {
-			WriteProtected<byte>
-			(
-				/* 0x141453520 */ ScanSignature
-				( "bo1160", "xxxxxx" ),
-				System.Text.Encoding.UTF8.GetBytes("bo1150")
-			);
-		}
+        { WriteProtected<byte> (/* 0x141453520 */ ScanSignature( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1150")); }
         else
         { scene1Bool = false; }
 		
 		if (BossGiantFinale == 2)
-        {
-			WriteProtected<byte>
-			(
-				/* 0x141453520 */ ScanSignature
-				( "bo1160", "xxxxxx" ),
-				System.Text.Encoding.UTF8.GetBytes("bo1170")
-			);
-		}
+        { WriteProtected<byte> ( /* 0x141453520 */ ScanSignature ( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1170") ); }
         else
         { scene1Bool = false; }
     }
@@ -80,12 +66,5 @@ Code "Wyvern Finale Beta"
 	
 	if (!dragoFin00Bool)
 		return;
-	{
-		WriteProtected<byte>
-		(
-			/* 0x14144CA38 */ ScanSignature
-			( "zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx" ),
-			System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")
-		);
-	}
+	{ WriteProtected<byte> ( /* 0x14144CA38 */ ScanSignature ( "zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx" ), System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); }
 }
