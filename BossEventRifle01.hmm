@@ -68,6 +68,8 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	
 	if ((LevelInfo.GetCurrentStageID() == "w1r06") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
 	{
+		WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
+		
 		bool isPhase1 = evtPlayer->IsEventPlaying("bo4110");
 		if (isPhase1)
 		{
@@ -76,7 +78,6 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
 			WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00"));
 			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
-			WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
 		}
 		
 		bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01");
@@ -121,12 +122,13 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	
 	if ((LevelInfo.GetCurrentStageID() == "w1r04") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
 	{		
+		WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+		
 		bool isF1 = evtPlayer->IsEventPlaying("bo4110");
 		if (isF1)
 		{
 			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
 			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
-			WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 			WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
 		}
 			
@@ -142,6 +144,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	if (gameModeBattleRush)
 	{	
 		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
+		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160")); }
 		
 		bool isRushCheck = evtPlayer->IsEventPlaying("zev_rfl_laser00");
 		if (isRushCheck)
@@ -150,7 +153,6 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00"));
 			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
 			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
-			WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 		}
 			
 		bool isFaze2 = evtPlayer->IsEventPlaying("bo4140");
