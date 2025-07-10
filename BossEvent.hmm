@@ -153,11 +153,11 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 		WriteProtected<byte>(Address4140, System.Text.Encoding.UTF8.GetBytes("bo4141"));
 		
 		bool eventRiflePhase2 = evtPlayer->IsEventPlaying("bo4141");
-			if (eventRiflePhase2)
-			{
-				var setupData = new EventPlayer.EventSetupData("bo4140");
-				evtPlayer->PlayEvent(ref setupData);
-			}
+		if (eventRiflePhase2)
+		{
+			var setupData = new EventPlayer.EventSetupData("bo4140");
+			evtPlayer->PlayEvent(ref setupData);
+		}
 	}
 }
 
