@@ -68,8 +68,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-
-
+	
 	bool eventGiantPhase2 = evtPlayer->IsEventPlaying("bo1141");
 	if (eventGiantPhase2)
 	{
@@ -88,17 +87,10 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	else
 	{ WriteProtected<byte>(Address2140, System.Text.Encoding.UTF8.GetBytes("bo2140")); }
 
-	if (LevelInfo.GetCurrentStageID() == "w2r01")
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
 	{
 		bool eventDragonPhase2 = evtPlayer->IsEventPlaying("bo2141");
 		if (eventDragonPhase2)
-		{ Lua.Call("PlayDiEventFrozen", "bo2140"); }
-	}
-
-	if ((LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
-	{
-		bool eventDragonRushTrial = evtPlayer->IsEventPlaying("bo2141");
-		if (eventDragonRushTrial)
 		{
 			var setupData = new EventPlayer.EventSetupData("bo2140");
 			evtPlayer->PlayEvent(ref setupData);

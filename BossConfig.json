@@ -240,12 +240,12 @@
 			{
 			"DisplayName":"Version 1",
 			"Value":"MBoss_RifleWingLaser1",
-			"Description":[" Sonic combos the deadly laser and ends in a familiar animation from a familiar game. "]
+			"Description":["Sonic combos the deadly laser and ends in Sonic kicking the attack back at Supreme in a familiar way."]
 			},
 			{
 			"DisplayName":"Version 2",
 			"Value":"MBoss_RifleWingLaser2",
-			"Description":[" Sonic continuous stomp-kicks the laser beam that ends in Sonic punching the attack. "]
+			"Description":["Sonic continuous stomp-kicks the laser beam that ends in Sonic punching the attack. Wonder if the rapid stomp attack references anything, could be obscure."]
 			}
 		],
 		"SupremeB":

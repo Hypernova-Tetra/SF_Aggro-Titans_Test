@@ -68,7 +68,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	
 	if ((LevelInfo.GetCurrentStageID() == "w1r06") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
 	{
-		WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
+		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162")); } 
 		
 		bool isPhase1 = evtPlayer->IsEventPlaying("bo4110");
 		if (isPhase1)
@@ -87,7 +87,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 		bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
 		if (isSpQTE01)
 		{WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));}
-
+		
 		bool isPhase2 = evtPlayer->IsEventPlaying("bo4140");
 		if (isPhase2)
 		{
@@ -96,7 +96,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
 			WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00"));
 		}
-	
+		
 		bool isLastPhase = evtPlayer->IsEventPlaying("zev_rfl_spQTE02");
 		if (isLastPhase)
 		{
@@ -121,8 +121,8 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	}
 	
 	if ((LevelInfo.GetCurrentStageID() == "w1r04") && (IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
-	{		
-		WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+	{
+		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160")); } 
 		
 		bool isF1 = evtPlayer->IsEventPlaying("bo4110");
 		if (isF1)

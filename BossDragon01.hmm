@@ -1,53 +1,53 @@
 Code "ATK_Scratch 1" by "Ashrindy"
 //
-    static long Address = 0;
-    static string[] qte_L = new[]
+    static long AdScratch1 = 0;
+    static string[] ATKScr1 = new[]
     { /* sup */ "attack_light_scratch01_l", };
 //
 {
-    if (Address == 0)
-    { /* 0x14144AB18 */ Address = ScanSignature ("attack_light_scratch01_l", "xxxxxxxxxxxxxxxxxxxxxxxx");}
+    if (AdScratch1 == 0)
+    { /* 0x14144AB18 */ AdScratch1 = ScanSignature ("attack_light_scratch01_l", "xxxxxxxxxxxxxxxxxxxxxxxx");}
     else
-    {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
+    {WriteProtected<byte>(AdScratch1, System.Text.Encoding.UTF8.GetBytes(ATKScr1[new Random().Next(0, ATKScr1.Length)]));}
 }
 
 Code "ATK_Scratch 2" by "Ashrindy"
 //
-    static long Address = 0;
-    static string[] qte_L = new[]
-    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
+    static long AdScratch2 = 0;
+    static string[] ATKScr2 = new[]
+    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
 //
 {
-    if (Address == 0)
-    {/* 0x14144AB00 */ Address = ScanSignature ("attack_scratch02_l","xxxxxxxxxxxxxxxxxx");}
+    if (AdScratch2 == 0)
+    {/* 0x14144AB00 */ AdScratch2 = ScanSignature ("attack_scratch02_l","xxxxxxxxxxxxxxxxxx");}
     else
-    {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
+    {WriteProtected<byte>(AdScratch2, System.Text.Encoding.UTF8.GetBytes(ATKScr2[new Random().Next(0, ATKScr2.Length)]));}
 }
 
 Code "Counter_Tail Attack" by "Ashrindy"
 //
-    static long Address = 0;
-    static string[] qte_L = new[]
-    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l"};
+    static long AdCounterT = 0;
+    static string[] Counter = new[]
+    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l" };
 //
 {
-    if (Address == 0)
-    {/* 0x14144ABF8 */ Address = ScanSignature ("attack_armer02_l", "xxxxxxxxxxxxxxxx");}
+    if (AdCounterT == 0)
+    {/* 0x14144ABF8 */ AdCounterT = ScanSignature ("attack_armer02_l", "xxxxxxxxxxxxxxxx");}
     else
-    {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
+    {WriteProtected<byte>(AdCounterT, System.Text.Encoding.UTF8.GetBytes(Counter[new Random().Next(0, Counter.Length)]));}
 } 
 
 Code "QTE_Psycho" by "Hypernova"
 //
-    static long Address = 0;
-    static string[] qte_L = new[]
+    static long PsychoQTE = 0;
+    static string[] qte_2 = new[]
     { /* sup */ "zev_dragon_sp_psycho", };
 //
 {
-    if (Address == 0)
-    {/* 0x14144CA10 */ Address = ScanSignature ("zev_dragon_sp_psycho", "xxxxxxxxxxxxxxxxxxxx");}
+    if (PsychoQTE == 0)
+    {/* 0x14144CA10 */ PsychoQTE = ScanSignature ("zev_dragon_sp_psycho", "xxxxxxxxxxxxxxxxxxxx");}
     else
-    {WriteProtected<byte>(Address, System.Text.Encoding.UTF8.GetBytes(qte_L[new Random().Next(0, qte_L.Length)]));}
+    {WriteProtected<byte>(PsychoQTE, System.Text.Encoding.UTF8.GetBytes(qte_2[new Random().Next(0, qte_2.Length)]));}
 }
 
 Code "Wyvern_Combat"
