@@ -71,7 +71,7 @@ Code "Supreme moveset" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[8], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT4);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[18], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[0].attackType, BossRifleConfig.ActionType.AT_BIT_WAVE);
@@ -87,7 +87,7 @@ Code "Supreme moveset" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[9].attackType, BossRifleConfig.ActionType.AT_HAND_R);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_HAND_L);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_HAND_R);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT4);
 			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 55);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
@@ -170,7 +170,7 @@ if (gameModeBattleRush)
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[8], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[18], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 			
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
@@ -226,6 +226,54 @@ Code "Supreme_Combat"
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
 	}
 };
+
+Code "shot2" by "holoska"
+/*shot2 but zev_rfl_sp02*/
+//
+#lib "Memory"
+//
+{
+    if(ScanSignature("\xB0\xFD\x02\x03\x4C\x8B\xC0\x48\x8B\xCB\xE8\x3D\x84\xF9\xFF\x48\x8B\x4C\x24\x58\x48\x85\xC9\x74\x05\xE8\x9E\xDD", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx") == 0) 
+    {   
+        WriteProtected<byte>
+        (
+            0x14145E9C0,
+            new byte[] { 0x00, 0x3E, 0x32, 0x40, 0x01 }
+        );
+    }
+    else 
+    {
+        WriteProtected<byte>
+        (
+            0x14145E9F0,
+            new byte[] { 0x00, 0x3E, 0x32, 0x40, 0x01 }
+        );
+    }
+}
+
+Code "shot4" by "holoska"
+/*shot4 but zev_rfl_sp01*/
+//
+#lib "Memory"
+//
+{
+    if(ScanSignature("\xB0\xFD\x02\x03\x4C\x8B\xC0\x48\x8B\xCB\xE8\x3D\x84\xF9\xFF\x48\x8B\x4C\x24\x58\x48\x85\xC9\x74\x05\xE8\x9E\xDD", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx") == 0) 
+    {
+        WriteProtected<byte>
+        (
+            0x1403239BB,
+            new byte[] { 0x48, 0x8D, 0x15, 0x3E, 0xE5, 0x13, 0x01 }
+        );
+    }
+    else 
+    {
+        WriteProtected<byte>
+        (
+            0x1403239BB,
+            new byte[] { 0x48, 0x8D, 0x15, 0x6E, 0xE5, 0x13, 0x01 }
+        );
+    }
+}
 
 Library "BossRifleConfig"
 {

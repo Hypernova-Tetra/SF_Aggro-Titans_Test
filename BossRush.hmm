@@ -1,40 +1,3 @@
-Code "Gamemode Battle Rush" 
-//
-    using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-	#import "Services"
-	#include "Reflection" noemit
-    #load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-	#lib "Reflection"
-	#lib "BlackboardStatus"
-    #lib "HMM"
-	#lib "INI"
-	#lib "GameMode"
-//
-
-bool gameModeMasterKing = GameMode.GetName() == "GameModeBossRush"
-if (gameModeMasterKing)
-{
-	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
-
-	if ((LevelInfo.GetCurrentStageID() == "w1r03" || LevelInfo.GetCurrentStageID() == "w2r01" || LevelInfo.GetCurrentStageID() == "w3r01"))
-	{
-		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
-		{
-			if (SonicParametersInfo.pData == null)
-				return;
-			{
-				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[2], SonicParameters.Action.Smash);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 164);
-			}
-		}
-	}
-};
-
 Code "Rings by Parry", by "Hypernova" and "thej01"
 //
 	#include "Reflection" noemit
@@ -42,6 +5,7 @@ Code "Rings by Parry", by "Hypernova" and "thej01"
 	#import "Services"
     #lib "Reflection"
     #lib "BlackboardStatus"
+	#lib "BlackboardItem"
     #lib "SonicParameters"
     #lib "Sonic"
     #lib "Time"
@@ -67,17 +31,18 @@ Code "Rings by Parry", by "Hypernova" and "thej01"
 	var pBlackboardItem = BlackboardItem.Get();
 	if (pBlackboardItem == null)
 		return;
+		
+	int maxrings = pBlackboardItem->RingCapacity;
+	int rings = pBlackboardItem->RingCount;
 
 	string currentStage = LevelInfo.GetCurrentStageID();
 	List<string> excludedStages = new List<string> { "w2r01" };
 	if (LevelInfo.GetCurrentStageID() == "w2t01")
-    {
+    {	
 		string Anim = Lua.Call<string>("GetCurrentAnimationName");
 		if (Anim == "PARRY_FLY")
 		{
 			bool parryFly = (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateParry);
-			int maxrings = pBlackboardItem->RingCapacity;
-			int rings = pBlackboardItem->RingCount;
 
 			if ((parryFly) && (rings < 100))
 			{
@@ -94,8 +59,6 @@ Code "Rings by Parry", by "Hypernova" and "thej01"
 		if (Anim == "PARRY")
 		{
 			bool parryQTE = (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateParry);
-			int maxrings = pBlackboardItem->RingCapacity;
-			int rings = pBlackboardItem->RingCount;
 
 			if ((parryQTE) && (rings < 50))
 			{

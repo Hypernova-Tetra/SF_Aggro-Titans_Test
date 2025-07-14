@@ -24,7 +24,7 @@
 			[
 				{
 				"Name":"IncludeDir1",
-				"DisplayName":"Titan Cutscenes (Audio)",
+				"DisplayName":"Titan Audio",
 				"Description":["..."],
 				"Type":"TitanAudio",
 				"MinValue":null,
@@ -207,6 +207,11 @@
 			"DisplayName":"Sound Edit",
 			"Value":"MBoss_Audio_Edit",
 			"Description":["Edited Sounds"]
+			},
+			{
+			"DisplayName":"Sound Overhaul",
+			"Value":"MBoss_Audio_SO",
+			"Description":["Sound Overhaul"]
 			}
 		],
 		"BossDragonFinal":

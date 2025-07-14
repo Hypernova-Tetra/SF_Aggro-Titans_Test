@@ -138,7 +138,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	}
 	
 	if (Address4140 == 0)
-	{ /* 0x1414534E4 */ Address4140 = ScanSignature ("bo4140", "xxxxxx");}
+	{ /* 0x1414624C0 */ Address4140 = ScanSignature ("bo4140", "xxxxxx");}
 	
 	if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
 	{ 	
@@ -153,12 +153,70 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	}
 }
 
-Code "Misc Cutscenes" by "Hypernova"
+Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
+//
+	#lib "GameManager"
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	#include "Reflection" noemit
+	#lib "EventPlayer"
+	#lib "Reflection"
+	static long AddressSp01 = 0;
+	static long AddressSnd1 = 0;
+	static long AddressMsle = 0;
+//
+{
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+	
+	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
+	{
+		if (AddressSp01 == 0)
+		{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
+	
+		if (AddressSnd1 == 0)
+		{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
+
+		bool isPhase2 = evtPlayer->IsEventPlaying("bo2140");
+		if (isPhase2)
+		{
+			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
+			WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+		}
+	}
+	else 
+	{
+		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
+		WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
+	}
+	
+	if (LevelInfo.GetCurrentStageID() == "w2t01")
+	{
+		if (AddressMsle == 0)
+		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
+	
+		if (AddressMsle == 0)
+		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_laser01", "xxxxxxxxxxxxxxxxxxxxx");}
+
+		bool isFaze2 = evtPlayer->IsEventPlaying("bo2140");
+		if (isFaze2)
+		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); }
+	
+		bool isRestore = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
+		if (isRestore)
+		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
+	}
+	else { WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
+}
+
+Code "Knight Cutscenes" by "Hypernova"
 //
 	#lib "GameMode"
 	#lib "GameManager"
 	#lib "GameObject"
-	#lib "BossRifleConfig"
 	#lib "BlackboardStatus"
 	#lib "Player"
 	#lib "Sonic"
@@ -222,63 +280,466 @@ Code "Misc Cutscenes" by "Hypernova"
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
 }
 
-Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
+Code "Dynamic Supreme Events" by "Hypernova"
 //
+	#lib "GameMode"
 	#lib "GameManager"
+	#lib "GameObject"
+	#lib "BossRifleConfig"
+	#lib "BlackboardStatus"
+	#lib "Player"
+	#lib "Sonic"
+	#lib "Reflection"
+	#lib "HMM"
+	#lib "INI"
+	
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	
+	#include "Reflection" noemit
+	
+	#load "WindowsBase.dll"
+    #load "PresentationCore.dll"
+    #load "System.Numerics.dll"
+
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
+
+	static long AdBitlaser = 0;
+    static long AdShoot01 = 0;
+	static long AdShoot02 = 0;
+	static long AdSp01 = 0;
+	static long AdSp02 = 0;
+	static long Address4160 = 0;
+//
+{
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
+		
+	var pBlackboardItem = BlackboardItem.Get();
+	if (pBlackboardItem == null)
+		return;
+	
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+
+	if (Address4160 == 0)
+	{ /* 0x1414624B8 */ Address4160 = ScanSignature ("bo4160", "xxxxxx"); }
+	
+	if (AdBitlaser == 0)
+	{ /* 0x141462108 */ AdBitlaser = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
+	
+	if (AdShoot01 == 0)
+	{ /* 0x14125C840 */ AdShoot01 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
+
+	if (AdShoot02 == 0)
+	{ /* 0x14125C830 */ AdShoot02 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
+	
+	if (AdSp01 == 0)
+	{ /* 0x141461F00 */ AdSp01 = ScanSignature ("zev_rfl_sp01\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+		
+	if (AdSp02 == 0)
+	{ /* 0x14125C830 */ AdSp02 = ScanSignature ("zev_rfl_sp02\x00\x00\x00", "xxxxxxxxxxxxxxx"); }
+	
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
+	if (LevelInfo.GetCurrentStageID() == "w1r04")
+	{
+		if ((IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
+		{
+			WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+			
+			bool isF1 = evtPlayer->IsEventPlaying("bo4110");
+			if (isF1)
+			{
+				WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
+				WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+				WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
+			}
+				
+			bool isF2 = evtPlayer->IsEventPlaying("bo4140");
+			if (isF2)
+			{
+				WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+				WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); 
+				WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+			}
+		
+			bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01");
+			if (isShoot01)
+			{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
+		}
+	}
+	else
+	{
+		List<string> excludedStages = new List<string> { "w1r02", "w1r03", "w1r05", "w1b01", "w1t01", "w1b02", "w2r01", "w2b01", "w2t01", "w3r01", "w3b01", "w3t01" };
+		
+		if ((IS_WORLD_FLAG(IsBattle)) && (BlackboardStatus.IsSuper()))
+		{
+			WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
+			
+			bool isPhase1 = evtPlayer->IsEventPlaying("bo4110");
+			if (isPhase1)
+			{
+				WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
+				WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+				WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+				WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00"));
+				WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
+			}
+			
+			bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01");
+			if (isLaser01)
+			{WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));}
+			
+			bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
+			if (isSpQTE01)
+			{WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));}
+			
+			bool isPhase2 = evtPlayer->IsEventPlaying("bo4140");
+			if (isPhase2)
+			{
+				WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+				WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+				WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+				WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00"));
+			}
+			
+			bool isLastPhase1 = evtPlayer->IsEventPlaying("zev_rfl_shoot02");
+			if (isLastPhase1)
+			{
+				WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
+				WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00"));
+			}
+			
+			bool isLastPhase2 = evtPlayer->IsEventPlaying("zev_rfl_spQTE02");
+			if (isLastPhase2)
+			{
+				WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+				WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02\x00\x00\x00"));
+			}
+
+			bool isSp02 = evtPlayer->IsEventPlaying("zev_rfl_sp02");
+			if (isSp02)
+			{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01")); }
+			
+			bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01");
+			if (isShoot01)
+			{ WriteProtected<byte>(AdSp02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02\x00\x00\x00")); }
+		}
+	}
+	
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	if (gameModeBattleRush)
+	{	
+		{ WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
+		{ WriteProtected<byte>(Address4160, System.Text.Encoding.UTF8.GetBytes("bo4160")); }
+		
+		bool isRushCheck = evtPlayer->IsEventPlaying("zev_rfl_laser00");
+		if (isRushCheck)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
+			WriteProtected<byte>(AdSp01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01\x00\x00\x00"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+		}
+			
+		bool isFaze2 = evtPlayer->IsEventPlaying("bo4140");
+		if (isFaze2)
+		{
+			WriteProtected<byte>(AdBitlaser, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+			WriteProtected<byte>(AdShoot01, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+		}
+		
+		bool isLF = evtPlayer->IsEventPlaying("zev_rfl_spQTE02");
+		if (isLF)
+		{
+			WriteProtected<byte>(AdShoot02, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+		}
+	}
+}
+
+Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holoska, and"Ashrindy"
+//
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
+	using System.Windows.Input;
 	#import "Services"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
 	#include "Reflection" noemit
-	#lib "EventPlayer"
 	#lib "Reflection"
-	static long AddressSp01 = 0;
-	static long AddressSnd1 = 0;
-	static long AddressMsle = 0;
+	#lib "BlackboardItem"
+	#lib "BlackboardStatus"
+    #lib "HMM"
+	#lib "INI"
+	#lib "Player"
+	#lib "Sonic"
+	#lib "SonicParameters"
+    #lib "Lua"
+	#lib "XInput"
+    #lib "EventPlayer"
+    #lib "Memory"
+    #lib "Helpers"
+    #lib "GameService"
+	#lib "GameObject"
+	#lib "GameManager"
+    #load "WindowsBase.dll"
+    #load "PresentationCore.dll"
+    #load "System.Numerics.dll"
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
+	static int BossHP = 0;
+	static int BossRifleSp00 = 0;
+    static bool healthBool = false;
+	static bool smashBool = false;
+	static bool initialized = false;
+	static bool IsConfigInitialised = false;
+
+	static long AddressSplDmg = 0;
+	static long Address1150 = 0;
 //
 {
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
+
+	var pBlackboardItem = BlackboardItem.Get();
+	if (pBlackboardItem == null)
+		return;
+	
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
 	
-	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
-	{
-		if (AddressSp01 == 0)
-		{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
-	
-		if (AddressSnd1 == 0)
-		{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
+	int maxrings = pBlackboardItem->RingCapacity;
+	int rings = pBlackboardItem->RingCount;
 
-		bool isPhase2 = evtPlayer->IsEventPlaying("bo2140");
-		if (isPhase2)
+	if(rings > maxrings)
+	{pBlackboardItem->RingCount = maxrings;}
+
+	if(rings < 0)
+	{pBlackboardItem->RingCount = 0;}
+
+	if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
+        IsConfigInitialised = true;
+		
+		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
+        IsConfigInitialised = true;
+
+        if (BossRifleSp00 == 1)
+        {smashBool = true;}
+        else
+        {smashBool = false;}
+		
+		if (BossHP == 1)
+        {healthBool = true;}
+        else
+        {healthBool = false;}
+    }
+
+	if (!smashBool)
+		return;
+	{
+		if (Address1150 == 0)
+		{ /* 0x141556068 */ Address1150 = ScanSignature ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"); }
+
+		if ((LevelInfo.GetCurrentStageID() == "w1r04") || (LevelInfo.GetCurrentStageID() == "w1b02") || (LevelInfo.GetCurrentStageID() == "w1r06"))
 		{
-			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
-			WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+			{ WriteProtected<byte>(Address1150, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp00\x00\x00\x00\x00")); }
+			
+			if (AddressSplDmg == 0)
+			{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
+			
+			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
+			{
+				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
+
+				if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
+				{	
+					var setupData = new EventPlayer.EventSetupData("zev_rfl_sp00");
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					evtPlayer->PlayEvent(ref setupData);
+				}
+
+				bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_sp00");
+				if (eventGrandS1)
+				{
+					Lua.Call("HideObjectInEvent", "Rifle", !eventGrandS1);
+					Lua.Call("HideObjectInEvent", "Rifle0", !eventGrandS1);
+					Lua.Call("HideObjectInEvent", "ARifle", !eventGrandS1);
+					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
+				}
+				else 
+				{
+					Lua.Call("HideObjectInEvent", "Rifle", !false);
+					Lua.Call("HideObjectInEvent", "Rifle0", !false);
+					Lua.Call("HideObjectInEvent", "ARifle", !false);
+					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00"));
+				}
+			}
+			else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+		}
+		else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+	}
+
+	if (!healthBool && !smashBool)
+		return;
+	{
+		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && LevelInfo.GetCurrentStageID() == "w1r06")
+		{
+			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
+			{
+				pBlackboardItem->RingCount += 10;
+					
+				if(rings > maxrings)
+				pBlackboardItem->RingCount = maxrings;
+					
+				if(rings < 0)
+				pBlackboardItem->RingCount = 0;
+			}			
 		}
 	}
-	else 
-	{
-		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
-		WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
-	}
 	
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
+	if (!healthBool)
+	return;
 	{
-		if (AddressMsle == 0)
-		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
-	
-		if (AddressMsle == 0)
-		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_laser01", "xxxxxxxxxxxxxxxxxxxxx");}
+		bool isBeastIntro = evtPlayer->IsEventPlaying("bo6110");
+		if ((isBeastIntro) && (rings < 400))
+		{
+			pBlackboardItem->RingCount += 400;
 
-		bool isFaze2 = evtPlayer->IsEventPlaying("bo2140");
-		if (isFaze2)
-		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); }
-	
-		bool isRestore = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
-		if (isRestore)
-		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
+			if(rings > maxrings)
+			pBlackboardItem->RingCount = maxrings;
+					
+			if(rings < 0)
+			pBlackboardItem->RingCount = 0;
+		}		
 	}
-	else { WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
+}
+
+Code "Darkball QTE" by "Hypernova"
+//
+	#include "Reflection" noemit
+	#include "BlackboardStatus" noemit
+    #import "GOComponents"
+    #import "PlayerVisuals"
+	#import "Services"
+	#import "Graphics"
+	#import "Plugins"
+	#lib "GameMode"
+	#lib "GameManager"
+    #lib "GameObject"
+    #lib "Player"
+    #lib "BlackboardStatus"
+    #lib "Reflection"
+	#lib "Time"
+    #lib "SonicParameters"
+    #lib "Sonic"
+    #lib "Time"
+	#lib "HMM"
+	#lib "INI"
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
+    #load "WindowsBase.dll"
+    #load "PresentationCore.dll"
+    #load "System.Numerics.dll"
+
+    static bool IsConfigInitialised = false;
+    static bool beastBallQTE = false;
+	static int BossDarkballQTE = 0;
+
+    static long AddressParryMs1 = 0;
+	static long AddressGrandSp0 = 0;
+//
+{
+	var data = Player.GetPlayerData();
+	if (data == null)
+		return;
+
+	var gocVisual = GameObject.GetGOC<GOCPlayerVisual>(&data->GameObject);
+	if (gocVisual == null)
+		return;
+
+	var visual = gocVisual->GetVisual<VisualSuperSonic>();
+	if (visual == null)
+		return;
+	
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+			
+	if (AddressGrandSp0 == 0)
+	{ /* 0x1414636B8 */ AddressGrandSp0 = ScanSignature ("zev_sp_riflebeast", "xxxxxxxxxxxxxxxxx"); }
+
+	if (AddressParryMs1 == 0)
+	{ /* 0x141466710 */ AddressParryMs1 = ScanSignature ("zev_parrymiss_rifleboss", "xxxxxxxxxxxxxxxxxxxxxxx"); }
+
+	if (visual->IsSuperSonic2)
+    {
+		bool isPhase1 = evtPlayer->IsEventPlaying("bo6120");
+		if (isPhase1)
+		{
+			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
+			{ WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+		}
+		
+		bool isPhase2 = evtPlayer->IsEventPlaying("bo6140");
+		if (isPhase2)
+		{
+			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02")); }
+			{ WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst02")); }
+		}
+	}
+
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		BossDarkballQTE = INI.Parse<int>(ini["Main"]["BossBeastBall"], BossDarkballQTE);
+        IsConfigInitialised = true;
+
+        if (BossDarkballQTE == 1)
+        { beastBallQTE = true; }
+        else
+        { beastBallQTE = false; }
+    }
+	
+	if (!beastBallQTE)
+		return;
+
+	{
+		if (visual->IsSuperSonic2)
+		{
+			bool isDrkQTE = evtPlayer->IsEventPlaying("bo6165");
+			if (isDrkQTE)
+			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs03")); }
+		}
+	}
 }
 
 Library "EventPlayer" by "Ashrindy"
