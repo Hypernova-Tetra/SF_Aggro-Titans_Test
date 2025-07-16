@@ -1,21 +1,18 @@
 ## Aggro-Titans Starfall Update (Release Date still Unconfirmed)
 
 * Hoping to finalize this mod on version 1.25, still no ETA.
-* Currently on "Test Version 1.24e".
+* Currently on "Test Version 1.24f".
 
 
 
 # Aggro-Titans Update (Test) 1.24
 
-* File: "BossEventRifle01.hmm" added after pinpointing the source of random crashes after prolonged play in the DLC's final battle, not related to parrying Riflebeast's arms.
-* Slight tweaks to Rifle01 attack patterns.
-* Changed Riflebeast's "AT\_Tackle" frequency to play as only the first attack in Phase 2's attack pattern loop.
-* Un-lua's your Final Horizons scripts, Part 1. Burned to Ash Edition.
-* Partial "Lua.Call" Function scraping on section w1r06 in Dynamic Supreme Events code.
-* Fixed a crash issue with Wyvern's Phase 2 cutscene, had another lua.call script to remove.
-* Fixed an oversight in which a codefile wasn't added to the list.
-* Discovered a typo in one of the code strings.
-* Added a 3rd Sound Option
+* Slight tweaks to Rifle01 attack patterns
+* Tweaked "BossRifle01.hmm" to reflect the changed attack patterns across Phase 1's immediate Actions for Final Horizon.
+* Tweaked "BossEvent.hmm" so it uses less code for Supreme's Dynamic Events. No longer separated between versions of Ouranos Island.
+* Removed a Lua.Call for "PlayingDiEvent" across multiple sections of code in favor of new code that achieves the same function.
+* Added "Sound Overhaul" as a 3rd option to the Titan Audio settings.
+* Added a Phase 1 version for Supreme's Cinematic Mega Laser QTE when playing on Final Horizons.
 
 # Aggro-Titans Update (Test) 1.23
 
