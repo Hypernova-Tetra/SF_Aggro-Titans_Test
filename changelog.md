@@ -1,7 +1,7 @@
 ## Aggro-Titans Starfall Update (Release Date still Unconfirmed)
 
 * Hoping to finalize this mod on version 1.25, still no ETA.
-* Currently on "Test Version 1.24f".
+* Currently on "Test Version 1.24g".
 
 
 
