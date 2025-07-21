@@ -106,8 +106,8 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	
 	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{	
-		bool isKnightActiveSkip02 = evtPlayer->IsEventPlaying("bo3141");
-		if (isKnightActiveSkip02)
+		bool isMKTKnightSkipF2 = evtPlayer->IsEventPlaying("bo3141");
+		if (isMKTKnightSkipF2)
 		{
 			var setupData = new EventPlayer.EventSetupData("bo3145");
 			evtPlayer->PlayEvent(ref setupData);
@@ -181,8 +181,8 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 		if (AddressMsle == 0)
 		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_laser01", "xxxxxxxxxxxxxxxxxxxxx");}
 		
-		bool isDragonF2 = evtPlayer->IsEventPlaying("bo2140");
-		if (isDragonF2)
+		bool isDragon02 = evtPlayer->IsEventPlaying("bo2140");
+		if (isDragon02)
 		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); }
 	
 		bool isRestore = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
