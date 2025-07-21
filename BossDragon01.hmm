@@ -28,7 +28,7 @@ Code "Counter_Tail Attack" by "Ashrindy"
 //
     static long AdCounterT = 0;
     static string[] Counter = new[]
-    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l" };
+    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l" };
 //
 {
     if (AdCounterT == 0)

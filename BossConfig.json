@@ -68,6 +68,15 @@
 				"DefaultValue":"MBoss_Bo4x00_Intro_0rgn"
 				},
 				{
+				"Name":"IncludeDir3",
+				"DisplayName":"Supreme QTE Preset",
+				"Description":["Choose between 3 batches of QTE Scenes for Supreme."],
+				"Type":"SupremeB",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"MBoss_RifleQTE_01"
+				},
+				{
 				"Name":"BossZevRifleSp00",
 				"DisplayName":"Supreme Grand Slam",
 				"Description":["Choose how you want the Grand Slam to play out."],
@@ -84,15 +93,6 @@
 				"MinValue":null,
 				"MaxValue":null,
 				"DefaultValue":"MBoss_RifleWingLaser1"
-				},
-				{
-				"Name":"IncludeDir3",
-				"DisplayName":"Supreme QTE Preset",
-				"Description":["Choose between 3 batches of QTE Scenes for Supreme."],
-				"Type":"SupremeB",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"MBoss_RifleQTE_01"
 				}
 			]
 		},
@@ -103,8 +103,8 @@
 			[
 				{
 				"Name":"RifleShieldFix",
-				"DisplayName":"Riflebeast Tackle Crash Fix",
-				"Description":["Toggle this option to disable Supreme's Shield Tackle to prevent a crash when parrying the arms."],
+				"DisplayName":"Riflebeast Shield Tackle Removal",
+				"Description":["Toggle this option to disable Supreme's Shield Tackle if parrying this attack causes your game to crash."],
 				"Type":"NoTackle",
 				"MinValue":null,
 				"MaxValue":null,
@@ -227,17 +227,17 @@
 			"Description":["Utilizes an unused version left in the game files, with some changes."]
 			}
 		],
-		"BossRifleSp00":
+		"RifleEvent":
 		[
 			{
-			"DisplayName":"Grand Slam (Default)",
+			"DisplayName":"Off",
 			"Value":"0",
-			"Description":["**Experimental** Will use the original version. The animation for Supreme is slightly modified."]
+			"Description":["00."]
 			},
 			{
-			"DisplayName":"Grand Slam (Unused Event/Scene)",
+			"DisplayName":"On",
 			"Value":"1",
-			"Description":["**Experimental** Restores the unused cutscene for Supreme's Grand Slam. Known Issues- 1: Does not inflict damage. 2: Has a softlock problem when using the pause menu to exit to the title screen while fighting as Super Sonic in Ouranos Island."]
+			"Description":["01."]
 			}
 		],
 		"BossRifleWing":
@@ -251,6 +251,19 @@
 			"DisplayName":"Version 2",
 			"Value":"MBoss_RifleWingLaser2",
 			"Description":["Sonic continuous stomp-kicks the laser beam that ends in Sonic punching the attack. Wonder if the rapid stomp attack references anything, could be obscure."]
+			}
+		],
+		"BossRifleSp00":
+		[
+			{
+			"DisplayName":"Grand Slam (Default)",
+			"Value":"0",
+			"Description":["**Experimental** Will use the original version. The animation for Supreme is slightly modified."]
+			},
+			{
+			"DisplayName":"Grand Slam (Unused Event/Scene)",
+			"Value":"1",
+			"Description":["**Experimental** Restores the unused cutscene for Supreme's Grand Slam. Known Issues- 1: Does not inflict damage. 2: Has a softlock problem when using the pause menu to exit to the title screen while fighting as Super Sonic in Ouranos Island."]
 			}
 		],
 		"SupremeB":

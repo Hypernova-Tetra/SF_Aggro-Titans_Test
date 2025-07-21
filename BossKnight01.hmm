@@ -130,13 +130,11 @@ Code "Gamemode Battle Rush Knight"
 bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 if (gameModeBattleRush)
 {
-	{
-		var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
-		if (BossKnightConfigInfo.pData == null)
-			return;
-
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 86700);
-	}
+	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
+	if (BossKnightConfigInfo.pData == null)
+		return;
+	
+	RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 86700);
 };
 
 Library "BossKnightConfig"

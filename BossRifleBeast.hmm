@@ -88,8 +88,9 @@ Code "No_Tackle"
 		if (BossRifleBeastConfigInfo.pData == null)
 			return;
 
-		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[0], BossRifleBeastConfig.AtackType.AT_CROW_R);
-		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[4], BossRifleBeastConfig.AtackType.AT_CROW_R);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[0], BossRifleBeastConfig.AtackType.AT_CROW_L);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[3], BossRifleBeastConfig.AtackType.AT_CROW_R);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[6], BossRifleBeastConfig.AtackType.AT_CROW_L);
 	}
 }
 
