@@ -383,5 +383,4 @@ add mod.ini
 add CombatDX.dll
 
 delete BossEventRifle01.hmm
-delete BossRifle01Smash.hmm
 delete BossRifleATSHOT2-4.hmm
