@@ -256,14 +256,14 @@
 		"BossRifleSp00":
 		[
 			{
-			"DisplayName":"Grand Slam (Default)",
+			"DisplayName":"Default",
 			"Value":"0",
 			"Description":["**Experimental** Will use the original version. The animation for Supreme is slightly modified."]
 			},
 			{
-			"DisplayName":"Grand Slam (Unused Event/Scene)",
+			"DisplayName":"Unused Cinematic Event",
 			"Value":"1",
-			"Description":["**Experimental** Restores the unused cutscene for Supreme's Grand Slam. Known Issues- 1: Does not inflict damage. 2: Has a softlock problem when using the pause menu to exit to the title screen while fighting as Super Sonic in Ouranos Island."]
+			"Description":["**Experimental** Restores the unused cutscene for Supreme's Grand Slam. Known Issues- 1: Does not inflict damage due to missing parameters in the rfl file. 2: After activation, the game may crash when trying to parry Riflebeast's arms in Phase 2."]
 			}
 		],
 		"SupremeB":
