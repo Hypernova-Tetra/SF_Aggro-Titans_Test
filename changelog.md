@@ -1,7 +1,7 @@
 ## Aggro-Titans Starfall Update (Release Date still Unconfirmed)
 
 * Hoping to finalize this mod on version 1.25, still no ETA.
-* Currently on "Test Version 1.24\_H".
+* Currently on "Test Version 1.24i".
 
 
 
@@ -13,9 +13,9 @@
 * Removed a Lua.Call for "PlayingDiEvent" across multiple sections of code in favor of new code that achieves the same function.
 * Added "Sound Overhaul" as a 3rd option to the Titan Audio settings.
 * Updated code that removes Riflebeast's Tackle Attack courtesy of thej01.
+* Updated Unused Grand Slam Cinematic code. (Still need to investigate an issue involving this code.)
 * Reworked "Bitlaser01" and "Bitlaser02" for the "Retooled" QTE option, didn't like the old one too much.
-* Fixed an oversight in which Knight's Phase 2 Event specific for Master King Trials didn't play.
-* Small fixes to Supreme's QTE files.
+* Very small tweaks to Wyvern, Knight, and Supreme's QTE files.
 
 # Aggro-Titans Update (Test) 1.23
 

@@ -13,10 +13,6 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 	static bool IsConfigInitialised = false;
-    static long Address1140 = 0;
-	static long Address2140 = 0;
-	static long Address3140 = 0;
-	static long Address4140 = 0;
 	static int BossPhase2 = 0;
 	static bool PhaseBool = false;
 //
@@ -65,16 +61,6 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 			{ WriteProtected<byte> ( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3145")); }
 			else
 			{ WriteProtected<byte> ( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3140")); }
-	
-			if (LevelInfo.GetCurrentStageID() == "w3t01")
-			{	
-				bool isMKTKnightSkipF2 = evtPlayer->IsEventPlaying("bo3140");
-				if (isMKTKnightSkipF2)
-				{
-					var setupData = new EventPlayer.EventSetupData("bo3145");
-					evtPlayer->PlayEvent(ref setupData);
-				}
-			}
 		}
     }
 	
@@ -301,11 +287,13 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	static long ATSHOTB = 0;
     static long ATSHOT3 = 0;
 	static long ATSHOT1 = 0;
+	static long ATSHOT2 = 0;
 //
 {
 	if (ATSHOTB == 0) { /* 0x141462108 */ ATSHOTB = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
 	if (ATSHOT3 == 0) { /* 0x141461EF0 */ ATSHOT3 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
 	if (ATSHOT1 == 0) { /* 0x141461EE0 */ ATSHOT1 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
+	if (ATSHOT2 == 0) { /* 0x14125C830 */ ATSHOT2 = ScanSignature ("zev_rfl_sp02", "xxxxxxxxxxxx"); }
 
 	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 	if (isSupreme)
@@ -322,11 +310,8 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX0"));
 		}
-		
-		bool isQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
-		if (isQTE01)
-		{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laserX0")); }
 		
 		bool isBo4140 = evtPlayer->IsEventPlaying("bo4140");
 		if (isBo4140)
@@ -334,6 +319,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
+			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
 		}
 		
 		bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01");
@@ -395,7 +381,6 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	static bool IsConfigInitialised = false;
 
 	static long AddressSplDmg = 0;
-	static long Address1150 = 0;
 //
 {
 	var pBlackboardStatus = BlackboardStatus.Get();
@@ -405,7 +390,11 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	var pBlackboardItem = BlackboardItem.Get();
 	if (pBlackboardItem == null)
 		return;
-		
+	
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+	
 	int maxrings = pBlackboardItem->RingCapacity;
 	int rings = pBlackboardItem->RingCount;
 
@@ -445,51 +434,44 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	if (!smashBool)
 		return;
 	{
-		string currentStage = LevelInfo.GetCurrentStageID();
-		
-		if (Address1150 == 0)
-		{ /* 0x141556068 */ Address1150 = ScanSignature ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"); }
-		
-		var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-		if (evtPlayer == null)
-		return;
-
-		if (AddressSplDmg == 0)
-		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
-			
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 		if (isSupreme)
 		{
-			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00"));
-			WriteProtected<byte>(Address1150, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp00\x00\x00\x00\x00"));
+			if (AddressSplDmg == 0)
+			{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
+			
+			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
+			{
+				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
 
-			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-			{	
-				var setupData = new EventPlayer.EventSetupData("zev_rfl_sp00");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-				evtPlayer->PlayEvent(ref setupData);
+				if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
+				{	
+					var setupData = new EventPlayer.EventSetupData("zev_rfl_sp00");
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					evtPlayer->PlayEvent(ref setupData);
+				}
+
+				bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_sp00");
+				if (eventGrandS1)
+				{
+					Lua.Call("HideObjectInEvent", "Rifle0", !eventGrandS1);
+					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
+				}
+				else 
+				{
+					Lua.Call("HideObjectInEvent", "Rifle0", !false);
+					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00"));
+				}
 			}
-				
-			bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_sp00");
-			if (eventGrandS1)
-			{
-				Lua.Call("HideObjectInEvent", "Rifle0", !eventGrandS1);
-				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
-			}
-			else 
-			{
-				Lua.Call("HideObjectInEvent", "Rifle0", !false);
-				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00"));
-			}
+			else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 		}
 		else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 	}
-
+	
 	if (!healthBool && !smashBool)
 		return;
 	{
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-		
 		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isSupreme))
 		{
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
@@ -508,10 +490,6 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	if (!healthBool)
 	return;
 	{
-		var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-		if (evtPlayer == null)
-			return;
-		
 		bool isBeastIntro = evtPlayer->IsEventPlaying("bo6110");
 		if ((isBeastIntro) && (rings < 400))
 		{
