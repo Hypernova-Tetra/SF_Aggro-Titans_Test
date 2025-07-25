@@ -373,7 +373,6 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	using System.Numerics;
     using System.Collections.Generic;
     using System.IO;
-	static int BossHP = 0;
 	static int BossRifleSp00 = 0;
     static bool healthBool = false;
 	static bool smashBool = false;
@@ -404,6 +403,18 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	if(rings < 0)
 	{pBlackboardItem->RingCount = 0;}
 
+	bool isBeastIntro = evtPlayer->IsEventPlaying("bo6110");
+	if ((isBeastIntro) && (rings < 400))
+	{
+		pBlackboardItem->RingCount += 400;
+
+		if(rings > maxrings)
+		pBlackboardItem->RingCount = maxrings;
+		
+		if(rings < 0)
+		pBlackboardItem->RingCount = 0;
+	}
+
 	if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -416,91 +427,49 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 
 		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
         IsConfigInitialised = true;
-		
-		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
-        IsConfigInitialised = true;
-
+	
         if (BossRifleSp00 == 1)
         {smashBool = true;}
         else
         {smashBool = false;}
-		
-		if (BossHP == 1)
-        {healthBool = true;}
-        else
-        {healthBool = false;}
     }
 
 	if (!smashBool)
 		return;
 	{
-		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-		if (isSupreme)
-		{
-			if (AddressSplDmg == 0)
-			{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
+		if (AddressSplDmg == 0)
+		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 			
-			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
-			{
-				{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00")); }
-
-				if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-				{	
-					var setupData = new EventPlayer.EventSetupData("zev_rfl_sp00");
-					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-					evtPlayer->PlayEvent(ref setupData);
-				}
-
-				bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_sp00");
-				if (eventGrandS1)
-				{
-					Lua.Call("HideObjectInEvent", "Rifle0", !eventGrandS1);
-					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
-				}
-				else 
-				{
-					Lua.Call("HideObjectInEvent", "Rifle0", !false);
-					WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("attack_special00\x00\x00"));
-				}
-			}
-			else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
-		}
-		else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
-	}
-	
-	if (!healthBool && !smashBool)
-		return;
-	{
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isSupreme))
 		{
-			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-			{
-				pBlackboardItem->RingCount += 10;
-					
-				if(rings > maxrings)
-				pBlackboardItem->RingCount = maxrings;
-					
-				if(rings < 0)
-				pBlackboardItem->RingCount = 0;
-			}			
-		}
-	}
-	
-	if (!healthBool)
-	return;
-	{
-		bool isBeastIntro = evtPlayer->IsEventPlaying("bo6110");
-		if ((isBeastIntro) && (rings < 400))
-		{
-			pBlackboardItem->RingCount += 400;
+			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 
-			if(rings > maxrings)
-			pBlackboardItem->RingCount = maxrings;
+			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
+			{	
+				var setupData = new EventPlayer.EventSetupData("zev_rfl_grandsmash");
+				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+				evtPlayer->PlayEvent(ref setupData);
+				
+				if (rings < 400)
+				{
+					pBlackboardItem->RingCount += 10;
 					
-			if(rings < 0)
-			pBlackboardItem->RingCount = 0;
-		}		
+					if(rings > maxrings)
+					pBlackboardItem->RingCount = maxrings;
+					
+					if(rings < 0)
+					pBlackboardItem->RingCount = 0;
+				}
+			}
+			
+			bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_grandsmash");
+			if (eventGrandS1)
+			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grandsmash")); }
+			else 
+			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop")); }
+		}
+		else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 	}
 }
 
