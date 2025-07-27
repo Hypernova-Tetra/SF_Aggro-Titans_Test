@@ -287,12 +287,14 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	static long ATSHOTB = 0;
     static long ATSHOT3 = 0;
 	static long ATSHOT1 = 0;
+	static long ATSHOT4 = 0;
 	static long ATSHOT2 = 0;
 //
 {
 	if (ATSHOTB == 0) { /* 0x141462108 */ ATSHOTB = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
 	if (ATSHOT3 == 0) { /* 0x141461EF0 */ ATSHOT3 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
 	if (ATSHOT1 == 0) { /* 0x141461EE0 */ ATSHOT1 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
+	if (ATSHOT4 == 0) { /* 0x141461F00 */ ATSHOT4 = ScanSignature ("zev_rfl_sp01", "xxxxxxxxxxxx"); }
 	if (ATSHOT2 == 0) { /* 0x14125C830 */ ATSHOT2 = ScanSignature ("zev_rfl_sp02", "xxxxxxxxxxxx"); }
 
 	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
@@ -313,13 +315,33 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX0"));
 		}
 		
+		bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
+		if (isSpQTE01)
+		{ 
+			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laserX0"));
+			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+		}
+		
+		bool isLaserX0 = evtPlayer->IsEventPlaying("zev_rfl_laserX0");
+		bool isSpX0 = evtPlayer->IsEventPlaying("zev_rfl_spX0");
+		if ((isLaserX0) || (isSpX0))
+		{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
+		
+		bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01");
+		if (isLaser01)
+		{ 
+			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
+			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0B"));
+		}
+		
 		bool isBo4140 = evtPlayer->IsEventPlaying("bo4140");
 		if (isBo4140)
 		{
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
-			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
+			WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01"));
+			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX1"));
 		}
 		
 		bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01");
@@ -328,7 +350,10 @@ Code "Dynamic Supreme Events" by "Hypernova"
 		
 		bool isQTE02 = evtPlayer->IsEventPlaying("zev_rfl_spQTE02");
 		if (isQTE02)
-		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
+		{ 
+			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); 
+			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02")); 
+		}
 		
 		bool isShoot02 = evtPlayer->IsEventPlaying("zev_rfl_shoot02");
 		if (isShoot02)
@@ -337,7 +362,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if ((gameModeBattleRush) && (isSupreme))
-	{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
+	{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
 }
 
 Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holoska, and"Ashrindy"
@@ -441,7 +466,7 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 			
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isSupreme))
+		if (BlackboardStatus.IsSuper() && (isSupreme))
 		{
 			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 

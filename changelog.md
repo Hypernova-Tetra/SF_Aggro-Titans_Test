@@ -1,9 +1,14 @@
-## Aggro-Titans Starfall Update (Release Date still Unconfirmed)
+## Aggro-Titans Starfall Update
 
-* Hoping to finalize this mod on version 1.25, still no ETA.
-* Currently on "Test Version 1.24i".
+* Release Date Coming Soon.
 
 
+
+# Aggro-Titans 1.25
+
+* Final touches in certain areas.
+* Updated Supreme's attacks.
+* Phase 1 QTEs are more dynamic.
 
 # Aggro-Titans Update (Test) 1.24
 
