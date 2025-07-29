@@ -10,6 +10,7 @@
 * Updated Supreme's attacks.
 * Phase 1 QTEs are more dynamic.
 * Fixed a softlock issue.
+* Fixed a crash issue with Riflebeast Tackle Attack somehow caused by activating the unused Grand Slam event for regular Supreme.
 
 # Aggro-Titans Update (Test) 1.24
 

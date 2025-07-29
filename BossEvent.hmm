@@ -204,6 +204,7 @@ Code "Knight Cutscenes" by "Hypernova"
 	#lib "Reflection"
 	#lib "HMM"
 	#lib "INI"
+
 	
 	#import "Services"
 	#import "GOComponents"
@@ -261,6 +262,41 @@ Code "Knight Cutscenes" by "Hypernova"
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
 }
 
+Code "Cum Beam No-More" by "Hypernova"
+//
+	#import "Services"
+	#import "Plugins"
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BlackboardStatus"
+    #lib "HMM"
+	#lib "INI"
+	#lib "Lua"
+	#lib "Player"
+	#lib "Sonic"
+	#lib "SonicParameters"
+	#lib "EventPlayer"
+//
+{
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
+		
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+		
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
+	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
+
+	if ((LevelInfo.GetCurrentStageID() == "w1r04") && IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isSupreme))
+	{
+		Lua.Call("ClearObjectTarget", "ChaosEmeraldPillar5");
+		Lua.Call("ClearObjectTarget", "ChaosEmeraldPillar6");
+	}
+}
+
 Code "Dynamic Supreme Events" by "Hypernova"
 //
 	#lib "GameManager"
@@ -315,9 +351,13 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX0"));
 		}
 		
-		bool isBitlaser01 = evtPlayer->IsEventPlaying("zev_rfl_bitlaserX1");
-		if (isBitlaser01)
+		bool isBitlaserX1 = evtPlayer->IsEventPlaying("zev_rfl_bitlaserX1");
+		if (isBitlaserX1)
 		{ WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01")); }
+		
+		bool isBitlaser01 = evtPlayer->IsEventPlaying("zev_rfl_bitlaser01");
+		if (isBitlaser01)
+		{ WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserXX")); }
 		
 		bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
 		if (isSpQTE01)
@@ -370,139 +410,8 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	
 	bool BattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if ((BattleRush) && (isSupreme))
-	{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
-}
-
-Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holoska, and"Ashrindy"
-//
-	using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-	using System.Windows.Input;
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BlackboardItem"
-	#lib "BlackboardStatus"
-    #lib "HMM"
-	#lib "INI"
-	#lib "Player"
-	#lib "Sonic"
-	#lib "SonicParameters"
-    #lib "Lua"
-	#lib "XInput"
-    #lib "EventPlayer"
-    #lib "Memory"
-    #lib "Helpers"
-    #lib "GameService"
-	#lib "GameObject"
-	#lib "GameManager"
-    #load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-	using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-	static int BossRifleSp00 = 0;
-    static bool healthBool = false;
-	static bool smashBool = false;
-	static bool initialized = false;
-	static bool IsConfigInitialised = false;
-
-	static long AddressSplDmg = 0;
-//
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-
-	var pBlackboardItem = BlackboardItem.Get();
-	if (pBlackboardItem == null)
-		return;
-	
-	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-	if (evtPlayer == null)
-		return;
-	
-	int maxrings = pBlackboardItem->RingCapacity;
-	int rings = pBlackboardItem->RingCount;
-
-	if(rings > maxrings)
-	{pBlackboardItem->RingCount = maxrings;}
-
-	if(rings < 0)
-	{pBlackboardItem->RingCount = 0;}
-
-	bool isBeastIntro = evtPlayer->IsEventPlaying("bo6110");
-	if ((isBeastIntro) && (rings < 400))
-	{
-		pBlackboardItem->RingCount += 400;
-
-		if(rings > maxrings)
-		pBlackboardItem->RingCount = maxrings;
-		
-		if(rings < 0)
-		pBlackboardItem->RingCount = 0;
-	}
-
-	if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
-        IsConfigInitialised = true;
-	
-        if (BossRifleSp00 == 1)
-        {smashBool = true;}
-        else
-        {smashBool = false;}
-    }
-
-	if (!smashBool)
-		return;
-	{
-		if (AddressSplDmg == 0)
-		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
-			
-		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-		if (BlackboardStatus.IsSuper() && (isSupreme))
-		{
-			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
-
-			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-			{	
-				var setupData = new EventPlayer.EventSetupData("zev_rfl_grandsmash");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-				evtPlayer->PlayEvent(ref setupData);
-				
-				if (rings < 400)
-				{
-					pBlackboardItem->RingCount += 10;
-					
-					if(rings > maxrings)
-					pBlackboardItem->RingCount = maxrings;
-					
-					if(rings < 0)
-					pBlackboardItem->RingCount = 0;
-				}
-			}
-			
-			bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_grandsmash");
-			if (eventGrandS1)
-			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grandsmash")); }
-			else 
-			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop")); }
-		}
-		else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+	{ 
+		WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); 
 	}
 }
 

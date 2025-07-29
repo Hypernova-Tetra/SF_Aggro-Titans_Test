@@ -13,10 +13,6 @@ Code "Counter_Blow" by "Holoska"
 	#lib "Reflection"
     #lib "HMM"
 	#lib "INI"
-	#lib "BlackboardStatus"
-	#lib "Player"
-	#lib "Sonic"
-	#lib "SonicParameters"
     #load "WindowsBase.dll"
     #load "PresentationCore.dll"
     #load "System.Numerics.dll"
@@ -29,14 +25,6 @@ Code "Counter_Blow" by "Holoska"
 	};
 //
 {
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-	
-	var pBlackboardItem = BlackboardItem.Get();
-	if (pBlackboardItem == null)
-		return;
-		
 	if (AdRightHand == 0)
 	{/* 0x14144FCF8 */ AdRightHand = ScanSignature ("attack_counter_righthand_01", "xxxxxxxxxxxxxxxxxxxxxxxxxxx");}
 	
@@ -64,6 +52,8 @@ Code "Supreme moveset" by "Hypernova"
 	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
 	
 	string currentStage = LevelInfo.GetCurrentStageID();
+	List<string> excludedStages = new List<string> { "w1b02" };
+	
 	if (LevelInfo.GetCurrentStageID() == "w1r04")
 	{
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
@@ -165,10 +155,10 @@ Code "Gamemode Battle Supreme"
     #load "PresentationCore.dll"
     #load "System.Numerics.dll"
 	#lib "Reflection"
-	#lib "BlackboardStatus"
     #lib "HMM"
 	#lib "INI"
 	#lib "GameMode"
+	#lib "GameObject"
 	#lib "BossRifleConfig"
 //
 bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
