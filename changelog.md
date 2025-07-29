@@ -9,6 +9,7 @@
 * Final touches in certain areas.
 * Updated Supreme's attacks.
 * Phase 1 QTEs are more dynamic.
+* Fixed a softlock issue.
 
 # Aggro-Titans Update (Test) 1.24
 

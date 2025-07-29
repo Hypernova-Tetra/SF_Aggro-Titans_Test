@@ -309,15 +309,19 @@ Code "Dynamic Supreme Events" by "Hypernova"
 		bool isQTE00 = evtPlayer->IsEventPlaying("zev_rfl_laser00");
 		if ((isBo4110) || (isBo4180) || (isQTE00))
 		{
-			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
+			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX1"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX0"));
 		}
 		
+		bool isBitlaser01 = evtPlayer->IsEventPlaying("zev_rfl_bitlaserX1");
+		if (isBitlaser01)
+		{ WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01")); }
+		
 		bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
 		if (isSpQTE01)
-		{ 
+		{
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laserX0"));
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
 		}
@@ -337,12 +341,16 @@ Code "Dynamic Supreme Events" by "Hypernova"
 		bool isBo4140 = evtPlayer->IsEventPlaying("bo4140");
 		if (isBo4140)
 		{
-			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX2"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
 			WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01"));
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX1"));
 		}
+		
+		bool isBitlaser02 = evtPlayer->IsEventPlaying("zev_rfl_bitlaserX2");
+		if (isBitlaser02)
+		{ WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02")); }
 		
 		bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01");
 		if (isShoot01)
@@ -360,9 +368,9 @@ Code "Dynamic Supreme Events" by "Hypernova"
 		{ WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));}
 	}
 	
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	if ((gameModeBattleRush) && (isSupreme))
-	{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
+	bool BattleRush = GameMode.GetName() == "GameModeBattleRush"
+	if ((BattleRush) && (isSupreme))
+	{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
 }
 
 Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holoska, and"Ashrindy"
