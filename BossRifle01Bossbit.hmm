@@ -76,6 +76,7 @@ Code "Moveset_BossBit" by "Hypernova"
 
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 150);
 		
+		//Drone Missiles//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].text.pValue, 8042);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.isParry, true);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.time, 3);
@@ -97,11 +98,12 @@ Code "Moveset_BossBit" by "Hypernova"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingDelay, 1);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingLimitAngle, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.waveRotationSpeed, 225);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.flyMoveSpeed, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.flyMoveSpeed, 50);
 		
+		//Drone Laser//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].text.pValue, 8028);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isParry, true);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.time, 5);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.time, 8);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.bulletType, BossBitConfig.BulletType.Laser);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.phaseRotTime, 1);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootNum, 0);
@@ -110,9 +112,9 @@ Code "Moveset_BossBit" by "Hypernova"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootAccelDelay, 1);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.wayNum, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.wayAngle, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootTime, 5);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootTime, 8);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.phaseShootTime, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.periodShootCoolTime, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.periodShootCoolTime, 2);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.homingDelay, 1);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.homingLimitAngle, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isHomingLowFly, true);

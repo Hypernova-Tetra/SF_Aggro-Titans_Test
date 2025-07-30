@@ -262,41 +262,6 @@ Code "Knight Cutscenes" by "Hypernova"
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
 }
 
-Code "Cum Beam No-More" by "Hypernova"
-//
-	#import "Services"
-	#import "Plugins"
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BlackboardStatus"
-    #lib "HMM"
-	#lib "INI"
-	#lib "Lua"
-	#lib "Player"
-	#lib "Sonic"
-	#lib "SonicParameters"
-	#lib "EventPlayer"
-//
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-		
-	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-	if (evtPlayer == null)
-		return;
-		
-	string currentStage = LevelInfo.GetCurrentStageID();
-	
-	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-
-	if ((LevelInfo.GetCurrentStageID() == "w1r04") && IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isSupreme))
-	{
-		Lua.Call("ClearObjectTarget", "ChaosEmeraldPillar5");
-		Lua.Call("ClearObjectTarget", "ChaosEmeraldPillar6");
-	}
-}
-
 Code "Dynamic Supreme Events" by "Hypernova"
 //
 	#lib "GameManager"
@@ -405,7 +370,18 @@ Code "Dynamic Supreme Events" by "Hypernova"
 		
 		bool isShoot02 = evtPlayer->IsEventPlaying("zev_rfl_shoot02");
 		if (isShoot02)
-		{ WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));}
+		{ 
+			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));
+			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2"));
+		}
+		
+		bool isQTEX2 = evtPlayer->IsEventPlaying("zev_rfl_spQTEX2");
+		if (isQTEX2)
+		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2")); }
+		
+		bool isShootX2 = evtPlayer->IsEventPlaying("zev_rfl_shootX2");
+		if (isShootX2)
+		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2")); }
 	}
 	
 	bool BattleRush = GameMode.GetName() == "GameModeBattleRush"
