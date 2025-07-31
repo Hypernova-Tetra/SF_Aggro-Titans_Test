@@ -131,7 +131,7 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	}
 }
 
-Code "Riflebeast Crash Side-effect fix"
+Code "Fixing the Unused Grand Slam Event Crash side-effect for Riflebeast AT_Tackle"
 //
 	#import "Services"
 	#import "Plugins"

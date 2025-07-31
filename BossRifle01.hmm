@@ -37,7 +37,7 @@ Code "Counter_Blow" by "Holoska"
 	{ WriteProtected<byte>(AdRightHand, System.Text.Encoding.UTF8.GetBytes("attack_counter_righthand_01")); }
 }
 
-Code "Cum Beam No-More" by "Hypernova"
+Code "Ouranos Pyramid Beam No-More" by "Hypernova"
 //
 	#import "Services"
 	#import "Plugins"
@@ -188,15 +188,20 @@ Code "Gamemode Battle Supreme"
 	#lib "GameMode"
 	#lib "GameObject"
 	#lib "BossRifleConfig"
+	static long Adr4160 = 0;
 //
 bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 if ((gameModeBattleRush) && (isSupreme))
-{		
+{	
+	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
+	
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 	if (BossRifleConfigInfo.pData == null)
 		return;
 	{
+		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+		
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);
 		
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);

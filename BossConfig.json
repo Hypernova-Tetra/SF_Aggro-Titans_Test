@@ -83,7 +83,7 @@
 				"Type":"BossRifleSp00",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"1"
+				"DefaultValue":"0"
 				},
 				{
 				"Name":"IncludeDir7",
