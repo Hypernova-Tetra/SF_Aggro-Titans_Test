@@ -97,7 +97,7 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	{
 		if (AddressSplDmg == 0)
 		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
-			
+
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 		if (BlackboardStatus.IsSuper() && (isSupreme))
 		{
@@ -105,9 +105,11 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 			{	
-				var setupData = new EventPlayer.EventSetupData("zev_rfl_grandsmash");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-				evtPlayer->PlayEvent(ref setupData);
+				{	
+					var setupData = new EventPlayer.EventSetupData("zev_rfl_grandsmash");
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					evtPlayer->PlayEvent(ref setupData);
+				}
 				
 				if (rings < 400)
 				{
@@ -142,7 +144,7 @@ Code "Fixing the Unused Grand Slam Event Crash side-effect for Riflebeast AT_Tac
     #lib "EventPlayer"
 	#lib "BossRifleBeastConfig"
 	static long Ad1150 = 0;
-	static long ZevCheck = 0;
+	static long ZevCheck1 = 0;
 	static int ReplaceNum = 0;
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[2];
     // there was originally more to this array 
@@ -159,8 +161,8 @@ Code "Fixing the Unused Grand Slam Event Crash side-effect for Riflebeast AT_Tac
 		return;
 			
 	bool unusedEvent = evtPlayer->IsEventPlaying("zev_rfl_grandsmash");
-	{ /* 0x141556024 */ ZevCheck = ScanSignature ("zevSp0", "xxxxxx"); }
-	if ((unusedEvent) || (ZevCheck == 0))
+	{ /* 0x141556024 */ ZevCheck1 = ScanSignature ("zevSp0", "xxxxxx"); }
+	if ((unusedEvent) || (ZevCheck1 == 0))
 	{
 		WriteProtected<byte>(Ad1150, System.Text.Encoding.UTF8.GetBytes("zevSp0")); 
 		

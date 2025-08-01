@@ -193,7 +193,7 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 	else { WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
 }
 
-Code "Knight Cutscenes" by "Hypernova"
+Code "Other Cutscenes" by "Hypernova"
 //
 	#lib "GameMode"
 	#lib "GameManager"
@@ -223,33 +223,80 @@ Code "Knight Cutscenes" by "Hypernova"
 	static long Adr4160 = 0;
 	static long AddressGS2 = 0;
 	static long AdSwordFinal = 0;
+	static long Adbo1180 = 0;
+	static long Adbo2180 = 0;
+	static long Adbo3180 = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
 	
-	WriteProtected<byte>
-	(/* 0x14145C140 */ ScanSignature ("zev_knight_shieldride02_aerial","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("zev_knight_shieldride02_aerial"));
-	
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
+	if (Adbo1180 == 0)
+    {/* 0x141453544 */ Adbo1180 = ScanSignature ("bo1180", "xxxxxx");}
+	
+	bool eventGigantoStart = evtPlayer->IsEventPlaying("bo1120");
+	bool eventGigantoDead2 = evtPlayer->IsEventPlaying("bo1181");
+	bool eventGiantDefeatB = evtPlayer->IsEventPlaying("bo1150");
+	bool eventGiantDefeat1 = evtPlayer->IsEventPlaying("bo1160");
+	bool eventGiantDefeatM = evtPlayer->IsEventPlaying("bo1170");
+	if ((eventGigantoStart) || (eventGigantoDead2) || (eventGiantDefeatB) || (eventGiantDefeat1) || (eventGiantDefeatM))
+	{ WriteProtected<byte>(Adbo1180, System.Text.Encoding.UTF8.GetBytes("bo1180")); }
+	
+	bool eventGiantPhase2 = evtPlayer->IsEventPlaying("bo1140");
+	if (eventGiantPhase2)
+	{ WriteProtected<byte>(Adbo1180, System.Text.Encoding.UTF8.GetBytes("bo1181")); }	
+	
+	if (Adbo2180 == 0)
+    {/* 0x14144C99D */ Adbo2180 = ScanSignature ("bo2180", "xxxxxx");}
+	
+	bool eventDragonStart = evtPlayer->IsEventPlaying("bo2120");
+	bool eventDragonDead2 = evtPlayer->IsEventPlaying("bo2181");
+	bool eventGiant02WinB = evtPlayer->IsEventPlaying("zev_dragon_finish_00");
+	bool eventGiant02Win1 = evtPlayer->IsEventPlaying("zev_dragon_finish_01");
+	if ((eventDragonStart) || (eventDragonDead2) || (eventGiant02WinB) || (eventGiant02Win1))
+	{ WriteProtected<byte>(Adbo2180, System.Text.Encoding.UTF8.GetBytes("bo2180")); }
+	
+	bool eventDrgnPhase2 = evtPlayer->IsEventPlaying("bo2140");
+	if (eventDrgnPhase2)
+	{ WriteProtected<byte>(Adbo2180, System.Text.Encoding.UTF8.GetBytes("bo2181")); }
+	
+	if (Adbo3180 == 0)
+    {/* 0x14145C2B4 */ Adbo3180 = ScanSignature ("bo3180", "xxxxxx");}
+	
+	bool eventKnightStart = evtPlayer->IsEventPlaying("bo3120");
+	bool eventKnightDead2 = evtPlayer->IsEventPlaying("bo3181");
+	bool eventGiant03Win1 = evtPlayer->IsEventPlaying("bo3160");
+	if ((eventKnightStart) || (eventKnightDead2) || (eventGiant03Win1))
+	{ WriteProtected<byte>(Adbo3180, System.Text.Encoding.UTF8.GetBytes("bo3180")); }
+	
+	bool eventKntPhase2 = evtPlayer->IsEventPlaying("bo3140");
+	bool eventKntPhaze2 = evtPlayer->IsEventPlaying("bo3145");
+	if ((eventKntPhase2) || (eventKntPhaze2))
+	{ WriteProtected<byte>(Adbo3180, System.Text.Encoding.UTF8.GetBytes("bo3181")); }
+	
+	WriteProtected<byte>
+	(/* 0x14145C140 */ ScanSignature ("zev_knight_shieldride02_aerial","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("zev_knight_shieldride02_aerial"));
+		
 	if (AddressGS2 == 0)
     {/* 0x14145C1F8 */ AddressGS2 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
 	
 	if (AdSwordFinal == 0)
     {/* 0x14145C278 */ AdSwordFinal = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
-	
+		
 	if (LevelInfo.GetCurrentStageID() == "w3t01")
 	{
 		bool eventQTEKnightT1 = evtPlayer->IsEventPlaying("bo3140");
 		bool eventQTEKnightT2 = evtPlayer->IsEventPlaying("bo3145");
 		if ((eventQTEKnightT1) || (eventQTEKnightT2))
-		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2")); }
+		{WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));}
 		
 		bool eventDefeatKnt = evtPlayer->IsEventPlaying("bo3160");
-		bool eventKnightEnd = evtPlayer->IsEventPlaying("bo3180");
-		if ((eventDefeatKnt) || (eventKnightEnd))
+		bool eventKntDead01 = evtPlayer->IsEventPlaying("bo3180");
+		bool eventKntDead02 = evtPlayer->IsEventPlaying("bo3181");
+		if ((eventDefeatKnt) || (eventKntDead01) || (eventKntDead02))
 		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
 	}
 	
@@ -290,6 +337,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	static long ATSHOT1 = 0;
 	static long ATSHOT4 = 0;
 	static long ATSHOT2 = 0;
+	static long Abo4180 = 0;
 //
 {
 	if (ATSHOTB == 0) { /* 0x141462108 */ ATSHOTB = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
@@ -297,6 +345,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 	if (ATSHOT1 == 0) { /* 0x141461EE0 */ ATSHOT1 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
 	if (ATSHOT4 == 0) { /* 0x141461F00 */ ATSHOT4 = ScanSignature ("zev_rfl_sp01", "xxxxxxxxxxxx"); }
 	if (ATSHOT2 == 0) { /* 0x14125C830 */ ATSHOT2 = ScanSignature ("zev_rfl_sp02", "xxxxxxxxxxxx"); }
+	if (Abo4180 == 0) { /* 0x1414624C8 */ Abo4180 = ScanSignature ("bo4180", "xxxxxx"); }
 
 	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 	if (isSupreme)
@@ -306,14 +355,16 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			return;
 		
 		bool isBo4110 = evtPlayer->IsEventPlaying("bo4110");
+		bool isZQTE00 = evtPlayer->IsEventPlaying("zev_rfl_laser00");
 		bool isBo4180 = evtPlayer->IsEventPlaying("bo4180");
-		bool isQTE00 = evtPlayer->IsEventPlaying("zev_rfl_laser00");
-		if ((isBo4110) || (isBo4180) || (isQTE00))
+		bool isBo4181 = evtPlayer->IsEventPlaying("bo4181");
+		if ((isBo4110) || (isZQTE00) || (isBo4180) || (isBo4181))
 		{
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX1"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX0"));
+			WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4180"));
 		}
 		
 		bool isBitlaserX1 = evtPlayer->IsEventPlaying("zev_rfl_bitlaserX1");
@@ -351,6 +402,7 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
 			WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01"));
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX1"));
+			WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4181"));
 		}
 		
 		bool isBitlaser02 = evtPlayer->IsEventPlaying("zev_rfl_bitlaserX2");

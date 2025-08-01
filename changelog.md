@@ -1,6 +1,6 @@
-## Aggro-Titans Starfall Update
+## Aggro-Titans Starfall
 
-* Coming somewhere in August.
+* Will release some time in August.
 
 
 
@@ -11,7 +11,8 @@
 * Phase 1 QTEs are more dynamic.
 * Fixed a softlock issue.
 * Fixed a crash issue with Riflebeast Tackle Attack somehow caused by activating the unused Grand Slam event for regular Supreme.
-* The Ouranos Pyramid's Chaos Emerald pillar effect now despawns when in base game's Supreme fight and will respawn when reloading the save file. (Why does a mod need to address this problem)
+* The Ouranos Pyramid's Chaos Emerald pillar effect now disappears when in base game's Supreme fight and will respawn when reloading the save file. (Why does a mod need to address this problem)
+* Sonic's 0 Ring Cutscenes (bo1180, bo2180, bo3180, and bo4180) have a Phase 2 version added.
 
 
 
