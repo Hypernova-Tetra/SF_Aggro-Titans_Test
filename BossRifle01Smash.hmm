@@ -155,14 +155,15 @@ Code "Fixing the Unused Grand Slam Event Crash side-effect for Riflebeast AT_Tac
 {
 	if (Ad1150 == 0)
 	{ /* 0x141556024 */ Ad1150 = ScanSignature ("bo1150", "xxxxxx"); }
+	
+	WriteProtected<byte>(Ad1150, System.Text.Encoding.UTF8.GetBytes("bo1150")); 
 		
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
 			
 	bool unusedEvent = evtPlayer->IsEventPlaying("zev_rfl_grandsmash");
-	{ /* 0x141556024 */ ZevCheck1 = ScanSignature ("zevSp0", "xxxxxx"); }
-	if ((unusedEvent) || (ZevCheck1 == 0))
+	if (unusedEvent)
 	{
 		WriteProtected<byte>(Ad1150, System.Text.Encoding.UTF8.GetBytes("zevSp0")); 
 		
