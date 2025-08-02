@@ -1,6 +1,6 @@
 ## Aggro-Titans Starfall
 
-* Will release some time in August.
+* Some time before August 15.
 
 
 
