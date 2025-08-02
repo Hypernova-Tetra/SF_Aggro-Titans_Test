@@ -144,7 +144,6 @@ Code "Fixing the Unused Grand Slam Event Crash side-effect for Riflebeast AT_Tac
     #lib "EventPlayer"
 	#lib "BossRifleBeastConfig"
 	static long Ad1150 = 0;
-	static long ZevCheck1 = 0;
 	static int ReplaceNum = 0;
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[2];
     // there was originally more to this array 
