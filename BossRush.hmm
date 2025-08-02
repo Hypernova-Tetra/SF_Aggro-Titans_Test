@@ -102,13 +102,9 @@ Code "BossRush_Combat"
         IsConfigInitialised = true;
 
         if (BossHP == 1)
-        {
-            healthBool = true;
-        }
+        { healthBool = true; }
         else
-        {
-            healthBool = false;
-        }
+        { healthBool = false; }
     }
 	
 	if (!healthBool)
@@ -142,6 +138,189 @@ Code "BossRush_Combat"
 	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[0].healthPoint, 15000);
 	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[1].healthPoint, 17500);
 	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[2].healthPoint, 18300);
+}
+
+Code "SonicParameters"
+//
+	#include "Reflection" noemit
+	#import "Services"
+	#import "Plugins"
+	#lib "GameManager"
+	#lib "GameObject"
+	#lib "Reflection"
+	#lib "SonicParameters"
+	#lib "BlackboardStatus"
+//
+{
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
+		
+	string currentStage = LevelInfo.GetCurrentStageID();
+		
+	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
+	bool isRiflebeast = (GameManager.GetGameObject("RifleBeast0") != null);
+	
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+
+	if (SonicParametersInfo.pData == null)
+		return;
+		
+	RFL_SET_PARAM(SonicParametersInfo, common.acceleComboSet.sonic.motionSpeedRatio, 1.8f);
+	RFL_SET_PARAM(SonicParametersInfo, common.acceleComboSet.sonic.motionSpeedRatioAccele, 2.15f);
+	RFL_SET_PARAM(SonicParametersInfo, common.acceleComboSet.superSonic1.motionSpeedRatio, 1.8f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopRadius, 6.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopTime, 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopSpeedCurveRatio, 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopEndStopTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopEndSpeed, 12.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.kickSpeed, 60.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.loopRadius, 6.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.loopTime, 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.loopEndSpeed, 12.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.kickSpeed, 65.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.startWait, 0.2f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.zigzagBeginOneStepTime, 0.1f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.zigzagEndOneStepTime, 0.1f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.cameraOffsetElevation, -5.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.superSonic1.startWait, 0.15f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.superSonic1.zigzagBeginOneStepTime, 0.07f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.superSonic1.zigzagEndOneStepTime, 0.07f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.chargeTime, 0.375f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.bounceTime, 0.385f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.numSlashs, 8);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.slowRatio0, 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.slowRatio1, 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.superSonic1.chargeTime, 0.325f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.superSonic1.bounceTime, 0.275f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.superSonic1.numSlashs, 12);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.sonic.riseTime, 0.2f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.sonic.slowRatio, 0.25f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.sonic.maxPressTimeHeight, 4.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.superSonic1.motionTime, 0.9f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.superSonic1.lastHitTime, 0.8f);
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.sonic.speed, 10.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.sonic.maxSpeed, 20.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.superSonic1.speed, 10.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.superSonic1.maxSpeed, 20.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.appearTime, 0.7f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spinRadius, 1.6f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spinSpeed, -275.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spinSpeedPostLaunch, -300.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.chargeTime, 0.45f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spawnTime, 0.15f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.launchPreWaitTime, 0.4f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.launchRandomize, true);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.launchWaitTime, 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.tangent0, 15.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.tangent1, 10.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.speed, 25.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.maxSpeed, 40.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutBeginTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutFadeOutTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutFadingTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutFadeInTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.appearTime, 0.5f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.chargeTime, 0.4f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.spawnTime, 0.074f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.launchPreWaitTime, 0.4f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.launchRandomize, true);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.launchWaitTime, 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.speed, 32.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.maxSpeed, 65.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.accele, 60.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutBeginTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutFadeOutTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutFadingTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutFadeInTime, 0.0f);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.avoid.transitExistTarget[5], SonicParameters.Action.HomingAttack);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.avoid.transitInAir[5], SonicParameters.Action.Pursuit);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.airBoost.transitExistTarget[0], SonicParameters.Action.Pursuit);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.airBoost.transitInAir[0], SonicParameters.Action.Pursuit);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitExistTarget[0], SonicParameters.Action.AerialHomingAttack);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitExistTarget[5], SonicParameters.Action.HomingShot);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitInAir[0], SonicParameters.Action.HomingAttack);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitInAir[5], SonicParameters.Action.HomingShot);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.homingShot.transitExistTarget[0], SonicParameters.Action.Pursuit);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.homingShot.transitExistTarget[3], SonicParameters.Action.SpinSlash);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.homingShot.transitInAir[0], SonicParameters.Action.Pursuit);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.homingShot.transitInAir[3], SonicParameters.Action.SpinSlash);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.loopKick.transitExistTarget[0], SonicParameters.Action.HomingAttack);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.loopKick.transitExistTarget[5], SonicParameters.Action.HomingShot);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.loopKick.transitInAir[5], SonicParameters.Action.HomingShot);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.crasher.transitExistTarget[0], SonicParameters.Action.AerialAcceleCombo1);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.crasher.transitExistTarget[5], SonicParameters.Action.HomingShot);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.crasher.transitInAir[5], SonicParameters.Action.HomingShot);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[0], SonicParameters.Action.Pursuit);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.HomingAttack);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
+	RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.HomingAttack);
+	
+	if ((LevelInfo.GetCurrentStageID() == "w3t01") || (isSupreme) || (isRiflebeast))
+	{
+		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
+		{
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 1.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 45.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 164);
+			
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 35.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.Y, 35.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit2.shapeSize.X, 35.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit2.shapeSize.Y, 35.0f);
+			
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.Smash);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.HomingAttack);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[2], SonicParameters.Action.QuickCyloop);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.AerialHomingAttack);
+			
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[0], SonicParameters.Action.Pursuit);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[2], SonicParameters.Action.Smash);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[5], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitInAir[0], SonicParameters.Action.Pursuit);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitInAir[2], SonicParameters.Action.Smash);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitInAir[3], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitInAir[5], SonicParameters.Action.Root);
+			
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[2], SonicParameters.Action.Smash);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[5], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitInAir[2], SonicParameters.Action.Smash);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitInAir[3], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitInAir[5], SonicParameters.Action.Root);
+
+			RFL_SET_PARAM(SonicParametersInfo, common.cyloop.lossQuickCyloopEnergy, 40.0f);
+		}
+		else
+		{	
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 0);
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 200.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 0);
+			
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 1.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.Y, 0.0f);
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit2.shapeSize.X, 1.5f);
+			RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit2.shapeSize.Y, 0.0f);
+			
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitInAir[2], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.QuickCyloop);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[2], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[2], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitInAir[2], SonicParameters.Action.Root);
+			RFL_SET_PARAM(SonicParametersInfo, common.cyloop.lossQuickCyloopEnergy, 60.0f);
+		}
+	}
 }
 
 Library "BossRushParameter"

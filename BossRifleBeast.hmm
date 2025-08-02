@@ -47,6 +47,37 @@ Code "Supreme_End_Combat"
 	}
 }
 
+Code "Riflebeast_Chaos_Combat"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossRifleBeastConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+//
+{
+	HMM.GetMods()
+	
+	bool isChaosPolarityActive = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+    if (isChaosPolarityActive)
+	{
+		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+
+		if (BossRifleBeastConfigInfo.pData == null)
+			return;
+		{
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 200000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 200);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.075f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.1f);
+		}
+	}
+}
+
 Code "No_Tackle" by "thej01"
 //
 	#include "Reflection" noemit

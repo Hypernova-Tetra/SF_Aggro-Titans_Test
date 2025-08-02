@@ -1,3 +1,75 @@
+Code "Supreme_Combat"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossRifleConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+
+    static bool IsConfigInitialised = false;
+	static int BossHP = 0;
+    static bool healthBool = false;
+//
+{
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
+        IsConfigInitialised = true;
+
+        if (BossHP == 1)
+        {healthBool = true;}
+
+        else
+        {healthBool = false;}
+    }
+
+	if (!healthBool)
+		return;
+	{
+		var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
+		if (BossRifleConfigInfo.pData == null)
+			return;
+		
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000);
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
+	}
+};
+
+Code "Supreme_Chaos_Combat"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossRifleConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+//
+{
+	
+	
+	bool isChaosPolarityActive = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+    if (isChaosPolarityActive)
+	{
+		var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
+		if (BossRifleConfigInfo.pData == null)
+			return;
+		{ 
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 185000);
+		}
+	}
+}
+
 Code "Counter_Blow" by "Holoska"
 //
     using System.Numerics;
@@ -80,7 +152,6 @@ Code "Supreme moveset" by "Hypernova"
 	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
 	
 	string currentStage = LevelInfo.GetCurrentStageID();
-	List<string> excludedStages = new List<string> { "w1b02" };
 	
 	if (LevelInfo.GetCurrentStageID() == "w1r04")
 	{
@@ -89,9 +160,7 @@ Code "Supreme moveset" by "Hypernova"
 		var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 		if (BossRifleConfigInfo.pData == null)
 		return;
-		{
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000);
-			
+		{		
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
@@ -129,8 +198,6 @@ Code "Supreme moveset" by "Hypernova"
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		{
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000);
-			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
@@ -203,7 +270,6 @@ if ((gameModeBattleRush) && (isSupreme))
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 		
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);
-		
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
@@ -216,55 +282,6 @@ if ((gameModeBattleRush) && (isSupreme))
 		
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 75);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
-	}
-};
-
-Code "Supreme_Combat"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BossRifleConfig"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-
-    static bool IsConfigInitialised = false;
-	static int BossHP = 0;
-    static bool healthBool = false;
-//
-{
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
-        IsConfigInitialised = true;
-
-        if (BossHP == 1)
-        {healthBool = true;}
-
-        else
-        {healthBool = false;}
-    }
-
-	if (!healthBool)
-		return;
-
-	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
-
-	if (BossRifleConfigInfo.pData == null)
-		return;
-	{
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000);
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
 	}
 };
 
