@@ -17,11 +17,12 @@ Code "Moveset_BossBit" by "Hypernova"
 		var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
 		if (BossBitConfigInfo.pData == null)
 			return;
-			
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 1);
-
+		
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
+		
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 0);
 		
+		//Default Attack 1//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].text.pValue, 8042);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.isParry, true);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.time, 10);
@@ -45,6 +46,7 @@ Code "Moveset_BossBit" by "Hypernova"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.waveRotationSpeed, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.flyMoveSpeed, 100);
 		
+		//Default Attack 2//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].text.pValue, 8028);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isParry, true);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.time, 10);
@@ -65,15 +67,14 @@ Code "Moveset_BossBit" by "Hypernova"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.waveRotationSpeed, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.flyMoveSpeed, 100);
 	}
-	
-	if (LevelInfo.GetCurrentStageID() == "w1r06")
+	else
 	{
 		var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
 		if (BossBitConfigInfo.pData == null)
 			return;
-			
+		
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 2);
-
+		
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 150);
 		
 		//Drone Missiles//
