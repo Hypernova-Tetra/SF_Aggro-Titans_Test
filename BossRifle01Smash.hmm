@@ -99,7 +99,7 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-		if (BlackboardStatus.IsSuper() && (isSupreme))
+		if ((isSupreme) && IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 		{
 			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 
@@ -129,7 +129,8 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 			else 
 			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop")); }
 		}
-		else { WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+		else 
+		{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 	}
 }
 
