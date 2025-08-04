@@ -77,25 +77,37 @@ Code "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 
-        if (BossHP == 1)
-        {healthBool = true;}
+		string currentStage = LevelInfo.GetCurrentStageID();
 		
+		var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
+		
+        if (BossHP == 1)
+        {
+			if (BossDragonConfigInfo.pData == null)
+			return;
+			
+			if (LevelInfo.GetCurrentStageID() == "w2b01")
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
+			else
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000); }
+			
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2750);
+		}
         else
-        {healthBool = false;}
+        {
+			if (BossDragonConfigInfo.pData == null)
+			return;
+			
+			if (LevelInfo.GetCurrentStageID() == "w2b01")
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
+			else
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 333000); }
+				
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6000);
+		}
     }
-	
-	if (!healthBool)
-		return;
-
-	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
-
-	if (BossDragonConfigInfo.pData == null)
-		return;
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2750);
-	}
 };
 
 Code "Wyvern Special Extra" by Hypernova

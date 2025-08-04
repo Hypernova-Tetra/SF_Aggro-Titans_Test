@@ -52,7 +52,9 @@ add Main/raw/event/scene/zev_spider_dive_start.pac
 
 add Main/raw/general/resident_general/se_rangers_sys.acb
 
-add Main/raw/hedgehog/level/master.levels
+delete Main/raw/hedgehog/level/master.levels
+delete Main/raw/hedgehog/level/
+delete Main/raw/hedgehog/
 
 add Main/raw/misc/bossrush.pac
 
@@ -380,6 +382,7 @@ add BossRifle01.hmm
 add BossRifleBeast.hmm
 add BossRush.hmm
 add BossTitanFinish.hmm
+add BossSonicComboTweaks.hmm
 add mod.ini
 add CombatDX.dll
 

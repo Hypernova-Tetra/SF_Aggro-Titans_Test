@@ -85,56 +85,42 @@ Code "Knight_Combat"
 
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-
-        if (BossHP == 1)
-        {healthBool = true;}
 		
+		string currentStage = LevelInfo.GetCurrentStageID();
+		
+		var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
+		
+        if (BossHP == 1)
+        {
+			if (BossKnightConfigInfo.pData == null)
+				return;
+		
+			if (LevelInfo.GetCurrentStageID() == "w3b01")
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000); }
+			else
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000); }
+			
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
+		}
         else
-        {healthBool = false;}
+        {	
+			if (BossKnightConfigInfo.pData == null)
+				return;
+			
+			if (LevelInfo.GetCurrentStageID() == "w3b01")
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000); }
+			else
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 367000); }
+			
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 8);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 8);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 16);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
+		}
     }
-	
-	if (!healthBool)
-		return;
-
-	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
-
-	if (BossKnightConfigInfo.pData == null)
-		return;
-	{
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 8);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 8);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 16);
-		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
-	}
-};
-
-Code "Gamemode Battle Rush Knight" 
-//
-    using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-	#import "Services"
-	#include "Reflection" noemit
-    #load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-	#lib "Reflection"
-	#lib "BlackboardStatus"
-    #lib "HMM"
-	#lib "INI"
-	#lib "GameMode"
-	#lib "BossKnightConfig"
-//
-
-bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-if (gameModeBattleRush)
-{
-	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
-	if (BossKnightConfigInfo.pData == null)
-		return;
-	
-	RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 86700);
 };
 
 Library "BossKnightConfig"

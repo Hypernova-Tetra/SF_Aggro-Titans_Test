@@ -35,11 +35,17 @@ Code "Supreme_Combat"
 	if (!healthBool)
 		return;
 	{
+		string currentStage = LevelInfo.GetCurrentStageID();
+		
 		var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000);
+		if (LevelInfo.GetCurrentStageID() == "w1b02")
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
+		else
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000); }
+		
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
@@ -56,16 +62,23 @@ Code "Supreme_Chaos_Combat"
     #import "Services"
 //
 {
-	
-	
 	bool isChaosPolarityActive = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
     if (isChaosPolarityActive)
 	{
 		var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
-		if (BossRifleConfigInfo.pData == null)
-			return;
+		
+		string currentStage = LevelInfo.GetCurrentStageID();	
+		if (LevelInfo.GetCurrentStageID() == "w1b02")
 		{ 
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 185000);
+			if (BossRifleConfigInfo.pData == null)
+				return;
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); 
+		}
+		else
+		{
+			if (BossRifleConfigInfo.pData == null)
+				return;
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 185000); 
 		}
 	}
 }
@@ -153,13 +166,27 @@ Code "Supreme moveset" by "Hypernova"
 	
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
+	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
+	
+	if (LevelInfo.GetCurrentStageID() == "w1b02")
+	{
+		if (BossRifleConfigInfo.pData == null)
+			return;
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); 
+	}
+	else
+	{
+		if (BossRifleConfigInfo.pData == null)
+			return;
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000); 
+	}
+	
 	if (LevelInfo.GetCurrentStageID() == "w1r04")
 	{
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 
-		var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 		if (BossRifleConfigInfo.pData == null)
-		return;
+			return;
 		{		
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
@@ -194,7 +221,6 @@ Code "Supreme moveset" by "Hypernova"
 	{
 		{ WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162")); }
 
-		var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		{
@@ -269,7 +295,6 @@ if ((gameModeBattleRush) && (isSupreme))
 	{
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 		
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);

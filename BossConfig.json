@@ -3,18 +3,27 @@
 	[
 		{
 		  "Name": "Main",
-		  "DisplayName": "Boss Settings",
+		  "DisplayName": "Player Settings",
 		  "Elements":
 			[
 				{
+					"Name":"BossBattle",
+					"DisplayName":"Sonic Combo Table Edits",
+					"Description":["Did some things with Sonic that changes his combo table a little bit."],
+					"Type":"SonicBattle",
+					"MinValue":null,
+					"MaxValue":null,
+					"DefaultValue":"0"
+				},
+				{
 					"Name":"BossCombat",
-					"DisplayName":"Combat Mods",
-					"Description":["Using Combat Mods? Toggle them here"],
+					"DisplayName":"Combat Mods or Level 1 Sonic",
+					"Description":["Using Combat Mods? Or are you by chance playing Extreme Mode or just running through the game normally with base level Sonic. Activate this option here. This changes the Boss's HP to a lower value that certain combat mods or a Level 1 Power Sonic can handle, gives rings though cylooping and Grand Slamming Giganto, Knight, and Supreme (not Riflebeast)."],
 					"Type":"BossHP",
 					"MinValue":null,
 					"MaxValue":null,
 					"DefaultValue":"0"
-				}
+				},
 			]
 		},
 		{
@@ -163,6 +172,19 @@
 			"DisplayName":"On",
 			"Value":"1",
 			"Description":["Lowered HP for certain combat mods that change Sonic's combat style."]
+			}
+		],
+		"SonicBattle":
+		[
+			{
+			"DisplayName":"Off",
+			"Value":"0",
+			"Description":["If you're using other combat mods"]
+			},
+			{
+			"DisplayName":"On",
+			"Value":"1",
+			"Description":["Homing Shot moved to be a combo after Loop Kick or Wild Rush. Can also be comboed after boost by pressing LT. Grand Slam can be comboed after Spinslash or Cyloop by mashing the Y button during either attack, this will use up more meter. This also affects Knight, Supreme, and Riflebeast. This function will only activate when you're in Master King Trials facing Knight or Facing Supreme in either Base game or Final Horizons."]
 			}
 		],
 		"BossPhase2":
