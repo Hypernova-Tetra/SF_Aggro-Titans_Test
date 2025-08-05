@@ -385,7 +385,10 @@ Code "Dynamic Supreme Events" by "Hypernova"
 		bool isLaserX0 = evtPlayer->IsEventPlaying("zev_rfl_laserX0");
 		bool isSpX0 = evtPlayer->IsEventPlaying("zev_rfl_spX0");
 		if ((isLaserX0) || (isSpX0))
-		{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01")); }
+		{ 
+			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
+		}
 		
 		bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01");
 		if (isLaser01)

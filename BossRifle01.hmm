@@ -178,7 +178,7 @@ Code "Supreme moveset" by "Hypernova"
 	{
 		if (BossRifleConfigInfo.pData == null)
 			return;
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000); 
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 500000); 
 	}
 	
 	if (LevelInfo.GetCurrentStageID() == "w1r04")

@@ -102,7 +102,7 @@ Code "Wyvern_Combat"
 			if (LevelInfo.GetCurrentStageID() == "w2b01")
 			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
 			else
-			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 333000); }
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 367000); }
 				
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
 			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6000);
