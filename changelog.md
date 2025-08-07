@@ -17,6 +17,9 @@
 * Fixed the issue in where Riflebeast's Material and UV animations didn't play properly in certain cutscenes.
 * Config tweaks.
 * No more confliction with other mods using "master.levels" file.
+* Restored unused Cyloop Counter animation for Giganto.
+* Code Tweak for Wyvern's Phase 2 cutscene when the "Skip" option is active. Reverted to Lua.Call functions to fix a lingering issue with Sonic being respawned in the wrong spot after the cutscene ends.
+* Textures for Wyvern and Knight have been changed, using the "Fitting Titan Re-textures Mod" by MatiosDX. Wyvern reflects the purple-tier enemies while Knight now reflects the red-tier enemies.
 
 
 

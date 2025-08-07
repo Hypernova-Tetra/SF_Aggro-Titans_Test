@@ -8,6 +8,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	#lib "Reflection"
     #lib "HMM"
 	#lib "INI"
+	#lib "Lua"
 	#import "Services"
 	#import "GOComponents"
 	#import "Graphics"
@@ -86,11 +87,10 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	WriteProtected<byte>
 	( /* 0x14144C97C */ ScanSignature ("bo2140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2141"));
 	
-	bool isWyvernActiveSkipF2 = evtPlayer->IsEventPlaying("bo2141");
+	bool isWyvernActiveSkipF2 = Lua.Call<int>("IsPlayingDiEvent", "bo2141") == 1;
 	if (isWyvernActiveSkipF2)
 	{
-		var setupData = new EventPlayer.EventSetupData("bo2140");
-		evtPlayer->PlayEvent(ref setupData);
+		Lua.Call("PlayDiEventFrozen", "bo2140")
 	}
 
 	WriteProtected<byte>
@@ -134,6 +134,52 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	}
 }
 
+Code "Giganto Cyloop Counter Phase Switch" by "Hypernova"
+//
+	#lib "GameManager"
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	#include "Reflection" noemit
+	#lib "EventPlayer"
+	#lib "Reflection"
+	#lib "GameManager"
+	#lib "GameObject"
+	static long AdCyloopAtk = 0;
+	static long AdCyloopPry = 0;
+
+//
+{
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+		
+	if (AdCyloopAtk == 0)
+	{ /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
+	
+	if (AdCyloopPry == 0)
+	{ /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
+	
+	bool isGiant01 = evtPlayer->IsEventPlaying("bo1120");
+	bool isGntWin1 = evtPlayer->IsEventPlaying("bo1160");
+	bool isGntWin2 = evtPlayer->IsEventPlaying("bo1150");
+	bool isGntWin3 = evtPlayer->IsEventPlaying("bo1170");
+	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
+	if ((isGiant01) || (isGntWin1) || (isGntWin2) || (isGntWin3) || (isSupreme))
+	{ 
+		WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
+		WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
+	}
+	
+	bool isGiant02 = evtPlayer->IsEventPlaying("bo1140");
+	if (isGiant02)
+	{ 
+		WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
+		WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
+	}
+}
+
 Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 //
 	#lib "GameManager"
@@ -152,45 +198,47 @@ Code "Wyvern Grand Slam Phase Switch" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
+		
+	if (AddressSp01 == 0)
+	{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
 	
-	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01") || (LevelInfo.GetCurrentStageID() == "w2t01"))
-	{
-		if (AddressSp01 == 0)
-		{ /* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
+	if (AddressMsle == 0)
+	{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
 	
-		if (AddressSnd1 == 0)
-		{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
+	if (AddressMsle == 0)
+	{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_laser01", "xxxxxxxxxxxxxxxxxxxxx");}
+	
+	if (AddressSnd1 == 0)
+	{ /* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
 
-		bool isDragonF2 = evtPlayer->IsEventPlaying("bo2140");
-		if (isDragonF2)
-		{
-			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
-			WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
-		}
-	}
-	else 
-	{
+	bool isDragon01 = evtPlayer->IsEventPlaying("bo2120");
+	bool isDragonWn = evtPlayer->IsEventPlaying("zev_dragon_finish_00");
+	bool isDrgnWin2 = evtPlayer->IsEventPlaying("zev_dragon_finish_01");
+	if ((isDragon01) || (isDragonWn) || (isDrgnWin2))
+	{ 
+		WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); 
 		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
 		WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
 	}
 	
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{
-		if (AddressMsle == 0)
-		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
-	
-		if (AddressMsle == 0)
-		{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_laser01", "xxxxxxxxxxxxxxxxxxxxx");}
+	bool isDragon02 = evtPlayer->IsEventPlaying("bo2140");
+	if (isDragon02)
+	{ 
+		if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01"))
+		{ WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_F2")); }
 		
-		bool isDragon02 = evtPlayer->IsEventPlaying("bo2140");
-		if (isDragon02)
-		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); }
-	
-		bool isRestore = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
-		if (isRestore)
-		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
+		if (LevelInfo.GetCurrentStageID() == "w2t01")
+		{ 
+			WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01")); 
+			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
+			WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+		}
+		
 	}
-	else { WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
+	
+	bool isRestore = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
+	if (isRestore)
+	{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
 }
 
 Code "Other Cutscenes" by "Hypernova"

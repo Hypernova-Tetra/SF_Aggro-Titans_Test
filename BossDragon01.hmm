@@ -15,7 +15,7 @@ Code "ATK_Scratch 2" by "Ashrindy"
 //
     static long AdScratch2 = 0;
     static string[] ATKScr2 = new[]
-    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
+    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
 //
 {
     if (AdScratch2 == 0)

@@ -58,11 +58,12 @@ delete Main/raw/hedgehog/
 
 add Main/raw/misc/bossrush.pac
 
-delete Main/raw/movie/bo2141.usm
+delete Main/raw/movie/bo1141.usm
+delete Main/raw/movie/bo3141.usm
 delete Main/raw/movie/bo4160.usm
 
-add Main/raw/movie/bo1141.usm
-add Main/raw/movie/bo3141.usm
+add Main/raw/movie/bo2140.usm
+add Main/raw/movie/bo2141.usm
 add Main/raw/movie/bo4140.usm
 add Main/raw/movie/bo4141.usm
 add Main/raw/movie/bo4162.usm
