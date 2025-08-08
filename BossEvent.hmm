@@ -126,11 +126,10 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	WriteProtected<byte>
 	( /* 0x1414624C0 */ ScanSignature ("bo4140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo4141"));
 		
-	bool isSupremeActiveSkipF2 = evtPlayer->IsEventPlaying("bo4141");
+	bool isSupremeActiveSkipF2 = Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1;
 	if (isSupremeActiveSkipF2)
 	{
-		var setupData = new EventPlayer.EventSetupData("bo4140");
-		evtPlayer->PlayEvent(ref setupData);
+		Lua.Call("PlayDiEventFrozen", "bo4140")
 	}
 }
 
@@ -355,6 +354,10 @@ Code "Other Cutscenes" by "Hypernova"
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
 	else
 	{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+	
+	bool evOuranosFinalEmerald = evtPlayer->IsEventPlaying("ev5020");
+	if (evOuranosFinalEmerald)
+	{ Lua.Call("SetLayerEnabled", "w1r04_plan_common", false) }
 }
 
 Code "Dynamic Supreme Events" by "Hypernova"
