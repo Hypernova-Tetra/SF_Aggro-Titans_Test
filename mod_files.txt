@@ -21,7 +21,6 @@ add Main/raw/event/scene/ev5040.pac
 add Main/raw/event/scene/ev6030.pac
 add Main/raw/event/scene/zev_dragon_finish_00.pac
 add Main/raw/event/scene/zev_dragon_finish_01.pac
-
 add Main/raw/event/scene/zev_dragon_sp_01.pac
 add Main/raw/event/scene/zev_dragon_sp_02.pac
 add Main/raw/event/scene/zev_dragon_sp_laser01.pac
@@ -47,6 +46,8 @@ add Main/raw/event/scene/zev_knight_sonic_sp01_phase2.pac
 add Main/raw/event/scene/zev_knight_sonic_sp02_phase2.pac
 add Main/raw/event/scene/zev_rfl_laser00.pac
 add Main/raw/event/scene/zev_rfl_sp00.pac
+add Main/raw/event/scene/zev_rfl_sp01.pac
+add Main/raw/event/scene/zev_rfl_wing.pac
 add Main/raw/event/scene/zev_spider_dive_again.pac
 add Main/raw/event/scene/zev_spider_dive_start.pac
 
@@ -90,15 +91,15 @@ add MBoss_Audio_0rgn/raw/movie/ev5020.usm
 add MBoss_Audio_0rgn/raw/movie/ev5040.usm
 add MBoss_Audio_0rgn/raw/movie/ev5040_4k.usm
 
+delete MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
+delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant00.acb
+delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
+
 add MBoss_Audio_0rgn/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_0rgn/raw/sound/dragon01_sound/se_rangers_giant02.acb
 add MBoss_Audio_0rgn/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_0rgn/raw/sound/rifle01_sound/se_rangers_giant04.acb
 add MBoss_Audio_0rgn/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
-
-delete MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
-delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant00.acb
-delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
 add MBoss_Audio_Edit/raw/movie/bo2115.usm
 add MBoss_Audio_Edit/raw/movie/ev1770.usm
@@ -118,6 +119,10 @@ add MBoss_Audio_Edit/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_Edit/raw/sound/rifle01_sound/se_rangers_giant04.acb
 add MBoss_Audio_Edit/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
 
+delete MBoss_Audio_Edit/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
+delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
+delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
+
 add MBoss_Audio_Edit/raw/sound/amy_sound/se_rangers_player_amy.acb
 add MBoss_Audio_Edit/raw/sound/tails_sound/se_rangers_player_tails.acb
 add MBoss_Audio_Edit/raw/sound/knuckles_sound/se_rangers_player_knuckles.acb
@@ -126,10 +131,6 @@ add MBoss_Audio_Edit/raw/sound/chargercommon_sound/se_rangers_miniboss_charger.a
 add MBoss_Audio_Edit/raw/sound/spidercommon_sound/se_rangers_miniboss_spider.acb
 add MBoss_Audio_Edit/raw/sound/sumo01_sound/se_rangers_miniboss_sumo.acb
 add MBoss_Audio_Edit/raw/sound/tyrant01_sound/se_rangers_miniboss_tyrant.acb
-
-delete MBoss_Audio_Edit/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
-delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
-delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
 add MBoss_Audio_SO/raw/movie/bo2115.usm
 add MBoss_Audio_SO/raw/movie/ev1770.usm
@@ -364,12 +365,18 @@ add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE01.pac
 add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE02.pac
 
 delete MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_spwing00.pac
-
-add MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_sp01.pac
+delete MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_sp01.pac
+delete MBoss_RifleWingLaser1/raw/event/scene/
+delete MBoss_RifleWingLaser1/raw/event/
+delete MBoss_RifleWingLaser1/raw/
+delete MBoss_RifleWingLaser1
 
 delete MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_spwing00.pac
-
-add MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_sp01.pac
+delete MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_sp01.pac
+delete MBoss_RifleWingLaser2/raw/event/scene/
+delete MBoss_RifleWingLaser2/raw/event/
+delete MBoss_RifleWingLaser2/raw/
+delete MBoss_RifleWingLaser2
 
 add BossConfig.json
 add BossCutsceneAudio.hmm

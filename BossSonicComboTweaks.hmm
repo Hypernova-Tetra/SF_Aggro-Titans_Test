@@ -12,6 +12,7 @@ Code "Wyvern_Combat"
 	#import "Plugins"
     static bool IsConfigInitialised = false;
 	static int SonicBattle = 0;
+	static int BossRifleSp00 = 0;
     static bool fightBool = false;
 //
 {
@@ -26,6 +27,9 @@ Code "Wyvern_Combat"
 		var ini = INI.Read(modConfigIniPath);
 
 		SonicBattle = INI.Parse<int>(ini["Main"]["BossBattle"], SonicBattle);
+        IsConfigInitialised = true;
+		
+		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
         IsConfigInitialised = true;
 
         if (SonicBattle == 1)
@@ -172,7 +176,9 @@ Code "Wyvern_Combat"
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.HomingAttack);
 		
-		if ((LevelInfo.GetCurrentStageID() == "w3t01") || (isSupreme) || (isRiflebeast))
+		bool isCond1 = ((BossRifleSp00 == 1) && (LevelInfo.GetCurrentStageID() == "w3t01") || (isRiflebeast))
+		bool isCond2 = ((BossRifleSp00 == 0) && (isRiflebeast))
+		if ((isCond1) || (isCond2))
 		{
 			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 			{
@@ -223,6 +229,34 @@ Code "Wyvern_Combat"
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.cyloop.lossQuickCyloopEnergy, 60.0f);
+			}
+		}
+		else 
+		{
+			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
+			{
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 1.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 45.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 164);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 35.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.Y, 35.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit2.shapeSize.X, 35.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit2.shapeSize.Y, 35.0f);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.QuickCyloop);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.ChargeAttack);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[5], SonicParameters.Action.Pursuit);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[2], SonicParameters.Action.QuickCyloop);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.AerialHomingAttack);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.cyloop.lossQuickCyloopEnergy, 40.0f);
 			}
 		}
 	}

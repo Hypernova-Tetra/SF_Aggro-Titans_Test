@@ -103,7 +103,7 @@ Code "Knight_Combat"
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
 		}
         else
         {	
@@ -118,7 +118,7 @@ Code "Knight_Combat"
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 8);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 8);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 16);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
 		}
     }
 };
