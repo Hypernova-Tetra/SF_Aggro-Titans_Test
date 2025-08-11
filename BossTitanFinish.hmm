@@ -42,7 +42,7 @@ Code "Wyvern Finale Beta"
 	#lib "INI"
     #import "Services"
     static bool IsConfigInitialised = false;
-    static bool dragoFin00Bool = false;
+    static bool WyvernFinishBool = false;
 	static int BossDragonFinal = 0;
 //
 {
@@ -59,12 +59,12 @@ Code "Wyvern Finale Beta"
         IsConfigInitialised = true;
 
         if (BossDragonFinal == 1)
-        { dragoFin00Bool = true; }
+        { WyvernFinishBool = true; }
         else
-        { dragoFin00Bool = false; }
+        { WyvernFinishBool = false; }
     }
 	
-	if (!dragoFin00Bool)
+	if (!WyvernFinishBool)
 		return;
 	{ WriteProtected<byte> ( /* 0x14144CA38 */ ScanSignature ( "zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx" ), System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); }
 }
