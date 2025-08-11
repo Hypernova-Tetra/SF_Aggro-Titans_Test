@@ -505,6 +505,16 @@ Code "Dynamic Supreme Events" by "Hypernova"
 				WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b"));
 			}
 			
+			//Supreme Phase 2 for w1r04//
+			if ((isBo4140) && (LevelInfo.GetCurrentStageID() == "w1r04"))
+			{
+				WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX2"));
+				WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+				WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
+				WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
+				WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4181"));
+			}
+			
 			//Supreme Phase 2//
 			if (isBo4140)
 			{
@@ -535,6 +545,9 @@ Code "Dynamic Supreme Events" by "Hypernova"
 			{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
 		
 			if ((isShoot02) || (isShootX2))
+			{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laserX1")); }
+		
+			if (isLaserX1)
 			{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2")); }
 		
 			if (isSpQTEX2)
