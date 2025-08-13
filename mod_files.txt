@@ -46,7 +46,6 @@ add Main/raw/event/scene/zev_knight_sonic_sp01_phase2.pac
 add Main/raw/event/scene/zev_knight_sonic_sp02_phase2.pac
 add Main/raw/event/scene/zev_rfl_laser00.pac
 add Main/raw/event/scene/zev_rfl_sp00.pac
-add Main/raw/event/scene/zev_rfl_sp01.pac
 add Main/raw/event/scene/zev_rfl_wing.pac
 add Main/raw/event/scene/zev_spider_dive_again.pac
 add Main/raw/event/scene/zev_spider_dive_start.pac
@@ -365,18 +364,12 @@ add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE01.pac
 add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE02.pac
 
 delete MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_spwing00.pac
-delete MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_sp01.pac
-delete MBoss_RifleWingLaser1/raw/event/scene/
-delete MBoss_RifleWingLaser1/raw/event/
-delete MBoss_RifleWingLaser1/raw/
-delete MBoss_RifleWingLaser1
+
+add MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_sp01.pac
 
 delete MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_spwing00.pac
-delete MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_sp01.pac
-delete MBoss_RifleWingLaser2/raw/event/scene/
-delete MBoss_RifleWingLaser2/raw/event/
-delete MBoss_RifleWingLaser2/raw/
-delete MBoss_RifleWingLaser2
+
+add MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_sp01.pac
 
 add BossConfig.json
 add BossCutsceneAudio.hmm

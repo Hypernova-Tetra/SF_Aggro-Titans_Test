@@ -96,7 +96,7 @@ Code "Knight_Combat"
 				return;
 		
 			if (LevelInfo.GetCurrentStageID() == "w3b01")
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000); }
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000); } // Knight's Original HP //
 			else
 			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000); }
 			
@@ -111,9 +111,9 @@ Code "Knight_Combat"
 				return;
 			
 			if (LevelInfo.GetCurrentStageID() == "w3b01")
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000); }
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
 			else
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 400000); }
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 420000); } // 7 Times Knight's Original HP //
 			
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 8);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 8);

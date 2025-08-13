@@ -94,6 +94,15 @@
 				"MaxValue":null,
 				"DefaultValue":"0"
 				},
+				{
+				"Name":"IncludeDir7",
+				"DisplayName":"Supreme Wing Laser",
+				"Description":["Choose the version of Supreme's godly laser attcak."],
+				"Type":"BossRifleWing",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"MBoss_RifleWingLaser1"
+				}
 			]
 		},
 		{
@@ -251,6 +260,19 @@
 			"DisplayName":"On",
 			"Value":"1",
 			"Description":["01."]
+			}
+		],
+		"BossRifleWing":
+		[
+			{
+			"DisplayName":"Version 1",
+			"Value":"MBoss_RifleWingLaser1",
+			"Description":["Sonic combos the deadly laser and ends in Sonic kicking the attack back at Supreme in a familiar way."]
+			},
+			{
+			"DisplayName":"Version 2",
+			"Value":"MBoss_RifleWingLaser2",
+			"Description":["Sonic continuous stomp-kicks the laser beam that ends in Sonic punching the attack. Wonder if the rapid stomp attack references anything, could be obscure."]
 			}
 		],
 		"BossRifleSp00":

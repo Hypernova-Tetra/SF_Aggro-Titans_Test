@@ -40,7 +40,7 @@ Code "Supreme_End_Combat"
         { 
 			if (BossRifleBeastConfigInfo.pData == null)
 				return;
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 475000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 480000); // 5.3 times Riflebeast's original HP //
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 4500);

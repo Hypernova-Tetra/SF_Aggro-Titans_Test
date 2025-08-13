@@ -42,9 +42,9 @@ Code "Supreme_Combat"
 			return;
 		
 		if (LevelInfo.GetCurrentStageID() == "w1b02")
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 50000); } // Supreme's original HP //
 		else
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 200000); }
 		
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
@@ -172,13 +172,13 @@ Code "Supreme moveset" by "Hypernova"
 	{
 		if (BossRifleConfigInfo.pData == null)
 			return;
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); 
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 125000); 
 	}
 	else
 	{
 		if (BossRifleConfigInfo.pData == null)
 			return;
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 450000); 
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 475000); // 9.5 times Supreme's original HP //
 	}
 	
 	if (LevelInfo.GetCurrentStageID() == "w1r04")

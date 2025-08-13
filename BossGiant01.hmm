@@ -77,9 +77,9 @@ Code "Giganto_Combat"
 				return;
 			
 			if (LevelInfo.GetCurrentStageID() == "w1b01")
-			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000); }
+			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
 			else
-			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 350000); }
+			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 350000); } //7 Times Wyvern's original HP//
 			
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
