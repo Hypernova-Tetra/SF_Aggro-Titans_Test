@@ -90,35 +90,32 @@ Code "Knight_Combat"
 		
 		var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
 		
-        if (BossHP == 1)
-        {
-			if (BossKnightConfigInfo.pData == null)
+		if (BossKnightConfigInfo.pData == null)
 				return;
 		
-			if (LevelInfo.GetCurrentStageID() == "w3b01")
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000); } // Knight's Original HP //
-			else
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000); }
-			
+		if (LevelInfo.GetCurrentStageID() == "w3b01")
+		{
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
-		}
-        else
-        {	
-			if (BossKnightConfigInfo.pData == null)
-				return;
-			
-			if (LevelInfo.GetCurrentStageID() == "w3b01")
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
-			else
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 420000); } // 7 Times Knight's Original HP //
-			
+		}		
+        else if (BossHP == 1)
+        {
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 8);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 8);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 16);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
+		}
+        else
+        {	
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 399000);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
 		}
     }
 };

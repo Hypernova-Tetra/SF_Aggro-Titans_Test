@@ -167,27 +167,15 @@ Code "Supreme moveset" by "Hypernova"
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
-	
-	if (LevelInfo.GetCurrentStageID() == "w1b02")
-	{
-		if (BossRifleConfigInfo.pData == null)
-			return;
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 125000); 
-	}
-	else
-	{
-		if (BossRifleConfigInfo.pData == null)
-			return;
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 475000); // 9.5 times Supreme's original HP //
-	}
-	
+		
 	if (LevelInfo.GetCurrentStageID() == "w1r04")
 	{
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 
 		if (BossRifleConfigInfo.pData == null)
 			return;
-		{		
+		{	
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
@@ -218,6 +206,31 @@ Code "Supreme moveset" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
 		}
 	}
+	else if (LevelInfo.GetCurrentStageID() == "w1b02")
+	{
+		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+
+		if (BossRifleConfigInfo.pData == null)
+			return;
+		{	
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 70000);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[8], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[14], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[16], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[18], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[19], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_HOMINGLASER_FLY);
+			
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT1);
+			
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 70);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
+		}
+	}
 	else
 	{
 		{ WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162")); }
@@ -225,6 +238,7 @@ Code "Supreme moveset" by "Hypernova"
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		{
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 425000);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
@@ -266,52 +280,6 @@ Code "Supreme moveset" by "Hypernova"
 		}
 	}
 }
-
-Code "Gamemode Battle Supreme" 
-//
-    using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-	#import "Services"
-	#include "Reflection" noemit
-    #load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-	#lib "GameMode"
-	#lib "GameObject"
-	#lib "BossRifleConfig"
-	static long Adr4160 = 0;
-//
-bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-if ((gameModeBattleRush) && (isSupreme))
-{	
-	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
-	
-	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
-	if (BossRifleConfigInfo.pData == null)
-		return;
-	{		
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[8], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[14], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[16], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[18], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[19], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_HOMINGLASER_FLY);
-		
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT1);
-		
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 70);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
-	}
-};
 
 Code "shot2 is zev_sp02" by "holoska"
 //

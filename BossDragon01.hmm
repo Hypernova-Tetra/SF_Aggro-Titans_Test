@@ -81,41 +81,26 @@ Code "Wyvern_Combat"
 		
 		var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
 		
-        if (BossHP == 1)
-        {
-			if (BossDragonConfigInfo.pData == null)
+		if (BossDragonConfigInfo.pData == null)
 			return;
-			
-			if (LevelInfo.GetCurrentStageID() == "w2b01")
-			{ 
-				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); //Wyvern's Original HP//
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
-			}
-			else
-			{
-				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8250);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3500);
-			}
+		
+		if (LevelInfo.GetCurrentStageID() == "w2b01")
+		{ 
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); 
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
+		}
+        else if (BossHP == 1)
+        {
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8250);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3500);
 		}
         else
         {
-			if (BossDragonConfigInfo.pData == null)
-			return;
-			
-			if (LevelInfo.GetCurrentStageID() == "w2b01")
-			{ 
-				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 95000);
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
-			}
-			else
-			{ 
-				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 400000); //8 Times Wyvern's original HP//
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 120000);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9000);
-			}
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 367000);
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 120000);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9000);
 		}
     }
 };

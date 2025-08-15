@@ -176,7 +176,7 @@ Code "Wyvern_Combat"
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.HomingAttack);
 		
-		bool isCond1 = ((BossRifleSp00 == 1) && (LevelInfo.GetCurrentStageID() == "w3t01") || (isRiflebeast))
+		bool isCond1 = ((BossRifleSp00 == 1) && (isRiflebeast))
 		bool isCond2 = ((BossRifleSp00 == 0) && (isRiflebeast))
 		if ((isCond1) || (isCond2))
 		{
