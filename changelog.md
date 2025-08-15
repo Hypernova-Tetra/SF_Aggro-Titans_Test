@@ -1,6 +1,6 @@
 ## Aggro-Titans Starfall
 
-* Some time before August 15.
+* Release Build version 1.25
 
 
 
