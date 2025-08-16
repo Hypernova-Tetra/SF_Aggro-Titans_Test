@@ -115,29 +115,29 @@ Code "BossRush_Combat"
 	if (BossRushParameterInfo.pData == null)
 		return;
 
-	RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[0].healthPoint, 62500);
-	RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[1].healthPoint, 66500);
-	RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[2].healthPoint, 67000);
+	RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[0].healthPoint, 75000);
+	RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[1].healthPoint, 80000);
+	RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[2].healthPoint, 83000);
 
-	RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[0].healthPoint, 50000);
-	RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[1].healthPoint, 55000);
-	RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[2].healthPoint, 57000);
+	RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[0].healthPoint, 67500);
+	RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[1].healthPoint, 70000);
+	RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[2].healthPoint, 73000);
 
-	RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[0].healthPoint, 40000);
-	RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[1].healthPoint, 42000);
-	RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[2].healthPoint, 44000);
+	RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[0].healthPoint, 52000);
+	RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[1].healthPoint, 66700);
+	RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[2].healthPoint, 70000);
 
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[0].healthPoint, 33000);
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[1].healthPoint, 36700);
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[2].healthPoint, 37500);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[0].healthPoint, 50000);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[1].healthPoint, 60000);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[2].healthPoint, 70000);
 
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[0].healthPoint, 25000);
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[1].healthPoint, 27500);
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[2].healthPoint, 28300);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[0].healthPoint, 45000);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[1].healthPoint, 50000);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[2].healthPoint, 52500);
 	
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[0].healthPoint, 15000);
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[1].healthPoint, 17500);
-	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[2].healthPoint, 18300);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[0].healthPoint, 37500);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[1].healthPoint, 43300);
+	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[2].healthPoint, 45000);
 }
 
 Code "SonicParameters"
