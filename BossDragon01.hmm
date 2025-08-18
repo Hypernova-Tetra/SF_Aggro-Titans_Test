@@ -90,7 +90,7 @@ Code "Wyvern_Combat"
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
 			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
 		}
-        else if (BossHP == 1)
+        else if ((BossHP == 1) || (BossHP == 2))
         {
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8250);

@@ -1,6 +1,19 @@
 ## Aggro-Titans Starfall
 
-* Release Build version 1.25
+
+
+##### Aggro-Titans (Test) 1.26
+
+* Updated "bo1xxx.pac" includes a new Phase 2 scene exclusive to Master King's Trial courtesy of Trublu.
+* Added a toggle option for Sonic's Animation Speed Changes
+* Very small update to Supreme's subphases in Phase 1.
+* Slight code adjustment tweaks to files.
+
+
+
+##### Aggro-Titans Starfall Update (Release)
+
+Released August 16
 
 
 

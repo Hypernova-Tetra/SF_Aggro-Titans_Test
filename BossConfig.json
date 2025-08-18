@@ -16,6 +16,15 @@
 					"DefaultValue":"0"
 				},
 				{
+					"Name":"SonicAnmSpeed",
+					"DisplayName":"Sonic Animation Speed",
+					"Description":["If you prefer his default animation speed or if you're using other mods that have their own speed values, leave this off."],
+					"Type":"SonicSpeed",
+					"MinValue":null,
+					"MaxValue":null,
+					"DefaultValue":"0"
+				},
+				{
 					"Name":"BossCombat",
 					"DisplayName":"Combat Mods or Level 1 Sonic",
 					"Description":["Using Combat Mods? Or are you by chance playing Extreme Mode or just running through the game normally with base level Sonic. Activate this option here. This changes the Boss's HP to a lower value that certain combat mods or a Level 1 Power Sonic can handle, gives rings though cylooping and Grand Slamming Giganto, Knight, and Supreme (not Riflebeast)."],
@@ -169,9 +178,14 @@
 			"Description":["Vanilla"]
 			},
 			{
-			"DisplayName":"On",
+			"DisplayName":"Level 1 Sonic or Nonspecific Combat Mods",
 			"Value":"1",
-			"Description":["Lowered HP for certain combat mods that change Sonic's combat style."]
+			"Description":["Lowered HP for non-specfic combat mods that change Sonic's combat style, while maintaining balance with the boss fight."]
+			},
+			{
+			"DisplayName":"Chaos Polarity",
+			"Value":"2",
+			"Description":["Boss HP specific for when using the Chaos Polarity mod."]
 			}
 		],
 		"SonicBattle":
@@ -179,12 +193,25 @@
 			{
 			"DisplayName":"Off",
 			"Value":"0",
-			"Description":["If you're using other combat mods"]
+			"Description":["If you're using other combat mods or if you want the skill set from vanilla."]
 			},
 			{
 			"DisplayName":"On",
 			"Value":"1",
 			"Description":["Homing Shot moved to be a combo after Loop Kick or Wild Rush. Can also be comboed after boost by pressing LT. Grand Slam can be comboed after Spinslash or Cyloop by mashing the Y button during either attack, this will use up more meter. This also affects Knight, Supreme, and Riflebeast. This function will only activate when you're in Master King Trials facing Knight or Facing Supreme in either Base game or Final Horizons."]
+			}
+		],
+		"SonicSpeed":
+		[
+			{
+			"DisplayName":"Off",
+			"Value":"0",
+			"Description":["If you are using other mods that change Sonic's attack speed, or if you just want to use the vanilla."]
+			},
+			{
+			"DisplayName":"On",
+			"Value":"1",
+			"Description":["Changes the animation speed so that some of Sonic's attacks are a bit faster."]
 			}
 		],
 		"BossPhase2":
