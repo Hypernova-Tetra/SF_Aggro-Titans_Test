@@ -166,6 +166,7 @@ Code "Supreme moveset" by "Hypernova"
 	if (gameModeBattleRush)
 	{
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+		
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		{
@@ -189,7 +190,7 @@ Code "Supreme moveset" by "Hypernova"
 	}
 	else if (isRifleBeast)
 	{
-		{ WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162")); }
+		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
 		
 		if (BossRifleConfigInfo.pData == null)
 			return;
@@ -215,6 +216,7 @@ Code "Supreme moveset" by "Hypernova"
 	else
 	{
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+		
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		{	
