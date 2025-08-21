@@ -137,7 +137,7 @@ Code "Ouranos Pyramid Beam No-More" by "Hypernova"
 		return;
 		
 	string currentStage = LevelInfo.GetCurrentStageID();
-	bool isOuranosBase = (LevelInfo.GetCurrentStageID() == "w1r04"));
+	bool isOuranosBase = (LevelInfo.GetCurrentStageID() == "w1r04");
 	if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isOuranosBase))
 	{ Lua.Call("SetLayerEnabled", "w1r04_plan_common", false) }
 	else
