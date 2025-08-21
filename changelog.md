@@ -8,6 +8,9 @@
 * Added a toggle option for Sonic's Animation Speed Changes
 * Very small update to Supreme's subphases in Phase 1.
 * Slight code adjustment tweaks to files.
+* Fixed a side effect with the Unused Grand Slam Event option that's causing the Tackle Crash by ensuring when the event is activated, the Tackle Attack is removed and stays removed until the game is restarted.
+* Improved Unused Grand Slam Event animation for Supreme.
+* Changed Memory Address of Giganto's Beta Defeat cutscene in the mod's coding to not inflict with an unused memory address with the game.
 
 
 

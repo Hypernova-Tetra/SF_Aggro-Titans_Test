@@ -23,7 +23,7 @@ Code "Giganto Finale Beta"
         IsConfigInitialised = true;
 
         if (BossGiantFinale == 1)
-        { WriteProtected<byte> (/* 0x141453520 */ ScanSignature( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1150")); }
+        { WriteProtected<byte> (/* 0x141453520 */ ScanSignature( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1151")); }
         else
         { scene1Bool = false; }
 		

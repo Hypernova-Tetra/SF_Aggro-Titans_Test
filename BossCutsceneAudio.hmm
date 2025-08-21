@@ -78,8 +78,14 @@ Code "Unused Cutscene Stuff" by "Hypernova"
 	
 	WriteProtected<byte>
 	(
-		/* 0x14140F5D0 */ ScanSignature ("ga3220", "xxxxxx"),
+		/* 0x14141B5A8 */ ScanSignature   ("ga3220", "xxxxxx"),
 		System.Text.Encoding.UTF8.GetBytes("ga3220")
+	);
+	
+	WriteProtected<byte>
+	(
+		/* 0x141556024 */ ScanSignature   ("bo1150", "xxxxxx"),
+		System.Text.Encoding.UTF8.GetBytes("bo1150")
 	);
 }
 

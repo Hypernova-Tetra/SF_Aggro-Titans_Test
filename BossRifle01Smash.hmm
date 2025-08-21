@@ -97,15 +97,15 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	{
 		if (AddressSplDmg == 0)
 		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
-
+		
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 		if ((isSupreme) && IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 		{
 			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
-
+			
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 			{	
-				{	
+				{
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grandsmash");
 					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 					evtPlayer->PlayEvent(ref setupData);
@@ -144,7 +144,6 @@ Code "Fixing the Unused Grand Slam Event Crash side-effect for Riflebeast AT_Tac
 	#lib "INI"
     #lib "EventPlayer"
 	#lib "BossRifleBeastConfig"
-	static long Ad1150 = 0;
 	static int ReplaceNum = 0;
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[2];
     // there was originally more to this array 
@@ -152,21 +151,14 @@ Code "Fixing the Unused Grand Slam Event Crash side-effect for Riflebeast AT_Tac
     AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_CROW_R;
     var RifleBeastInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
 //
-{
-	if (Ad1150 == 0)
-	{ /* 0x141556024 */ Ad1150 = ScanSignature ("bo1150", "xxxxxx"); }
-	
-	WriteProtected<byte>(Ad1150, System.Text.Encoding.UTF8.GetBytes("bo1150")); 
-		
+{	
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-			
-	bool unusedEvent = evtPlayer->IsEventPlaying("zev_rfl_grandsmash");
-	if (unusedEvent)
+	
+	bool unusedEvnt1 = evtPlayer->IsEventPlaying("zev_rfl_grandsmash");
+	if (unusedEvnt1)
 	{
-		WriteProtected<byte>(Ad1150, System.Text.Encoding.UTF8.GetBytes("zevSp0")); 
-		
 		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
 		if (BossRifleBeastConfigInfo.pData == null)
 			return;

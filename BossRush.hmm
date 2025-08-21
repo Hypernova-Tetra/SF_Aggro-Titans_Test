@@ -36,7 +36,6 @@ Code "Rings by Parry", by "Hypernova" and "thej01"
 	int rings = pBlackboardItem->RingCount;
 
 	string currentStage = LevelInfo.GetCurrentStageID();
-	List<string> excludedStages = new List<string> { "w2r01" };
 	if (LevelInfo.GetCurrentStageID() == "w2t01")
     {	
 		string Anim = Lua.Call<string>("GetCurrentAnimationName");
@@ -138,6 +137,119 @@ Code "BossRush_Combat"
 	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[0].healthPoint, 37500);
 	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[1].healthPoint, 43300);
 	RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[2].healthPoint, 45000);
+}
+
+Code "SonicParameters"
+//
+	#include "Reflection" noemit
+	#import "Services"
+	#import "Plugins"
+	#lib "GameManager"
+	#lib "GameObject"
+	#lib "Reflection"
+	#lib "SonicParameters"
+	#lib "BlackboardStatus"
+//
+{
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
+	
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+
+	if (SonicParametersInfo.pData == null)
+		return;
+		
+	RFL_SET_PARAM(SonicParametersInfo, common.acceleComboSet.sonic.motionSpeedRatio, 1.8f);
+	RFL_SET_PARAM(SonicParametersInfo, common.acceleComboSet.sonic.motionSpeedRatioAccele, 2.15f);
+	RFL_SET_PARAM(SonicParametersInfo, common.acceleComboSet.superSonic1.motionSpeedRatio, 1.8f);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopRadius, 6.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopTime, 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopSpeedCurveRatio, 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopEndStopTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.loopEndSpeed, 12.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.sonic.kickSpeed, 60.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.loopRadius, 6.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.loopTime, 0.3f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.loopEndSpeed, 12.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.loopKickSet.superSonic1.kickSpeed, 65.0f);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.startWait, 0.2f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.zigzagBeginOneStepTime, 0.1f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.zigzagEndOneStepTime, 0.1f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.sonic.cameraOffsetElevation, -5.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.superSonic1.startWait, 0.15f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.superSonic1.zigzagBeginOneStepTime, 0.07f);
+	RFL_SET_PARAM(SonicParametersInfo, common.crasherSet.superSonic1.zigzagEndOneStepTime, 0.07f);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.chargeTime, 0.375f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.bounceTime, 0.385f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.numSlashs, 8);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.slowRatio0, 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.sonic.slowRatio1, 1.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.superSonic1.chargeTime, 0.325f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.superSonic1.bounceTime, 0.275f);
+	RFL_SET_PARAM(SonicParametersInfo, common.spinSlashSet.superSonic1.numSlashs, 12);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.sonic.riseTime, 0.2f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.sonic.slowRatio, 0.25f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.sonic.maxPressTimeHeight, 4.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.superSonic1.motionTime, 0.9f);
+	RFL_SET_PARAM(SonicParametersInfo, common.stompingAttackSet.superSonic1.lastHitTime, 0.8f);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.sonic.speed, 10.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.sonic.maxSpeed, 20.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.superSonic1.speed, 10.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.sonicboomSet.superSonic1.maxSpeed, 20.0f);
+	
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.appearTime, 0.4f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.appearPhaseTime, 0.1f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spinRadius, 2.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spinSpeedPostLaunch, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.chargeTime, 0.88f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spawnTime, 0.32f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.launchPreWaitTime, 0.4f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spanTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.launchRandomize, true);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.launchWaitTime, 1.24f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.spiralWaitTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.numShots, 6);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutBeginTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutFadeOutTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutFadingTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.whiteoutFadeInTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.sonic.cameraName.pValue, 0);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.appearPhaseTime, 0.1f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.spinRadius, 4.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.spinSpeedPostLaunch, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.chargeTime, 0.704f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.spawnTime, 0.256f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.spanTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.launchRandomize, true);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.launchWaitTime, 0.992f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.spiralWaitTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.numShots, 12);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutBeginTime, 2.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutFadeOutTime, 2.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutFadingTime, 2.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic1.whiteoutFadeInTime, 2.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.appearTime, 0.4f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.appearPhaseTime, 0.1f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.spinRadius, 4.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.spinSpeedPostLaunch, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.chargeTime, 0.704f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.spawnTime, 0.256f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.launchPreWaitTime, 0.4f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.spanTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.launchRandomize, true);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.launchWaitTime, 0.992f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.spiralWaitTime, 0.05f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.numShots, 18);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.whiteoutBeginTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.whiteoutFadeOutTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.whiteoutFadingTime, 0.0f);
+	RFL_SET_PARAM(SonicParametersInfo, common.homingShotSet.superSonic2.whiteoutFadeInTime, 0.0f);
 }
 
 Library "BossRushParameter"

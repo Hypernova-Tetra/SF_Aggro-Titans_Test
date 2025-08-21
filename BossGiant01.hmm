@@ -76,42 +76,12 @@ Code "Giganto_Combat"
 		}
         else
         {
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 333000);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 233000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 		}
     }
-};
-
-Code "Gamemode Battle Rush Giganto" 
-//
-    using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
-	#import "Services"
-	#include "Reflection" noemit
-    #load "WindowsBase.dll"
-    #load "PresentationCore.dll"
-    #load "System.Numerics.dll"
-	#lib "Reflection"
-	#lib "BlackboardStatus"
-    #lib "HMM"
-	#lib "INI"
-	#lib "GameMode"
-	#lib "BossGiantConfig"
-//
-
-bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-if (gameModeBattleRush)
-{
-	{
-		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
-		if (BossGiantConfigInfo.pData == null)
-			return;
-			
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 80000);
-	}
 };
 
 Library "BossGiantConfig"

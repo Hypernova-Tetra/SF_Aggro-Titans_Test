@@ -163,7 +163,6 @@ Code "Supreme moveset" by "Hypernova"
 	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
 		
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
-	string currentStage = LevelInfo.GetCurrentStageID();
 	
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
@@ -174,7 +173,7 @@ Code "Supreme moveset" by "Hypernova"
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 		if (BossRifleConfigInfo.pData == null)
 			return;
-		{	
+		{
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 70000);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
@@ -200,7 +199,7 @@ Code "Supreme moveset" by "Hypernova"
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		{
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 425000);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 312000);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
@@ -224,7 +223,7 @@ Code "Supreme moveset" by "Hypernova"
 		if (BossRifleConfigInfo.pData == null)
 			return;
 		{	
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 300000);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[6], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);

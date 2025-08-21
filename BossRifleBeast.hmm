@@ -26,7 +26,7 @@ Code "Supreme_End_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 
-        if (BossHP == 1)  //Standard Combat Mods//
+        if (BossHP == 1)
         {
 			if (BossRifleBeastConfigInfo.pData == null)
 				return;
@@ -34,36 +34,36 @@ Code "Supreme_End_Combat"
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2100);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.08f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.075f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.1f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3000);
 		}
-		if (BossHP == 2)  //Chaos Polarity//
+		if (BossHP == 2)
         {
 			if (BossRifleBeastConfigInfo.pData == null)
 				return;
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 175000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 200000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 200);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.08f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 1050);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.075f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.1f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3000);
 		}
         else
         { 
 			if (BossRifleBeastConfigInfo.pData == null)
 				return;
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 450000); // 5.3 times Riflebeast's original HP //
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 350000); // 5.3 times Riflebeast's original HP //
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 4500);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 4200);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.08f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.2f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 6000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.16f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.15f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 2.0f);
 		}
     }
 }
