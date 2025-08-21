@@ -2,13 +2,19 @@
 
 
 
+##### Aggro-Titans Starfall Update (1.26 Patch)
+
+Public Release Date Unknown
+
+
+
 ##### Aggro-Titans (Test) 1.26
 
-* Updated "bo1xxx.pac" includes a new Phase 2 scene exclusive to Master King's Trial courtesy of Tru-lu.
+* Updated "bo1xxx.pac" includes a new Phase 2 scene exclusive to Master King's Trial courtesy of Tru-blu.
 * Added a toggle option for Sonic's Animation Speed Changes
 * Very small update to Supreme's subphases in Phase 1.
-* Slight code adjustment tweaks to files.
-* Fixed a side effect with the Unused Grand Slam Event option that's causing the Tackle Crash by ensuring when the event is activated, the Tackle Attack is removed and stays removed until the game is restarted.
+* Tweaked .hmm code files to iron out potential issues with performance problems.
+* Tweaked BossEvent.hmm, BossRifle01.hmm, and BossRiflebeast.hmm by reimplementing certain changes based off version 1.25b and improved them with the newer changes.
 * Improved Unused Grand Slam Event animation for Supreme.
 * Changed Memory Address of Giganto's Beta Defeat cutscene in the mod's coding to not inflict with an unused memory address with the game.
 
