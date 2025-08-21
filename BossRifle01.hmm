@@ -26,8 +26,8 @@ Code "Supreme_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		string currentStage = LevelInfo.GetCurrentStageID();
-		if (LevelInfo.GetCurrentStageID() == "w1b02")
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		if (gameModeBattleRush)
 		{
 			var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 			if (BossRifleConfigInfo.pData == null)
@@ -110,9 +110,7 @@ Code "Counter_Blow" by "Holoska"
 {
 	if (AdRightHand == 0)
 	{/* 0x14144FCF8 */ AdRightHand = ScanSignature ("attack_counter_righthand_01", "xxxxxxxxxxxxxxxxxxxxxxxxxxx");}
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
-	
+		
 	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 	if (isSupreme)
 	{ WriteProtected<byte>(AdRightHand, System.Text.Encoding.UTF8.GetBytes(rng_counter[new Random().Next(0, rng_counter.Length)])); }
@@ -139,10 +137,8 @@ Code "Ouranos Pyramid Beam No-More" by "Hypernova"
 		return;
 		
 	string currentStage = LevelInfo.GetCurrentStageID();
-	
-	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-	
-	if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isSupreme))
+	bool isOuranosBase = (LevelInfo.GetCurrentStageID() == "w1r04"));
+	if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper() && (isOuranosBase))
 	{ Lua.Call("SetLayerEnabled", "w1r04_plan_common", false) }
 	else
 	{ Lua.Call("SetLayerEnabled", "w1r04_plan_common", true) }
@@ -165,7 +161,6 @@ Code "Supreme moveset" by "Hypernova"
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 	
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
 	bool isRifleBeast = (GameManager.GetGameObject("RifleBeast0") != null);
 	
 	if (gameModeBattleRush)
