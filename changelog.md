@@ -4,7 +4,7 @@
 
 ##### Aggro-Titans Starfall Update (1.26 Patch)
 
-Released August 22, 2025
+Release Date Unknown
 
 
 
