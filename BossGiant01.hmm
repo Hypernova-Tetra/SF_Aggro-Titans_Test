@@ -60,7 +60,8 @@ Code "Giganto_Combat"
 		if (BossGiantConfigInfo.pData == null)
 			return;
 
-		if (LevelInfo.GetCurrentStageID() == "w1b01")
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		if (gameModeBattleRush)
 		{ 
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
@@ -76,7 +77,7 @@ Code "Giganto_Combat"
 		}
         else
         {
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 233000);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 220000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);

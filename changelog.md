@@ -4,7 +4,7 @@
 
 ##### Aggro-Titans Starfall Update (1.26 Patch)
 
-Public Release Date Unknown
+Released August 22, 2025
 
 
 
@@ -17,12 +17,7 @@ Public Release Date Unknown
 * Tweaked BossEvent.hmm, BossRifle01.hmm, and BossRiflebeast.hmm by reimplementing certain changes based off version 1.25b and improved them with the newer changes.
 * Improved Unused Grand Slam Event animation for Supreme.
 * Changed Memory Address of Giganto's Beta Defeat cutscene in the mod's coding to not inflict with an unused memory address with the game.
-
-
-
-##### Aggro-Titans Starfall Update (Release)
-
-Released August 16
+* Lowered the HP of the Titans when using non-modded Max Stat Sonic.
 
 
 

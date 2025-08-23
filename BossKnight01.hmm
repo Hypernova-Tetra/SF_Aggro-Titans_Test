@@ -25,14 +25,13 @@ Code "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		string currentStage = LevelInfo.GetCurrentStageID();
-		
 		var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
 		
 		if (BossKnightConfigInfo.pData == null)
 				return;
 		
-		if (LevelInfo.GetCurrentStageID() == "w3b01")
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		if (gameModeBattleRush)
 		{
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
@@ -50,7 +49,7 @@ Code "Knight_Combat"
 		}
         else
         {	
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 275000);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 260000);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
