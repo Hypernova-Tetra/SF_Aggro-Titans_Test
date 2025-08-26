@@ -1,15 +1,13 @@
 add Main/raw/boss/bosscommon.pac
 add Main/raw/boss/dragon01.pac
-add Main/raw/boss/giant01.pac
-add Main/raw/boss/knight01.pac
 add Main/raw/boss/rifle01.pac
 add Main/raw/boss/riflebeast.pac
 
-delete Main/raw/event/scene/zev_dragon_laser.pac
-delete Main/raw/event/scene/zev_dragon_sp_laser.pac
-delete Main/raw/event/scene/zev_rfl_sp01.pac
-delete Main/raw/event/scene/zev_rfl_sp02.pac
-delete Main/raw/event/scene/zev_knight_shieldride01_aerial.pac
+add Main_DefaultTexture/raw/boss/giant01.pac
+add Main_DefaultTexture/raw/boss/knight01.pac
+
+add Main_FittingTexture/raw/boss/giant01.pac
+add Main_FittingTexture/raw/boss/knight01.pac
 
 add Main/raw/event/scene/bo1xxx.pac
 add Main/raw/event/scene/bo2xxx.pac
@@ -36,11 +34,6 @@ add Main/raw/event/scene/zev_knight_shieldride02.pac
 add Main/raw/event/scene/zev_knight_shieldride02_aerial.pac
 add Main/raw/event/scene/zev_knight_sonic_damage01.pac
 add Main/raw/event/scene/zev_knight_sonic_damage02.pac
-add Main/raw/event/scene/zev_knight_sonic_damage03.pac
-add Main/raw/event/scene/zev_knight_sonic_damage04.pac
-add Main/raw/event/scene/zev_knight_sonic_damage05.pac
-add Main/raw/event/scene/zev_knight_sonic_damage06.pac
-add Main/raw/event/scene/zev_knight_sonic_damage07.pac
 add Main/raw/event/scene/zev_knight_sonic_sp01.pac
 add Main/raw/event/scene/zev_knight_sonic_sp01_phase2.pac
 add Main/raw/event/scene/zev_knight_sonic_sp02_phase2.pac
@@ -52,15 +45,7 @@ add Main/raw/event/scene/zev_spider_dive_start.pac
 
 add Main/raw/general/resident_general/se_rangers_sys.acb
 
-delete Main/raw/hedgehog/level/master.levels
-delete Main/raw/hedgehog/level/
-delete Main/raw/hedgehog/
-
 add Main/raw/misc/bossrush.pac
-
-delete Main/raw/movie/bo1141.usm
-delete Main/raw/movie/bo3141.usm
-delete Main/raw/movie/bo4160.usm
 
 add Main/raw/movie/bo2140.usm
 add Main/raw/movie/bo2141.usm
@@ -78,21 +63,11 @@ add Main/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
 add Main/raw/text/text_dlc_common_en.pac
 
-delete MBoss_Audio_0rgn/raw/movie/bo1120.usm
-delete MBoss_Audio_0rgn/raw/movie/bo3120.usm
-delete MBoss_Audio_0rgn/raw/movie/bo2115.usm
-delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01.usm
-delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01_phase2.usm
-
 add MBoss_Audio_0rgn/raw/movie/ev1770.usm
 add MBoss_Audio_0rgn/raw/movie/ev1770_4k.usm
 add MBoss_Audio_0rgn/raw/movie/ev5020.usm
 add MBoss_Audio_0rgn/raw/movie/ev5040.usm
 add MBoss_Audio_0rgn/raw/movie/ev5040_4k.usm
-
-delete MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
-delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant00.acb
-delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
 add MBoss_Audio_0rgn/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_0rgn/raw/sound/dragon01_sound/se_rangers_giant02.acb
@@ -109,18 +84,11 @@ add MBoss_Audio_Edit/raw/movie/ev5040_4k.usm
 add MBoss_Audio_Edit/raw/movie/zev_knight_sonic_sp01.usm
 add MBoss_Audio_Edit/raw/movie/zev_knight_sonic_sp01_phase2.usm
 
-delete MBoss_Audio_Edit/raw/movie/bo1120.usm
-delete MBoss_Audio_Edit/raw/movie/bo3120.usm
-
 add MBoss_Audio_Edit/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_Edit/raw/sound/dragon01_sound/se_rangers_giant02.acb
 add MBoss_Audio_Edit/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_Edit/raw/sound/rifle01_sound/se_rangers_giant04.acb
 add MBoss_Audio_Edit/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
-
-delete MBoss_Audio_Edit/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
-delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
-delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
 add MBoss_Audio_Edit/raw/sound/amy_sound/se_rangers_player_amy.acb
 add MBoss_Audio_Edit/raw/sound/tails_sound/se_rangers_player_tails.acb
@@ -274,10 +242,6 @@ add MBoss_QTE_Blow_Edit0/raw/event/scene/zev_blow_rifleboss.pac
 
 add MBoss_QTE_Blow_EditB/raw/event/scene/zev_blow_rifleboss.pac
 
-delete MBoss_QTE_Miss_0rgn/raw/event/scene/zev_darkball_riflebeast.pac
-delete MBoss_QTE_Miss_0rgn/raw/event/scene/zev_parrymiss_riflebs02.pac
-delete MBoss_QTE_Miss_0rgn/raw/event/scene/zev_parrymiss_riflebs03.pac
-
 add MBoss_QTE_Miss_0rgn/raw/event/scene/zev_parrymiss_riflebeast.pac
 add MBoss_QTE_Miss_0rgn/raw/event/scene/zev_sp_riflebeast.pac
 add MBoss_QTE_Miss_0rgn/raw/event/scene/zev_sp_riflebst02.pac
@@ -287,10 +251,6 @@ add MBoss_QTE_Miss_0rgn/raw/movie/zev_sp_riflebeast_4k.usm
 add MBoss_QTE_Miss_0rgn/raw/movie/zev_sp_riflebst02.usm
 add MBoss_QTE_Miss_0rgn/raw/movie/zev_sp_riflebst02_4k.usm
 
-delete MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_darkball_riflebeast.pac
-delete MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebs02.pac
-delete MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebs03.pac
-
 add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebeast.pac
 add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_sp_riflebeast.pac
 add MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_sp_riflebst02.pac
@@ -299,6 +259,109 @@ add MBoss_QTE_Miss_0rgnB/raw/movie/zev_sp_riflebeast.usm
 add MBoss_QTE_Miss_0rgnB/raw/movie/zev_sp_riflebeast_4k.usm
 add MBoss_QTE_Miss_0rgnB/raw/movie/zev_sp_riflebst02.usm
 add MBoss_QTE_Miss_0rgnB/raw/movie/zev_sp_riflebst02_4k.usm
+
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser01.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser02.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser03.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_laser01.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_laserX0.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_shoot01.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_shoot02.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_sp02.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_spQTE01.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_spQTE02.pac
+
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser01.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser02.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser03.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laser01.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laserX0.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_shoot01.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_shoot02.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_sp02.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_spQTE01.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_spQTE02.pac
+
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_bitlaser01.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_bitlaser02.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_bitlaser03.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_laser01.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_laserX0.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_shoot01.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_shoot02.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_sp02.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE01.pac
+add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE02.pac
+
+add MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_sp01.pac
+
+add MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_sp01.pac
+
+add BossConfig.json
+add BossCutsceneAudio.hmm
+add BossEvent.hmm
+add BossGiant01.hmm
+add BossDragon01.hmm
+add BossKnight01.hmm
+add BossRifle01Bossbit.hmm
+add BossRifle01Smash.hmm
+add BossRifle01.hmm
+add BossRifleBeast.hmm
+add BossRush.hmm
+add BossTitanFinish.hmm
+add BossSonicComboTweaks.hmm
+add mod.ini
+add CombatDX.dll
+
+delete Main/raw/boss/giant01.pac
+delete Main/raw/boss/knight01.pac
+
+delete Main/raw/event/scene/zev_dragon_laser.pac
+delete Main/raw/event/scene/zev_dragon_sp_laser.pac
+delete Main/raw/event/scene/zev_rfl_sp01.pac
+delete Main/raw/event/scene/zev_rfl_sp02.pac
+delete Main/raw/event/scene/zev_knight_shieldride01_aerial.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage03.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage04.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage05.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage06.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage07.pac
+
+delete Main/raw/hedgehog/level/master.levels
+delete Main/raw/hedgehog/level/
+delete Main/raw/hedgehog/
+
+delete Main/raw/movie/bo1141.usm
+delete Main/raw/movie/bo3141.usm
+delete Main/raw/movie/bo4160.usm
+
+delete MBoss_Audio_0rgn/raw/movie/bo1120.usm
+delete MBoss_Audio_0rgn/raw/movie/bo3120.usm
+delete MBoss_Audio_0rgn/raw/movie/bo2115.usm
+delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01.usm
+delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01_phase2.usm
+
+delete MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
+delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant00.acb
+delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
+
+delete MBoss_Audio_Edit/raw/movie/bo1120.usm
+delete MBoss_Audio_Edit/raw/movie/bo3120.usm
+delete MBoss_Audio_Edit/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
+delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
+delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
+
+delete MBoss_QTE_Miss_0rgn/raw/event/scene/zev_darkball_riflebeast.pac
+delete MBoss_QTE_Miss_0rgn/raw/event/scene/zev_parrymiss_riflebs02.pac
+delete MBoss_QTE_Miss_0rgn/raw/event/scene/zev_parrymiss_riflebs03.pac
+
+delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser00.pac
+delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laser02.pac
+delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_sp01.pac
+
+delete MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_darkball_riflebeast.pac
+delete MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebs02.pac
+delete MBoss_QTE_Miss_0rgnB/raw/event/scene/zev_parrymiss_riflebs03.pac
 
 delete MBoss_QTE_Miss_Edit0/raw/event/scene/zev_parrymiss_riflebeast.pac
 delete MBoss_QTE_Miss_Edit0/raw/event/scene/zev_sp_riflebeast.pac
@@ -322,70 +385,13 @@ delete MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser00.pac
 delete MBoss_RifleQTE_01/raw/event/scene/zev_rfl_laser02.pac
 delete MBoss_RifleQTE_01/raw/event/scene/zev_rfl_sp01.pac
 
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser01.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser02.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser03.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_laser01.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_laserX0.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_shoot01.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_shoot02.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_sp02.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_spQTE01.pac
-add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_spQTE02.pac
-
-delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser00.pac
-delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laser02.pac
-delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_sp01.pac
-
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser01.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser02.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser03.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laser01.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laserX0.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_shoot01.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_shoot02.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_sp02.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_spQTE01.pac
-add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_spQTE02.pac
-
 delete MBoss_RifleQTE_03/raw/event/scene/zev_rfl_bitlaser00.pac
 delete MBoss_RifleQTE_03/raw/event/scene/zev_rfl_laser02.pac
 delete MBoss_RifleQTE_03/raw/event/scene/zev_rfl_sp01.pac
 
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_bitlaser01.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_bitlaser02.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_bitlaser03.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_laser01.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_laserX0.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_shoot01.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_shoot02.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_sp02.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE01.pac
-add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE02.pac
-
 delete MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_spwing00.pac
 
-add MBoss_RifleWingLaser1/raw/event/scene/zev_rfl_sp01.pac
-
 delete MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_spwing00.pac
-
-add MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_sp01.pac
-
-add BossConfig.json
-add BossCutsceneAudio.hmm
-add BossEvent.hmm
-add BossGiant01.hmm
-add BossDragon01.hmm
-add BossKnight01.hmm
-add BossRifle01Bossbit.hmm
-add BossRifle01Smash.hmm
-add BossRifle01.hmm
-add BossRifleBeast.hmm
-add BossRush.hmm
-add BossTitanFinish.hmm
-add BossSonicComboTweaks.hmm
-add mod.ini
-add CombatDX.dll
 
 delete BossEventRifle01.hmm
 delete BossRifleATSHOT2-4.hmm

@@ -12,6 +12,18 @@ Code "Wyvern_Combat"
     static bool healthBool = false;
 //
 {
+	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
+	if (BossDragonConfigInfo.pData == null)
+		return;
+		
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	if (gameModeBattleRush)
+	{ 
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); 
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
+	}
+		
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -24,20 +36,8 @@ Code "Wyvern_Combat"
 
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-		
-		var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
-		
-		if (BossDragonConfigInfo.pData == null)
-			return;
-		
-		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-		if (gameModeBattleRush)
-		{ 
-			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); 
-			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
-			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
-		}
-        else if ((BossHP == 1) || (BossHP == 2))
+			
+        if ((BossHP == 1) || (BossHP == 2))
         {
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8250);
@@ -45,7 +45,7 @@ Code "Wyvern_Combat"
 		}
         else
         {
-			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 240000);
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 260000);
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 11500);
 			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9000);
 		}
@@ -90,19 +90,6 @@ Code "Counter_Tail Attack" by "Ashrindy"
     else
     {WriteProtected<byte>(AdCounterT, System.Text.Encoding.UTF8.GetBytes(Counter[new Random().Next(0, Counter.Length)]));}
 } 
-
-Code "QTE_Psycho" by "Hypernova"
-//
-    static long PsychoQTE = 0;
-    static string[] qte_2 = new[]
-    { /* sup */ "zev_dragon_sp_psycho", };
-//
-{
-    if (PsychoQTE == 0)
-    {/* 0x14144CA10 */ PsychoQTE = ScanSignature ("zev_dragon_sp_psycho", "xxxxxxxxxxxxxxxxxxxx");}
-    else
-    {WriteProtected<byte>(PsychoQTE, System.Text.Encoding.UTF8.GetBytes(qte_2[new Random().Next(0, qte_2.Length)]));}
-}
 
 Code "Wyvern Special Extra" by Hypernova
 //

@@ -41,9 +41,18 @@
 		  "Elements":
 			[
 				{
+				"Name":"IncludeDir8",
+				"DisplayName":"Titan Re-Texture",
+				"Description":["For Wyvern and Knight, a toggle option for default black or Purple Wyvern and Red Knight."],
+				"Type":"TitanSkin1",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"Main_FittingTexture"
+				},
+				{
 				"Name":"IncludeDir1",
 				"DisplayName":"Titan Audio",
-				"Description":["..."],
+				"Description":["Sound Effect settings."],
 				"Type":"TitanAudio",
 				"MinValue":null,
 				"MaxValue":null,
@@ -245,11 +254,24 @@
 			"Description":["A combination of both animations."]
 			}
 		],
+		"TitanSkin1":
+		[
+			{
+			"DisplayName":"Default Black",
+			"Value":"Main_DefaultTexture",
+			"Description":["Original Jet Black texture for Wyvern and Knight."]
+			},
+			{
+			"DisplayName":"MatiosDX Fitting Re-Texture",
+			"Value":"Main_FittingTexture",
+			"Description":["Tier 2 Color (Purple) for Wyvern and Tier 3 Color (Red) for Knight."]
+			}
+		],
 		"TitanAudio":
 		[
 			{
 			"DisplayName":"Original Audio",
-			"Value":"MBoss_Audio_0rgn",
+			"Value":"Main_FittingTexture",
 			"Description":["Original Audio from release."]
 			},
 			{
