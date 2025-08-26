@@ -41,7 +41,7 @@
 		  "Elements":
 			[
 				{
-				"Name":"IncludeDir8",
+				"Name":"IncludeDir2",
 				"DisplayName":"Titan Re-Texture",
 				"Description":["For Wyvern and Knight, a toggle option for default black or Purple Wyvern and Red Knight."],
 				"Type":"TitanSkin1",
@@ -86,13 +86,13 @@
 				"DefaultValue":"0"
 				},
 				{
-				"Name":"IncludeDir2",
-				"DisplayName":"Supreme Intro",
-				"Description":["Test."],
-				"Type":"SupremeIntro",
+				"Name":"BossRifleStart",
+				"DisplayName":"Supreme's Intro",
+				"Description":["Choose the scene of Supreme's appearence when the fight starts."],
+				"Type":"RifleStart",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"MBoss_Bo4x00_Intro_0rgn"
+				"DefaultValue":"1"
 				},
 				{
 				"Name":"IncludeDir3",
@@ -298,6 +298,19 @@
 			"Description":["Utilizes an unused version left in the game files, with some changes."]
 			}
 		],
+		"RifleStart":
+		[
+			{
+			"DisplayName":"Original",
+			"Value":"0",
+			"Description":["The default Intro animation to supreme."]
+			},
+			{
+			"DisplayName":"Extended",
+			"Value":"1",
+			"Description":["The extended Intro with new animation."]
+			}
+		],
 		"RifleEvent":
 		[
 			{
@@ -467,19 +480,6 @@
 			"Value":"MBoss_Bo6x01b_MonB",
 			"MaxValue":1,
 			"Description":["Same as SS2 Edited, but with different effects to fit Hyper Sonic's transformation."]
-			}
-		],
-		"SupremeIntro":
-		[
-			{
-			"DisplayName":"Original",
-			"Value":"MBoss_Bo4x00_Intro_0rgn",
-			"Description":["00."]
-			},
-			{
-			"DisplayName":"Extended",
-			"Value":"MBoss_Bo4x01_Intro_Extn",
-			"Description":["01."]
 			}
 		],
 		"TestDir":

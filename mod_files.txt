@@ -12,6 +12,7 @@ add Main_FittingTexture/raw/boss/knight01.pac
 add Main/raw/event/scene/bo1xxx.pac
 add Main/raw/event/scene/bo2xxx.pac
 add Main/raw/event/scene/bo3xxx.pac
+add Main/raw/event/scene/bo4xxx.pac
 add Main/raw/event/scene/ev1770.pac
 add Main/raw/event/scene/ev5020.pac
 add Main/raw/event/scene/ev5030.pac
@@ -121,10 +122,6 @@ add MBoss_Audio_SO/raw/sound/chargercommon_sound/se_rangers_miniboss_charger.acb
 add MBoss_Audio_SO/raw/sound/spidercommon_sound/se_rangers_miniboss_spider.acb
 add MBoss_Audio_SO/raw/sound/sumo01_sound/se_rangers_miniboss_sumo.acb
 add MBoss_Audio_SO/raw/sound/tyrant01_sound/se_rangers_miniboss_tyrant.acb
-
-add MBoss_Bo4x00_Intro_0rgn/raw/event/scene/bo4xxx.pac
-
-add MBoss_Bo4x01_Intro_Extn/raw/event/scene/bo4xxx.pac
 
 add MBoss_Bo6x00a_Silen0/raw/event/scene/bo6xxx.pac
 add MBoss_Bo6x00a_Silen0/raw/movie/bo6110.usm
@@ -334,6 +331,18 @@ delete Main/raw/hedgehog/
 delete Main/raw/movie/bo1141.usm
 delete Main/raw/movie/bo3141.usm
 delete Main/raw/movie/bo4160.usm
+
+delete MBoss_Bo4x00_Intro_0rgn/raw/event/scene/bo4xxx.pac
+delete MBoss_Bo4x00_Intro_0rgn/raw/event/scene
+delete MBoss_Bo4x00_Intro_0rgn/raw/event
+delete MBoss_Bo4x00_Intro_0rgn/raw
+delete MBoss_Bo4x00_Intro_0rgn
+
+delete MBoss_Bo4x01_Intro_Extn/raw/event/scene/bo4xxx.pac
+delete MBoss_Bo4x01_Intro_Extn/raw/event/scene
+delete MBoss_Bo4x01_Intro_Extn/raw/event
+delete MBoss_Bo4x01_Intro_Extn/raw
+delete MBoss_Bo4x01_Intro_Extn
 
 delete MBoss_Audio_0rgn/raw/movie/bo1120.usm
 delete MBoss_Audio_0rgn/raw/movie/bo3120.usm

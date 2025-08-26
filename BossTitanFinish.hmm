@@ -68,3 +68,38 @@ Code "Wyvern Finale Beta"
 		return;
 	{ WriteProtected<byte> ( /* 0x14144CA38 */ ScanSignature ( "zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx" ), System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); }
 }
+
+Code "Supreme Intro"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+    static bool IsConfigInitialised = false;
+    static bool RifleStartBool = false;
+	static int RifleStart = 0;
+//
+{
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		RifleStart = INI.Parse<int>(ini["Main"]["BossRifleStart"], RifleStart);
+        IsConfigInitialised = true;
+
+        if (RifleStart == 1)
+        { RifleStartBool = true; }
+        else
+        { RifleStartBool = false; }
+    }
+	
+	if (!RifleStartBool)
+		return;
+	{ WriteProtected<byte> ( /* 0x1414624B0 */ ScanSignature ( "bo4110", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo411X")); }
+}

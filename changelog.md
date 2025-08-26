@@ -22,6 +22,7 @@ Release Date Unknown
 * A variant of Wyvern's Psycho QTE was added that restores an unused shot.
 * Fixed a sound sync error in a scene.
 * A slight tweak to the custom scene of Supreme's defeat.
+* Supreme's Intro Cutscene config option has under-the-hood tweaks done.
 
 
 
