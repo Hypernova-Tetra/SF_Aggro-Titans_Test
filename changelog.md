@@ -19,6 +19,9 @@ Release Date Unknown
 * Changed Memory Address of Giganto's Beta Defeat cutscene in the mod's coding to not inflict with an unused memory address with the game.
 * Lowered the HP of the Titans when using non-modded Max Stat Sonic.
 * Added a toggle option to choose between Default Texture and MatiosDX's Fitting Textures mod.
+* A variant of Wyvern's Psycho QTE was added that restores an unused shot.
+* Fixed a sound sync error in a scene.
+* A slight tweak to the custom scene of Supreme's defeat.
 
 
 

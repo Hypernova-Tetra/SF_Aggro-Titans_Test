@@ -305,7 +305,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
 				WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01"));
 				
-				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psych0");
+				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psycho");
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 				evtPlayer->PlayEvent(ref setupData);
 			}
@@ -316,11 +316,14 @@ Code "Wyvern Dynamics" by "Hypernova"
 		
 		if (isMissile0)
 		{
-			if ((isAresOpenZ) || (isAresBttle))
+			if (isAresOpenZ)
 			{ WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho")); }
 		
-			if (isAresTrial)
+			if (isAresBttle)
 			{ WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_smash2")); }
+		
+			if (isAresTrial)
+			{ WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psych0")); }
 		}
 	}
 }
