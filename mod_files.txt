@@ -1,12 +1,12 @@
 add Main/raw/boss/bosscommon.pac
-add Main/raw/boss/dragon01.pac
+add Main/raw/boss/giant01.pac
 add Main/raw/boss/rifle01.pac
 add Main/raw/boss/riflebeast.pac
 
-add Main_DefaultTexture/raw/boss/giant01.pac
+add Main_DefaultTexture/raw/boss/dragon01.pac
 add Main_DefaultTexture/raw/boss/knight01.pac
 
-add Main_FittingTexture/raw/boss/giant01.pac
+add Main_FittingTexture/raw/boss/dragon01.pac
 add Main_FittingTexture/raw/boss/knight01.pac
 
 add Main/raw/event/scene/bo1xxx.pac
@@ -313,7 +313,7 @@ add BossSonicComboTweaks.hmm
 add mod.ini
 add CombatDX.dll
 
-delete Main/raw/boss/giant01.pac
+delete Main/raw/boss/dragon01.pac
 delete Main/raw/boss/knight01.pac
 
 delete Main/raw/event/scene/zev_dragon_laser.pac
