@@ -482,6 +482,7 @@ Code "Supreme Dynamics" by "Hypernova"
 	if (AdCyPry == 0) { /* 0x14140F6A0 */ AdCyPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
 	
 	bool isBo4110 = evtPlayer->IsEventPlaying("bo4110");
+	bool isBo411X = evtPlayer->IsEventPlaying("bo411X");
 	bool isZQTE00 = evtPlayer->IsEventPlaying("zev_rfl_laser00");
 	bool isBo4180 = evtPlayer->IsEventPlaying("bo4180");
 	bool isBo4181 = evtPlayer->IsEventPlaying("bo4181");
@@ -515,7 +516,7 @@ Code "Supreme Dynamics" by "Hypernova"
 		WriteProtected<byte>(AdCyPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
 		
 		//Supreme Phase 1//
-		if ((isBo4110)  || (isBo4180) || (isBo4181))
+		if ((isBo4110) || (isBo411X) || (isBo4180) || (isBo4181))
 		{
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX1"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
