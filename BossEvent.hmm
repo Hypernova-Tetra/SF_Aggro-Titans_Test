@@ -358,6 +358,8 @@ Code "Knight Dynamics" by "Hypernova"
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;	
 	
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
 	bool eventKnightStart = evtPlayer->IsEventPlaying("bo3120");
 	bool eventKnightPhse2 = evtPlayer->IsEventPlaying("bo3140");
 	bool eventKnightPhze2 = evtPlayer->IsEventPlaying("bo3145");
@@ -366,6 +368,9 @@ Code "Knight Dynamics" by "Hypernova"
 	bool eventKnightDead2 = evtPlayer->IsEventPlaying("bo3181");
 	bool isKnight = (GameManager.GetGameObject("Knight0") != null);
 	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
+	bool isChaosOpenZ = (LevelInfo.GetCurrentStageID() == "w3r01");
+	bool isChaosBttle = (LevelInfo.GetCurrentStageID() == "w3b01");
+	bool isChaosTrial = (LevelInfo.GetCurrentStageID() == "w3t01");
 	
 	if ((isKnight) && (SuperBattle))
 	{
@@ -387,8 +392,7 @@ Code "Knight Dynamics" by "Hypernova"
 		if (AdSwordFinal == 0)
 		{/* 0x14145C278 */ AdSwordFinal = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
 		
-		string currentStage = LevelInfo.GetCurrentStageID();
-		if (LevelInfo.GetCurrentStageID() == "w3t01")
+		if (isChaosTrial)
 		{
 			if ((eventKnightPhse2) || (eventKnightPhze2))
 			{WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));}
@@ -397,10 +401,10 @@ Code "Knight Dynamics" by "Hypernova"
 			{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
 		}
 		
-		if (LevelInfo.GetCurrentStageID() == "w3r01")
+		if (isChaosOpenZ)
 		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
 		
-		if (LevelInfo.GetCurrentStageID() == "w3b01")
+		if (isChaosBttle)
 		{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
 		else
 		{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
