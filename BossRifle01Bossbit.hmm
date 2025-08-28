@@ -17,7 +17,7 @@ Code "Moveset_BossBit" by "Hypernova"
 		if (BossBitConfigInfo.pData == null)
 			return;
 		
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 2);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
 		
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 150);
 		

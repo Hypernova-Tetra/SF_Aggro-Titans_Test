@@ -23,6 +23,7 @@ Release Date Unknown
 * Fixed a sound sync error in a scene.
 * A slight tweak to the custom scene of Supreme's defeat.
 * Supreme's Intro Cutscene config option has under-the-hood tweaks done.
+* Giganto's blue rings have a toggle option.
 
 
 

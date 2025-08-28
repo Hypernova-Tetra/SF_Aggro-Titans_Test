@@ -68,6 +68,15 @@
 				"DefaultValue":"1"
 				},
 				{
+				"Name":"BossGiantRings",
+				"DisplayName":"Giganto Blue Rings",
+				"Description":["Test"],
+				"Type":"NestRing",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"0"
+				},
+				{
 				"Name":"BossGiant1160",
 				"DisplayName":"Giganto Finale",
 				"Description":["Choose the scene of Giganto's defeat."],
@@ -283,6 +292,19 @@
 			"DisplayName":"Sound Overhaul",
 			"Value":"MBoss_Audio_SO",
 			"Description":["Sound Overhaul"]
+			}
+		],
+		"NestRing":
+		[
+			{
+			"DisplayName":"Off",
+			"Value":"1",
+			"Description":["NoRings"]
+			},
+			{
+			"DisplayName":"On",
+			"Value":"0",
+			"Description":["Rings"]
 			}
 		],
 		"BossDragonFinal":

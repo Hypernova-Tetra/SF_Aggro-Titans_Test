@@ -22,7 +22,21 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-		
+	
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
+	bool isKronosOpenZ = (LevelInfo.GetCurrentStageID() == "w1r03");
+	bool isKronosBttle = (LevelInfo.GetCurrentStageID() == "w1b01");
+	bool isKronosTrial = (LevelInfo.GetCurrentStageID() == "w1t01");
+	
+	bool isAresOpenZ = (LevelInfo.GetCurrentStageID() == "w2r01");
+	bool isAresBttle = (LevelInfo.GetCurrentStageID() == "w2b01");
+	bool isAresTrial = (LevelInfo.GetCurrentStageID() == "w2t01");
+	
+	bool isChaosOpenZ = (LevelInfo.GetCurrentStageID() == "w3r01");
+	bool isChaosBttle = (LevelInfo.GetCurrentStageID() == "w3b01");
+	bool isChaosTrial = (LevelInfo.GetCurrentStageID() == "w3t01");
+	
 	bool MasterKingKnight2 = evtPlayer->IsEventPlaying("bo3145");
 	if (MasterKingKnight2)
 	{	
@@ -59,12 +73,12 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 			WriteProtected<byte>
 			( /* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 			
-			if (LevelInfo.GetCurrentStageID() == "w1t01")
+			if (isKronosTrial)
 			{ WriteProtected<byte> ( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1142")); }
 			else
 			{ WriteProtected<byte> ( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140")); }
 			
-			if (LevelInfo.GetCurrentStageID() == "w3t01")
+			if (isChaosTrial)
 			{ WriteProtected<byte> ( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3145")); }
 			else
 			{ WriteProtected<byte> ( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3140")); }
@@ -73,8 +87,6 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	
 	if (!PhaseBool)
 		return;
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
 	
 	WriteProtected<byte>
 	( /* 0x141534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
@@ -85,13 +97,13 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	bool isGigantoActiveSkipF2 = evtPlayer->IsEventPlaying("bo1141");
 	if (isGigantoActiveSkipF2)
 	{
-		if ((LevelInfo.GetCurrentStageID() == "w1r03") || (LevelInfo.GetCurrentStageID() == "w1b01"))
+		if ((isKronosOpenZ) || (isKronosBttle))
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
 		
-		if (LevelInfo.GetCurrentStageID() == "w1t01")
+		if (isKronosTrial)
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1142");
 			evtPlayer->PlayEvent(ref setupData);
@@ -120,7 +132,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	WriteProtected<byte>
 	( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3141"));
 	
-	if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01"))
+	if ((isChaosOpenZ) || (isChaosBttle))
 	{	
 		bool isKnightActiveSkipF2 = evtPlayer->IsEventPlaying("bo3141");
 		if (isKnightActiveSkipF2)
@@ -130,7 +142,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 		}
 	}
 	
-	if (LevelInfo.GetCurrentStageID() == "w3t01")
+	if (isChaosTrial)
 	{	
 		bool isMKTKnightSkipF2 = evtPlayer->IsEventPlaying("bo3141");
 		if (isMKTKnightSkipF2)
