@@ -209,27 +209,27 @@
 		"SonicBattle":
 		[
 			{
-			"DisplayName":"Off",
+			"DisplayName":"Default",
 			"Value":"0",
-			"Description":["If you're using other combat mods or if you want the skill set from vanilla."]
+			"Description":["If you're using other combat mods because HMM code overrides file changes. Or if you want the skill set from vanilla."]
 			},
 			{
-			"DisplayName":"On",
+			"DisplayName":"Set 1",
 			"Value":"1",
-			"Description":["Homing Shot moved to be a combo after Loop Kick or Wild Rush. Can also be comboed after boost by pressing LT. Grand Slam can be comboed after Spinslash or Cyloop by mashing the Y button during either attack, this will use up more meter. This also affects Knight, Supreme, and Riflebeast. This function will only activate when you're in Master King Trials facing Knight or Facing Supreme in either Base game or Final Horizons."]
+			"Description":["Homing Shot moved to be a combo after Loop Kick, Wild Rush, or Spin Slash by using Sonic Boom. Can also be comboed after boost by using the Sonic Boom action when near an enemy. When fighting Supreme, the Grand Slam can be comboed after Spinslash by using Cyloop. This action will use up meter on top of breaking through Supreme's drone defense. Alternatively, Grand Slam can be comboed after Quick Cyloop by hitting Jump when fighting Supreme. Will also consume meter and break through Supreme's defense. Both these actions will fling Supreme in to the air immediately however this only occurs with the Unused Grand Slam option enabled."]
 			}
 		],
 		"SonicSpeed":
 		[
 			{
-			"DisplayName":"Off",
+			"DisplayName":"Default Speed",
 			"Value":"0",
-			"Description":["If you are using other mods that change Sonic's attack speed, or if you just want to use the vanilla."]
+			"Description":["If you are using other mods that change Sonic's attack speed. Or if you just want to use the vanilla."]
 			},
 			{
-			"DisplayName":"On",
+			"DisplayName":"Faster",
 			"Value":"1",
-			"Description":["Changes the animation speed so that some of Sonic's attacks are a bit faster."]
+			"Description":["Changes the animation speed of Loop Kick and Wild Rush so that the attacks go by a bit faster."]
 			}
 		],
 		"BossPhase2":

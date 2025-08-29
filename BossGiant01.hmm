@@ -7,22 +7,22 @@ Code "Giganto_Combat"
     #import "Services"
 //
 {
-	if (LevelInfo.GetCurrentStageID() == "w1r03")
-	{
-		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
-		if (BossGiantConfigInfo.pData == null)
-			return;
-		
-		{RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);}
-	}
-	
-	if ((LevelInfo.GetCurrentStageID() == "w1b01") || (LevelInfo.GetCurrentStageID() == "w1t01"))
+	if ((LevelInfo.GetCurrentStageID() == "w1r03") || (LevelInfo.GetCurrentStageID() == "w1b01"))
 	{
 		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
 		if (BossGiantConfigInfo.pData == null)
 			return;
 		
 		{RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);}
+	}
+	
+	if (LevelInfo.GetCurrentStageID() == "w1t01")
+	{
+		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
+		if (BossGiantConfigInfo.pData == null)
+			return;
+		
+		{RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);}
 	}
 }
 
@@ -75,7 +75,7 @@ Code "Giganto_Combat"
 		}
         else
         {
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 230000);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 233000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);

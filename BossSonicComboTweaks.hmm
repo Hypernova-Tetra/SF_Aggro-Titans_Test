@@ -177,6 +177,9 @@ Code "Sonic Battle Edits"
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.HomingAttack);
 		
+		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[5], SonicParameters.Action.HomingShot);
+		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[5], SonicParameters.Action.HomingShot);
+		
 		bool isCond1 = ((BossRifleSp00 == 1) && (isRiflebeast))
 		bool isCond2 = ((BossRifleSp00 == 0) && (isRiflebeast))
 		if ((isCond1) || (isCond2))
@@ -195,7 +198,6 @@ Code "Sonic Battle Edits"
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.Smash);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.CrossSlash);
-				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[5], SonicParameters.Action.HomingShot);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[2], SonicParameters.Action.QuickCyloop);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.ChargeAttack);
@@ -224,8 +226,6 @@ Code "Sonic Battle Edits"
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[2], SonicParameters.Action.QuickCyloop);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.AerialHomingAttack);
-				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[5], SonicParameters.Action.HomingShot);
-				
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
 				
@@ -250,7 +250,7 @@ Code "Sonic Battle Edits"
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.QuickCyloop);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.ChargeAttack);
-				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[5], SonicParameters.Action.Pursuit);
+
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[2], SonicParameters.Action.QuickCyloop);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.AerialHomingAttack);
