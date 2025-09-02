@@ -1,10 +1,10 @@
-## Aggro-Titans Starfall
+## **Aggro-Titans Starfall**- 2025.09.02
 
 
 
-##### Aggro-Titans Starfall Update (1.26 Patch)
+##### ***Aggro-Titans version 1.3***
 
-Release Date Unknown
+* Bumped to version 1.3 for release.
 
 
 
