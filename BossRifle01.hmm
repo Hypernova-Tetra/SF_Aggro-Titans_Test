@@ -220,9 +220,7 @@ Code "Supreme moveset" by "Hypernova"
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[16], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[18], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[19], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-				
-				
-			
+
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
 			}

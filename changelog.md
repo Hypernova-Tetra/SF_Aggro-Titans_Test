@@ -24,6 +24,7 @@ Release Date Unknown
 * A slight tweak to the custom scene of Supreme's defeat.
 * Supreme's Intro Cutscene config option has under-the-hood tweaks done.
 * Giganto's blue rings have a toggle option.
+* Wyvern Counter Laser animation tweaked. The unused version now plays at Phase 2 on either side of Wyvern
 
 
 
