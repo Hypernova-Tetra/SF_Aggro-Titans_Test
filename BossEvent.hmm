@@ -14,9 +14,6 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	static bool IsConfigInitialised = false;
-	static int BossPhase2 = 0;
-	static bool PhaseBool = false;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -36,60 +33,9 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 	bool isChaosOpenZ = (LevelInfo.GetCurrentStageID() == "w3r01");
 	bool isChaosBttle = (LevelInfo.GetCurrentStageID() == "w3b01");
 	bool isChaosTrial = (LevelInfo.GetCurrentStageID() == "w3t01");
-	
-	bool MasterKingKnight2 = evtPlayer->IsEventPlaying("bo3145");
-	if (MasterKingKnight2)
-	{	
-		var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride02_aerial");
-		setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-		evtPlayer->PlayEvent(ref setupData);
-	}
-	
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		BossPhase2 = INI.Parse<int>(ini["Main"]["BossX40"], BossPhase2);
-        IsConfigInitialised = true;
-
-        if (BossPhase2 == 1)
-		{PhaseBool = true;}
-		
-        else
-        {
-			PhaseBool = false;
 			
-			WriteProtected<byte>
-			( /* 0x141534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
-			WriteProtected<byte>
-			( /* 0x14144C988 */ ScanSignature ("boss_giant02_bo2140", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
-			WriteProtected<byte>
-			( /* 0x14145C238 */ ScanSignature ("boss_giant03_bo3140", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
-			WriteProtected<byte>
-			( /* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
-			
-			if (isKronosTrial)
-			{ WriteProtected<byte> ( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1142")); }
-			else
-			{ WriteProtected<byte> ( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140")); }
-			
-			if (isChaosTrial)
-			{ WriteProtected<byte> ( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3145")); }
-			else
-			{ WriteProtected<byte> ( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3140")); }
-		}
-    }
-	
-	if (!PhaseBool)
-		return;
-	
 	WriteProtected<byte>
-	( /* 0x141534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	( /* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 	
 	WriteProtected<byte>
 	( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141"));
@@ -152,6 +98,14 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 		}
 	}
 	
+	bool MasterKingKnight2 = evtPlayer->IsEventPlaying("bo3145");
+	if (MasterKingKnight2)
+	{	
+		var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride02_aerial");
+		setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+		evtPlayer->PlayEvent(ref setupData);
+	}
+	
 	WriteProtected<byte>
 	( /* 0x1414624C0 */ ScanSignature ("bo4140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo4141"));
 		
@@ -162,6 +116,7 @@ Code "Skippable Cutscenes Toggle" by "Hypernova"
 		evtPlayer->PlayEvent(ref setupData);
 	}
 }
+
 Code "Giganto Dynamics" by "Hypernova"
 //
 	#lib "GameManager"
@@ -677,7 +632,7 @@ Code "Darkball QTE" by "Hypernova"
 		if (isPhase1)
 		{
 			{ WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss")); }
-			{ WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast")); }
+			{ WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst01")); }
 		}
 			
 		bool isPhase2 = evtPlayer->IsEventPlaying("bo6140");
