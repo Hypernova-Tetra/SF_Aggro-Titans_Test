@@ -104,13 +104,11 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 		{
 			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 			
-			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-			{	
-				{
-					var setupData = new EventPlayer.EventSetupData("zev_rfl_grandsmash");
-					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-					evtPlayer->PlayEvent(ref setupData);
-				}
+			if ((Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS) && (XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)))
+			{
+				var setupData = new EventPlayer.EventSetupData("zev_rfl_grandsmash");
+				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+				evtPlayer->PlayEvent(ref setupData);
 				
 				if (rings < 400)
 				{

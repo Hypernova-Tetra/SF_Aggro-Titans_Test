@@ -294,16 +294,18 @@ add MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_sp01.pac
 
 add BossConfig.json
 add BossCutsceneAudio.hmm
-add BossEvent.hmm
 add BossGiant01.hmm
+add BossGiantDynamics.hmm
 add BossDragon01.hmm
+add BossDragonDynamics.hmm
 add BossKnight01.hmm
+add BossKnightDynamics.hmm
 add BossRifle01Bossbit.hmm
 add BossRifle01Smash.hmm
 add BossRifle01.hmm
+add BossRifleDynamics.hmm
 add BossRifleBeast.hmm
 add BossRush.hmm
-add BossTitanFinish.hmm
 add BossSonicComboTweaks.hmm
 add mod.ini
 add CombatDX.dll
@@ -408,3 +410,5 @@ delete MBoss_RifleWingLaser2/raw/event/scene/zev_rfl_spwing00.pac
 
 delete BossEventRifle01.hmm
 delete BossRifleATSHOT2-4.hmm
+delete BossEvent.hmm
+delete BossTitanFinish.hmm

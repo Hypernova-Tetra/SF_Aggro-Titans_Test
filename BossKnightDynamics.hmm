@@ -1,0 +1,248 @@
+Code "Skippable Cutscenes Knight" by "Hypernova"
+//
+	#include "Reflection" noemit
+	#lib "GameManager"
+	#lib "EventPlayer"
+	#lib "GameObject"
+	#lib "BlackboardStatus"
+	#lib "Reflection"
+    #lib "HMM"
+	#lib "INI"
+	#lib "Lua"
+	
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+//
+{
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+	
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
+	bool isChaosOpenZ = (LevelInfo.GetCurrentStageID() == "w3r01");
+	bool isChaosBttle = (LevelInfo.GetCurrentStageID() == "w3b01");
+	bool isChaosTrial = (LevelInfo.GetCurrentStageID() == "w3t01");
+	
+	WriteProtected<byte>
+	( /* 0x14145C238 */ ScanSignature ("boss_giant03_bo3140", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	
+	WriteProtected<byte>
+	( /* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3145\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	
+	WriteProtected<byte>
+	( /* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3141"));
+	
+	if ((isChaosOpenZ) || (isChaosBttle))
+	{	
+		bool isKnightActiveSkipF2 = evtPlayer->IsEventPlaying("bo3141");
+		if (isKnightActiveSkipF2)
+		{
+			var setupData = new EventPlayer.EventSetupData("bo3140");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+	}
+	
+	if (isChaosTrial)
+	{	
+		bool isMKTKnightSkipF2 = evtPlayer->IsEventPlaying("bo3141");
+		if (isMKTKnightSkipF2)
+		{
+			var setupData = new EventPlayer.EventSetupData("bo3145");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+	}
+	
+	bool MasterKingKnight2 = evtPlayer->IsEventPlaying("bo3145");
+	if (MasterKingKnight2)
+	{	
+		var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride02_aerial");
+		setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+		evtPlayer->PlayEvent(ref setupData);
+	}
+}
+
+Code "Knight Dynamics" by "Hypernova"
+//
+	#lib "GameManager"
+	#lib "GameObject"
+	#lib "EventPlayer"
+	#lib "Reflection"
+	#lib "Player"
+	#lib "Sonic"
+	
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	#include "Reflection" noemit
+	
+	static long AddressGS2 = 0;
+	static long AdSwordFinal = 0;
+	static long Adbo3180 = 0;
+	static long Adr4160 = 0;
+//
+{
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+	
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;	
+	
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
+	bool eventKnightStart = evtPlayer->IsEventPlaying("bo3120");
+	bool eventKnightPhse2 = evtPlayer->IsEventPlaying("bo3140");
+	bool eventKnightPhze2 = evtPlayer->IsEventPlaying("bo3145");
+	bool eventGiant03Win1 = evtPlayer->IsEventPlaying("bo3160");
+	bool eventKnightDead1 = evtPlayer->IsEventPlaying("bo3180");
+	bool eventKnightDead2 = evtPlayer->IsEventPlaying("bo3181");
+	bool isKnight = (GameManager.GetGameObject("Knight0") != null);
+	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
+	bool isChaosOpenZ = (LevelInfo.GetCurrentStageID() == "w3r01");
+	bool isChaosBttle = (LevelInfo.GetCurrentStageID() == "w3b01");
+	bool isChaosTrial = (LevelInfo.GetCurrentStageID() == "w3t01");
+	
+	if (isKnight)
+	{
+		if (Adbo3180 == 0)
+		{/* 0x14145C2B4 */ Adbo3180 = ScanSignature ("bo3180", "xxxxxx");}
+				
+		if ((eventKnightStart) || (eventGiant03Win1) || (eventKnightDead2))
+		{ WriteProtected<byte>(Adbo3180, System.Text.Encoding.UTF8.GetBytes("bo3180")); }
+		
+		if ((eventKnightPhse2) || (eventKnightPhze2))
+		{ WriteProtected<byte>(Adbo3180, System.Text.Encoding.UTF8.GetBytes("bo3181")); }
+		
+		WriteProtected<byte>
+		(/* 0x14145C140 */ ScanSignature ("zev_knight_shieldride02_aerial","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("zev_knight_shieldride02_aerial"));
+			
+		if (AddressGS2 == 0)
+		{/* 0x14145C1F8 */ AddressGS2 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
+		
+		if (AdSwordFinal == 0)
+		{/* 0x14145C278 */ AdSwordFinal = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
+		
+		if (isChaosTrial)
+		{
+			if ((eventKnightPhse2) || (eventKnightPhze2))
+			{WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));}
+			
+			if ((eventGiant03Win1) || (eventKnightDead1) || (eventKnightDead2))
+			{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
+		}
+		
+		if (isChaosOpenZ)
+		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
+		
+		if (isChaosBttle)
+		{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
+		else
+		{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+	}
+}	
+
+Library "EventPlayer" by "Ashrindy"
+{
+    #include "Helpers" noemit
+
+    #lib "GameManager"
+    #lib "Memory"
+    #lib "GameService"
+    #lib "Helpers"
+
+    #import "Allocators"
+    #import "Collections"
+
+    #load "System.Numerics.dll"
+
+    using System.Numerics;
+    using System.Runtime.InteropServices;
+    using System.Runtime.CompilerServices;
+
+    FUNCTION_PTR(void, fpPlayEvent, 0x140139010, Data* self, EventSetupData* setupData)
+    FUNCTION_PTR(void, fpSetupEventSetupData, 0x1401370C0, EventSetupData* self, Helpers.UnmanagedString cutsceneName)
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x160)]
+    public struct EventSetupData {
+        [Flags]
+        public enum PlayFlag : uint {
+            UseSetupTransform = 0x01,
+            StopFadeOut = 0x02,
+            CantSkip = 0x04,
+            EnableHUD = 0x20,
+            CappedFPS = 0x4000
+        }
+
+        [Flags]
+        public enum PlayerFlag : uint {
+            UsePosition = 0x01,
+            UseRotation = 0x02
+        }
+
+        [FieldOffset(0)] public fixed byte cutsceneName[40];
+        [FieldOffset(0x28)] public fixed byte soundName[40];
+        [FieldOffset(0x50)] public Vector3 position;
+        [FieldOffset(0x60)] public Quaternion rotation;
+        [FieldOffset(0x70)] public Vector3 scale;
+        [FieldOffset(0x84)] public float speed;
+        [FieldOffset(0x88)] public PlayFlag playFlags;
+        [FieldOffset(0x100)] public Vector3 playerPosition;
+        [FieldOffset(0x110)] public Quaternion playerRotation;
+        [FieldOffset(0x120)] public PlayerFlag playerFlags;
+
+        public void Setup(string cutsceneName){
+            fixed(EventSetupData* pThis = &this){
+                GET_FUNCTION_PTR(fpSetupEventSetupData)(pThis, new Helpers.UnmanagedString(cutsceneName));
+            }
+        }
+
+        public EventSetupData(){}
+
+        public EventSetupData(string cutsceneName){
+            Setup(cutsceneName);
+        }
+    }
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x10)]
+    public struct VariableString {
+        [FieldOffset(0)] public Helpers.UnmanagedString buffer;
+        [FieldOffset(0x8)] public long allocator;
+    }
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x58)]
+    public struct EventSceneManager {
+        [FieldOffset(0x38)] public ObjectMoveArray<VariableString> eventNames;
+
+        public bool IsEventPlaying(string name) {
+            foreach(var x in eventNames) {
+                if(x.buffer.Value == name){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    [StructLayout(LayoutKind.Explicit, Size = 0x160)]
+    public struct Data {
+        [FieldOffset(0x130)] public Memory.Pointer<EventSceneManager> evtSceneMgr;
+
+        public void PlayEvent(ref EventSetupData setupData){
+            fixed(EventSetupData* pSetupData = &setupData)
+            fixed(Data* pThis = &this){
+                GET_FUNCTION_PTR(fpPlayEvent)(pThis, pSetupData);
+            }
+        }
+
+        public bool IsEventPlaying(string name){
+            if(evtSceneMgr.Get() != null)
+                return evtSceneMgr.Get()->IsEventPlaying(name);
+            return false;
+        }
+    }
+}

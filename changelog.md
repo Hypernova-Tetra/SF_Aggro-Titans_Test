@@ -1,12 +1,14 @@
-## **Aggro-Titans Starfall**- 2025.10.30
+## **Aggro-Titans Starfall**- 2025.11.04
 
 
 
-##### ***Aggro-Titans version 1.31***
+##### ***Aggro-Titans version 1.32***
 
 * Bumped to version 1.3 for release.
 * Updated "bo3xxx.pac" Super Sonic now shows up when the Super Sonic transformation scene transitions to the fight.
 * Updated Grand Slam scene file for Riflebeast in name only for Phase 1 to avoid conflicts with Sonic skin mods.
+* BossEvent.hmm and BossTitanFinish.hmm files removed.
+* Added "BossDynamics" hmm files for their respective Titan bosses and the code for "TitanFinish" is moved to the Dynamics hmm files based on the respective Titan.
 
 
 
