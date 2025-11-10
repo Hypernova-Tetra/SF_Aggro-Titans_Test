@@ -1,4 +1,4 @@
-## **Aggro-Titans Starfall**- 2025.11.04
+## **Aggro-Titans Starfall**- 2025.11.09
 
 
 
@@ -8,6 +8,7 @@
 * Updated Grand Slam scene file for Riflebeast in name only for Phase 1 to avoid conflicts with Sonic skin mods.
 * BossEvent.hmm and BossTitanFinish.hmm files removed.
 * Added "BossDynamics" hmm files for their respective Titan bosses and the code for "TitanFinish" is moved to the Dynamics hmm files based on the respective Titan.
+* Updated code to have "AT\_Tackle" be automatically disabled when "Unused Grand Slam Event" option is selected for Supreme.
 
 
 
