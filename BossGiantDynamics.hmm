@@ -14,6 +14,8 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
+	
+	static long BO1120 = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -31,6 +33,14 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	
 	WriteProtected<byte>
 	( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141"));
+	
+	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
+	
+	if ((isKronosOpenZ) || (isKronosBttle))
+	{ WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120")); }
+		
+	if (isKronosTrial)
+	{ WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); }
 	
 	bool isGigantoActiveSkipF2 = evtPlayer->IsEventPlaying("bo1141");
 	if (isGigantoActiveSkipF2)
@@ -145,6 +155,11 @@ Code "Giganto Finale Beta"
 		
 		if (BossGiantFinale == 2)
         { WriteProtected<byte> ( /* 0x141453520 */ ScanSignature ( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1170") ); }
+        else
+        { scene1Bool = false; }
+		
+		if (BossGiantFinale == 3)
+        { WriteProtected<byte> ( /* 0x141453520 */ ScanSignature ( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1161") ); }
         else
         { scene1Bool = false; }
     }

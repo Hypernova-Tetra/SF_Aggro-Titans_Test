@@ -82,7 +82,6 @@ Code "Knight Dynamics" by "Hypernova"
 	static long AddressGS2 = 0;
 	static long AdSwordFinal = 0;
 	static long Adbo3180 = 0;
-	static long Adr4160 = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");

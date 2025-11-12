@@ -13,7 +13,10 @@ Code "Giganto_ActionType"
 		if (BossGiantConfigInfo.pData == null)
 			return;
 		
-		{RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);}
+		{
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+		}
 	}
 	
 	if (LevelInfo.GetCurrentStageID() == "w1t01")
@@ -22,7 +25,10 @@ Code "Giganto_ActionType"
 		if (BossGiantConfigInfo.pData == null)
 			return;
 		
-		{RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);}
+		{
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+		}
 	}
 }
 
