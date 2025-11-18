@@ -4,7 +4,6 @@
 
 ##### ***Aggro-Titans version 1.34***
 
-* Updated scene file: "zev\_rfl\_wing.pac"
 * Fixed a typo in one of the config values
 * Update Sonic 0 Ring Cutscene for Phase 2 in Supreme's fight.
 
@@ -15,6 +14,7 @@
 * Updated code to have "AT\_Tackle" be automatically disabled when "Unused Grand Slam Event" option is selected for Supreme.
 * Added Tru-Blu animation for Super Sonic Transformation for Master King's Trial only.
 * Added Tru-Blu Giganto Defeat as a 4th Option in Giganto Finale section.
+* Updated scene file: "zev\_rfl\_wing.pac"
 
 
 

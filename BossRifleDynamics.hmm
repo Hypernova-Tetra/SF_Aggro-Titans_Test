@@ -129,6 +129,7 @@ Code "Supreme Dynamics" by "Hypernova"
 	bool isShootX2 = evtPlayer->IsEventPlaying("zev_rfl_shootX2");
 	bool isSpXX = evtPlayer->IsEventPlaying("zev_rfl_spXX");
 	bool isSpX1 = evtPlayer->IsEventPlaying("zev_rfl_spX1");
+	bool isSpX2 = evtPlayer->IsEventPlaying("zev_rfl_spX2");
 	bool isSp01 = evtPlayer->IsEventPlaying("zev_rfl_sp01");
 	bool isSp02 = evtPlayer->IsEventPlaying("zev_rfl_sp02");
 	
