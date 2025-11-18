@@ -213,7 +213,7 @@ Code "Supreme Dynamics" by "Hypernova"
 		if (isSp01)
 		{ 
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));
-			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
+			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
 		}
 			
 		if (isSpQTE02)
@@ -228,7 +228,7 @@ Code "Supreme Dynamics" by "Hypernova"
 		if (isSpQTEX2)
 		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2")); }
 		
-		if ((isSp02) || (isSpX1))
+		if ((isSpX2) || (isSpX1))
 		{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spXX")); }
 			
 		if (isSpXX)
