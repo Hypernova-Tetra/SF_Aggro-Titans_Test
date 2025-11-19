@@ -6,6 +6,7 @@
 
 * Fixed a typo in one of the config values
 * Update Sonic 0 Ring Cutscene for Phase 2 in Supreme's fight.
+* Updated bo1xxx.pac to fix some errors
 
 
 

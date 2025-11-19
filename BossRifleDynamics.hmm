@@ -182,7 +182,7 @@ Code "Supreme Dynamics" by "Hypernova"
 		}
 			
 		//Supreme Phase 2 for w1r04//
-		if ((isBo4140) && (LevelInfo.GetCurrentStageID() == "w1r04"))
+		if (((isBo4140) && (LevelInfo.GetCurrentStageID() == "w1r04")) || ((isBo4140) && ((BattleRush))))
 		{
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX2"));
 			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
@@ -190,7 +190,7 @@ Code "Supreme Dynamics" by "Hypernova"
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
 			WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4181"));
 		}
-			
+		
 		//Supreme Phase 2//
 		if (isBo4140)
 		{
@@ -214,26 +214,25 @@ Code "Supreme Dynamics" by "Hypernova"
 		if (isSp01)
 		{ 
 			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));
-			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
+			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2"));
+			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spXX"));
 		}
-			
-		if (isSpQTE02)
-		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
 		
-		if ((isShoot02) || (isShootX2))
-		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laserX1")); }
+		if (isShoot02)
+		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2")); }
 	
-		if (isLaserX1)
+		if (isShootX2)
+		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02")); }
+	
+		if (isSpQTEX2)
 		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2")); }
 		
-		if (isSpQTEX2)
-		{ WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2")); }
-		
-		if ((isSpX2) || (isSpX1))
-		{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spXX")); }
-			
 		if (isSpXX)
 		{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX1")); }
+	
+		if (isSpX1)
+		{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spXX")); }
 	}
 
 	if ((BattleRush) && (isSupreme))
