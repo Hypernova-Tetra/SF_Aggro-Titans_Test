@@ -113,7 +113,7 @@
 				"DefaultValue":"0"
 				},
 				{
-				"Name":"IncludeDir7",
+				"Name":"IncludeDir4",
 				"DisplayName":"Supreme Wing Laser",
 				"Description":["Choose the version of Supreme's godly laser attcak."],
 				"Type":"BossRifleWing",
@@ -138,22 +138,31 @@
 				"DefaultValue":"0"
 				},
 				{
-				"Name":"IncludeDir4",
+				"Name":"RifleBeastYap",
 				"DisplayName":"The End monologue during cutscenes",
-				"Description":["This mod modifies file: 'bo6xxx.pac' to restore the Monologue. Adds the default 'bgm_boss05' in the files to avoid confliction with other mods that restore the monologue using this file. Place THIS mod above the other mods that implimented the monologue that way. If you don't want to have the monologue heard through the game's cutscenes, you can keep this mod disabled."],
+				"Description":["Choose wheather the fight will have The End monologue during cutscenes or not."],
 				"Type":"SupremeM",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"MBoss_Bo6x00a_Silen0"
+				"DefaultValue":"0"
 				},
 				{
-				"Name":"IncludeDir5",
-				"DisplayName":"Parrymiss QTE",
-				"Description":["Added support for Hyper Sonic skins"],
-				"Type":"ZevMiss",
+				"Name":"RifleBeastAnm",
+				"DisplayName":"Animation Type",
+				"Description":["Change the type of animations you want between vanilla or edited."],
+				"Type":"SupremeA",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"MBoss_QTE_Miss_0rgn"
+				"DefaultValue":"0"
+				},
+				{
+				"Name":"SS2_Aura",
+				"DisplayName":"Super Sonic 2 outline",
+				"Description":["Added support for Hyper Sonic skins"],
+				"Type":"ZevAura",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"0"
 				},
 				{
 				"Name":"BossBeastBall",
@@ -164,18 +173,9 @@
 				"MaxValue":null,
 				"DefaultValue":"1"
 				},
-				{
-				"Name":"IncludeDir6",
-				"DisplayName":"The Final Blow QTE",
-				"Description":["The Final QTE has small changes."],
-				"Type":"ZevBlow",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"MBoss_QTE_Blow_0rgn"
-				}
 			]
 		}
-	 ],
+	],
 
 	"Enums":
 	{
@@ -386,6 +386,45 @@
 			"Description":["Use only when your game crashes when trying to parry Supreme's arms when stopping him from tackling Sage and Friend's barrier."]
 			}
 		],
+		"SupremeM":
+		[
+			{
+			"DisplayName":"Off",
+			"Value":"0",
+			"Description":["The Fake Moon just floats there, menacingly."]
+			},
+			{
+			"DisplayName":"On",
+			"Value":"1",
+			"Description":["The Yap Session"]
+			},
+		],
+		"SupremeA":
+		[
+			{
+			"DisplayName":"Original",
+			"Value":"0",
+			"Description":["The Fake Moon just floats there, menacingly."]
+			},
+			{
+			"DisplayName":"Edited Animation",
+			"Value":"1",
+			"Description":["Certain changes to the cutscenes."]
+			},
+		],
+		"ZevAura":
+		[
+			{
+			"DisplayName":"Default",
+			"Value":"0",
+			"Description":["Scenes using the original SS2 outline."]
+			},
+			{
+			"DisplayName":"Blue Aura",
+			"Value":"1",
+			"Description":["Blue Aura outline"]
+			},
+		],
 		"BossDarkballQTE":
 		[
 			{
@@ -399,94 +438,7 @@
 			"Description":["Enabled"]
 			}
 		],
-		"ZevMiss":
-		[
-			{
-			"DisplayName":"Vanilla",
-			"Value":"MBoss_QTE_Miss_0rgn",
-			"Description":["The original animation from the release of the DLC."]
-			},
-			{
-			"DisplayName":"Hyper_Blue Aura",
-			"Value":"MBoss_QTE_Miss_0rgnB",
-			"Description":["Same as the 'Edited' option but with Hyper Sonic's blue outline."]
-			},
-		],
-		"ZevBlow":
-		[
-			{
-			"DisplayName":"Vanilla",
-			"Value":"MBoss_QTE_Blow_0rgn",
-			
-			"Description":["The original animation from the release of the DLC. Fixes Super Sonic 2's aura missing and Super Sonic 2 disappearing when escaping Supreme's grip."]
-			},
-			{
-			"DisplayName":"Vanilla (Hyper_Blue Aura)",
-			"Value":"MBoss_QTE_Blow_0rgnB",
-			"Description":["The original animation from the release of the DLC. Fixes Super Sonic 2's aura missing and Super Sonic 2 disappearing when escaping Supreme's grip."]
-			},
-			{
-			"DisplayName":"Edited",
-			"Value":"MBoss_QTE_Blow_Edit0",
-			"Description":["When failing the initial QTE prompt and Supreme lands down to grab at Sonic, there's a small difference. When Sonic escapes Supreme's grip, he will spindash and kick him in the back of the head. When failing, Supreme chucks Sonic instead of slamming him to the floor."]
-			},
-			{
-			"DisplayName":"Edited (Hyper_Blue Aura)",
-			"Value":"MBoss_QTE_Blow_EditB",
-			"Description":["When failing the initial QTE prompt and Supreme lands down to grab at Sonic, there's a small difference. When Sonic escapes Supreme's grip, he will spindash and kick him in the back of the head. When failing, Supreme chucks Sonic instead of slamming him to the floor."]
-			}
-		],	
-		"SupremeM":
-		[
-			{
-			"DisplayName":"Off (Original Animation)",
-			"Value":"MBoss_Bo6x00a_Silen0",
-			"MinValue":0,
-			"Description":["The Fake Moon just floats there, menacingly."]
-			},
-			{
-			"DisplayName":"Off (Edited Animation)",
-			"Value":"MBoss_Bo6x01a_Silen0",
-			"MinValue":0,
-			"Description":["The moon remains high in the sky puppeterring Supreme in silent. SS2's transformation has a slight camera change."]
-			},
-			{
-			"DisplayName":"Off (Hyper_Blue Aura / Original)",
-			"Value":"MBoss_Bo6x00a_SilenB",
-			"MaxValue":1,
-			"Description":["Original animation but for character skins using Hyper forms over SS2. Blue Aura only."]
-			},
-			{
-			"DisplayName":"Off (Hyper_Blue Aura / Edited)",
-			"Value":"MBoss_Bo6x01a_SilenB",
-			"MaxValue":1,
-			"Description":["Same as SS2 Edited, but with different effects to fit Hyper Sonic's transformation."]
-			},
-			{
-			"DisplayName":"On (Original Animation)",
-			"Value":"MBoss_Bo6x00b_Mon0",
-			"MinValue":0,
-			"Description":["The End will praddle on and start boasting in certain cutscenes. It will also flex its high kill count."]
-			},
-			{
-			"DisplayName":"On (Edited Animation)",
-			"Value":"MBoss_Bo6x01b_Mon0",
-			"MinValue":0,
-			"Description":["The End will start its blog yap session on how powerful it is and how Sonic is weak and meaningless. SS2's transformation has a slight camera change and a little extra effects."]
-			},
-			{
-			"DisplayName":"On (Hyper_Blue Aura / Original)",
-			"Value":"MBoss_Bo6x00b_MonB",
-			"MaxValue":1,
-			"Description":["Original animation but for character skins using Hyper forms over SS2. Blue Aura only. The End will start yapping."]
-			},
-			{
-			"DisplayName":"On (Hyper_Blue Aura / Edited)",
-			"Value":"MBoss_Bo6x01b_MonB",
-			"MaxValue":1,
-			"Description":["Same as SS2 Edited, but with different effects to fit Hyper Sonic's transformation."]
-			}
-		],
+	
 		"TestDir":
 		[
 			{
@@ -501,6 +453,6 @@
 			}
 		]
 	},
-	
+
    "IniFile":"mod.ini"
 }

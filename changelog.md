@@ -1,4 +1,17 @@
-## **Aggro-Titans Starfall**- 2025.11.18
+## **Aggro-Titans Starfall**- 2025.11.30
+
+
+
+### ***Aggro-Titans 1.4 Update***
+
+* Release Date Unknown
+
+
+
+##### ***Aggro-Titans version 1.35***
+
+* Overhauled Monologue entries, less folders, more streamlined.
+* Some tweaks in bo6120, bo6165, and bo6190.
 
 
 
