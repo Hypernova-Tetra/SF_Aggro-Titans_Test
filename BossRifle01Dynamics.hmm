@@ -88,6 +88,8 @@ Code "Supreme Dynamics" by "Hypernova"
 	static long Abo4180 = 0;
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
+	static long ZvLsrSt = 0;
+	static long ZvLsrCm = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -105,7 +107,7 @@ Code "Supreme Dynamics" by "Hypernova"
 	if (Abo4180 == 0) { /* 0x1414624C8 */ Abo4180 = ScanSignature ("bo4180", "xxxxxx"); }
 	if (AdCyAtk == 0) { /* 0x14140F690 */ AdCyAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
 	if (AdCyPry == 0) { /* 0x14140F6A0 */ AdCyPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
-	
+
 	bool isBo4110 = evtPlayer->IsEventPlaying("bo4110");
 	bool isBo411X = evtPlayer->IsEventPlaying("bo411X");
 	bool isZQTE00 = evtPlayer->IsEventPlaying("zev_rfl_laser00");
@@ -184,11 +186,7 @@ Code "Supreme Dynamics" by "Hypernova"
 		//Supreme Phase 2 for w1r04 and Battle Rush//
 		if (((isBo4140) && (LevelInfo.GetCurrentStageID() == "w1r04")) || ((isBo4140) && ((BattleRush))))
 		{
-			WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX2"));
-			WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
-			WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
 			WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
-			WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4181"));
 		}
 		
 		//Supreme Phase 2//
