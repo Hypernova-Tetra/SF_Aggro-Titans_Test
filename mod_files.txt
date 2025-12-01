@@ -61,8 +61,6 @@ add Main/raw/movie/bo6110.usm
 add Main/raw/movie/bo6110_4k.usm
 add Main/raw/movie/bo6111.usm
 add Main/raw/movie/bo6111_4k.usm
-add Main/raw/movie/bo6120.usm
-add Main/raw/movie/bo6120_4k.usm
 add Main/raw/movie/bo6210.usm
 add Main/raw/movie/bo6210_4k.usm
 add Main/raw/movie/bo6211.usm
