@@ -88,8 +88,6 @@ Code "Supreme Dynamics" by "Hypernova"
 	static long Abo4180 = 0;
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
-	static long ZvLsrSt = 0;
-	static long ZvLsrCm = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
