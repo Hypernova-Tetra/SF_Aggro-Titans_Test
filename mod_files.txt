@@ -448,13 +448,11 @@ delete MBoss_Audio_0rgn/raw/movie/bo2115.usm
 delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01.usm
 delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01_phase2.usm
 
-delete MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant00.acb
 delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
 delete MBoss_Audio_Edit/raw/movie/bo1120.usm
 delete MBoss_Audio_Edit/raw/movie/bo3120.usm
-delete MBoss_Audio_Edit/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
 delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
