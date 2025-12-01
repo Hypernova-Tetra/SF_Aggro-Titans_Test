@@ -156,8 +156,6 @@ add MBoss_Audio_0rgn/raw/movie/ev1770_4k.usm
 add MBoss_Audio_0rgn/raw/movie/ev5020.usm
 add MBoss_Audio_0rgn/raw/movie/ev5040.usm
 add MBoss_Audio_0rgn/raw/movie/ev5040_4k.usm
-add MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01.usm
-add MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01_phase2.usm
 add MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 add MBoss_Audio_0rgn/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_0rgn/raw/sound/dragon01_sound/se_rangers_giant02.acb
