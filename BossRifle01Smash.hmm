@@ -102,13 +102,26 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	if (!smashBool)
 		return;
 	{
+		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
+		bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
+		bool isRiflebeast = (GameManager.GetGameObject("RifleBeast0") != null);
+		
+		if ((isRiflebeast) && (SuperBattle))
+		{	
+			var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+			if (SonicParametersInfo.pData == null)
+			return;
+			
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.Smash);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
+			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
+		}
+		
 		if (AddressSplDmg == 0)
 		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 		
-		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-		bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
 		if ((isSupreme) && (SuperBattle))
-		{
+		{	
 			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 			
 			if ((Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS) && (XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)))

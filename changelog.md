@@ -12,6 +12,7 @@
 
 * Overhauled Monologue entries, less folders, more streamlined.
 * Some tweaks in bo6120, bo6165, and bo6190.
+* Tweaked a combo-move for Sonic only when Supreme's "Unuse Cinematic Event" is active during Supreme's fight.
 
 
 
