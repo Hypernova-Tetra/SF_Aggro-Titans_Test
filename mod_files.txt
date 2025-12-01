@@ -108,6 +108,7 @@ add MBoss_Audio_0rgn/raw/movie/bo6240_4k.usm
 add MBoss_Audio_0rgn/raw/movie/bo6241.usm
 add MBoss_Audio_0rgn/raw/movie/bo6241_4k.usm
 add MBoss_Audio_0rgn/raw/movie/bo6260.usm
+add MBoss_Audio_0rgn/raw/movie/bo6261.usm
 add MBoss_Audio_0rgn/raw/movie/bo6265.usm
 add MBoss_Audio_0rgn/raw/movie/bo6265_4k.usm
 add MBoss_Audio_0rgn/raw/movie/bo6266.usm
@@ -141,6 +142,7 @@ add MBoss_Audio_0rgn/raw/movie/bo6440_4k.usm
 add MBoss_Audio_0rgn/raw/movie/bo6441.usm
 add MBoss_Audio_0rgn/raw/movie/bo6441_4k.usm
 add MBoss_Audio_0rgn/raw/movie/bo6460.usm
+add MBoss_Audio_0rgn/raw/movie/bo6461.usm
 add MBoss_Audio_0rgn/raw/movie/bo6465.usm
 add MBoss_Audio_0rgn/raw/movie/bo6465_4k.usm
 add MBoss_Audio_0rgn/raw/movie/bo6466.usm
@@ -189,6 +191,7 @@ add MBoss_Audio_Edit/raw/movie/bo6240_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6241.usm
 add MBoss_Audio_Edit/raw/movie/bo6241_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6260.usm
+add MBoss_Audio_Edit/raw/movie/bo6261.usm
 add MBoss_Audio_Edit/raw/movie/bo6265.usm
 add MBoss_Audio_Edit/raw/movie/bo6265_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6266.usm
@@ -222,6 +225,7 @@ add MBoss_Audio_Edit/raw/movie/bo6440_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6441.usm
 add MBoss_Audio_Edit/raw/movie/bo6441_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6460.usm
+add MBoss_Audio_Edit/raw/movie/bo6461.usm
 add MBoss_Audio_Edit/raw/movie/bo6465.usm
 add MBoss_Audio_Edit/raw/movie/bo6465_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6466.usm
@@ -280,6 +284,7 @@ add MBoss_Audio_SO/raw/movie/bo6240_4k.usm
 add MBoss_Audio_SO/raw/movie/bo6241.usm
 add MBoss_Audio_SO/raw/movie/bo6241_4k.usm
 add MBoss_Audio_SO/raw/movie/bo6260.usm
+add MBoss_Audio_SO/raw/movie/bo6261.usm
 add MBoss_Audio_SO/raw/movie/bo6265.usm
 add MBoss_Audio_SO/raw/movie/bo6265_4k.usm
 add MBoss_Audio_SO/raw/movie/bo6266.usm
@@ -313,6 +318,7 @@ add MBoss_Audio_SO/raw/movie/bo6440_4k.usm
 add MBoss_Audio_SO/raw/movie/bo6441.usm
 add MBoss_Audio_SO/raw/movie/bo6441_4k.usm
 add MBoss_Audio_SO/raw/movie/bo6460.usm
+add MBoss_Audio_SO/raw/movie/bo6461.usm
 add MBoss_Audio_SO/raw/movie/bo6465.usm
 add MBoss_Audio_SO/raw/movie/bo6465_4k.usm
 add MBoss_Audio_SO/raw/movie/bo6466.usm
