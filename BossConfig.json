@@ -157,7 +157,7 @@
 				},
 				{
 				"Name":"SS2_Aura",
-				"DisplayName":"Super Sonic 2 outline",
+				"DisplayName":"Super Sonic 2 Aura Color",
 				"Description":["Added support for Hyper Sonic skins"],
 				"Type":"ZevAura",
 				"MinValue":null,
