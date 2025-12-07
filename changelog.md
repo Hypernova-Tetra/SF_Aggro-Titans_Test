@@ -1,10 +1,16 @@
-## **Aggro-Titans Starfall**- 2025.11.30
+## **Aggro-Titans Starfall**- 2025.12.07
 
 
 
 ### ***Aggro-Titans 1.4 Update***
 
 * Release Date Unknown
+
+
+
+##### ***Aggro-Titans version 1.36***
+
+* Further tweaks to Super Sonic 2's transformation for the "Edited" Animation type: Now references the Final Horizons Trailer camera panning when first transforming.
 
 
 
