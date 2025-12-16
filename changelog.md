@@ -38,6 +38,8 @@
 * New "Bitlaser03" scene implemented for first encounter.
 * Very tiny adjustment to Rifle01Dynamics.hmm
 
+
+
 ##### ***Aggro-Titans version Rifle (Separate download)***
 
 * Standalone build for Supreme with support for "Kronos Reimagined" and "Kronos with Ares Island Reimagined" mods.
@@ -48,8 +50,7 @@
 
 * Giganto, Wyvern, and Knight are a mod built from version 1.37.
 * Includes Kronos Reimagined support for Giganto.
-
-Ares Reimagined works as is without any additional changes.
+* Ares Reimagined works as is without any additional changes.
 
 
 
