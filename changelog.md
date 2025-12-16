@@ -1,6 +1,4 @@
-## **Aggro-Titans Starfall**- 2025.12.15
-
-
+# **Aggro-Titans Starfall**- 2025.12.15
 
 
 
@@ -10,7 +8,7 @@
 
 
 
-##### ***Aggro-Titans version 1.37***
+### ***Aggro-Titans version 1.37***
 
 * ***Giant01 Changes***
 * Updated Giganto's ImmediateActions between base game and Master King Trials
@@ -40,13 +38,13 @@
 * New "Bitlaser03" scene implemented for first encounter.
 * Very tiny adjustment to Rifle01Dynamics.hmm
 
-###### ***Aggro-Titans version Rifle (Separate download)***
+##### ***Aggro-Titans version Rifle (Separate download)***
 
 * Standalone build for Supreme with support for "Kronos Reimagined" and "Kronos with Ares Island Reimagined" mods.
 * Removed "QTE" presets in this build in place of a folder config for "Default" and "Reimagined" Ouranos Island option.
 * Reimagined option will show relocated "ev5020", "ev5030", "ev1770", "bo4xxx", and "bo6xxx" events to reflect Supreme's battle being in the crater.
 
-###### ***Aggro-Titans version Big3 (Separate download)***
+##### ***Aggro-Titans version Big3 (Separate download)***
 
 * Giganto, Wyvern, and Knight are a mod built from version 1.37.
 * Includes Kronos Reimagined support for Giganto.
