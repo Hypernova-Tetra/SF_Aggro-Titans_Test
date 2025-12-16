@@ -16,6 +16,7 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	#import "Plugins"
 	
 	static long BO1120 = 0;
+	static long BO1160 = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -27,7 +28,8 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	bool isKronosOpenZ = (LevelInfo.GetCurrentStageID() == "w1r03");
 	bool isKronosBttle = (LevelInfo.GetCurrentStageID() == "w1b01");
 	bool isKronosTrial = (LevelInfo.GetCurrentStageID() == "w1t01");
-			
+	bool isGigantoActiveSkipF2 = evtPlayer->IsEventPlaying("bo1141");
+	
 	WriteProtected<byte>
 	( /* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 	
@@ -35,14 +37,26 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141"));
 	
 	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
+	if (BO1160 == 0) { /* 0x141453520 */ BO1160 = ScanSignature ("bo1160", "xxxxxx"); }
 	
-	if ((isKronosOpenZ) || (isKronosBttle))
-	{ WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120")); }
-		
+	if (isKronosOpenZ)
+	{
+		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
+		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160")); 
+	}
+	
+	if (isKronosBttle)
+	{
+		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151"));
+	}
+	
 	if (isKronosTrial)
-	{ WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); }
+	{
+		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); 
+		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
+	}
 	
-	bool isGigantoActiveSkipF2 = evtPlayer->IsEventPlaying("bo1141");
 	if (isGigantoActiveSkipF2)
 	{
 		if ((isKronosOpenZ) || (isKronosBttle))
@@ -76,15 +90,10 @@ Code "Giganto Dynamics" by "Hypernova"
 	
 	static long AdCyloopAtk = 0;
 	static long AdCyloopPry = 0;
-	static long Adbo1180 = 0;
+	static long AdAtkCnSp02 = 0;
+	static long Address1180 = 0;
 //
 {	
-	if (AdCyloopAtk == 0)
-	{ /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
-	
-	if (AdCyloopPry == 0)
-	{ /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
-
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
@@ -94,32 +103,49 @@ Code "Giganto Dynamics" by "Hypernova"
 		return;
 	
 	bool isGiantF1 = evtPlayer->IsEventPlaying("bo1120");
+	bool isGiantT1 = evtPlayer->IsEventPlaying("bo1121");
 	bool isGiantF2 = evtPlayer->IsEventPlaying("bo1140");
+	bool isGntKRF2 = evtPlayer->IsEventPlaying("bo1145");
 	bool isGiantT2 = evtPlayer->IsEventPlaying("bo1142");
+	bool isGntKRT2 = evtPlayer->IsEventPlaying("bo1146");
 	bool isGntWin2 = evtPlayer->IsEventPlaying("bo1151");
 	bool isGntWin1 = evtPlayer->IsEventPlaying("bo1160");
 	bool isGntWin3 = evtPlayer->IsEventPlaying("bo1170");
-	bool eventGigantoDead2 = evtPlayer->IsEventPlaying("bo1181");
 	bool isGiganto = (GameManager.GetGameObject("Giant0") != null);
 	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
-		
+	
 	if ((isGiganto) && (SuperBattle))
-	{			
-		if (Adbo1180 == 0)
-		{/* 0x141453544 */ Adbo1180 = ScanSignature ("bo1180", "xxxxxx");}
+	{		
+		if (AdCyloopAtk == 0)
+		{ /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
+	
+		if (AdCyloopPry == 0)
+		{ /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
+	
+		if (AdAtkCnSp02 == 0)
+		{ /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
+	
+		if (Address1180 == 0)
+		{/* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx");}
 			
-		if ((isGiantF1) || (isGntWin1) || (isGntWin2) || (isGntWin3))
+		if ((isGiantF1) || (isGiantT1) || (isGntWin1) || (isGntWin2) || (isGntWin3))
 		{ 
 			WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
 			WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
-			WriteProtected<byte>(Adbo1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
+			WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
+			WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
 		}
 		
-		if ((isGiantF2) || (isGiantT2))
+		if ((isGiantF2) || (isGiantT2) || (isGntKRF2) || (isGntKRT2))
 		{ 
 			WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
 			WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
-			WriteProtected<byte>(Adbo1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
+			WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
+		}
+		
+		if ((isGiantT2) || (isGntKRT2))
+		{ 
+			WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));
 		}
 	}
 }
@@ -147,19 +173,9 @@ Code "Giganto Finale Beta"
 
 		BossGiantFinale = INI.Parse<int>(ini["Main"]["BossGiant1160"], BossGiantFinale);
         IsConfigInitialised = true;
-
-        if (BossGiantFinale == 1)
-        { WriteProtected<byte> (/* 0x141453520 */ ScanSignature( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1151")); }
-        else
-        { scene1Bool = false; }
 		
-		if (BossGiantFinale == 2)
+		if (BossGiantFinale == 1)
         { WriteProtected<byte> ( /* 0x141453520 */ ScanSignature ( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1170") ); }
-        else
-        { scene1Bool = false; }
-		
-		if (BossGiantFinale == 3)
-        { WriteProtected<byte> ( /* 0x141453520 */ ScanSignature ( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1161") ); }
         else
         { scene1Bool = false; }
     }

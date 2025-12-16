@@ -13,9 +13,16 @@ Code "Giganto_ActionType"
 		if (BossGiantConfigInfo.pData == null)
 			return;
 		
-		{
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+		{ 
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_L);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_NONE);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_R);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 		}
 	}
 	
@@ -26,8 +33,15 @@ Code "Giganto_ActionType"
 			return;
 		
 		{
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_01);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_02);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 		}
 	}
 }

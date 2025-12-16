@@ -77,15 +77,6 @@
 				"DefaultValue":"0"
 				},
 				{
-				"Name":"BossDragonFinish",
-				"DisplayName":"Wyvern Final QTE",
-				"Description":["Choose the scene of the final Wyvern QTE"],
-				"Type":"BossDragonFinal",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"0"
-				},
-				{
 				"Name":"BossRifleStart",
 				"DisplayName":"Supreme's Intro",
 				"Description":["Choose the scene of Supreme's appearence when the fight starts."],
@@ -113,14 +104,14 @@
 				"DefaultValue":"0"
 				},
 				{
-				"Name":"IncludeDir4",
-				"DisplayName":"Supreme Wing Laser",
-				"Description":["Choose the version of Supreme's godly laser attcak."],
-				"Type":"BossRifleWing",
+				"Name":"BossRifleWing",
+				"DisplayName":"Secondary WingLaser QTE",
+				"Description":["An alternate event for Supreme's Wing Laser QTE will play at low health."],
+				"Type":"RifleWing",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"MBoss_RifleWingLaser1"
-				}
+				"DefaultValue":"0"
+				},
 			]
 		},
 		{
@@ -139,7 +130,7 @@
 				},
 				{
 				"Name":"RifleBeastYap",
-				"DisplayName":"The End monologue during cutscenes",
+				"DisplayName":"Monologue during cutscenes",
 				"Description":["Choose wheather the fight will have The End monologue during cutscenes or not."],
 				"Type":"SupremeM",
 				"MinValue":null,
@@ -231,20 +222,10 @@
 			"Description":["As is in the vanilla game."]
 			},
 			{
-			"DisplayName":"Beta-Inspired",
+			"DisplayName":"Hypernova Edited",
 			"Value":"1",
-			"Description":["A recreated version of the beta animation using Giganto's 'Damage_Finish' animation."]
+			"Description":["A mix of the original Beta-inspired animation with the vanilla."]
 			},
-			{
-			"DisplayName":"Hypernova Mix",
-			"Value":"2",
-			"Description":["A combination of the original and the beta-inspired."]
-			},
-			{
-			"DisplayName":"Tru-Blu's Version",
-			"Value":"3",
-			"Description":["Title speaks for itself."]
-			}
 		],
 		"TitanSkin1":
 		[
@@ -290,19 +271,6 @@
 			"Description":["Rings"]
 			}
 		],
-		"BossDragonFinal":
-		[
-			{
-			"DisplayName":"Original",
-			"Value":"0",
-			"Description":["As is in the game."]
-			},
-			{
-			"DisplayName":"Beta-Inspired",
-			"Value":"1",
-			"Description":["Using the original QTE as a base, with the change that uses a different shot of Sonic struggling to fight back against Wyvern's bite, utilizing leftover files."]
-			}
-		],
 		"RifleStart":
 		[
 			{
@@ -329,18 +297,23 @@
 			"Description":["01."]
 			}
 		],
-		"BossRifleWing":
+		"RifleWing":
 		[
 			{
+			"DisplayName":"Off",
+			"Value":"0",
+			"Description":["A different event is played here."]
+			},
+			{
 			"DisplayName":"Version 1",
-			"Value":"MBoss_RifleWingLaser1",
-			"Description":["Sonic combos the deadly laser and ends in Sonic kicking the attack back at Supreme in a familiar way."]
+			"Value":"1",
+			"Description":["Supreme uses his wings to shoot a massive laser."]
 			},
 			{
 			"DisplayName":"Version 2",
-			"Value":"MBoss_RifleWingLaser2",
-			"Description":["Sonic continuous stomp-kicks the laser beam that ends in Sonic punching the attack. Wonder if the rapid stomp attack references anything, could be obscure."]
-			}
+			"Value":"2",
+			"Description":["Supreme uses his wings to shoot a massive laser."]
+			},
 		],
 		"BossRifleSp00":
 		[

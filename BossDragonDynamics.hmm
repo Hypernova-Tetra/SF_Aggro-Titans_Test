@@ -60,8 +60,10 @@ Code "Wyvern Dynamics" by "Hypernova"
 	static long AddressSnd1 = 0;
 	static long AddressMsle = 0;
 	static long AddressPsyc = 0;
-	static long Adbo2180 = 0;
+	static long AddressFn01 = 0;
 	static long AdCntrLsr01 = 0;
+	static long Address2120 = 0;
+	static long Address2180 = 0;
 	
 //
 {
@@ -88,16 +90,19 @@ Code "Wyvern Dynamics" by "Hypernova"
 	if (AddressSnd1 == 0)
 	{/* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
 
-	if (Adbo2180 == 0)
-	{/* 0x14144C99D */ Adbo2180 = ScanSignature ("bo2180", "xxxxxx");}
+	if (AddressFn01 == 0)
+	{/* 0x14144C9C0 */ AddressFn01 = ScanSignature ("zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx"); }
+
+	if (Address2120 == 0)
+	{/* 0x14144C95C */ Address2120 = ScanSignature ("bo2120", "xxxxxx");}
+
+	if (Address2180 == 0)
+	{/* 0x14144C99D */ Address2180 = ScanSignature ("bo2180", "xxxxxx");}
 
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
-	bool isDragon01 = evtPlayer->IsEventPlaying("bo2120");
+	bool isRoadStrt = evtPlayer->IsEventPlaying("bo2115");
 	bool isDragonF2 = evtPlayer->IsEventPlaying("bo2140");
-	bool isDrgnWin0 = evtPlayer->IsEventPlaying("zev_dragon_finish_00");
-	bool isDrgnWin1 = evtPlayer->IsEventPlaying("zev_dragon_finish_01");
-	bool isDrgnDead = evtPlayer->IsEventPlaying("bo2181");
 	bool isMissile0 = evtPlayer->IsEventPlaying("zev_dragon_sp_missile");
 	bool isSplaser0 = evtPlayer->IsEventPlaying("zev_dragon_sp_laser00");
 	bool isSplaser1 = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
@@ -109,20 +114,31 @@ Code "Wyvern Dynamics" by "Hypernova"
 	
 	if (isWyvern)
 	{
-		if ((isDragon01) || (isDrgnDead) || (isDrgnWin0) || (isDrgnWin1))
+		if (isRoadStrt)
 		{ 
 			WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
 			WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
 			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
 			WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
 			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
-			WriteProtected<byte>(Adbo2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
+			WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
+			
+			if (isAresTrial)
+			{ 
+				WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2121")); 
+				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); 
+			}
+			else
+			{
+				WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120"));
+				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_01")); 
+			}
 		}
 		
 		if (isDragonF2)
 		{
 			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter03_r"));
-			WriteProtected<byte>(Adbo2180, System.Text.Encoding.UTF8.GetBytes("bo2181"));
+			WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2181"));
 			
 			if (isAresOpenZ)
 			{ 
@@ -162,41 +178,6 @@ Code "Wyvern Dynamics" by "Hypernova"
 		if ((isSplaser0) || (isSplaser1))
 		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
 	}
-}
-
-Code "Wyvern Finale Beta"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-    static bool IsConfigInitialised = false;
-    static bool WyvernFinishBool = false;
-	static int BossDragonFinal = 0;
-//
-{
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		BossDragonFinal = INI.Parse<int>(ini["Main"]["BossDragonFinish"], BossDragonFinal);
-        IsConfigInitialised = true;
-
-        if (BossDragonFinal == 1)
-        { WyvernFinishBool = true; }
-        else
-        { WyvernFinishBool = false; }
-    }
-	
-	if (!WyvernFinishBool)
-		return;
-	{ WriteProtected<byte> ( /* 0x14144CA38 */ ScanSignature ( "zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx" ), System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); }
 }
 
 Library "EventPlayer" by "Ashrindy"

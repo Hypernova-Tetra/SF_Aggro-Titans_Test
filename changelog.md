@@ -1,10 +1,57 @@
-## **Aggro-Titans Starfall**- 2025.12.07
+## **Aggro-Titans Starfall**- 2025.12.15
+
+
 
 
 
 ### ***Aggro-Titans 1.4 Update***
 
 * Release Date Unknown
+
+
+
+##### ***Aggro-Titans version 1.37***
+
+* ***Giant01 Changes***
+* Updated Giganto's ImmediateActions between base game and Master King Trials
+* Changes to "AT\_HOWL" in where the attack itself will now play sound effects.
+* Changes to "AT\_COUNTER\_SP\_01" in where '@attack\_counter\_bite\_end.cam-anim' is now more accurate to the Frontiers 2021 Beta leak footage.
+* Changes to "AT\_JUMP" in where Giganto will jump twice when the attack is activated.
+* Implemented a leftover action for "AT\_COUNTER\_SP\_03" in Master King's Trial for Giganto to play a previously unused laser attack animation.
+* Giganto Finale option adjusted.
+* "Tru-Blu Giganto Finale" moved to Master King's Trial.
+* "Tru-Blu Giganto Super Sonic Transformation" added for Master King's Trial.
+* "BOI's animation" for Super Sonic added and will play in Main story Kronos.
+* "Vanilla" Super Sonic scene will play in Battle Rush only.
+* Adjustments made to GiantDynamics.hmm
+* ***Dragon01 Changes***
+* "BOI's animation" for Super Sonic added and will play Master King's Trial.
+* "Vanilla" Super Sonic scene will play in Battle Rush and Main Story.
+* "Dragon\_Finish\_00" moved to Master King's Trial.
+* ***Knight01 Changes***
+* "BOI's animation" for Super Sonic added and will play Master King's Trial.
+* "Vanilla" Super Sonic scene will play in Battle Rush and Main Story.
+* ***Rifle01 Changes***
+* Changes to "AT\_SP02" in where the starting Mega Laser attack animation has been updated to keep its uniqueness.
+* Small changes to some of Supreme's "giantPhase" actions.
+* Updated "WingLaser" QTE files. They should hopefully take less time for the event to start.
+* Winglaser's config option is now in code form rather than folders.
+* Winglaser's config now has an "Off" option to play a different event instead, but will only occur when Supreme reaches low health.
+* New "Bitlaser03" scene implemented for first encounter.
+* Very tiny adjustment to Rifle01Dynamics.hmm
+
+###### ***Aggro-Titans version Rifle (Separate download)***
+
+* Standalone build for Supreme with support for "Kronos Reimagined" and "Kronos with Ares Island Reimagined" mods.
+* Removed "QTE" presets in this build in place of a folder config for "Default" and "Reimagined" Ouranos Island option.
+* Reimagined option will show relocated "ev5020", "ev5030", "ev1770", "bo4xxx", and "bo6xxx" events to reflect Supreme's battle being in the crater.
+
+###### ***Aggro-Titans version Big3 (Separate download)***
+
+* Giganto, Wyvern, and Knight are a mod built from version 1.37.
+* Includes Kronos Reimagined support for Giganto.
+
+Ares Reimagined works as is without any additional changes.
 
 
 

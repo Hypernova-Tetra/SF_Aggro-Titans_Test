@@ -79,9 +79,10 @@ Code "Knight Dynamics" by "Hypernova"
 	#import "Plugins"
 	#include "Reflection" noemit
 	
-	static long AddressGS2 = 0;
-	static long AdSwordFinal = 0;
-	static long Adbo3180 = 0;
+	static long AddressSP02 = 0;
+	static long AdSwordLast = 0;
+	static long Address3120 = 0;
+	static long Address3180 = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -95,11 +96,9 @@ Code "Knight Dynamics" by "Hypernova"
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
 	bool eventKnightStart = evtPlayer->IsEventPlaying("bo3120");
+	bool eventKnightTStrt = evtPlayer->IsEventPlaying("bo3122");
 	bool eventKnightPhse2 = evtPlayer->IsEventPlaying("bo3140");
 	bool eventKnightPhze2 = evtPlayer->IsEventPlaying("bo3145");
-	bool eventGiant03Win1 = evtPlayer->IsEventPlaying("bo3160");
-	bool eventKnightDead1 = evtPlayer->IsEventPlaying("bo3180");
-	bool eventKnightDead2 = evtPlayer->IsEventPlaying("bo3181");
 	bool isKnight = (GameManager.GetGameObject("Knight0") != null);
 	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
 	bool isChaosOpenZ = (LevelInfo.GetCurrentStageID() == "w3r01");
@@ -108,40 +107,39 @@ Code "Knight Dynamics" by "Hypernova"
 	
 	if (isKnight)
 	{
-		if (Adbo3180 == 0)
-		{/* 0x14145C2B4 */ Adbo3180 = ScanSignature ("bo3180", "xxxxxx");}
-				
-		if ((eventKnightStart) || (eventGiant03Win1) || (eventKnightDead2))
-		{ WriteProtected<byte>(Adbo3180, System.Text.Encoding.UTF8.GetBytes("bo3180")); }
+		if (Address3120 == 0)
+		{/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");}
+	
+		if (Address3180 == 0)
+		{/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");}
 		
-		if ((eventKnightPhse2) || (eventKnightPhze2))
-		{ WriteProtected<byte>(Adbo3180, System.Text.Encoding.UTF8.GetBytes("bo3181")); }
+		if (AddressSP02 == 0)
+		{/* 0x14145C1F8 */ AddressSP02 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
 		
-		WriteProtected<byte>
-		(/* 0x14145C140 */ ScanSignature ("zev_knight_shieldride02_aerial","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("zev_knight_shieldride02_aerial"));
+		if (AdSwordLast == 0)
+		{/* 0x14145C278 */ AdSwordLast = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
 			
-		if (AddressGS2 == 0)
-		{/* 0x14145C1F8 */ AddressGS2 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
-		
-		if (AdSwordFinal == 0)
-		{/* 0x14145C278 */ AdSwordFinal = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
-		
 		if (isChaosTrial)
 		{
-			if ((eventKnightPhse2) || (eventKnightPhze2))
-			{WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));}
-			
-			if ((eventGiant03Win1) || (eventKnightDead1) || (eventKnightDead2))
-			{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
+			WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3122")); 
+			WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));
+		}
+		else
+		{ 
+			WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));
+			WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2"));
 		}
 		
-		if (isChaosOpenZ)
-		{ WriteProtected<byte>(AddressGS2, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2")); }
-		
 		if (isChaosBttle)
-		{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
+		{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
 		else
-		{ WriteProtected<byte>(AdSwordFinal, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+		{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+	
+		if ((eventKnightStart) || (eventKnightTStrt))
+		{ WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180")); }
+		
+		if ((eventKnightPhse2) || (eventKnightPhze2))
+		{ WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181")); }
 	}
 }	
 
