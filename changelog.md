@@ -37,6 +37,8 @@
 * Winglaser's config now has an "Off" option to play a different event instead, but will only occur when Supreme reaches low health.
 * New "Bitlaser03" scene implemented for first encounter.
 * Very tiny adjustment to Rifle01Dynamics.hmm
+* ***RifleBeast Changes***
+* Updated certain bo6xxx.pac scenes to load faster.
 
 
 
