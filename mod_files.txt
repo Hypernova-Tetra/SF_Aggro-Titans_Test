@@ -398,7 +398,6 @@ add BossRifle01Dynamics.hmm
 add BossRifle01Bossbit.hmm
 add BossRifle01Smash.hmm
 add BossRifleBeast.hmm
-add BossRifleDynamics.hmm
 add BossRush.hmm
 add BossSonicComboTweaks.hmm
 add mod.ini
