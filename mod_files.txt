@@ -385,6 +385,7 @@ add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_sp02.pac
 add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE01.pac
 add MBoss_RifleQTE_03/raw/event/scene/zev_rfl_spQTE02.pac
 
+add AshEventLibrary.hmm
 add BossConfig.json
 add BossCutsceneAudio.hmm
 add BossGiant01.hmm
