@@ -394,7 +394,8 @@ add BossDragonDynamics.hmm
 add BossKnight01.hmm
 add BossKnightDynamics.hmm
 add BossRifle01.hmm
-add BossRifle01Dynamics.hmm
+add BossRifle01Dynamic1.hmm
+add BossRifle01Dynamic2.hmm
 add BossRifle01Bossbit.hmm
 add BossRifle01Smash.hmm
 add BossRifleBeast.hmm
@@ -705,3 +706,4 @@ delete BossRifleATSHOT2-4.hmm
 delete BossEvent.hmm
 delete BossTitanFinish.hmm
 delete BossRifleDynamics.hmm
+delete BossRifle01Dynamics.hmm

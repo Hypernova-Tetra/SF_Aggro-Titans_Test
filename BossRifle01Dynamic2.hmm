@@ -1,68 +1,3 @@
-Code "Skippable Cutscenes Supreme" by "Hypernova"
-//
-	#include "Reflection" noemit
-	#lib "GameManager"
-	#lib "EventPlayer"
-	#lib "GameObject"
-	#lib "BlackboardStatus"
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-	#lib "Lua"
-	
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-//
-{
-	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-	if (evtPlayer == null)
-		return;
-	
-	WriteProtected<byte>
-	( /* 0x1414624C0 */ ScanSignature ("bo4140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo4141"));
-		
-	bool isRifleSkipF2 = evtPlayer->IsEventPlaying("bo4141");
-	if (isRifleSkipF2)
-	{
-		var setupData = new EventPlayer.EventSetupData("bo4140");
-		evtPlayer->PlayEvent(ref setupData);
-	}
-}
-
-Code "Ouranos Pyramid Beam No-More" by "Hypernova"
-//
-	#import "Services"
-	#import "Plugins"
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BlackboardStatus"
-    #lib "HMM"
-	#lib "INI"
-	#lib "Lua"
-	#lib "Player"
-	#lib "Sonic"
-//
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-	
-	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-	if (evtPlayer == null)
-		return;
-	
-	bool isEv5020 = evtPlayer->IsEventPlaying("ev5020");	
-	bool isSupreme = (GameManager.GetGameObject("Rifle0") != null);
-	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
-	
-	if (((isSupreme) && (SuperBattle)) || (isEv5020))
-	{ Lua.Call("SetLayerEnabled", "w1r04_plan_common", false) }
-	else
-	{ Lua.Call("SetLayerEnabled", "w1r04_plan_common", true) }
-}
-
 Code "Supreme Dynamics" by "Hypernova"
 //
 	#lib "GameManager"
@@ -108,7 +43,6 @@ Code "Supreme Dynamics" by "Hypernova"
 	
 	bool isBo4110 = evtPlayer->IsEventPlaying("bo4110");
 	bool isBo411X = evtPlayer->IsEventPlaying("bo411X");
-	bool isZQTE00 = evtPlayer->IsEventPlaying("zev_rfl_laser00");
 	bool isBo4180 = evtPlayer->IsEventPlaying("bo4180");
 	bool isBo4181 = evtPlayer->IsEventPlaying("bo4181");
 	bool isBitlaserX1 = evtPlayer->IsEventPlaying("zev_rfl_bitlaserX1");
@@ -116,6 +50,7 @@ Code "Supreme Dynamics" by "Hypernova"
 	bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01");
 	bool isLaserX0 = evtPlayer->IsEventPlaying("zev_rfl_laserX0");
 	bool isSpX0 = evtPlayer->IsEventPlaying("zev_rfl_spX0");
+	bool isLaser00 = evtPlayer->IsEventPlaying("zev_rfl_laser00");
 	bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01");
 	bool isBo4140 = evtPlayer->IsEventPlaying("bo4140");
 	bool isSpWing = evtPlayer->IsEventPlaying("zev_rfl_wing");
@@ -141,9 +76,18 @@ Code "Supreme Dynamics" by "Hypernova"
 		WriteProtected<byte>(AdCyPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
 		
 		if (SuperBattle)
-		{
+		{	
+			if ((isLaser01) && (BattleRush))
+			{ 
+				WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX1"));
+				WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
+				WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00"));
+				WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX0"));
+				WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4180"));
+			}
+			
 			//Supreme Phase 1//
-			if ((isZQTE00) || (isBo4110) || (isBo411X) || (isBo4180) || (isBo4181))
+			if ((isBo4110) || (isBo411X) || (isBo4180) || (isBo4181))
 			{
 				WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX1"));
 				WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
@@ -158,7 +102,7 @@ Code "Supreme Dynamics" by "Hypernova"
 			if (isBitlaser01)
 			{ WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserXX")); }
 			
-			if (isSpQTE01)
+			if ((isSpQTE01) || (isLaser00))
 			{
 				WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laserX0"));
 				WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
@@ -177,7 +121,7 @@ Code "Supreme Dynamics" by "Hypernova"
 			}
 			
 			//Supreme Phase 2 for w1r04 and Battle Rush//
-			if (((isBo4140) && (LevelInfo.GetCurrentStageID() == "w1r04")) || ((isBo4140) && ((BattleRush))))
+			if (((isBo4140) && (LevelInfo.GetCurrentStageID() == "w1r04")) || (isBo4140) && ((BattleRush)))
 			{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02")); }
 			
 			//Supreme Phase 2//
@@ -229,77 +173,7 @@ Code "Supreme Dynamics" by "Hypernova"
 			if (isSpX1)
 			{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spXX")); }
 		}
-		
-		if (BattleRush)
-		{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00")); }
 	}
-}
-
-Code "Supreme Intro"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-    static bool IsConfigInitialised = false;
-    static bool RifleStartBool = false;
-	static int RifleStart = 0;
-//
-{
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		RifleStart = INI.Parse<int>(ini["Main"]["BossRifleStart"], RifleStart);
-        IsConfigInitialised = true;
-
-        if (RifleStart == 1)
-        { RifleStartBool = true; }
-        else
-        { RifleStartBool = false; }
-    }
-	
-	if (!RifleStartBool)
-		return;
-	{ WriteProtected<byte> ( /* 0x1414624B0 */ ScanSignature ( "bo4110", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo411X")); }
-}
-
-Code "Supreme Wing Laser"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-    static bool IsConfigInitialised = false;
-	static int RifleWing = 0;
-//
-{
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		RifleWing = INI.Parse<int>(ini["Main"]["BossRifleWing"], RifleWing);
-        IsConfigInitialised = true;
-
-		if (RifleWing == 0)
-        { WriteProtected<byte> ( /* 0x141461F00 */ ScanSignature ( "zev_rfl_sp01 ", "xxxxxxxxxxxxx" ), System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01 ")); }
-        if (RifleWing == 1)
-        { WriteProtected<byte> ( /* 0x141461F00 */ ScanSignature ( "zev_rfl_sp01 ", "xxxxxxxxxxxxx" ), System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng1 ")); }
-        if (RifleWing == 2)
-        { WriteProtected<byte> ( /* 0x141461F00 */ ScanSignature ( "zev_rfl_sp01 ", "xxxxxxxxxxxxx" ), System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng2 ")); }
-    }
 }
 
 Library "EventPlayer" by "Ashrindy"
