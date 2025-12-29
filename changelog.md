@@ -1,10 +1,10 @@
-# **Aggro-Titans Starfall**- 2025.12.19
+# **Aggro-Titans Starfall**- 2025.12.29
 
 
 
 ### ***Aggro-Titans 1.4 Update***
 
-* Release Date Unknown
+* Sometime in January 2026
 
 
 
