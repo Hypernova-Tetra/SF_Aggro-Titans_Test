@@ -166,7 +166,6 @@ add MBoss_Audio_0rgn/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_0rgn/raw/sound/rifle01_sound/se_rangers_giant04.acb
 add MBoss_Audio_0rgn/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
 
-add MBoss_Audio_Edit/raw/movie/bo2115.usm
 add MBoss_Audio_Edit/raw/movie/bo6120.usm
 add MBoss_Audio_Edit/raw/movie/bo6120_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6121.usm
@@ -444,8 +443,8 @@ delete MBoss_Bo4x01_Intro_Extn/raw
 delete MBoss_Bo4x01_Intro_Extn
 
 delete MBoss_Audio_0rgn/raw/movie/bo1120.usm
-delete MBoss_Audio_0rgn/raw/movie/bo3120.usm
 delete MBoss_Audio_0rgn/raw/movie/bo2115.usm
+delete MBoss_Audio_0rgn/raw/movie/bo3120.usm
 delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01.usm
 delete MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01_phase2.usm
 
@@ -453,6 +452,7 @@ delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant00.acb
 delete MBoss_Audio_0rgn/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 
 delete MBoss_Audio_Edit/raw/movie/bo1120.usm
+delete MBoss_Audio_Edit/raw/movie/bo2115.usm
 delete MBoss_Audio_Edit/raw/movie/bo3120.usm
 delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
 delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb

@@ -19,22 +19,15 @@ Code "Skippable Cutscenes Wyvern" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
 		
-	bool isAresOpenZ = (LevelInfo.GetCurrentStageID() == "w2r01");
-	bool isAresBttle = (LevelInfo.GetCurrentStageID() == "w2b01");
-	bool isAresTrial = (LevelInfo.GetCurrentStageID() == "w2t01");
-	
-
 	WriteProtected<byte>
 	( /* 0x14144C988 */ ScanSignature ("boss_giant02_bo2140", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 
 	WriteProtected<byte>
 	( /* 0x14144C97C */ ScanSignature ("bo2140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2141"));
 	
-	bool isWyvernActiveSkipF2 = evtPlayer->IsEventPlaying("bo2141");
-	if (isWyvernActiveSkipF2)
+	bool isWyvernSkipF2 = evtPlayer->IsEventPlaying("bo2141");
+	if (isWyvernSkipF2)
 	{
 		var setupData = new EventPlayer.EventSetupData("bo2140");
 		evtPlayer->PlayEvent(ref setupData);
@@ -74,108 +67,98 @@ Code "Wyvern Dynamics" by "Hypernova"
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
-	
-	if (AddressSp01 == 0)
-	{/* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx"); }
 
-	if (AdCntrLsr01 == 0)
-	{/* 0x14144B308 */ AdCntrLsr01 = ScanSignature ("attack_counter01_r", "xxxxxxxxxxxxxxxxxx"); }
-	
-	if (AddressMsle == 0)
-	{/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
-	
-	if (AddressPsyc == 0)
-	{/* 0x14144CA10 */ AddressPsyc = ScanSignature ("zev_dragon_sp_psycho", "xxxxxxxxxxxxxxxxxxxx");}
-	
-	if (AddressSnd1 == 0)
-	{/* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"); }
-
-	if (AddressFn01 == 0)
-	{/* 0x14144C9C0 */ AddressFn01 = ScanSignature ("zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx"); }
-
-	if (Address2120 == 0)
-	{/* 0x14144C95C */ Address2120 = ScanSignature ("bo2120", "xxxxxx");}
-
-	if (Address2180 == 0)
-	{/* 0x14144C99D */ Address2180 = ScanSignature ("bo2180", "xxxxxx");}
-
-	string currentStage = LevelInfo.GetCurrentStageID();
-	
-	bool isRoadStrt = evtPlayer->IsEventPlaying("bo2115");
-	bool isDragonF2 = evtPlayer->IsEventPlaying("bo2140");
-	bool isMissile0 = evtPlayer->IsEventPlaying("zev_dragon_sp_missile");
-	bool isSplaser0 = evtPlayer->IsEventPlaying("zev_dragon_sp_laser00");
-	bool isSplaser1 = evtPlayer->IsEventPlaying("zev_dragon_sp_laser01");
 	bool isWyvern = (GameManager.GetGameObject("Dragon0") != null);
-	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
-	bool isAresOpenZ = (LevelInfo.GetCurrentStageID() == "w2r01");
-	bool isAresBttle = (LevelInfo.GetCurrentStageID() == "w2b01");
-	bool isAresTrial = (LevelInfo.GetCurrentStageID() == "w2t01");
-	
 	if (isWyvern)
 	{
-		if (isRoadStrt)
-		{ 
-			WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
-			WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
-			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
-			WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
-			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
-			WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
-			
-			if (isAresTrial)
-			{ 
-				WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2121")); 
-				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); 
-			}
-			else
-			{
-				WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120"));
-				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_01")); 
-			}
-		}
+		if (AddressSp01 == 0) {/* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx");}
+		if (AdCntrLsr01 == 0) {/* 0x14144B308 */ AdCntrLsr01 = ScanSignature ("attack_counter01_r", "xxxxxxxxxxxxxxxxxx");}
+		if (AddressMsle == 0) {/* 0x14144C9F8 */ AddressMsle = ScanSignature ("zev_dragon_sp_missile", "xxxxxxxxxxxxxxxxxxxxx");}
+		if (AddressPsyc == 0) {/* 0x14144CA10 */ AddressPsyc = ScanSignature ("zev_dragon_sp_psycho", "xxxxxxxxxxxxxxxxxxxx");}
+		if (AddressSnd1 == 0) {/* 0x14144C9D8 */ AddressSnd1 = ScanSignature ("boss_giant02_drgn_giantswing", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
+		if (AddressFn01 == 0) {/* 0x14144C9C0 */ AddressFn01 = ScanSignature ("zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx");}
+		if (Address2120 == 0) {/* 0x14144C95C */ Address2120 = ScanSignature ("bo2120", "xxxxxx");}
+		if (Address2180 == 0) {/* 0x14144C99D */ Address2180 = ScanSignature ("bo2180", "xxxxxx");}
 		
-		if (isDragonF2)
+		string eventName = evtPlayer->GetCurrentEventName();
+		string currentStage = LevelInfo.GetCurrentStageID();
+			
+		switch (eventName)
 		{
-			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter03_r"));
-			WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2181"));
-			
-			if (isAresOpenZ)
-			{ 
-				WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_F2"));
+			case "bo2115":
+				WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
 				WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
+				WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
+				WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
+				WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
+				WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
+				if (LevelInfo.GetCurrentStageID() == "w2t01")
+					WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2121")); 
+				if (LevelInfo.GetCurrentStageID() == "w2r01" || LevelInfo.GetCurrentStageID() == "w2b01")
+					WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120"));
+				break;
+		}
+	
+		bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
+		if (SuperBattle)
+		{
+			switch (eventName)
+			{
+				case "bo2140":
+				WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter03_r"));
+				WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2181"));
+				if (LevelInfo.GetCurrentStageID() == "w2t01")
+					WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
+					WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+					WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01"));
+				if (LevelInfo.GetCurrentStageID() == "w2b01")
+					WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_X2"));
+					WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+					WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser00"));
+				if (LevelInfo.GetCurrentStageID() == "w2r01")
+					WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_F2"));
+					
+				break;	
 				
-				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_missile2");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-				evtPlayer->PlayEvent(ref setupData);
+				case "zev_dragon_sp_laser00":
+				case "zev_dragon_sp_laser01":
+					WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
+					break;	
 			}
 			
-			if (isAresBttle)
-			{ 
-				WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_X2"));
-				WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
-				WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01"));
-				WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_smash2"));
-
-				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psych1");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-				evtPlayer->PlayEvent(ref setupData);
-			}
-			
-			if (isAresTrial)
-			{ 
-				WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_02"));
-				WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
-				WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser00"));
-				WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psych0")); 
-				
-				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psycho");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-				evtPlayer->PlayEvent(ref setupData);
+			if (evtPlayer->IsEventPlaying("bo2140"))
+			{
+				if (LevelInfo.GetCurrentStageID() == "w2t01")
+				{ 
+					{ 
+						WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psych0")); 
+						WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); 
+					}
+					var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psycho");
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					evtPlayer->PlayEvent(ref setupData);
+				}
+				if (LevelInfo.GetCurrentStageID() == "w2b01")
+				{ 
+					{ 
+						WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_smash2"));
+						WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_01")); 
+					}
+					var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psych1");
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					evtPlayer->PlayEvent(ref setupData);
+				}
+				if (LevelInfo.GetCurrentStageID() == "w2r01")
+				{ 
+					{ 
+						WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
+						WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_01")); 
+					}
+					var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_missile2");
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					evtPlayer->PlayEvent(ref setupData);
+				}
 			}
 		}
-		
-		if ((isSplaser0) || (isSplaser1))
-		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
 	}
 }

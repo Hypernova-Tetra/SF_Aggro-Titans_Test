@@ -36,6 +36,15 @@ Code "Knight_Combat"
 		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
 	}
 	
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+    if (gameModeBossRush)
+	{ 
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 3);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 9);
+		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.033f);
+	}
+	
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");

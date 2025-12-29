@@ -24,8 +24,6 @@ Code "Supreme Dynamics" by "Hypernova" rewritten by "Gordon Ramsay"
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
 //
-
-static bool hasWrittenCy = false;
 {
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (pBlackboardStatus == null || Player.GetPlayerType() != Player.PlayerType.Sonic || Lua.GetState() == 0)
@@ -47,13 +45,9 @@ static bool hasWrittenCy = false;
 		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null); // This check is probably more expensive, so let's do it later
 		if (isSupreme)
 		{
-			if (!hasWrittenCy)
-			{
-				hasWrittenCy = true;
-				WriteProtected<byte>(AdCyAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
-				WriteProtected<byte>(AdCyPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
-			}
-			
+			WriteProtected<byte>(AdCyAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
+			WriteProtected<byte>(AdCyPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
+				
 			if (Lua.Call<int>("IsPlayingDiEventAll") == 1)
 			{
 				var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -164,7 +158,6 @@ static bool hasWrittenCy = false;
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spXX"));
 						break;
 				}
-				
 			}
 		}
 	}

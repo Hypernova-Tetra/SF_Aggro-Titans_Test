@@ -81,7 +81,15 @@ Code "Giganto_Combat"
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 	}
-		
+	
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+    if (gameModeBossRush)
+	{ 
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 2);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 3);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 5);
+	}
+	
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");

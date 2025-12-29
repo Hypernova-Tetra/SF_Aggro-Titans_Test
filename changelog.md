@@ -8,9 +8,19 @@
 
 
 
+### ***Aggro-Titans version 1.39***
+
+* ***Rifle01 Changes***
+* Reduced loading time for Winglaser QTE
+* ***RifleBeast Changes***
+* Reduced loading time for Darkball QTE and updated its animation.
+
+
+
 ### ***Aggro-Titans version 1.38***
 
-* Supreme's QTE dynamic script rewritten by GordonRamsy (Huge Thanks) (Performance Testing needed)
+* Supreme's QTE dynamic script rewritten by GordonRamsy (Huge Thanks)
+* Some adjustments to code files.
 
 
 
@@ -43,7 +53,16 @@
 * Winglaser's config now has an "Off" option to play a different event instead, but will only occur when Supreme reaches low health.
 * New "Bitlaser03" scene implemented for first encounter.
 * ***RifleBeast Changes***
-* Updated certain bo6xxx.pac scenes to load faster.
+* In bo6xxx.pac: Reduced loading time for Riflebeast Cutscenes bo6110, bo6125, bo6130, bo6140, bo6150, bo6160, bo6190 and its variants for the FH Monologue option.
+
+
+
+##### ***Aggro-Titans version Big3 (Separate download)***
+
+* Giganto, Wyvern, and Knight are a mod built from version 1.37.
+* Includes Kronos Reimagined support for Giganto.
+* Ares Reimagined works as is without any additional changes.
+* Certain Adjustments were made for Giganto, see patch notes 1.37.
 
 
 
@@ -52,12 +71,7 @@
 * Standalone build for Supreme with support for "Kronos Reimagined" and "Kronos with Ares Island Reimagined" mods.
 * Removed "QTE" presets in this build in place of a folder config for "Default" and "Reimagined" Ouranos Island option.
 * Reimagined option will show relocated "ev5020", "ev5030", "ev1770", "bo4xxx", and "bo6xxx" events to reflect Supreme's battle being in the crater.
-
-##### ***Aggro-Titans version Big3 (Separate download)***
-
-* Giganto, Wyvern, and Knight are a mod built from version 1.37.
-* Includes Kronos Reimagined support for Giganto.
-* Ares Reimagined works as is without any additional changes.
+* Reduced loading times for certain cutscenes, see patch notes 1.37.
 
 
 

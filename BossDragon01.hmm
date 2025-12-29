@@ -18,11 +18,7 @@ Code "Wyvern_Combat"
 		
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if (gameModeBattleRush)
-	{ 
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); 
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
-	}
+	{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
 	
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
     if ((isBSRActive) && (gameModeBattleRush))
@@ -30,6 +26,13 @@ Code "Wyvern_Combat"
 		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 115000); 
 		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
 		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3500);
+	}
+	
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+    if ((gameModeBossRush) || (gameModeBattleRush))
+	{ 
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
 	}
 		
     if (!IsConfigInitialised)

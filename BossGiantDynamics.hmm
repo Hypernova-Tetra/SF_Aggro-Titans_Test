@@ -28,7 +28,6 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	bool isKronosOpenZ = (LevelInfo.GetCurrentStageID() == "w1r03");
 	bool isKronosBttle = (LevelInfo.GetCurrentStageID() == "w1b01");
 	bool isKronosTrial = (LevelInfo.GetCurrentStageID() == "w1t01");
-	bool isGigantoActiveSkipF2 = evtPlayer->IsEventPlaying("bo1141");
 	
 	WriteProtected<byte>
 	( /* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
@@ -57,14 +56,15 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
 	}
 	
-	if (isGigantoActiveSkipF2)
+	bool isGigantoSkip = evtPlayer->IsEventPlaying("bo1141");
+	if (isGigantoSkip)
 	{
 		if ((isKronosOpenZ) || (isKronosBttle))
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
-		
+			
 		if (isKronosTrial)
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1142");
@@ -73,14 +73,12 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	}
 }
 
-Code "Giganto Dynamics" by "Hypernova" rewritten by "Gordon Ramsay"
+Code "Giganto Dynamics" by "Hypernova"
 //
 	#lib "GameManager"
-	#lib "Reflection"
-	#lib "EventPlayer"
 	#lib "GameObject"
-	#lib "GameMode"
-	#lib "Lua"
+	#lib "EventPlayer"
+	#lib "Reflection"
 	#lib "Player"
 	#lib "Sonic"
 	
@@ -88,7 +86,6 @@ Code "Giganto Dynamics" by "Hypernova" rewritten by "Gordon Ramsay"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	
 	#include "Reflection" noemit
 	
 	static long AdCyloopAtk = 0;
@@ -97,65 +94,54 @@ Code "Giganto Dynamics" by "Hypernova" rewritten by "Gordon Ramsay"
 	static long Address1180 = 0;
 	static long AttackShout = 0;
 //
-{
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (pBlackboardStatus == null || Player.GetPlayerType() != Player.PlayerType.Sonic || Lua.GetState() == 0)
+{	
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
 		return;
 	
-	// These should be okay since they should only execute once
-	if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
-	if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
-	if (AdCyloopPry == 0) { /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
-	if (AdAtkCnSp02 == 0) { /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
-	if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
 	
-	// Only get the bools when we absolutely need them
-	bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
-	if (SuperBattle)
+	bool isGiganto = (GameManager.GetGameObject("Giant0") != null);
+	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
+	
+	if ((isGiganto) && (SuperBattle))
 	{
-		bool isGiganto = (GameManager.GetGameObject("Giant0") != null); // This check is probably more expensive, so let's do it later
-		if (isGiganto)
-		{			
-			if (Lua.Call<int>("IsPlayingDiEventAll") == 1)
-			{
-				var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-				if (evtPlayer == null)
-				return;
+		if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
+		if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
+		if (AdCyloopPry == 0) { /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
+		if (AdAtkCnSp02 == 0) { /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
+		if (Address1180 == 0) {/* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx");}
+		
+		string eventName = evtPlayer->GetCurrentEventName();
+		switch (eventName)
+		{
+			case "bo1120":
+			case "bo1121":
+			case "bo1122":
+				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
+				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
+				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
+				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
+			break;
 			
-				string eventName = evtPlayer->GetCurrentEventName();
-				switch (eventName)
-				{
-					case "bo1120":
-					case "bo1121":
-					case "bo1151":
-					case "bo1160":
-					case "bo1170":
-						WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
-						WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
-						WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
-						WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
-						WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
-						break;
-						
-					case "bo1140":
-					case "bo1142":
-						WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
-						WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
-						WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
-						WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
-						WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
-						break;
-						
-					case "bo1145":
-					case "bo1146":
-						WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
-						WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
-						WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
-						WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));
-						WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
-						break;	
-				}
-			}
+			case "bo1140":
+				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
+				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
+				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
+				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
+			break;
+			
+			case "bo1142":
+				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
+				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
+				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));
+				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
+			break;
 		}
 	}
 }

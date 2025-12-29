@@ -37,8 +37,8 @@ Code "Skippable Cutscenes Knight" by "Hypernova"
 	
 	if ((isChaosOpenZ) || (isChaosBttle))
 	{	
-		bool isKnightActiveSkipF2 = evtPlayer->IsEventPlaying("bo3141");
-		if (isKnightActiveSkipF2)
+		bool isKnightSkipF2 = evtPlayer->IsEventPlaying("bo3141");
+		if (isKnightSkipF2)
 		{
 			var setupData = new EventPlayer.EventSetupData("bo3140");
 			evtPlayer->PlayEvent(ref setupData);
@@ -94,32 +94,16 @@ Code "Knight Dynamics" by "Hypernova"
 		return;	
 	
 	string currentStage = LevelInfo.GetCurrentStageID();
-	
-	bool eventKnightStart = evtPlayer->IsEventPlaying("bo3120");
-	bool eventKnightTStrt = evtPlayer->IsEventPlaying("bo3122");
-	bool eventKnightPhse2 = evtPlayer->IsEventPlaying("bo3140");
-	bool eventKnightPhze2 = evtPlayer->IsEventPlaying("bo3145");
-	bool isKnight = (GameManager.GetGameObject("Knight0") != null);
-	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
-	bool isChaosOpenZ = (LevelInfo.GetCurrentStageID() == "w3r01");
-	bool isChaosBttle = (LevelInfo.GetCurrentStageID() == "w3b01");
-	bool isChaosTrial = (LevelInfo.GetCurrentStageID() == "w3t01");
-	
+		
+	bool isKnight = (GameManager.GetGameObject("Knight0") != null);	
 	if (isKnight)
 	{
-		if (Address3120 == 0)
-		{/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");}
-	
-		if (Address3180 == 0)
-		{/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");}
+		if (Address3120 == 0) {/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");}
+		if (Address3180 == 0) {/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");}
+		if (AddressSP02 == 0) {/* 0x14145C1F8 */ AddressSP02 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
+		if (AdSwordLast == 0) {/* 0x14145C278 */ AdSwordLast = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
 		
-		if (AddressSP02 == 0)
-		{/* 0x14145C1F8 */ AddressSP02 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
-		
-		if (AdSwordLast == 0)
-		{/* 0x14145C278 */ AdSwordLast = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
-			
-		if (isChaosTrial)
+		if (LevelInfo.GetCurrentStageID() == "w3t01")
 		{
 			WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3122")); 
 			WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));
@@ -129,16 +113,31 @@ Code "Knight Dynamics" by "Hypernova"
 			WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));
 			WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2"));
 		}
-		
-		if (isChaosBttle)
-		{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
-		else
-		{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
 	
-		if ((eventKnightStart) || (eventKnightTStrt))
-		{ WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180")); }
-		
-		if ((eventKnightPhse2) || (eventKnightPhze2))
-		{ WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181")); }
+		bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
+		if (SuperBattle)
+		{
+			if (LevelInfo.GetCurrentStageID() == "w3b01")
+			{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
+			else
+			{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+			
+			if (Lua.Call<int>("IsPlayingDiEventAll") == 1)
+			{
+				string eventName = evtPlayer->GetCurrentEventName();
+				switch (eventName)
+				{
+					case "bo3120":
+					case "bo3122":
+						WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180"));
+						break;
+					
+					case "bo3140":
+					case "bo3145":
+						WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181"));
+						break;	
+				}
+			}
+		}
 	}
-}	
+}
