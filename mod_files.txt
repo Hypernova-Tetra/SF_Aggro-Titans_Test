@@ -410,7 +410,6 @@ delete Main/raw/boss/knight01.pac
 
 delete Main/raw/event/scene/zev_dragon_laser.pac
 delete Main/raw/event/scene/zev_dragon_sp_laser.pac
-delete Main/raw/event/scene/zev_rfl_sp01.pac
 delete Main/raw/event/scene/zev_rfl_sp02.pac
 delete Main/raw/event/scene/zev_knight_shieldride01_aerial.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage03.pac
