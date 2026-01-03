@@ -25,49 +25,37 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
-	bool isKronosOpenZ = (LevelInfo.GetCurrentStageID() == "w1r03");
-	bool isKronosBttle = (LevelInfo.GetCurrentStageID() == "w1b01");
-	bool isKronosTrial = (LevelInfo.GetCurrentStageID() == "w1t01");
-	
-	WriteProtected<byte>
-	( /* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
-	
-	WriteProtected<byte>
-	( /* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141"));
-	
 	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (BO1160 == 0) { /* 0x141453520 */ BO1160 = ScanSignature ("bo1160", "xxxxxx"); }
 	
-	if (isKronosOpenZ)
+	if (LevelInfo.GetCurrentStageID() == "w1r03")
 	{
 		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
 		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160")); 
 	}
 	
-	if (isKronosBttle)
+	if (LevelInfo.GetCurrentStageID() == "w1b01")
 	{
 		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
 		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151"));
 	}
 	
-	if (isKronosTrial)
+	if (LevelInfo.GetCurrentStageID() == "w1t01")
 	{
 		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); 
 		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
 	}
 	
-	bool isGigantoSkip = evtPlayer->IsEventPlaying("bo1141");
-	if (isGigantoSkip)
+	if (evtPlayer->IsEventPlaying("bo1141"))
 	{
-		if ((isKronosOpenZ) || (isKronosBttle))
-		{
-			var setupData = new EventPlayer.EventSetupData("bo1140");
-			evtPlayer->PlayEvent(ref setupData);
-		}
-			
-		if (isKronosTrial)
+		if (LevelInfo.GetCurrentStageID() == "w1t01")
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1142");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+		else
+		{
+			var setupData = new EventPlayer.EventSetupData("bo1140");
 			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
@@ -103,16 +91,13 @@ Code "Giganto Dynamics" by "Hypernova"
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
 	
-	bool isGiganto = (GameManager.GetGameObject("Giant0") != null);
-	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
-	
-	if ((isGiganto) && (SuperBattle))
+	if ((GameManager.GetGameObject("Giant0") != null) && (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
 	{
 		if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
 		if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
 		if (AdCyloopPry == 0) { /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
 		if (AdAtkCnSp02 == 0) { /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
-		if (Address1180 == 0) {/* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx");}
+		if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
 		
 		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)

@@ -181,8 +181,7 @@ Code "Sonic Battle Edits"
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[5], SonicParameters.Action.HomingShot);
 		
 		bool isCond1 = ((BossRifleSp00 == 1) && (isRiflebeast))
-		bool isCond2 = ((BossRifleSp00 == 0) && (isRiflebeast))
-		if ((isCond1) || (isCond2))
+		if (isCond1)
 		{
 			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 			{

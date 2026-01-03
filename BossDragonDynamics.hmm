@@ -19,15 +19,8 @@ Code "Skippable Cutscenes Wyvern" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-		
-	WriteProtected<byte>
-	( /* 0x14144C988 */ ScanSignature ("boss_giant02_bo2140", "xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
-
-	WriteProtected<byte>
-	( /* 0x14144C97C */ ScanSignature ("bo2140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2141"));
 	
-	bool isWyvernSkipF2 = evtPlayer->IsEventPlaying("bo2141");
-	if (isWyvernSkipF2)
+	if (evtPlayer->IsEventPlaying("bo2141"))
 	{
 		var setupData = new EventPlayer.EventSetupData("bo2140");
 		evtPlayer->PlayEvent(ref setupData);
@@ -67,9 +60,8 @@ Code "Wyvern Dynamics" by "Hypernova"
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
-
-	bool isWyvern = (GameManager.GetGameObject("Dragon0") != null);
-	if (isWyvern)
+	
+	if (GameManager.GetGameObject("Dragon0") != null)
 	{
 		if (AddressSp01 == 0) {/* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx");}
 		if (AdCntrLsr01 == 0) {/* 0x14144B308 */ AdCntrLsr01 = ScanSignature ("attack_counter01_r", "xxxxxxxxxxxxxxxxxx");}
@@ -99,8 +91,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				break;
 		}
 	
-		bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
-		if (SuperBattle)
+		if (BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle))
 		{
 			switch (eventName)
 			{

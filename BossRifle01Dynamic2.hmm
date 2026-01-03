@@ -39,11 +39,9 @@ Code "Supreme Dynamics" by "Hypernova" rewritten by "Gordon Ramsay"
 	if (AdCyPry == 0) { /* 0x14140F6A0 */ AdCyPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
 	
 	// Only get the bools when we absolutely need them
-	bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
-	if (SuperBattle)
+	if (BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle))
 	{
-		bool isSupreme = (GameManager.GetGameObject("Rifle0") != null); // This check is probably more expensive, so let's do it later
-		if (isSupreme)
+		if (GameManager.GetGameObject("Rifle0") != null) // This check is probably more expensive, so let's do it later
 		{
 			WriteProtected<byte>(AdCyAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
 			WriteProtected<byte>(AdCyPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
