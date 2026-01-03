@@ -48,6 +48,9 @@ add Main/raw/event/scene/zev_rfl_sp01.pac
 add Main/raw/event/scene/zev_rfl_wing.pac
 add Main/raw/event/scene/zev_rfl_wng1.pac
 add Main/raw/event/scene/zev_rfl_wng2.pac
+add Main/raw/event/scene/zev_sp_riflebst01
+add Main/raw/event/scene/zev_sp_riflebst02
+
 add Main/raw/event/scene/zev_spider_dive_again.pac
 add Main/raw/event/scene/zev_spider_dive_start.pac
 

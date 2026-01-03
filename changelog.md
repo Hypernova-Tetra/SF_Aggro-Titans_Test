@@ -14,6 +14,7 @@
 * Reduced loading time for Winglaser QTE
 * ***RifleBeast Changes***
 * Reduced loading time for Darkball QTE and updated its animation.
+* Fixing oversights.
 
 
 
