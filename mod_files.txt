@@ -58,8 +58,6 @@ add Main/raw/general/resident_general/se_rangers_sys.acb
 
 add Main/raw/misc/bossrush.pac
 
-add Main/raw/movie/bo2140.usm
-add Main/raw/movie/bo2141.usm
 add Main/raw/movie/bo4140.usm
 add Main/raw/movie/bo4141.usm
 add Main/raw/movie/bo4162.usm
@@ -425,6 +423,8 @@ delete Main/raw/hedgehog/level/master.levels
 delete Main/raw/hedgehog/level/
 delete Main/raw/hedgehog/
 
+delete Main/raw/movie/bo2140.usm
+delete Main/raw/movie/bo2141.usm
 delete Main/raw/movie/bo1141.usm
 delete Main/raw/movie/bo3141.usm
 delete Main/raw/movie/bo4160.usm
