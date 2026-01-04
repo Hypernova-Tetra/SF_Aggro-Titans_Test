@@ -86,23 +86,11 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	
 	if (!smashBool)
 		return;
-	else
 	{
-		bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
-		if (SuperBattle && GameManager.GetGameObject("RifleBeast0") != null)
-		{
-			var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
-			if (SonicParametersInfo.pData == null)
-			return;
-			
-			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.Smash);
-			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
-			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
-		}
-		
 		if (AddressSplDmg == 0)
 		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 	
+		bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
 		if (SuperBattle && GameManager.GetGameObject("Rifle0") != null)
 		{
 			if (!hasWrittenCyloop)
@@ -125,8 +113,6 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 					currentRings = Math.Max(maxRings, currentRings + 10);
 					pBlackboardItem->RingCount = currentRings;
 				}
-
-
 			}
 			resetAfterFight = true;
 			int isPlayingGrandS1 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_grandsmash");
@@ -167,6 +153,5 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 			resetAfterFight = false;
 			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
 		}
-
 	}
 }

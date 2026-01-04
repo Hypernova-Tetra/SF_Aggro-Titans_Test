@@ -201,6 +201,10 @@ Code "Sonic Battle Edits"
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[3], SonicParameters.Action.ChargeAttack);
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.cyloop.lossQuickCyloopEnergy, 40.0f);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.Smash);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
 			}
 			else
 			{	
@@ -226,6 +230,10 @@ Code "Sonic Battle Edits"
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.cyloop.lossQuickCyloopEnergy, 60.0f);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.Root);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
 			}
 		}
 		else 
@@ -254,6 +262,10 @@ Code "Sonic Battle Edits"
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.cyloop.lossQuickCyloopEnergy, 40.0f);
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.Root);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
+				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
 			}
 		}
 	}
