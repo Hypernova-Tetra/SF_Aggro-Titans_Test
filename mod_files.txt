@@ -48,6 +48,7 @@ add Main/raw/event/scene/zev_rfl_sp01.pac
 add Main/raw/event/scene/zev_rfl_wing.pac
 add Main/raw/event/scene/zev_rfl_wng1.pac
 add Main/raw/event/scene/zev_rfl_wng2.pac
+add Main/raw/event/scene/zev_sp_riflebeast.pac
 add Main/raw/event/scene/zev_sp_riflebst01
 add Main/raw/event/scene/zev_sp_riflebst02
 

@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2025.12.29
+# **Aggro-Titans Starfall**- 2026.01.09
 
 
 
@@ -8,30 +8,30 @@
 
 
 
-### ***Aggro-Titans version 1.39***
+##### ***Aggro-Titans*** *(Test) **1.39***
 
 * ***Rifle01 Changes***
 * Reduced loading time for Winglaser QTE
 * ***RifleBeast Changes***
 * Reduced loading time for Darkball QTE and updated its animation.
 * Fixing oversights.
+* Readded "Zev\_Sp\_Riflebeast.pac" from RTDE incase certain Sonic skins do not have SuperSonicCyber and SuperSonicDamage assets.
 
 
 
-### ***Aggro-Titans version 1.38***
+##### ***Aggro-Titans*** *(Test) **1.38***
 
 * Supreme's QTE dynamic script rewritten by GordonRamsy (Huge Thanks)
 * Some adjustments to code files.
 
 
 
-### ***Aggro-Titans version 1.37***
+##### ***Aggro-Titans*** *(Test) **1.37***
 
 * ***Giant01 Changes***
 * Updated Giganto's ImmediateActions between base game and Master King Trials
 * Changes to "AT\_HOWL" in where the attack itself will now play sound effects.
 * Changes to "AT\_COUNTER\_SP\_01" in where '@attack\_counter\_bite\_end.cam-anim' is now more accurate to the Frontiers 2021 Beta leak footage.
-* Changes to "AT\_JUMP" in where Giganto will jump twice when the attack is activated.
 * Implemented a leftover action for "AT\_COUNTER\_SP\_03" in Master King's Trial for Giganto to play a previously unused laser attack animation.
 * Giganto Finale option adjusted.
 * "Tru-Blu Giganto Finale" moved to Master King's Trial.
@@ -76,13 +76,13 @@
 
 
 
-##### ***Aggro-Titans version 1.36***
+##### ***Aggro-Titans*** *(Test) **1.36***
 
 * Further tweaks to Super Sonic 2's transformation for the "Edited" Animation type: Now references the Final Horizons Trailer camera panning when first transforming.
 
 
 
-##### ***Aggro-Titans version 1.35***
+##### ***Aggro-Titans*** *(Test) **1.35***
 
 * Overhauled Monologue entries, less folders, more streamlined.
 * Some tweaks in bo6120, bo6165, and bo6190.
@@ -90,7 +90,7 @@
 
 
 
-##### ***Aggro-Titans version 1.34***
+##### ***Aggro-Titans*** *(Test) **1.34***
 
 * Fixed a typo in one of the config values
 * Update Sonic 0 Ring Cutscene for Phase 2 in Supreme's fight.
@@ -98,7 +98,7 @@
 
 
 
-##### ***Aggro-Titans version 1.33***
+##### ***Aggro-Titans*** *(Test) **1.33***
 
 * Updated code to have "AT\_Tackle" be automatically disabled when "Unused Grand Slam Event" option is selected for Supreme.
 * Added Tru-Blu animation for Super Sonic Transformation for Master King's Trial only.
@@ -107,14 +107,14 @@
 
 
 
-##### ***Aggro-Titans version 1.32***
+##### ***Aggro-Titans*** *(Test) **1.32***
 
 * BossEvent.hmm and BossTitanFinish.hmm files removed.
 * Added "Boss(Name)Dynamics" hmm files for their respective Titan bosses and the code for "TitanFinish" is moved to the Dynamics hmm files based on the respective Titan.
 
 
 
-##### ***Aggro-Titans version 1.31***
+##### ***Aggro-Titans*** *(Test) **1.31***
 
 * Updated "bo3xxx.pac" Super Sonic now shows up when the Super Sonic transformation scene transitions to the fight.
 * Updated Grand Slam scene file for Riflebeast in name only for Phase 1 to avoid conflicts with Sonic skin mods.
