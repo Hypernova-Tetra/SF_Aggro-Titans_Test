@@ -64,6 +64,9 @@ Code "Monologue" by "Hypernova"
 		if (ZevAura == 1)
 		{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6181")); }
 		
+		if (ZevAura == 2)
+		{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6182")); }
+		
 		if (SupremeM == 0) // Default Intro
 		{ WriteProtected<byte>(Addressbo6110, System.Text.Encoding.UTF8.GetBytes("bo6110")); }
 	
@@ -75,12 +78,18 @@ Code "Monologue" by "Hypernova"
 		
 		if ((SupremeA == 0) && (ZevAura == 1)) // Blue Aura
 		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0B")); }
+		
+		if ((SupremeA == 0) && (ZevAura == 2)) // Asu-Purple Aura
+		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0P")); }
 	
 		if ((SupremeA == 1) && (ZevAura == 0)) // Edited Animation
 		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0E")); }
 		
 		if ((SupremeA == 1) && (ZevAura == 1)) // Edited Animation Blue Aura
 		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1B")); }
+		
+		if ((SupremeA == 1) && (ZevAura == 2)) // Edited Animation Asu-Purple Aura
+		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1P")); }
 	
         if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 0)) // bo61x0 - Default
         { 
@@ -98,6 +107,14 @@ Code "Monologue" by "Hypernova"
 			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6166"));
 			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6191"));
 		}
+		if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 2)) // bo61x2 - Default with Asu-Purple Aura
+        { 
+			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6122"));
+			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6142"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
+			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6167"));
+			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6192"));
+		}
         if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 0)) // bo62x0 - Monologue Active
         {
 			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6220"));
@@ -105,7 +122,6 @@ Code "Monologue" by "Hypernova"
 			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6260"));
 			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6265"));
 			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6290"));
-			WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_rifleboss"));
 		}
 		if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 1)) // bo62x1 - Monologue with Blue Aura
         {
@@ -114,13 +130,20 @@ Code "Monologue" by "Hypernova"
 			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6261"));
 			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6266"));
 			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6291"));
-			WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs01"));
+		}
+		if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 2)) // bo62x2 - Monologue with Asu-Purple Aura
+        {
+			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6222"));
+			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6242"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
+			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6267"));
+			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
 		}
 		if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 0)) // bo63x0 - Edited Animation with Default Aura
         { 
 			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6320"));
 			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6340"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6360"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6160"));
 			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6365"));
 			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6390"));
 		}
@@ -128,15 +151,23 @@ Code "Monologue" by "Hypernova"
         { 
 			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6321"));
 			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6341"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6361"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6161"));
 			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6366"));
 			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6391"));
+		}
+		if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 2)) // bo63x2 - Edited Animation with Asu-Purple Aura
+        { 
+			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6322"));
+			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6342"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
+			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6367"));
+			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6392"));
 		}
         if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 0)) // bo64x0 - Monologue with Edited Animation and Default Aura
         {
 			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6420"));
 			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6440"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6460"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6260"));
 			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6465"));
 			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6490"));
 		}
@@ -144,9 +175,17 @@ Code "Monologue" by "Hypernova"
         {
 			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6421"));
 			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6441"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6461"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6261"));
 			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6466"));
 			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6491"));
+		}
+		if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 2)) // bo64x2 - Monologue with Edited Animation and Asu-Purple Aura
+        {
+			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6422"));
+			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6442"));
+			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
+			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6467"));
+			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6492"));
 		}
     }
 }
@@ -209,7 +248,15 @@ Code "Darkball QTE" by "Hypernova"
 					WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB1"));
 					WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstB1"));
 					break;
-						
+				
+				case "bo6122":
+				case "bo6222":
+				case "bo6322":
+				case "bo6422":
+					WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsP1"));
+					WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstP1"));
+					break;
+				
 				case "bo6140":
 				case "bo6240":
 				case "bo6340":
@@ -224,6 +271,14 @@ Code "Darkball QTE" by "Hypernova"
 				case "bo6441":
 					WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB2"));
 					WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstB2"));
+					break;
+					
+				case "bo6142":
+				case "bo6242":
+				case "bo6342":
+				case "bo6442":
+					WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsP2"));
+					WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstP2"));
 					break;
 			}
 		}
@@ -266,6 +321,13 @@ Code "Darkball QTE" by "Hypernova"
 				case "bo6366":
 				case "bo6466":
 					WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB3"));
+					break;
+					
+				case "bo6167":
+				case "bo6267":
+				case "bo6367":
+				case "bo6467":
+					WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsP3"));
 					break;
 			}
 		}

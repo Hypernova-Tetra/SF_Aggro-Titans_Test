@@ -397,6 +397,11 @@
 			"Value":"1",
 			"Description":["Blue Aura outline"]
 			},
+			{
+			"DisplayName":"Asu-Purple Aura",
+			"Value":"2",
+			"Description":["When using Asu's Hyper Sonic mod when using the light purple outline color."]
+			},
 		],
 		"BossDarkballQTE":
 		[
