@@ -1,0 +1,124 @@
+Code "Skippable Cutscenes Knight" by "Hypernova"
+//
+	#include "Reflection" noemit
+	#lib "GameManager"
+	#lib "EventPlayer"
+	#lib "GameObject"
+	#lib "BlackboardStatus"
+	#lib "Reflection"
+    #lib "HMM"
+	#lib "INI"
+	#lib "Lua"
+	
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+//
+{
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+		
+	string currentStage = LevelInfo.GetCurrentStageID();
+				
+	if (Lua.Call<int>("IsPlayingDiEventAll") == 1)
+	{
+		if (Lua.Call<int>("IsPlayingDiEvent", "bo3141") == 1) 
+		{					
+			if (LevelInfo.GetCurrentStageID() == "w3t01")
+			{
+				var setupData = new EventPlayer.EventSetupData("bo3145");
+				evtPlayer->PlayEvent(ref setupData);
+			}
+			else
+			{
+				var setupData = new EventPlayer.EventSetupData("bo3140");
+				evtPlayer->PlayEvent(ref setupData);
+			}
+			
+			if (Lua.Call<int>("IsPlayingDiEvent", "bo3145") == 1) 
+			{	
+				var setupData = new EventPlayer.EventSetupData("zev_knight_shieldride02_aerial");
+				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+				evtPlayer->PlayEvent(ref setupData);
+			}
+		}
+	}
+}
+
+Code "Knight Dynamics" by "Hypernova"
+//
+	#lib "GameManager"
+	#lib "GameObject"
+	#lib "EventPlayer"
+	#lib "Reflection"
+	#lib "Player"
+	#lib "Sonic"
+	
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	#include "Reflection" noemit
+	
+	static long AddressSP02 = 0;
+	static long AdSwordLast = 0;
+	static long Address3120 = 0;
+	static long Address3180 = 0;
+//
+{
+	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
+	if (evtPlayer == null)
+		return;
+	
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;	
+	
+	string currentStage = LevelInfo.GetCurrentStageID();
+	
+	if (GameManager.GetGameObject("Knight0") != null)
+	{
+		if (Address3120 == 0) {/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");}
+		if (Address3180 == 0) {/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");}
+		if (AddressSP02 == 0) {/* 0x14145C1F8 */ AddressSP02 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
+		if (AdSwordLast == 0) {/* 0x14145C278 */ AdSwordLast = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
+		
+		if (LevelInfo.GetCurrentStageID() == "w3t01")
+		{
+			WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3122")); 
+			WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));
+		}
+		else
+		{ 
+			WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));
+			WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2"));
+		}
+	
+		if (BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle))
+		{
+			if (LevelInfo.GetCurrentStageID() == "w3b01")
+			{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
+			else
+			{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }
+			
+			if (Lua.Call<int>("IsPlayingDiEventAll") == 1)
+			{
+				string eventName = evtPlayer->GetCurrentEventName();
+				switch (eventName)
+				{
+					case "bo3120":
+					case "bo3122":
+						WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180"));
+						break;
+					
+					case "bo3140":
+					case "bo3145":
+						WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181"));
+						break;	
+				}
+			}
+		}
+	}
+}

@@ -81,6 +81,10 @@ add Main/raw/movie/zev_sp_riflebstB1.usm
 add Main/raw/movie/zev_sp_riflebstB1_4k.usm
 add Main/raw/movie/zev_sp_riflebstB2.usm
 add Main/raw/movie/zev_sp_riflebstB2_4k.usm
+add Main/raw/movie/zev_sp_riflebstP1.usm
+add Main/raw/movie/zev_sp_riflebstP1_4k.usm
+add Main/raw/movie/zev_sp_riflebstP2.usm
+add Main/raw/movie/zev_sp_riflebstP2_4k.usm
 
 add Main/raw/sound/giantEX_sound/se_rangers_giant00.acb
 add Main/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
