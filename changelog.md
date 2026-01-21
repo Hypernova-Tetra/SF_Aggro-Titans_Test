@@ -1,10 +1,10 @@
-# **Aggro-Titans Starfall**- 2026.01.16
+# **Aggro-Titans Starfall**- 2026.01.21
 
 
 
 ### ***Aggro-Titans 1.4 Update***
 
-* Late January or February 2026 depending on development issues.
+* Planned release somewhere in February 2026.
 * Test version bumped to 1.4.
 
 
@@ -18,6 +18,7 @@
 * Fixing oversights.
 * Readded "Zev\_Sp\_Riflebeast.pac" from RTDE incase certain Sonic skins do not have SuperSonicCyber and SuperSonicDamage assets.
 * New config option for Super Sonic 2's aura color.
+* Updated Supreme's "AT\_CounterBlow" rng script to add a new attack.
 
 
 
