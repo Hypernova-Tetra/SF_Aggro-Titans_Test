@@ -91,15 +91,16 @@ Code "Giganto Dynamics" by "Hypernova"
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
 	
+	string eventName = evtPlayer->GetCurrentEventName();
+	
+	if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
+	if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
+	if (AdCyloopPry == 0) { /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
+	if (AdAtkCnSp02 == 0) { /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
+	if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
+	
 	if ((GameManager.GetGameObject("Giant0") != null) && (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
 	{
-		if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
-		if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
-		if (AdCyloopPry == 0) { /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
-		if (AdAtkCnSp02 == 0) { /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
-		if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
-		
-		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)
 		{
 			case "bo1120":
@@ -111,7 +112,7 @@ Code "Giganto Dynamics" by "Hypernova"
 				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
 				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
 			break;
-			
+		
 			case "bo1140":
 				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
 				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));

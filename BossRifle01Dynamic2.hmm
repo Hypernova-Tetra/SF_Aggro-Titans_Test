@@ -97,6 +97,15 @@ Code "Supreme Dynamics" by "Hypernova" rewritten by "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
 						break;
+						
+					case "zev_rfl_laser0b":
+					case "zev_rfl_gunlaser01":
+						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser02"));
+						break;
+					
+					case "zev_rfl_gunlaser02":
+						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser01"));
+						break;
 					
 					case "bo4140":
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX2"));

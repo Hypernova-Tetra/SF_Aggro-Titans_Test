@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.01.21
+# **Aggro-Titans Starfall**- 2026.01.23
 
 
 
@@ -19,6 +19,8 @@
 * Readded "Zev\_Sp\_Riflebeast.pac" from RTDE incase certain Sonic skins do not have SuperSonicCyber and SuperSonicDamage assets.
 * New config option for Super Sonic 2's aura color.
 * Updated Supreme's "AT\_CounterBlow" rng script to add a new attack.
+* Fixed a broken Darkball Scene of Sonic going back to his powered-up Super state when using Blue or Purple Aura color option.
+* Small update to Supreme's moveset.
 
 
 
