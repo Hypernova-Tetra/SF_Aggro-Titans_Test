@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.01.23
+# **Aggro-Titans Starfall**- 2026.01.29
 
 
 
@@ -22,6 +22,7 @@
 * Small update to Supreme's moveset.
 * Fixed a broken Darkball Scene of Sonic going back to his powered-up Super state when using Blue or Purple Aura color option.
 * Fixed several bo6xxx dvscene files that had incorrect Resource Pointers, causing game crashes.
+* Removed a few hmm files, merging "Dynamic" scripts in to their respective boss name file.
 
 
 

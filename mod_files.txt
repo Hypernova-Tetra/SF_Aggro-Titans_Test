@@ -486,22 +486,23 @@ add AshEventLibrary.hmm
 add BossConfig.json
 add BossCutsceneAudio.hmm
 add BossGiant01.hmm
-add BossGiantDynamics.hmm
 add BossDragon01.hmm
-add BossDragonDynamics.hmm
 add BossKnight01.hmm
-add BossKnightDynamics.hmm
 add BossRifle01.hmm
-add BossRifle01Dynamic1.hmm
-add BossRifle01Dynamic2.hmm
-add BossRifle01Bossbit.hmm
 add BossRifle01Smash.hmm
 add BossRifleBeast.hmm
-add BossRifleBeastDynamics.hmm
 add BossRush.hmm
 add BossSonicComboTweaks.hmm
 add mod.ini
 add CombatDX.dll
+
+delete BossGiantDynamics.hmm
+delete BossDragonDynamics.hmm
+delete BossKnightDynamics.hmm
+delete BossRifle01Bossbit.hmm
+delete BossRifle01Dynamic1.hmm
+delete BossRifle01Dynamic2.hmm
+delete BossRifleBeastDynamics.hmm
 
 delete Main/raw/boss/dragon01.pac
 delete Main/raw/boss/knight01.pac
