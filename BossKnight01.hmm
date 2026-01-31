@@ -16,6 +16,8 @@ Code "Knight_Combat"
 	if (BossKnightConfigInfo.pData == null)
 		return;
 		
+	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.625f);
+		
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if (gameModeBattleRush)
 	{
