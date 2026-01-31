@@ -395,10 +395,13 @@ Code "Supreme moveset" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 70);
 				
-			if (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spX1") == 1)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE); }
-			
-			if (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser00") == 1)
+			if ((Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spX1") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp02") == 1))
+			{ 
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[0], 0.0f);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[3], 0.0f);
+			}
+			else if (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_laser00") == 1)
 			{
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[0], 0.0f);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[3], 0.0f);
@@ -408,7 +411,6 @@ Code "Supreme moveset" by "Hypernova"
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[0], 6.0f);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[3], 3.0f);
 			}
-			
 		}
 	}
     if ((isBSRActive) && (gameModeBattleRush))
@@ -472,7 +474,16 @@ Code "Supreme moveset" by "Hypernova"
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
 				
 				if (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp02") == 1)
-				{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE); }
+				{
+					RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
+					RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[0], 0.0f);
+					RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[3], 0.0f);
+				}
+				else
+				{
+					RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[0], 6.0f);
+					RFL_SET_PARAM(BossRifleConfigInfo, battleParam.qteSucceedWaitTimes[3], 3.0f);
+				}
 			}
 		}
 	}
