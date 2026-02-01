@@ -488,6 +488,7 @@ add BossCutsceneAudio.hmm
 add BossGiant01.hmm
 add BossDragon01.hmm
 add BossKnight01.hmm
+add BossRifle01Bossbit.hmm
 add BossRifle01.hmm
 add BossRifle01Smash.hmm
 add BossRifleBeast.hmm
@@ -495,14 +496,6 @@ add BossRush.hmm
 add BossSonicComboTweaks.hmm
 add mod.ini
 add CombatDX.dll
-
-delete BossGiantDynamics.hmm
-delete BossDragonDynamics.hmm
-delete BossKnightDynamics.hmm
-delete BossRifle01Bossbit.hmm
-delete BossRifle01Dynamic1.hmm
-delete BossRifle01Dynamic2.hmm
-delete BossRifleBeastDynamics.hmm
 
 delete Main/raw/boss/dragon01.pac
 delete Main/raw/boss/knight01.pac
@@ -810,9 +803,16 @@ delete MBoss_RifleWingLaser2/raw/event
 delete MBoss_RifleWingLaser2/raw
 delete MBoss_RifleWingLaser2
 
-delete BossEventRifle01.hmm
 delete BossRifleATSHOT2-4.hmm
 delete BossEvent.hmm
+delete BossEventRifle01.hmm
 delete BossTitanFinish.hmm
+
+delete BossGiantDynamics.hmm
+delete BossDragonDynamics.hmm
+delete BossKnightDynamics.hmm
+delete BossRifle01Dynamic1.hmm
+delete BossRifle01Dynamic2.hmm
+delete BossRifleBeastDynamics.hmm
 delete BossRifleDynamics.hmm
 delete BossRifle01Dynamics.hmm
