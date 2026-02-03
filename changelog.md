@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.02.01
+# **Aggro-Titans Starfall**- 2026.02.03
 
 
 
@@ -24,6 +24,7 @@
 * Fixed several bo6xxx dvscene files that had incorrect Resource Pointers, causing game crashes.
 * Removed a few hmm files, merging "Dynamic" scripts in to their respective boss name file.
 * Adjusted "DamageEvent" parameters and the zev file for Knight.
+* Sound Edit option updated in certain cutscenes.
 
 
 

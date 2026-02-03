@@ -202,6 +202,7 @@ add MBoss_Audio_0rgn/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_0rgn/raw/sound/rifle01_sound/se_rangers_giant04.acb
 add MBoss_Audio_0rgn/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
 
+add MBoss_Audio_Edit/raw/movie/bo2115.usm
 add MBoss_Audio_Edit/raw/movie/bo6120.usm
 add MBoss_Audio_Edit/raw/movie/bo6120_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6121.usm
@@ -214,6 +215,9 @@ add MBoss_Audio_Edit/raw/movie/bo6141.usm
 add MBoss_Audio_Edit/raw/movie/bo6141_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6142.usm
 add MBoss_Audio_Edit/raw/movie/bo6142_4k.usm
+add MBoss_Audio_Edit/raw/movie/bo6160.usm
+add MBoss_Audio_Edit/raw/movie/bo6161.usm
+add MBoss_Audio_Edit/raw/movie/bo6162.usm
 add MBoss_Audio_Edit/raw/movie/bo6165.usm
 add MBoss_Audio_Edit/raw/movie/bo6165_4k.usm
 add MBoss_Audio_Edit/raw/movie/bo6166.usm
