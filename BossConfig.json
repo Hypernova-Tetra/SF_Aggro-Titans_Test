@@ -68,15 +68,6 @@
 				"DefaultValue":"0"
 				},
 				{
-				"Name":"BossGiant1160",
-				"DisplayName":"Giganto Finale",
-				"Description":["Choose the scene of Giganto's defeat."],
-				"Type":"BossGiantFinale",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"0"
-				},
-				{
 				"Name":"BossRifleStart",
 				"DisplayName":"Supreme's Intro",
 				"Description":["Choose the scene of Supreme's appearence when the fight starts."],
@@ -213,19 +204,6 @@
 			"Value":"1",
 			"Description":["Changes the animation speed of Loop Kick and Wild Rush so that the attacks go by a bit faster."]
 			}
-		],
-		"BossGiantFinale":
-		[
-			{
-			"DisplayName":"Original",
-			"Value":"0",
-			"Description":["As is in the vanilla game."]
-			},
-			{
-			"DisplayName":"Hypernova Edited",
-			"Value":"1",
-			"Description":["A mix of the original Beta-inspired animation with the vanilla."]
-			},
 		],
 		"TitanSkin1":
 		[

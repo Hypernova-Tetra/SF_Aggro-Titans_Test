@@ -274,6 +274,8 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	if (evtPlayer == null)
 		return;
 	
+	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+	
 	string currentStage = LevelInfo.GetCurrentStageID();
 	
 	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
@@ -282,15 +284,18 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	if (LevelInfo.GetCurrentStageID() == "w1r03")
 	{
 		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
-		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160")); 
+		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151")); 
 	}
-	
 	if (LevelInfo.GetCurrentStageID() == "w1b01")
 	{
 		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
-		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151"));
+		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
 	}
-	
+	if ((isBSRActive) && (LevelInfo.GetCurrentStageID() == "w1b01"))
+	{
+		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
+	}
 	if (LevelInfo.GetCurrentStageID() == "w1t01")
 	{
 		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); 
@@ -381,37 +386,6 @@ Code "Giganto Dynamics" by "Hypernova"
 			break;
 		}
 	}
-}
-
-Patch "Giganto Finale Beta"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-    static bool IsConfigInitialised = false;
-    static bool scene1Bool = false;
-	static int BossGiantFinale = 0;
-//
-{
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		BossGiantFinale = INI.Parse<int>(ini["Main"]["BossGiant1160"], BossGiantFinale);
-        IsConfigInitialised = true;
-		
-		if (BossGiantFinale == 1)
-        { WriteProtected<byte> ( /* 0x141453520 */ ScanSignature ( "bo1160", "xxxxxx" ), System.Text.Encoding.UTF8.GetBytes("bo1170") ); }
-        else
-        { scene1Bool = false; }
-    }
 }
 
 ///

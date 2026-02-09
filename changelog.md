@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.02.03
+# **Aggro-Titans Starfall**- 2026.02.09
 
 
 
@@ -11,20 +11,27 @@
 
 ##### ***Aggro-Titans*** *(Test) **1.39***
 
+* ***General Changes***
+* Fixed a few oversights.
+* Removed a few .hmm files, merging "Dynamic" scripts in to their respective boss name file.
+* ***Wyvern Changes***
+* Fixed Wyvern's Phase 2 Grand Slam (base Story Ares Island) that didn't have sound effects apart from Sonic's voice.
+* ***Knight Changes***
+* Adjusted "DamageEvent" parameters and the zev file for Knight.
 * ***Rifle01 Changes***
-* Reduced loading time for Winglaser QTE
+* Reduced loading time for Winglaser QTE.
+* Small update to Supreme's moveset.
+* Adjusted Supreme's Hand attacks that adds an effect when swiping.
+* Updated Supreme's "AT\_CounterBlow" rng script to add animation "@attack\_counter04".
+* Added "Sp02" alternate animation rng.
 * ***RifleBeast Changes***
 * Reduced loading time for Darkball QTE and updated its animation.
-* Fixing oversights.
-* Readded "Zev\_Sp\_Riflebeast.pac" from RTDE incase certain Sonic skins do not have SuperSonicCyber and SuperSonicDamage assets.
+* Readded "zev\_sp\_riflebeast.pac" from RTDE incase certain Sonic skins do not have SuperSonicCyber and SuperSonicDamage assets.
 * New config option for Super Sonic 2's aura color.
-* Updated Supreme's "AT\_CounterBlow" rng script to add a new attack.
-* Small update to Supreme's moveset.
 * Fixed a broken Darkball Scene of Sonic going back to his powered-up Super state when using Blue or Purple Aura color option.
 * Fixed several bo6xxx dvscene files that had incorrect Resource Pointers, causing game crashes.
-* Removed a few hmm files, merging "Dynamic" scripts in to their respective boss name file.
-* Adjusted "DamageEvent" parameters and the zev file for Knight.
 * Sound Edit option updated in certain cutscenes.
+* Cutscene bo6120 (and variants) have reduced load times. (Finally).
 
 
 
