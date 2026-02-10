@@ -9,7 +9,6 @@ Code "Wyvern_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-    static bool healthBool = false;
 //
 {
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
@@ -56,80 +55,84 @@ Code "Wyvern_Combat"
 		}
         else
         {
-			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 275000);
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 325000);
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 11500);
 			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9000);
 		}
     }
 };
 
-Code "ATK_Scratch 1" by "Ashrindy"
-//
-    static long AdScratch1 = 0;
-    static string[] ATKScr1 = new[]
-    { /* sup */ "attack_light_scratch01_l", };
-//
-{
-    if (AdScratch1 == 0)
-    { /* 0x14144AB18 */ AdScratch1 = ScanSignature ("attack_light_scratch01_l", "xxxxxxxxxxxxxxxxxxxxxxxx");}
-    else
-    {WriteProtected<byte>(AdScratch1, System.Text.Encoding.UTF8.GetBytes(ATKScr1[new Random().Next(0, ATKScr1.Length)]));}
-}
-
-Code "ATK_Scratch 2" by "Ashrindy"
-//
-    static long AdScratch2 = 0;
-    static string[] ATKScr2 = new[]
-    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
-//
-{
-    if (AdScratch2 == 0)
-    {/* 0x14144AB00 */ AdScratch2 = ScanSignature ("attack_scratch02_l","xxxxxxxxxxxxxxxxxx");}
-    else
-    {WriteProtected<byte>(AdScratch2, System.Text.Encoding.UTF8.GetBytes(ATKScr2[new Random().Next(0, ATKScr2.Length)]));}
-}
-
-Code "Counter_Tail Attack" by "Ashrindy"
-//
-    static long AdCounterT = 0;
-    static string[] Counter = new[]
-    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l" };
-//
-{
-    if (AdCounterT == 0)
-    {/* 0x14144ABF8 */ AdCounterT = ScanSignature ("attack_armer02_l", "xxxxxxxxxxxxxxxx");}
-    else
-    {WriteProtected<byte>(AdCounterT, System.Text.Encoding.UTF8.GetBytes(Counter[new Random().Next(0, Counter.Length)]));}
-} 
-
-Code "Wyvern Special Extra" by Hypernova
+Code "Wyvern Things" by Hypernova
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
 	#lib "BossDragonConfig"
     #lib "HMM"
 	#lib "INI"
-    #import "Services"
+	#lib "GameManager"
+	#lib "Player"
+	#lib "Sonic"
 	
-    static bool IsConfigInitialised = false;
+	#import "Services"
+	#import "GOComponents"
+	#import "Graphics"
+	#import "Plugins"
+	
+	static long AdScratch1 = 0;
+    static string[] ATKScr1 = new[]
+    { /* sup */ "attack_light_scratch01_l", };
+	
+	static long AdScratch2 = 0;
+    static string[] ATKScr2 = new[]
+    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
+	
+	static long AdCounterT = 0;
+    static string[] Counter = new[]
+    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l" };
 //
 {
     var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
 	if (BossDragonConfigInfo.pData == null)
 		return;
+		
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (pBlackboardStatus == null || Player.GetPlayerType() != Player.PlayerType.Sonic || Lua.GetState() == 0)
+		return;
+		
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+	if (SonicParametersInfo.pData == null)
+		return;
 	
-	if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01"))
+	if ((GameManager.GetGameObject("Dragon0") != null) && (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
-		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
-		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
-	}
-	
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
-		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
-		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
+		if (AdScratch1 == 0) //Light Scratch
+		{ /* 0x14144AB18 */ AdScratch1 = ScanSignature ("attack_light_scratch01_l", "xxxxxxxxxxxxxxxxxxxxxxxx");}
+		else
+		{WriteProtected<byte>(AdScratch1, System.Text.Encoding.UTF8.GetBytes(ATKScr1[new Random().Next(0, ATKScr1.Length)]));}
+		
+		if (AdScratch2 == 0) //Scratch Normal
+		{/* 0x14144AB00 */ AdScratch2 = ScanSignature ("attack_scratch02_l","xxxxxxxxxxxxxxxxxx");}
+		else
+		{WriteProtected<byte>(AdScratch2, System.Text.Encoding.UTF8.GetBytes(ATKScr2[new Random().Next(0, ATKScr2.Length)]));}
+		
+		if (AdCounterT == 0) //Tail Attack
+		{/* 0x14144ABF8 */ AdCounterT = ScanSignature ("attack_armer02_l", "xxxxxxxxxxxxxxxx");}
+		else
+		{WriteProtected<byte>(AdCounterT, System.Text.Encoding.UTF8.GetBytes(Counter[new Random().Next(0, Counter.Length)]));}
+		
+		if ((LevelInfo.GetCurrentStageID() == "w2r01") || (LevelInfo.GetCurrentStageID() == "w2b01"))
+		{
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
+		}
+		
+		if (LevelInfo.GetCurrentStageID() == "w2t01")
+		{
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
+			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
+		}
 	}
 };
 
@@ -144,11 +147,6 @@ Code "Skippable Cutscenes Wyvern" by "Hypernova"
     #lib "HMM"
 	#lib "INI"
 	#lib "Lua"
-	
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");

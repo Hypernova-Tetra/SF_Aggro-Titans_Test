@@ -9,7 +9,6 @@ Code "Supreme_End_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-    static bool healthBool = false;
 //
 {
     if (!IsConfigInitialised)
@@ -56,7 +55,7 @@ Code "Supreme_End_Combat"
         { 
 			if (BossRifleBeastConfigInfo.pData == null)
 				return;
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 367000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 420000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 4200);
@@ -155,7 +154,6 @@ Code "Monologue" by "Hypernova"
 	static int SupremeM = 0;
 	static int SupremeA = 0;
 	static int ZevAura = 0;
-	static long Addressbo6xxx = 0;
 	static long Addressbo6110 = 0;
 	static long Addressbo6120 = 0;
 	static long Addressbo6140 = 0;

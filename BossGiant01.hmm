@@ -57,7 +57,6 @@ Code "Giganto_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-    static bool healthBool = false;
 //
 {
 	var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
@@ -112,7 +111,7 @@ Code "Giganto_Combat"
 		}
         else
         {
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 250000);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 300000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
@@ -252,7 +251,6 @@ Code "Giganto Blue Rings"
 Code "Skippable Cutscenes Giganto" by "Hypernova"
 //
 	#include "Reflection" noemit
-	#lib "GameManager"
 	#lib "EventPlayer"
 	#lib "GameObject"
 	#lib "BlackboardStatus"
@@ -260,6 +258,9 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
     #lib "HMM"
 	#lib "INI"
 	#lib "Lua"
+	#lib "GameManager"
+	#lib "Player"
+	#lib "Sonic"
 	
 	#import "Services"
 	#import "GOComponents"
@@ -274,6 +275,14 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	if (evtPlayer == null)
 		return;
 	
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (pBlackboardStatus == null || Player.GetPlayerType() != Player.PlayerType.Sonic || Lua.GetState() == 0)
+		return;
+		
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+	if (SonicParametersInfo.pData == null)
+		return;
+	
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 	
 	string currentStage = LevelInfo.GetCurrentStageID();
@@ -281,44 +290,48 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (BO1160 == 0) { /* 0x141453520 */ BO1160 = ScanSignature ("bo1160", "xxxxxx"); }
 	
-	if (LevelInfo.GetCurrentStageID() == "w1r03")
-	{
-		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
-		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151")); 
-	}
-	if (LevelInfo.GetCurrentStageID() == "w1b01")
-	{
-		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
-		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
-	}
-	if ((isBSRActive) && (LevelInfo.GetCurrentStageID() == "w1b01"))
-	{
-		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
-		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
-	}
-	if (LevelInfo.GetCurrentStageID() == "w1t01")
-	{
-		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); 
-		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
-	}
-	
-	if (evtPlayer->IsEventPlaying("bo1141"))
-	{
+	if (GameManager.GetGameObject("Giant0") != null)
+	{	
+		if (LevelInfo.GetCurrentStageID() == "w1r03")
+		{
+			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
+			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151")); 
+		}
+		if (LevelInfo.GetCurrentStageID() == "w1b01")
+		{
+			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
+		}
+		if ((isBSRActive) && (LevelInfo.GetCurrentStageID() == "w1b01"))
+		{
+			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
+		}
 		if (LevelInfo.GetCurrentStageID() == "w1t01")
 		{
-			var setupData = new EventPlayer.EventSetupData("bo1142");
-			evtPlayer->PlayEvent(ref setupData);
+			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); 
+			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
 		}
-		else
+		
+		if (evtPlayer->IsEventPlaying("bo1141"))
 		{
-			var setupData = new EventPlayer.EventSetupData("bo1140");
-			evtPlayer->PlayEvent(ref setupData);
+			if (LevelInfo.GetCurrentStageID() == "w1t01")
+			{
+				var setupData = new EventPlayer.EventSetupData("bo1142");
+				evtPlayer->PlayEvent(ref setupData);
+			}
+			else
+			{
+				var setupData = new EventPlayer.EventSetupData("bo1140");
+				evtPlayer->PlayEvent(ref setupData);
+			}
 		}
 	}
 }
 
 Code "Giganto Dynamics" by "Hypernova"
 //
+	#include "Reflection" noemit
 	#lib "GameManager"
 	#lib "GameObject"
 	#lib "EventPlayer"
@@ -330,7 +343,6 @@ Code "Giganto Dynamics" by "Hypernova"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	#include "Reflection" noemit
 	
 	static long AdCyloopAtk = 0;
 	static long AdCyloopPry = 0;

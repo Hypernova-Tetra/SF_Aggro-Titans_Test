@@ -12,7 +12,7 @@
 ##### ***Aggro-Titans*** *(Test) **1.39***
 
 * ***General Changes***
-* Fixed a few oversights.
+* Fixed a few oversights and tweaked some small details.
 * Removed a few .hmm files, merging "Dynamic" scripts in to their respective boss name file.
 * ***Wyvern Changes***
 * Fixed Wyvern's Phase 2 Grand Slam (base Story Ares Island) that didn't have sound effects apart from Sonic's voice.
