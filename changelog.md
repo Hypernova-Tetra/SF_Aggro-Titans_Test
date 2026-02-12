@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.02.09
+# **Aggro-Titans Starfall**- 2026.02.11
 
 
 
@@ -16,8 +16,11 @@
 * Removed a few .hmm files, merging "Dynamic" scripts in to their respective boss name file.
 * ***Wyvern Changes***
 * Fixed Wyvern's Phase 2 Grand Slam (base Story Ares Island) that didn't have sound effects apart from Sonic's voice.
+* Updated Wyvern's scratch attacks.
 * ***Knight Changes***
 * Adjusted "DamageEvent" parameters and the zev file for Knight.
+* Reworked Knight's Sword Attacks and Knight's hmm script.
+* Restored a new unused vertical Sword attack.
 * ***Rifle01 Changes***
 * Reduced loading time for Winglaser QTE.
 * Small update to Supreme's moveset.

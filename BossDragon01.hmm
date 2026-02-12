@@ -77,18 +77,14 @@ Code "Wyvern Things" by Hypernova
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	
-	static long AdScratch1 = 0;
-    static string[] ATKScr1 = new[]
-    { /* sup */ "attack_light_scratch01_l", };
-	
+		
 	static long AdScratch2 = 0;
     static string[] ATKScr2 = new[]
-    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
+    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", "attack_scratch01_l", };
 	
 	static long AdCounterT = 0;
     static string[] Counter = new[]
-    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l" };
+    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l", "attack_armer01_l" };
 //
 {
     var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
@@ -104,12 +100,7 @@ Code "Wyvern Things" by Hypernova
 		return;
 	
 	if ((GameManager.GetGameObject("Dragon0") != null) && (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
-	{
-		if (AdScratch1 == 0) //Light Scratch
-		{ /* 0x14144AB18 */ AdScratch1 = ScanSignature ("attack_light_scratch01_l", "xxxxxxxxxxxxxxxxxxxxxxxx");}
-		else
-		{WriteProtected<byte>(AdScratch1, System.Text.Encoding.UTF8.GetBytes(ATKScr1[new Random().Next(0, ATKScr1.Length)]));}
-		
+	{	
 		if (AdScratch2 == 0) //Scratch Normal
 		{/* 0x14144AB00 */ AdScratch2 = ScanSignature ("attack_scratch02_l","xxxxxxxxxxxxxxxxxx");}
 		else
@@ -134,31 +125,16 @@ Code "Wyvern Things" by Hypernova
 			RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
 		}
 	}
-};
-
-Code "Skippable Cutscenes Wyvern" by "Hypernova"
-//
-	#include "Reflection" noemit
-	#lib "GameManager"
-	#lib "EventPlayer"
-	#lib "GameObject"
-	#lib "BlackboardStatus"
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-	#lib "Lua"
-//
-{
-	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-	if (evtPlayer == null)
-		return;
-	
-	if (evtPlayer->IsEventPlaying("bo2141"))
+	else
 	{
-		var setupData = new EventPlayer.EventSetupData("bo2140");
-		evtPlayer->PlayEvent(ref setupData);
+		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
+		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
+		RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
+		
+		WriteProtected<byte>(AdScratch2, System.Text.Encoding.UTF8.GetBytes("attack_scratch02_l"));
+		WriteProtected<byte>(AdCounterT, System.Text.Encoding.UTF8.GetBytes("attack_armer02_l"));
 	}
-}
+};
 
 Code "Wyvern Dynamics" by "Hypernova"
 //
@@ -282,6 +258,12 @@ Code "Wyvern Dynamics" by "Hypernova"
 					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 					evtPlayer->PlayEvent(ref setupData);
 				}
+			}
+
+			if (evtPlayer->IsEventPlaying("bo2141"))
+			{
+				var setupData = new EventPlayer.EventSetupData("bo2140");
+				evtPlayer->PlayEvent(ref setupData);
 			}
 		}
 	}

@@ -248,7 +248,7 @@ Code "Giganto Blue Rings"
 	}
 }
 
-Code "Skippable Cutscenes Giganto" by "Hypernova"
+Code "Phase 2 Cutscene Skip (Giganto)" by "Hypernova"
 //
 	#include "Reflection" noemit
 	#lib "EventPlayer"
@@ -326,6 +326,11 @@ Code "Skippable Cutscenes Giganto" by "Hypernova"
 				evtPlayer->PlayEvent(ref setupData);
 			}
 		}
+	}
+	else
+	{
+		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
 	}
 }
 

@@ -93,19 +93,25 @@ Code "Knight Things" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 
+	static long AddressAtkIntrrupt = 0;
+	static string[] IntrRNG = new[]
+    { /* sup */ "battle1_interrupt", "battle1_interrupt", "battle1_interrupt", "battle2_interrupt", "battle2_interrupt", "battle2_interrupt" };
+	
 	static long AddressB1SwordRage = 0;
+	static string[] RageRNG = new[]
+    { /* sup */ "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert" };
 	
 	static long AddressB1SwordSide = 0;
 	static string[] SideRNG = new[]
-    { /* sup */ "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert" };
+    { /* sup */ "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert" };
 	
 	static long AddressB1SwordVert = 0;
 	static string[] VertRNG = new[]
-    { /* sup */ "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", };	
-	
-	static long AdSonicDmg = 0;
-    static string[] DmgRNG = new[]
-    { /* sup */ "zev_knight_sonic_damage01", "zev_knight_sonic_damage01", "zev_knight_sonic_damage02", "zev_knight_sonic_damage02", "zev_knight_sonic_damage03", "zev_knight_sonic_damage03", "zev_knight_sonic_damage04", "zev_knight_sonic_damage04", "zev_knight_sonic_damage05", "zev_knight_sonic_damage05", "zev_knight_sonic_damage06", "zev_knight_sonic_damage06", "zev_knight_sonic_damage07", "zev_knight_sonic_damage08"};
+    { /* sup */ "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage" };
+		
+	static long AddressSonicDamage = 0;
+    static string[] HurtRNG = new[]
+    { /* sup */ "zev_knight_sonic_damage01", "zev_knight_sonic_damage01", "zev_knight_sonic_damage02", "zev_knight_sonic_damage02", "zev_knight_sonic_damage03", "zev_knight_sonic_damage03", "zev_knight_sonic_damage04", "zev_knight_sonic_damage04", "zev_knight_sonic_damage05", "zev_knight_sonic_damage05", "zev_knight_sonic_damage06", "zev_knight_sonic_damage06", "zev_knight_sonic_damage07", "zev_knight_sonic_damage08" };
 //
 {
 	string currentStage = LevelInfo.GetCurrentStageID();
@@ -118,34 +124,66 @@ Code "Knight Things" by "Hypernova"
 	if (SonicParametersInfo.pData == null)
 		return;
 	
+	//Asm File "State_03" = battle1_interrupt
+	//Asm File "State_26" = battle1_sword_rage
+	//Asm File "State_07" = battle1_sword_side
+	//Asm File "State_06" = battle1_sword_vert
+	//Asm File "State_49" = battle2_interrupt
+	//Asm File "State_60" = battle2_sword_side
+	//Asm File "State_56" = battle2_sword_vert
+
 	if ((GameManager.GetGameObject("Knight0") != null) && (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
 	{
-		if (AddressB1SwordRage == 0) // Sword Attack Rage
-		{/* 0x141459870 */ AddressB1SwordRage = ScanSignature ("battle1_sword_rage", "xxxxxxxxxxxxxxxxxx");}
+		if (AddressAtkIntrrupt == 0) // Phase 1 Counter Attack after Shieldride 
+		{/* 0x141459958 */ AddressAtkIntrrupt = ScanSignature ("battle1_interrupt", "xxxxxxxxxxxxxxxxx");}
 		
-		if ((LevelInfo.GetCurrentStageID() == "w3r01") || (LevelInfo.GetCurrentStageID() == "w3b01") || (LevelInfo.GetCurrentStageID() == "w3t01"))
-		{WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle2_sword_vert"));}
-		else
-		{WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));}
+		if (AddressB1SwordRage == 0) // Sword Counter Phase 2
+		{/* 0x141459870 */ AddressB1SwordRage = ScanSignature ("battle1_sword_rage", "xxxxxxxxxxxxxxxxxx");}
 		
 		if (AddressB1SwordSide == 0) // Sword Attack Side Phase 1
 		{/* 0x1414598A0 */ AddressB1SwordSide = ScanSignature ("battle1_sword_side", "xxxxxxxxxxxxxxxxxx");}
-		else
-		{WriteProtected<byte>(AddressB1SwordSide, System.Text.Encoding.UTF8.GetBytes(SideRNG[new Random().Next(0, SideRNG.Length)]));}
 		
 		if (AddressB1SwordVert == 0) // Sword Attack Vertical Phase 1
 		{/* 0x141459888 */ AddressB1SwordVert = ScanSignature ("battle1_sword_vert", "xxxxxxxxxxxxxxxxxx");}
-		else
-		{WriteProtected<byte>(AddressB1SwordVert, System.Text.Encoding.UTF8.GetBytes(VertRNG[new Random().Next(0, VertRNG.Length)]));}
 		
-		if (AdSonicDmg == 0)
-		{/* 0x141455908 */ AdSonicDmg = ScanSignature ("zev_knight_sonic_damage01", "xxxxxxxxxxxxxxxxxxxxxxxxx");}
+		if (AddressSonicDamage == 0) //
+		{/* 0x141455908 */ AddressSonicDamage = ScanSignature ("zev_knight_sonic_damage01", "xxxxxxxxxxxxxxxxxxxxxxxxx");}
 		else
-		{WriteProtected<byte>(AdSonicDmg, System.Text.Encoding.UTF8.GetBytes(DmgRNG[new Random().Next(0, DmgRNG.Length)]));}
+		{WriteProtected<byte>(AddressSonicDamage, System.Text.Encoding.UTF8.GetBytes(HurtRNG[new Random().Next(0, HurtRNG.Length)]));}
+		
+		if (LevelInfo.GetCurrentStageID() == "w3t01")
+		{
+			WriteProtected<byte>(AddressAtkIntrrupt, System.Text.Encoding.UTF8.GetBytes(IntrRNG[new Random().Next(0, IntrRNG.Length)]));
+			WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
+			WriteProtected<byte>(AddressB1SwordSide, System.Text.Encoding.UTF8.GetBytes(SideRNG[new Random().Next(0, SideRNG.Length)]));
+			WriteProtected<byte>(AddressB1SwordVert, System.Text.Encoding.UTF8.GetBytes(VertRNG[new Random().Next(0, VertRNG.Length)]));
+		}
+		if (LevelInfo.GetCurrentStageID() == "w3b01")	
+		{
+			WriteProtected<byte>(AddressAtkIntrrupt, System.Text.Encoding.UTF8.GetBytes("battle2_interrupt"));
+			WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
+			WriteProtected<byte>(AddressB1SwordSide, System.Text.Encoding.UTF8.GetBytes("battle2_sword_vert"));
+			WriteProtected<byte>(AddressB1SwordVert, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));
+		}
+		if (LevelInfo.GetCurrentStageID() == "w3r01")	
+		{	
+			WriteProtected<byte>(AddressAtkIntrrupt, System.Text.Encoding.UTF8.GetBytes("battle1_interrupt"));
+			WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));
+			WriteProtected<byte>(AddressB1SwordSide, System.Text.Encoding.UTF8.GetBytes("battle1_sword_side"));
+			WriteProtected<byte>(AddressB1SwordVert, System.Text.Encoding.UTF8.GetBytes("battle1_sword_vert"));
+		}
+	}
+	else
+	{
+		WriteProtected<byte>(AddressAtkIntrrupt, System.Text.Encoding.UTF8.GetBytes("battle1_interrupt"));
+		WriteProtected<byte>(AddressB1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));
+		WriteProtected<byte>(AddressB1SwordSide, System.Text.Encoding.UTF8.GetBytes("battle1_sword_side"));
+		WriteProtected<byte>(AddressB1SwordVert, System.Text.Encoding.UTF8.GetBytes("battle1_sword_vert"));
+		WriteProtected<byte>(AddressSonicDamage, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_damage01"));
 	}
 }
 
-Code "Skippable Cutscenes Knight" by "Hypernova"
+Code "Phase 2 Cutscene Skip (Knight)" by "Hypernova"
 //
 	#include "Reflection" noemit
 	#lib "GameManager"

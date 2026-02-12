@@ -416,6 +416,11 @@ Code "Darkball QTE" by "Hypernova"
 			}
 		}
 	}
+	else
+	{
+		WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_rifleboss"));
+		WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebeast"));
+	}
 
     if (!IsConfigInitialised)
     {
