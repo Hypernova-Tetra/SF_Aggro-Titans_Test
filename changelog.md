@@ -34,6 +34,7 @@
 * New config option for Super Sonic 2's aura color.
 * Fixed a broken Darkball Scene of Sonic going back to his powered-up Super state when using Blue or Purple Aura color option.
 * Fixed several bo6xxx dvscene files that had incorrect Resource Pointers, causing game crashes.
+* Fixed an issue where Sonic going back to SS2 in some scenes used the wrong particles and aura color after fixing the aforementioned crashing.
 * Sound Edit option updated in certain cutscenes.
 * Cutscene bo6120 (and variants) have reduced load times. (Finally).
 
