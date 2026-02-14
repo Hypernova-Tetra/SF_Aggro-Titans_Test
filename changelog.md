@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.02.11
+# **Aggro-Titans Starfall**- 2026.02.14
 
 
 
@@ -27,7 +27,9 @@
 * Adjusted Supreme's Hand attacks that adds an effect when swiping.
 * Updated Supreme's "AT\_CounterBlow" rng script to add animation "@attack\_counter04".
 * Added "Sp02" alternate animation rng.
-* Winglaser v2 QTE Success animation updated.
+* Certain QTE files across preset options for Supreme got updated.
+* "zev\_rfl\_wing" QTE Success animation updated.
+* "zev\_rfl\_wng2" QTE Success animation updated.
 * ***RifleBeast Changes***
 * Reduced loading time for Darkball QTE and updated its animation.
 * Readded "zev\_sp\_riflebeast.pac" from RTDE incase certain Sonic skins do not have SuperSonicCyber and SuperSonicDamage assets.
