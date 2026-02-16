@@ -87,6 +87,24 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	if (!smashBool)
 		return;
 	{
+		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+		if (BossRifleBeastConfigInfo.pData == null)
+			return;
+			
+		for (int i = 0; i < 12; ++i)
+		{
+			for (int j = 0; j < 10; ++j)
+			{
+				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
+				{
+					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
+					++ReplaceNum;
+					if (ReplaceNum > 1)
+						ReplaceNum = 0;
+				}
+			}
+		}
+		
 		if (AddressSplDmg == 0)
 		{ /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 	
@@ -116,33 +134,7 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 			}
 			resetAfterFight = true;
 			int isPlayingGrandS1 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_grandsmash");
-			if (isPlayingGrandS1 == 1 && !hasAlteredSp1)
-			{
-				hasAlteredSp1 = true;
-				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grandsmash"));
-				
-				var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-				if (BossRifleBeastConfigInfo.pData == null)
-					return;
-				if (!hasInitBeastConfig)
-				{
-					for (int i = 0; i < 12; ++i)
-					{
-						for (int j = 0; j < 10; ++j)
-						{
-							if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
-							{
-								RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
-								++ReplaceNum;
-								if (ReplaceNum > 1)
-									ReplaceNum = 0;
-							}
-						}
-					}
-					hasInitBeastConfig = true;
-				}
-			}
-			else if (isPlayingGrandS1 == 0 && hasAlteredSp1)
+			if (isPlayingGrandS1 == 0 && hasAlteredSp1)
 			{
 				hasAlteredSp1 = false;
 				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
