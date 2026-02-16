@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.02.14
+# **Aggro-Titans Starfall**- 2026.02.15
 
 
 
@@ -14,6 +14,8 @@
 * ***General Changes***
 * Fixed a few oversights and tweaked some small details.
 * Removed a few .hmm files, merging "Dynamic" scripts in to their respective boss name file.
+* ***Giganto Changes***
+* Blue Rings during the climb phase now only stay removed when playing Master King's Trials. In Base game Kronos and Battle Rush Kronos they will appear.
 * ***Wyvern Changes***
 * Fixed Wyvern's Phase 2 Grand Slam (base Story Ares Island) that didn't have sound effects apart from Sonic's voice.
 * Updated Wyvern's scratch attacks.
@@ -27,7 +29,7 @@
 * Adjusted Supreme's Hand attacks that adds an effect when swiping.
 * Updated Supreme's "AT\_CounterBlow" rng script to add animation "@attack\_counter04".
 * Added "Sp02" alternate animation rng.
-* Certain QTE files across preset options for Supreme got updated.
+* Updated and tweaked Supreme's QTE files.
 * "zev\_rfl\_wing" QTE Success animation updated.
 * "zev\_rfl\_wng2" QTE Success animation updated.
 * ***RifleBeast Changes***
