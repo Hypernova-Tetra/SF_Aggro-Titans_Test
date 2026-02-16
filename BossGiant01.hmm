@@ -322,6 +322,20 @@ Code "Phase 2 Cutscene Skip (Giganto)" by "Hypernova"
 	if (evtPlayer == null)
 		return;
 	
+	if (evtPlayer->IsEventPlaying("bo1141"))
+	{
+		if (LevelInfo.GetCurrentStageID() == "w1t01")
+		{
+			var setupData = new EventPlayer.EventSetupData("bo1142");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+		else
+		{
+			var setupData = new EventPlayer.EventSetupData("bo1140");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+	}
+	
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (pBlackboardStatus == null || Player.GetPlayerType() != Player.PlayerType.Sonic || Lua.GetState() == 0)
 		return;
@@ -358,20 +372,6 @@ Code "Phase 2 Cutscene Skip (Giganto)" by "Hypernova"
 		{
 			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); 
 			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
-		}
-		
-		if (evtPlayer->IsEventPlaying("bo1141"))
-		{
-			if (LevelInfo.GetCurrentStageID() == "w1t01")
-			{
-				var setupData = new EventPlayer.EventSetupData("bo1142");
-				evtPlayer->PlayEvent(ref setupData);
-			}
-			else
-			{
-				var setupData = new EventPlayer.EventSetupData("bo1140");
-				evtPlayer->PlayEvent(ref setupData);
-			}
 		}
 	}
 	else
@@ -449,6 +449,8 @@ Code "Giganto Dynamics" by "Hypernova"
 				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
 			break;
 		}
+		
+		
 	}
 }
 
