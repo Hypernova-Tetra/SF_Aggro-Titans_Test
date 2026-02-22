@@ -1,10 +1,10 @@
-# **Aggro-Titans Starfall**- 2026.02.15
+# **Aggro-Titans Starfall**- 2026.02.21
 
 
 
 ### ***Aggro-Titans 1.4 Update***
 
-* Planned release somewhere in February 2026.
+* Going for a March 2026 release I suppose... Didn't think it'd take this long.
 * Test version bumped to 1.4.
 
 
@@ -14,15 +14,20 @@
 * ***General Changes***
 * Fixed a few oversights and tweaked some small details.
 * Removed a few .hmm files, merging "Dynamic" scripts in to their respective boss name file.
+* Updated Bossrush.hmm script to change time parameters when not using the Aggro Titans Cyberspace BossRush mod.
+* BossRush Titan HP slightly increased on first attempt.
 * ***Giganto Changes***
 * Blue Rings during the climb phase now only stay removed when playing Master King's Trials. In Base game Kronos and Battle Rush Kronos they will appear.
 * ***Wyvern Changes***
 * Fixed Wyvern's Phase 2 Grand Slam (base Story Ares Island) that didn't have sound effects apart from Sonic's voice.
 * Updated Wyvern's scratch attacks.
+* Small tweaks to Wyvern's missile QTE and a small patch to fix errors in custom Grand Slam Phase 2 scene in BossRush.
 * ***Knight Changes***
 * Adjusted "DamageEvent" parameters and the zev file for Knight.
 * Reworked Knight's Sword Attacks and Knight's hmm script.
+* Adjusted unused vertical sword so that it doesn't transition into another attack that hits Sonic during the Damage scene, restarting the Damage scene.
 * Restored a new unused vertical Sword attack.
+* Small tweaks to Knight's final sword QTE and defeat scene.
 * ***Rifle01 Changes***
 * Reduced loading time for Winglaser QTE.
 * Small update to Supreme's moveset.

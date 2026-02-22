@@ -80,11 +80,11 @@ Code "Wyvern Things" by Hypernova
 		
 	static long AdScratch2 = 0;
     static string[] ATKScr2 = new[]
-    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", "attack_scratch01_l", };
+    { /* sup */ "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch02_l", "attack_scratch01_l", "attack_scratch01_l", };
 	
 	static long AdCounterT = 0;
     static string[] Counter = new[]
-    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l", "attack_armer01_l" };
+    { /* sup */ "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer02_l", "attack_armer01_l", "attack_armer01_l" };
 //
 {
     var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
@@ -266,6 +266,16 @@ Code "Wyvern Dynamics" by "Hypernova"
 				evtPlayer->PlayEvent(ref setupData);
 			}
 		}
+	}
+	else
+	{
+		WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120"));
+		WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
+		WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
+		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
+		WriteProtected<byte>(AddressSnd1, System.Text.Encoding.UTF8.GetBytes("boss_giant02_drgn_giantswing"));
+		WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
+		WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
 	}
 }
 

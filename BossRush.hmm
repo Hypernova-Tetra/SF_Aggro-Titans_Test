@@ -73,6 +73,49 @@ Code "Rings by Parry", by "Hypernova" and "thej01"
 	}
 }
 
+Code "BossRush_Time"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossRushParameter"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+//
+{
+	var BossRushParameterInfo = Reflection.GetDataInfo<BossRushParameter.Root>("bossrush");
+	if (BossRushParameterInfo.pData == null)
+		return;
+	
+	bool isBossRushCyber = HMM.GetMods().Where(x => x.Name == "AggroTitans_BossRushCyber").Count() > 0;
+	if (!isBossRushCyber)
+	{
+		RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[0].hour, 4);
+		RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[1].hour, 3);
+		RFL_SET_PARAM(BossRushParameterInfo, element[0].stages[2].hour, 2);
+		
+		RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[0].hour, 6);
+		RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[1].hour, 7);
+		RFL_SET_PARAM(BossRushParameterInfo, element[1].stages[2].hour, 8);
+		
+		RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[0].hour, 10);
+		RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[1].hour, 13);
+		RFL_SET_PARAM(BossRushParameterInfo, element[2].stages[2].hour, 16);
+		
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[0].hour, 8);
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[1].hour, 9);
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[0].stages[2].hour, 10);
+		
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[0].hour, 8);
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[1].hour, 9);
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[1].stages[2].hour, 10);
+		
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[0].hour, 8);
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[1].hour, 9);
+		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[2].hour, 10);
+	}
+}
+
 Code "BossRush_Combat"
 //
 	#include "Reflection" noemit
@@ -110,7 +153,6 @@ Code "BossRush_Combat"
 		return;
 
 	var BossRushParameterInfo = Reflection.GetDataInfo<BossRushParameter.Root>("bossrush");
-
 	if (BossRushParameterInfo.pData == null)
 		return;
 

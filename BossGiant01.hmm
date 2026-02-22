@@ -295,17 +295,13 @@ Code "Giganto_Combat"
     }
 };
 
-Code "Phase 2 Cutscene Skip (Giganto)" by "Hypernova"
+Code "Giganto Dynamics" by "Hypernova"
 //
 	#include "Reflection" noemit
-	#lib "EventPlayer"
-	#lib "GameObject"
-	#lib "BlackboardStatus"
-	#lib "Reflection"
-    #lib "HMM"
-	#lib "INI"
-	#lib "Lua"
 	#lib "GameManager"
+	#lib "GameObject"
+	#lib "EventPlayer"
+	#lib "Reflection"
 	#lib "Player"
 	#lib "Sonic"
 	
@@ -314,13 +310,38 @@ Code "Phase 2 Cutscene Skip (Giganto)" by "Hypernova"
 	#import "Graphics"
 	#import "Plugins"
 	
+	static long AdCyloopAtk = 0;
+	static long AdCyloopPry = 0;
+	static long AdAtkCnSp02 = 0;
+	static long Address1180 = 0;
+	static long AttackShout = 0;
 	static long BO1120 = 0;
 	static long BO1160 = 0;
 //
-{
+{	
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
+	
+	var pBlackboardStatus = BlackboardStatus.Get();
+	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
+		return;
+
+	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+	if (SonicParametersInfo.pData == null)
+		return;
+	
+	string eventName = evtPlayer->GetCurrentEventName();
+	string currentStage = LevelInfo.GetCurrentStageID();
+	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+	
+	if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
+	if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
+	if (AdCyloopPry == 0) { /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
+	if (AdAtkCnSp02 == 0) { /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
+	if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
+	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
+	if (BO1160 == 0) { /* 0x141453520 */ BO1160 = ScanSignature ("bo1160", "xxxxxx"); }
 	
 	if (evtPlayer->IsEventPlaying("bo1141"))
 	{
@@ -336,23 +357,40 @@ Code "Phase 2 Cutscene Skip (Giganto)" by "Hypernova"
 		}
 	}
 	
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (pBlackboardStatus == null || Player.GetPlayerType() != Player.PlayerType.Sonic || Lua.GetState() == 0)
-		return;
-		
-	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
-	if (SonicParametersInfo.pData == null)
-		return;
-	
-	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-	
-	string currentStage = LevelInfo.GetCurrentStageID();
-	
-	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
-	if (BO1160 == 0) { /* 0x141453520 */ BO1160 = ScanSignature ("bo1160", "xxxxxx"); }
-	
 	if (GameManager.GetGameObject("Giant0") != null)
-	{	
+	{
+		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
+		{
+			switch (eventName)
+			{
+				case "bo1120":
+				case "bo1121":
+				case "bo1122":
+					WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+					WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
+					WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
+					WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
+					WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
+				break;
+			
+				case "bo1140":
+					WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+					WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
+					WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
+					WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
+					WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
+				break;
+				
+				case "bo1142":
+					WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+					WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
+					WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
+					WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));
+					WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
+				break;
+			}
+		}
+		
 		if (LevelInfo.GetCurrentStageID() == "w1r03")
 		{
 			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
@@ -378,79 +416,6 @@ Code "Phase 2 Cutscene Skip (Giganto)" by "Hypernova"
 	{
 		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
 		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
-	}
-}
-
-Code "Giganto Dynamics" by "Hypernova"
-//
-	#include "Reflection" noemit
-	#lib "GameManager"
-	#lib "GameObject"
-	#lib "EventPlayer"
-	#lib "Reflection"
-	#lib "Player"
-	#lib "Sonic"
-	
-	#import "Services"
-	#import "GOComponents"
-	#import "Graphics"
-	#import "Plugins"
-	
-	static long AdCyloopAtk = 0;
-	static long AdCyloopPry = 0;
-	static long AdAtkCnSp02 = 0;
-	static long Address1180 = 0;
-	static long AttackShout = 0;
-//
-{	
-	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
-	if (evtPlayer == null)
-		return;
-	
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-	
-	string eventName = evtPlayer->GetCurrentEventName();
-	
-	if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
-	if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
-	if (AdCyloopPry == 0) { /* 0x14140F6A0 */ AdCyloopPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
-	if (AdAtkCnSp02 == 0) { /* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx"); }
-	if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
-	
-	if ((GameManager.GetGameObject("Giant0") != null) && (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
-	{
-		switch (eventName)
-		{
-			case "bo1120":
-			case "bo1121":
-			case "bo1122":
-				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
-				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
-				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
-				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
-				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
-			break;
-		
-			case "bo1140":
-				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
-				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
-				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
-				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
-				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
-			break;
-			
-			case "bo1142":
-				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
-				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
-				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
-				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));
-				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
-			break;
-		}
-		
-		
 	}
 }
 
