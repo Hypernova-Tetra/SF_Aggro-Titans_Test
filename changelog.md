@@ -14,6 +14,7 @@
 * Any time an event name is added or changed, "Bosscommon.pac" is updated to accommodate its updated "mlevel" file for said changes.
 * "Giant01.hmm" script updated to include RNG for Giganto's knockback counter swipe attack for Boss Rush only.
 * Event files for "knight01" received an update.
+* Fixed an error with an attack animation in where Knight stops moving permanently.
 * The original Final Sword QTE for Knight (zev\_knight\_atk\_sp01) has been readded for base Story "Chaos Island"
 * The new Final Sword QTE that restores an unused camera pan has been moved to Boss Rush Chaos Island.
 * The new Final Sword QTE's first prompt type updated from "PressPrompt" to "Red Circle".
