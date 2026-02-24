@@ -1,58 +1,134 @@
-# **Aggro-Titans Starfall**- 2026.02.21
+# **Aggro-Titans Starfall**- 2026.02.24
 
 
 
-### ***Aggro-Titans 1.4 Update***
+### ***Aggro-Titans 1.4***
 
 * Going for a March 2026 release I suppose... Didn't think it'd take this long.
-* Test version bumped to 1.4.
+
+
+
+##### ***Aggro-Titans*** *(Test) **1.4***
+
+* ***R-17 Changes***
+* Any time an event name is added or changed, "Bosscommon.pac" is updated to accommodate its updated "mlevel" file for said changes.
+* "Giant01.hmm" script updated to include RNG for Giganto's knockback counter swipe attack for Boss Rush only.
+* Event files for "knight01" received an update.
+* The original Final Sword QTE for Knight (zev\_knight\_atk\_sp01) has been readded for base Story "Chaos Island"
+* The new Final Sword QTE that restores an unused camera pan has been moved to Boss Rush Chaos Island.
+* The new Final Sword QTE's first prompt type updated from "PressPrompt" to "Red Circle".
+* The new Final Sword QTE event file has been renamed (to zev\_knight\_atk\_sp03) and updated camera shot of Sonic kicking the sword.
+* Certain other QTE prompts may have had their button prompts changed.
+* Renamed internal files for unused Supreme Grand Slam cutscene name.
+* "Rifle01.hmm" script file updated to fix up some Dynamic event cycles when performing certain actions.
+* ***R-16 Changes***
+* Further adjustments to some event and boss pac files.
+* "Giant01.hmm" script updated to where a scene file may play a different version based on whether or not "Boss Select" mod is active and added RNG to
+* "Dragon01.hmm" script updated to add a script that resets certain memory values related to Wyvern back to their default if Wyvern's object isn't loaded.
+* "zev\_dragon\_sp\_missile" file updated to remove certain Near-Far settings to fix issues with Cyberspace Skybox mod rendering improperly.
+* "bo3xxx.pac" file updated for scene "bo3160" to fix the same issue above.
+* "BossRush.hmm" script updated to add in "Time of Day" parameters differences based on whether or not "Boss Rush Cyberspace" mod is active.
+* Updated Unused Cinematic Grand Slam script to fix an error in which the scene does not trigger properly and having this option selected crashes the game when attempting to parry Riflebeast's shield tackle attack.
+* ***R-15 Changes***
+* Updated "bossconfig" to remove the option for Giganto's "Blue Rings", now they only show in base and Battle Rush Kronos Island while disappearing in Boss Rush (Master King Trials) Kronos.
+* Further animation adjustments to the "Oops All Bitlaser" QTE preset, new animations added to certain files.
+* ***R-14 Changes***
+* Updated several QTE files across all 3 Presets for Supreme. Animation changes, polish, etc.
+* Updated "bosscommon.pac" for updated mlevel entries.
+* Fixed an issue where Wyvern's custom Phase 2 Grand Slam would crash the game.
+* Updated initial "Winglaser" QTE animation.
+* ***R-13 Changes***
+* Fixed an issue with Giganto's Phase 2 scene not being able to be skipped in base story Kronos Island.
+* Updated "bo2xxx.pac"
+* Updated Wyvern and Knight's pac files.
+* Resolving RNG script for Wyvern's scratch and counter attack issues.
+* Resolved certain issues involving incorrect dvscene parameter values, causing sounds not to play, or the game crashes when loading the scene.
+* Custom Event: "Winglaser v2" file updated with new animation.
+* Updated "bo6xxx.pac"
+* ***R-12 Changes***
+* **Giant01**
+* HP updated: 250k -> 300k
+* **Dragon01**
+* HP updated: 275k -> 325k
+* **Knight01**
+* HP updated: 300k -> 350k
+* Updated bo3xxx.pac to resolve transition issues.
+* Updated "shieldride02\_aerial" event file.
+* **Rifle01**
+* HP updated: 350k -> 400k
+* Updated Bitlaser01 and laser01 event files.
+* **RifleBeast**
+* HP updated: 367k -> 420k
+* ***R-11 Changes***
+* Fixed an error in Wyvern's Grand Slam that caused the game to crash.
+* Updated "bo4xxx" and "bo6xxx"
+* Updated Giganto's dynamic script files to change the defeat scene based on stage ID.
+* Updated Rifle01.pac to update asm file to include new state names.
+* Updated Supreme's dynamic script files to bugcheck and add RNG to Supreme's Sp02 animation.
+* ***R-10 Changes***
+* Updated Sound Effects for Riflebeast in "Sound Edit" to add extra Sonic grunts. (And only Sonic, no Eggman grunts.)
+* ***R-09 Changes***
+* Update to Riflebeast's "Final Blow" QTE files to fix an error with transitioning to either the next scene or back to gameplay when failing.
+* Readded "Bossbit.hmm" for Supreme after it went missing previously.
+* ***R-08 Changes***
+* Adjustments to Knight's "sonic\_damage01" and custom "sonic\_damage02" event files.
+* Fixed an error with one of Supreme's attack move set scripts.
+* ***R-07 Changes***
+* Adjustments to Script files again, merged Dynamic files with Boss hmm files.
+* Adjustment to a QTE in "Vanilla Restored" preset to fix an error.
+* ***R-06 Changes***
+* Adjustments to bo6xxx.pac's animation files.
+* Further adjustments to Supreme's QTE Preset 1 (Vanilla Restored) files.
+* ***R-05 Changes***
+* Several animation adjustments made to Supreme's QTE Preset files.
+* Updated "bosscommon.pac" for new scene entries.
+* Updated Giganto and Supreme's Dynamic script files.
+* Updated Supreme's Attack Moveset scripts.
+* ***R-04 Changes***
+* Updated Supreme for moveset adjustments.
+* ***R-03 Changes***
+* Update to Riflebeast's custom Grand Slam files.
+* Updated Riflebeast's pac file.
+* ***R-02 Changes***
+* Readded several mod files to fix issues.
+* Clean-up for file size optimization.
+* ***R-01 Changes***
+* Several small tweaks.
+* Added missing .usm files.
+* ***R-00 Changes***
+* Revamped Monologue option, now runs on HMM code with new scene files based on selected option combinations.
+* Overhauled HMM scripts
+* Updated Riflebeast QTE files for "Final Blow" and "Parry Miss"
+* Updated Riflebeast Grand Slam Files.
+* Updated "bo6xxx" file.
+* Additional changes to Giganto and Supreme.
+* "Bosscommon.pac" updated to include new scene entries for Monologue option.
 
 
 
 ##### ***Aggro-Titans*** *(Test) **1.39***
 
-* ***General Changes***
-* Fixed a few oversights and tweaked some small details.
-* Removed a few .hmm files, merging "Dynamic" scripts in to their respective boss name file.
-* Updated Bossrush.hmm script to change time parameters when not using the Aggro Titans Cyberspace BossRush mod.
-* BossRush Titan HP slightly increased on first attempt.
-* ***Giganto Changes***
-* Blue Rings during the climb phase now only stay removed when playing Master King's Trials. In Base game Kronos and Battle Rush Kronos they will appear.
-* ***Wyvern Changes***
-* Fixed Wyvern's Phase 2 Grand Slam (base Story Ares Island) that didn't have sound effects apart from Sonic's voice.
-* Updated Wyvern's scratch attacks.
-* Small tweaks to Wyvern's missile QTE and a small patch to fix errors in custom Grand Slam Phase 2 scene in BossRush.
-* ***Knight Changes***
-* Adjusted "DamageEvent" parameters and the zev file for Knight.
-* Reworked Knight's Sword Attacks and Knight's hmm script.
-* Adjusted unused vertical sword so that it doesn't transition into another attack that hits Sonic during the Damage scene, restarting the Damage scene.
-* Restored a new unused vertical Sword attack.
-* Small tweaks to Knight's final sword QTE and defeat scene.
-* ***Rifle01 Changes***
-* Reduced loading time for Winglaser QTE.
-* Small update to Supreme's moveset.
-* Adjusted Supreme's Hand attacks that adds an effect when swiping.
-* Updated Supreme's "AT\_CounterBlow" rng script to add animation "@attack\_counter04".
-* Added "Sp02" alternate animation rng.
-* Updated and tweaked Supreme's QTE files.
-* "zev\_rfl\_wing" QTE Success animation updated.
-* "zev\_rfl\_wng2" QTE Success animation updated.
-* ***RifleBeast Changes***
-* Reduced loading time for Darkball QTE and updated its animation.
-* Readded "zev\_sp\_riflebeast.pac" from RTDE incase certain Sonic skins do not have SuperSonicCyber and SuperSonicDamage assets.
-* New config option for Super Sonic 2's aura color.
-* Fixed a broken Darkball Scene of Sonic going back to his powered-up Super state when using Blue or Purple Aura color option.
-* Fixed several bo6xxx dvscene files that had incorrect Resource Pointers, causing game crashes.
-* Fixed an issue where Sonic going back to SS2 in some scenes used the wrong particles and aura color after fixing the aforementioned crashing.
-* Sound Edit option updated in certain cutscenes.
-* Cutscene bo6120 (and variants) have reduced load times. (Finally).
+* ***R-02 Changes***
+* Another round of changes
+* Readded "zev\_sp\_riflebeast" for skin mods using "SuperSonicDamage" and "SuperSonicCyber" assets.
+* ***R-01 Changes***
+* Updated Version String
+* Updated "mod\_files.txt"
+* ***R-00 Changes***
+* HMM Script changes to Dynamic Event files for the Titans.
+* Removed unneeded usm files.
+* Changes to Giganto, Supreme, bo6xxx, Bitlaser01, and other files.
+* Changes to Knight's formerly unused "ShieldRide02\_aerial"
+* Changes to Knight's bo3xxx file.
+* Changes to Supreme's "zev\_rfl\_sp02" file.
+* Changes to audio files for Knight and Supreme.
 
 
 
 ##### ***Aggro-Titans*** *(Test) **1.38***
 
 * Supreme's QTE dynamic script rewritten by GordonRamsy (Huge Thanks)
-* Some adjustments to code files.
+* Some adjustments to "Dynamic" files for the other Titans.
 
 
 

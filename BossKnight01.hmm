@@ -316,7 +316,9 @@ Code "Knight Dynamics" by "Hypernova"
 		bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
 		if (SuperBattle)
 		{	
-			if (LevelInfo.GetCurrentStageID() == "w3b01")
+			if (LevelInfo.GetCurrentStageID() == "w3t01")
+			{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp03")); }
+			else if (LevelInfo.GetCurrentStageID() == "w3b01")
 			{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02")); }
 			else
 			{ WriteProtected<byte>(AdSwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01")); }

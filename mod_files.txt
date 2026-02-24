@@ -32,6 +32,7 @@ add Main/raw/event/scene/zev_end.pac
 add Main/raw/event/scene/zev_end_shooting.pac
 add Main/raw/event/scene/zev_knight_atk_sp01.pac
 add Main/raw/event/scene/zev_knight_atk_sp02.pac
+add Main/raw/event/scene/zev_knight_atk_sp03.pac
 add Main/raw/event/scene/zev_knight_shieldride01.pac
 add Main/raw/event/scene/zev_knight_shieldride01_short.pac
 add Main/raw/event/scene/zev_knight_shieldride02.pac
