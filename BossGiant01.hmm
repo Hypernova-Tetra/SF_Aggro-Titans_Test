@@ -14,12 +14,12 @@ Code "Giganto_ActionType"
 			return;
 		{ 
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_L);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_NONE);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_R);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[112].isUse, true);
@@ -124,7 +124,7 @@ Code "Giganto_ActionType"
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_01);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_02);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
@@ -374,7 +374,7 @@ Code "Giganto Dynamics" by "Hypernova"
 				break;
 			
 				case "bo1140":
-					WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+					WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("atk_howl_02"));
 					WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
 					WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
 					WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
@@ -382,7 +382,7 @@ Code "Giganto Dynamics" by "Hypernova"
 				break;
 				
 				case "bo1142":
-					WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
+					WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("atk_howl_02"));
 					WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
 					WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
 					WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));

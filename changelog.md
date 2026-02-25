@@ -1,4 +1,4 @@
-# **Aggro-Titans Starfall**- 2026.02.24
+# **Aggro-Titans Starfall**- 2026.02.25
 
 
 
@@ -13,6 +13,7 @@
 * ***R-17 Changes***
 * Any time an event name is added or changed, "Bosscommon.pac" is updated to accommodate its updated "mlevel" file for said changes.
 * "Giant01.hmm" script updated to include RNG for Giganto's knockback counter swipe attack for Boss Rush only.
+* Giganto Howl attack updated. Now will play a different animation in Phase 2.
 * Event files for "knight01" received an update.
 * Fixed an error with an attack animation in where Knight stops moving permanently.
 * Fixed an error in transformation cutscene where certain particles still persisted when the extended animation played.
