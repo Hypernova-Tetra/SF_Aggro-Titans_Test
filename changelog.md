@@ -59,7 +59,8 @@
 * Updated bo3xxx.pac to resolve transition issues.
 * Updated "shieldride02\_aerial" event file.
 * **Rifle01**
-* HP updated: 350k -> 400k
+* HP updated: 333k -> 385k (Base Story)
+* HP updated: 350k -> 400k (Another Story)
 * Updated Bitlaser01 and laser01 event files.
 * **RifleBeast**
 * HP updated: 367k -> 420k
