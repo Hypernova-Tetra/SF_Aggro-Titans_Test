@@ -15,6 +15,7 @@
 * "Giant01.hmm" script updated to include RNG for Giganto's knockback counter swipe attack for Boss Rush only.
 * Event files for "knight01" received an update.
 * Fixed an error with an attack animation in where Knight stops moving permanently.
+* Fixed an error in transformation cutscene where certain particles still persisted when the extended animation played.
 * The original Final Sword QTE for Knight (zev\_knight\_atk\_sp01) has been readded for base Story "Chaos Island"
 * The new Final Sword QTE that restores an unused camera pan has been moved to Boss Rush Chaos Island.
 * The new Final Sword QTE's first prompt type updated from "PressPrompt" to "Red Circle".
@@ -22,6 +23,7 @@
 * Certain other QTE prompts may have had their button prompts changed.
 * Renamed internal files for unused Supreme Grand Slam cutscene name.
 * "Rifle01.hmm" script file updated to fix up some Dynamic event cycles when performing certain actions.
+* Fixed position offset errors causing the first "Winglaser" cutscene to take a while to transition back to gameplay.
 * ***R-16 Changes***
 * Further adjustments to some event and boss pac files.
 * "Giant01.hmm" script updated to where a scene file may play a different version based on whether or not "Boss Select" mod is active and added RNG to
