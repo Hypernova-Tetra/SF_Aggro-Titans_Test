@@ -7,217 +7,220 @@ Code "Giganto_ActionType"
     #import "Services"
 //
 {
-	if ((LevelInfo.GetCurrentStageID() == "w1r03") || (LevelInfo.GetCurrentStageID() == "w1b01"))
+	if (GameManager.GetGameObject("Giant0") != null)
 	{
-		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
-		if (BossGiantConfigInfo.pData == null)
-			return;
-		{ 
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_L);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_R);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[112].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[113].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[114].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[115].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[116].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[117].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[118].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[119].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[120].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[121].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[122].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[123].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[124].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[125].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[126].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[127].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[128].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[129].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[134].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[135].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[136].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[137].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[140].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[141].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[142].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[143].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[144].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[145].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[147].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[149].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[173].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[174].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[175].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[176].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[177].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[178].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[179].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[180].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[193].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[194].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[195].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[196].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[197].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[198].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[199].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[200].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[207].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[208].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[209].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[210].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[211].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[212].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[213].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[214].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[215].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[216].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[217].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[218].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[219].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[220].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[221].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[222].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[223].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[224].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[225].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[227].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[228].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[229].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[230].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[231].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[232].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[233].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[239].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[240].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[241].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[242].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[243].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[244].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[245].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[246].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[247].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[248].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[249].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[250].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[251].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[252].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[253].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[254].isUse, true);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[255].isUse, true);
-		}
-	}
-	
-	if (LevelInfo.GetCurrentStageID() == "w1t01")
-	{
-		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
-		if (BossGiantConfigInfo.pData == null)
-			return;
+		bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+		if (gameModeBossRush)
 		{
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_01);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_02);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[112].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[113].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[114].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[115].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[116].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[117].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[118].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[119].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[120].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[121].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[122].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[123].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[124].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[125].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[126].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[127].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[128].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[129].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[134].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[135].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[136].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[137].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[140].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[141].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[142].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[143].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[144].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[145].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[147].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[149].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[173].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[174].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[175].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[176].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[177].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[178].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[179].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[180].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[193].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[194].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[195].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[196].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[197].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[198].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[199].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[200].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[207].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[208].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[209].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[210].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[211].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[212].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[213].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[214].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[215].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[216].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[217].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[218].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[219].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[220].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[221].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[222].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[223].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[224].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[225].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[227].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[228].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[229].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[230].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[231].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[232].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[233].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[239].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[240].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[241].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[242].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[243].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[244].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[245].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[246].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[247].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[248].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[249].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[250].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[251].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[252].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[253].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[254].isUse, false);
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[255].isUse, false);
+			var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
+			if (BossGiantConfigInfo.pData == null)
+				return;
+			{
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_01);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_02);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[112].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[113].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[114].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[115].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[116].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[117].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[118].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[119].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[120].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[121].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[122].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[123].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[124].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[125].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[126].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[127].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[128].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[129].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[134].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[135].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[136].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[137].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[140].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[141].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[142].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[143].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[144].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[145].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[147].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[149].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[173].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[174].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[175].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[176].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[177].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[178].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[179].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[180].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[193].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[194].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[195].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[196].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[197].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[198].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[199].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[200].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[207].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[208].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[209].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[210].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[211].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[212].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[213].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[214].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[215].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[216].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[217].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[218].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[219].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[220].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[221].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[222].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[223].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[224].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[225].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[227].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[228].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[229].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[230].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[231].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[232].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[233].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[239].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[240].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[241].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[242].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[243].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[244].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[245].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[246].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[247].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[248].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[249].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[250].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[251].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[252].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[253].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[254].isUse, false);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[255].isUse, false);
+			}
+		}
+		else
+		{
+			var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
+			if (BossGiantConfigInfo.pData == null)
+				return;
+			{ 
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_L);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[5], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HAND_R);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_NORMAL);
+				RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[112].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[113].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[114].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[115].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[116].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[117].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[118].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[119].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[120].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[121].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[122].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[123].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[124].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[125].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[126].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[127].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[128].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[129].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[134].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[135].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[136].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[137].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[140].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[141].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[142].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[143].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[144].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[145].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[147].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[149].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[173].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[174].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[175].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[176].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[177].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[178].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[179].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[180].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[193].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[194].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[195].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[196].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[197].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[198].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[199].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[200].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[207].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[208].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[209].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[210].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[211].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[212].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[213].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[214].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[215].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[216].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[217].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[218].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[219].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[220].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[221].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[222].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[223].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[224].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[225].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[227].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[228].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[229].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[230].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[231].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[232].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[233].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[239].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[240].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[241].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[242].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[243].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[244].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[245].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[246].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[247].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[248].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[249].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[250].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[251].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[252].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[253].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[254].isUse, true);
+				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[255].isUse, true);
+			}
 		}
 	}
 }
@@ -240,21 +243,23 @@ Code "Giganto_Combat"
 		return;
 	
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 	if (gameModeBattleRush)
 	{ 
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-	}
-	
-	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-    if ((isBSRActive) && (gameModeBattleRush))
-	{ 
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 150000);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+		if (isBSRActive)
+		{ 
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 150000);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+		}
+		else
+		{
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+		}
 	}
 	
 	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
@@ -299,11 +304,13 @@ Code "Giganto Dynamics" by "Hypernova"
 //
 	#include "Reflection" noemit
 	#lib "GameManager"
-	#lib "GameObject"
-	#lib "EventPlayer"
 	#lib "Reflection"
+	#lib "EventPlayer"
+	#lib "GameObject"
+	#lib "Lua"
 	#lib "Player"
 	#lib "Sonic"
+	#lib "Memory"
 	
 	#import "Services"
 	#import "GOComponents"
@@ -331,6 +338,8 @@ Code "Giganto Dynamics" by "Hypernova"
 	if (SonicParametersInfo.pData == null)
 		return;
 	
+	var pkinematics = Player.Kinematics.Get();
+	
 	string eventName = evtPlayer->GetCurrentEventName();
 	string currentStage = LevelInfo.GetCurrentStageID();
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
@@ -342,25 +351,28 @@ Code "Giganto Dynamics" by "Hypernova"
 	if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
 	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (BO1160 == 0) { /* 0x141453520 */ BO1160 = ScanSignature ("bo1160", "xxxxxx"); }
-	
-	if (evtPlayer->IsEventPlaying("bo1141"))
-	{
-		if (LevelInfo.GetCurrentStageID() == "w1t01")
-		{
-			var setupData = new EventPlayer.EventSetupData("bo1142");
-			evtPlayer->PlayEvent(ref setupData);
-		}
-		else
-		{
-			var setupData = new EventPlayer.EventSetupData("bo1140");
-			evtPlayer->PlayEvent(ref setupData);
-		}
-	}
-	
+
 	if (GameManager.GetGameObject("Giant0") != null)
 	{
 		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 		{
+			if (evtPlayer->IsEventPlaying("bo1141"))
+			{ 
+				pkinematics->Position = new System.Numerics.Vector3(81.0f, 319.0f, -60.5f);
+				pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
+				
+				if (LevelInfo.GetCurrentStageID() == "w1t01")
+				{
+					var setupData = new EventPlayer.EventSetupData("bo1142");
+					evtPlayer->PlayEvent(ref setupData);
+				}
+				else
+				{
+					var setupData = new EventPlayer.EventSetupData("bo1140");
+					evtPlayer->PlayEvent(ref setupData);
+				}
+			}
+			
 			switch (eventName)
 			{
 				case "bo1120":
@@ -391,31 +403,32 @@ Code "Giganto Dynamics" by "Hypernova"
 			}
 		}
 		
-		if (LevelInfo.GetCurrentStageID() == "w1r03")
-		{
-			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
-			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151")); 
-		}
-		if (LevelInfo.GetCurrentStageID() == "w1b01")
-		{
-			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
-			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
-		}
-		if ((isBSRActive) && (LevelInfo.GetCurrentStageID() == "w1b01"))
-		{
-			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
-			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
-		}
-		if (LevelInfo.GetCurrentStageID() == "w1t01")
+		bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		
+		if (gameModeBossRush)
 		{
 			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); 
 			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
 		}
-	}
-	else
-	{
-		WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
-		WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
+		else if (gameModeBattleRush)
+		{
+			if (isBSRActive)
+			{
+				WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+				WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
+			}
+			else
+			{
+				WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+				WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1160"));
+			}
+		}
+		else
+		{
+			WriteProtected<byte>(BO1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
+			WriteProtected<byte>(BO1160, System.Text.Encoding.UTF8.GetBytes("bo1151")); 
+		}
 	}
 }
 

@@ -1,8 +1,8 @@
-# **Aggro-Titans Starfall**- 2026.02.25
+# **Aggro-Titans Blackscreen Removal** - 2026.03.03
 
 
 
-### ***Aggro-Titans 1.4***
+### ***Aggro-Titans***
 
 * Going for a March 2026 release I suppose... Didn't think it'd take this long.
 
@@ -10,7 +10,18 @@
 
 ##### ***Aggro-Titans*** *(Test) **1.4***
 
-* ***R-17 Changes***
+* ###### ***R-18 Changes***
+* Added Sonic Power Boost scene that now starts and ends more quickly.
+* Small animation tweaks in bo1xxx.pac
+* Fixed Sonic's position after Giganto's Phase 2 event(s) end to patch a bug that occurred after implementing the Skip Cutscene feature.
+* Wyvern's Missile, Psycho, and Finish QTEs now start and end more quickly.
+* Custom Wyvern events in Battle Rush and Boss Rush also start and end more quickly.
+* Knight's Phase 2 event now starts more quickly.
+* Knight's Shieldride event now ends more quickly when succeeding the QTE prompt.
+* Knight's Shieldride02 event has been tweaked slightly.
+* Supreme's intro cutscene and extended intro now start and end more quickly.
+* Some HMM files have been tweaked.
+* **R-17 Changes**
 * Any time an event name is added or changed, "Bosscommon.pac" is updated to accommodate its updated "mlevel" file for said changes.
 * "Giant01.hmm" script updated to include RNG for Giganto's knockback counter swipe attack for Boss Rush only.
 * Giganto Howl attack updated. Now will play a different animation in Phase 2.
@@ -25,7 +36,7 @@
 * Renamed internal files for unused Supreme Grand Slam cutscene name.
 * "Rifle01.hmm" script file updated to fix up some Dynamic event cycles when performing certain actions.
 * Fixed position offset errors causing the first "Winglaser" cutscene to take a while to transition back to gameplay.
-* ***R-16 Changes***
+* **R-16 Changes**
 * Further adjustments to some event and boss pac files.
 * "Giant01.hmm" script updated to where a scene file may play a different version based on whether or not "Boss Select" mod is active and added RNG to
 * "Dragon01.hmm" script updated to add a script that resets certain memory values related to Wyvern back to their default if Wyvern's object isn't loaded.
@@ -33,23 +44,23 @@
 * "bo3xxx.pac" file updated for scene "bo3160" to fix the same issue above.
 * "BossRush.hmm" script updated to add in "Time of Day" parameters differences based on whether or not "Boss Rush Cyberspace" mod is active.
 * Updated Unused Cinematic Grand Slam script to fix an error in which the scene does not trigger properly and having this option selected crashes the game when attempting to parry Riflebeast's shield tackle attack.
-* ***R-15 Changes***
+* **R-15 Changes**
 * Updated "bossconfig" to remove the option for Giganto's "Blue Rings", now they only show in base and Battle Rush Kronos Island while disappearing in Boss Rush (Master King Trials) Kronos.
 * Further animation adjustments to the "Oops All Bitlaser" QTE preset, new animations added to certain files.
-* ***R-14 Changes***
+* **R-14 Changes**
 * Updated several QTE files across all 3 Presets for Supreme. Animation changes, polish, etc.
 * Updated "bosscommon.pac" for updated mlevel entries.
 * Fixed an issue where Wyvern's custom Phase 2 Grand Slam would crash the game.
 * Updated initial "Winglaser" QTE animation.
-* ***R-13 Changes***
+* **R-13 Changes**
 * Fixed an issue with Giganto's Phase 2 scene not being able to be skipped in base story Kronos Island.
-* Updated "bo2xxx.pac"
-* Updated Wyvern and Knight's pac files.
+* Updated "bo2xxx.pac" in where the cutscene of Sonic latching on to Wyvern and being flung off before the road segment starts and ends more quickly.
+* Updated Wyvern and Knight's pac files for animation tweaks.
 * Resolving RNG script for Wyvern's scratch and counter attack issues.
 * Resolved certain issues involving incorrect dvscene parameter values, causing sounds not to play, or the game crashes when loading the scene.
 * Custom Event: "Winglaser v2" file updated with new animation.
 * Updated "bo6xxx.pac"
-* ***R-12 Changes***
+* **R-12 Changes**
 * **Giant01**
 * HP updated: 250k -> 300k
 * **Dragon01**
@@ -64,43 +75,43 @@
 * Updated Bitlaser01 and laser01 event files.
 * **RifleBeast**
 * HP updated: 367k -> 420k
-* ***R-11 Changes***
+* **R-11 Changes**
 * Fixed an error in Wyvern's Grand Slam that caused the game to crash.
 * Updated "bo4xxx" and "bo6xxx"
 * Updated Giganto's dynamic script files to change the defeat scene based on stage ID.
 * Updated Rifle01.pac to update asm file to include new state names.
 * Updated Supreme's dynamic script files to bugcheck and add RNG to Supreme's Sp02 animation.
-* ***R-10 Changes***
+* **R-10 Changes**
 * Updated Sound Effects for Riflebeast in "Sound Edit" to add extra Sonic grunts. (And only Sonic, no Eggman grunts.)
-* ***R-09 Changes***
+* **R-09 Changes**
 * Update to Riflebeast's "Final Blow" QTE files to fix an error with transitioning to either the next scene or back to gameplay when failing.
 * Readded "Bossbit.hmm" for Supreme after it went missing previously.
-* ***R-08 Changes***
+* **R-08 Changes**
 * Adjustments to Knight's "sonic\_damage01" and custom "sonic\_damage02" event files.
 * Fixed an error with one of Supreme's attack move set scripts.
-* ***R-07 Changes***
+* **R-07 Changes**
 * Adjustments to Script files again, merged Dynamic files with Boss hmm files.
 * Adjustment to a QTE in "Vanilla Restored" preset to fix an error.
-* ***R-06 Changes***
+* **R-06 Changes**
 * Adjustments to bo6xxx.pac's animation files.
 * Further adjustments to Supreme's QTE Preset 1 (Vanilla Restored) files.
-* ***R-05 Changes***
+* **R-05 Changes**
 * Several animation adjustments made to Supreme's QTE Preset files.
 * Updated "bosscommon.pac" for new scene entries.
 * Updated Giganto and Supreme's Dynamic script files.
 * Updated Supreme's Attack Moveset scripts.
-* ***R-04 Changes***
+* **R-04 Changes**
 * Updated Supreme for moveset adjustments.
-* ***R-03 Changes***
+* **R-03 Changes**
 * Update to Riflebeast's custom Grand Slam files.
 * Updated Riflebeast's pac file.
-* ***R-02 Changes***
+* **R-02 Changes**
 * Readded several mod files to fix issues.
 * Clean-up for file size optimization.
-* ***R-01 Changes***
+* **R-01 Changes**
 * Several small tweaks.
 * Added missing .usm files.
-* ***R-00 Changes***
+* **R-00 Changes**
 * Revamped Monologue option, now runs on HMM code with new scene files based on selected option combinations.
 * Overhauled HMM scripts
 * Updated Riflebeast QTE files for "Final Blow" and "Parry Miss"
@@ -113,13 +124,13 @@
 
 ##### ***Aggro-Titans*** *(Test) **1.39***
 
-* ***R-02 Changes***
+* **R-02 Changes**
 * Another round of changes
 * Readded "zev\_sp\_riflebeast" for skin mods using "SuperSonicDamage" and "SuperSonicCyber" assets.
-* ***R-01 Changes***
+* **R-01 Changes**
 * Updated Version String
 * Updated "mod\_files.txt"
-* ***R-00 Changes***
+* **R-00 Changes**
 * HMM Script changes to Dynamic Event files for the Titans.
 * Removed unneeded usm files.
 * Changes to Giganto, Supreme, bo6xxx, Bitlaser01, and other files.
@@ -139,7 +150,7 @@
 
 ##### ***Aggro-Titans*** *(Test) **1.37***
 
-* ***Giant01 Changes***
+* **Giant01 Changes**
 * Updated Giganto's ImmediateActions between base game and Master King Trials
 * Changes to "AT\_HOWL" in where the attack itself will now play sound effects.
 * Changes to "AT\_COUNTER\_SP\_01" in where '@attack\_counter\_bite\_end.cam-anim' is now more accurate to the Frontiers 2021 Beta leak footage.
@@ -150,21 +161,21 @@
 * "BOI's animation" for Super Sonic added and will play in Main story Kronos.
 * "Vanilla" Super Sonic scene will play in Battle Rush only.
 * Adjustments made to GiantDynamics.hmm
-* ***Dragon01 Changes***
+* **Dragon01 Changes**
 * "BOI's animation" for Super Sonic added and will play Master King's Trial.
 * "Vanilla" Super Sonic scene will play in Battle Rush and Main Story.
 * "Dragon\_Finish\_00" moved to Master King's Trial.
-* ***Knight01 Changes***
+* **Knight01 Changes**
 * "BOI's animation" for Super Sonic added and will play Master King's Trial.
 * "Vanilla" Super Sonic scene will play in Battle Rush and Main Story.
-* ***Rifle01 Changes***
+* **Rifle01 Changes**
 * Changes to "AT\_SP02" in where the starting Mega Laser attack animation has been updated to keep its uniqueness.
 * Small changes to some of Supreme's "giantPhase" actions.
 * Updated "WingLaser" QTE files. They should hopefully take less time for the event to start.
 * Winglaser's config option is now in code form rather than folders.
 * Winglaser's config now has an "Off" option to play a different event instead, but will only occur when Supreme reaches low health.
 * New "Bitlaser03" scene implemented for first encounter.
-* ***RifleBeast Changes***
+* **RifleBeast Changes**
 * In bo6xxx.pac: Reduced loading time for Riflebeast Cutscenes bo6110, bo6125, bo6130, bo6140, bo6150, bo6160, bo6190 and its variants for the FH Monologue option.
 
 
