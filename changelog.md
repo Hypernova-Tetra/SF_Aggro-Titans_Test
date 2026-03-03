@@ -2,13 +2,13 @@
 
 
 
-### ***Aggro-Titans***
+#### ***Aggro-Titans***
 
 * Going for a March 2026 release I suppose... Didn't think it'd take this long.
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.4***
+###### ***Aggro-Titans*** *(Test) **1.4***
 
 * ***(R-18 Changes)***
 * Added Sonic Power Boost scene that now starts and ends more quickly.
@@ -116,7 +116,7 @@
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.39***
+###### ***Aggro-Titans*** *(Test) **1.39***
 
 * **R-02 Changes**
 * Another round of changes
@@ -135,14 +135,14 @@
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.38***
+###### ***Aggro-Titans*** *(Test) **1.38***
 
 * Supreme's QTE dynamic script rewritten by GordonRamsy (Huge Thanks)
 * Some adjustments to "Dynamic" files for the other Titans.
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.37***
+###### ***Aggro-Titans*** *(Test) **1.37***
 
 * **Giant01 Changes**
 * Updated Giganto's ImmediateActions between base game and Master King Trials
@@ -174,7 +174,7 @@
 
 
 
-##### ***Aggro-Titans version Big3 (Separate download)***
+###### ***Aggro-Titans version Big3 (Separate download)***
 
 * Giganto, Wyvern, and Knight are a mod built from version 1.37.
 * Includes Kronos Reimagined support for Giganto.
@@ -183,7 +183,7 @@
 
 
 
-##### ***Aggro-Titans version Rifle (Separate download)***
+###### ***Aggro-Titans version Rifle (Separate download)***
 
 * Standalone build for Supreme with support for "Kronos Reimagined" and "Kronos with Ares Island Reimagined" mods.
 * Removed "QTE" presets in this build in place of a folder config for "Default" and "Reimagined" Ouranos Island option.
@@ -192,13 +192,13 @@
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.36***
+###### ***Aggro-Titans*** *(Test) **1.36***
 
 * Further tweaks to Super Sonic 2's transformation for the "Edited" Animation type: Now references the Final Horizons Trailer camera panning when first transforming.
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.35***
+###### ***Aggro-Titans*** *(Test) **1.35***
 
 * Overhauled Monologue entries, less folders, more streamlined.
 * Some tweaks in bo6120, bo6165, and bo6190.
@@ -206,7 +206,7 @@
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.34***
+###### ***Aggro-Titans*** *(Test) **1.34***
 
 * Fixed a typo in one of the config values
 * Update Sonic 0 Ring Cutscene for Phase 2 in Supreme's fight.
@@ -214,7 +214,7 @@
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.33***
+###### ***Aggro-Titans*** *(Test) **1.33***
 
 * Updated code to have "AT\_Tackle" be automatically disabled when "Unused Grand Slam Event" option is selected for Supreme.
 * Added Tru-Blu animation for Super Sonic Transformation for Master King's Trial only.
@@ -223,27 +223,27 @@
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.32***
+###### ***Aggro-Titans*** *(Test) **1.32***
 
 * BossEvent.hmm and BossTitanFinish.hmm files removed.
 * Added "Boss(Name)Dynamics" hmm files for their respective Titan bosses and the code for "TitanFinish" is moved to the Dynamics hmm files based on the respective Titan.
 
 
 
-##### ***Aggro-Titans*** *(Test) **1.31***
+###### ***Aggro-Titans*** *(Test) **1.31***
 
 * Updated "bo3xxx.pac" Super Sonic now shows up when the Super Sonic transformation scene transitions to the fight.
 * Updated Grand Slam scene file for Riflebeast in name only for Phase 1 to avoid conflicts with Sonic skin mods.
 
 
 
-##### Aggro-Titans version 1.3
+###### Aggro-Titans version 1.3
 
 * Bumped to version 1.3 for release.
 
 
 
-##### Aggro-Titans (Test) 1.26
+###### Aggro-Titans (Test) 1.26
 
 * Updated "bo1xxx.pac" includes a new Phase 2 scene exclusive to Master King's Trial courtesy of Tru-blu.
 * Added a toggle option for Sonic's Animation Speed Changes
@@ -263,7 +263,7 @@
 
 
 
-##### Aggro-Titans (Test) 1.25
+###### Aggro-Titans (Test) 1.25
 
 * Final touches in certain areas.
 * Updated Supreme's attacks.
@@ -284,7 +284,7 @@
 
 
 
-##### Aggro-Titans (Test) 1.24
+###### Aggro-Titans (Test) 1.24
 
 * Slight tweaks to Rifle01 attack patterns
 * Tweaked "BossRifle01.hmm" to reflect the changed attack patterns across Phase 1's immediate Actions for Final Horizon.
@@ -296,7 +296,9 @@
 * Reworked "Bitlaser01" and "Bitlaser02" for the "Retooled" QTE option, didn't like the old one too much.
 * Very small tweaks to Wyvern, Knight, and Supreme's QTE files.
 
-##### Aggro-Titans (Test) 1.23
+
+
+###### Aggro-Titans (Test) 1.23
 
 * New option added in Riflebeast's config setting. (Darkball QTE) (Currently Experimental)
 * Adjusted Cutscene bo6190 to fix an error.
@@ -310,14 +312,18 @@
 * Adjustments to Knight.
 * Alternate Sword QTE added for Battle Rush.
 
-##### Aggro-Titans (Test) 1.22
+
+
+###### Aggro-Titans (Test) 1.22
 
 * Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak problem.)
 * New Sword RNG attacks for Knight in Phase 1.
 * New Sword Counter Attack for Knight in Phase 2
 * Adjusted scene: "zev\_parrymiss\_riflebs03"
 
-##### Aggro-Titans (Test) 1.21
+
+
+###### Aggro-Titans (Test) 1.21
 
 * Fixed the Edited "parrymiss" QTE having missing sounds when Riflebeast strikes Sonic to start the QTE.
 * Fixed the Edited "Final Blow" Riflebeast QTE having the wrong sound effects that used different names.
@@ -336,7 +342,9 @@
 * Wyvern Phase 2 Grand Slam added.
 * File and Code Adjustments made.
 
-##### Aggro-Titans (Test) 1.20
+
+
+###### Aggro-Titans (Test) 1.20
 
 * Supreme's scratch attacks are slightly faster.
 * Supreme's Bit Drone projectiles have been retextured.
@@ -392,14 +400,18 @@
 * Time of Day is adjusted.
 * Experimental changes to Phase 2 cutscene for Giganto, Wyvern, Knight, and base Supreme to be skippable. (Sonic's position might be affected)
 
-##### Aggro-Titans Version 1.12
+
+
+###### Aggro-Titans Version 1.12
 
 * Improved a method in which to support the mod for version 1.41.
 * Fixed animation for bo6190.
 * An oopsie fixed with SS2's Grand Slam animation when a certain setting was set to "Vanilla (Blue Aura)"
 * Moved ev1770.usm from "Parrymiss" directories to the "RifleEnd" directories.
 
-##### Aggro-Titans Version 1.11
+
+
+###### Aggro-Titans Version 1.11
 
 * Monologue files adjustments.
 * Fixing an audio problem in which the Italian voice line plays a line twice.
@@ -407,11 +419,15 @@
 * Fixed a problem with certain voice audio of Sage, Amy, Knux, and Tails playing on the left ear in bo6140's monologue "on" setting.
 * Fixed a small issue with Supreme's pillars on a QTE not glowing red energy.
 
-##### Aggro-Titans Version 1.1 (Release Feb. 01)
+
+
+###### Aggro-Titans Version 1.1 (Release Feb. 01)
 
 * Public Update Release after game update 1.42
 
-##### Aggro-Titans (Update Beta)
+
+
+###### Aggro-Titans (Update Beta)
 
 * Merged Monologue Add-on with Main Mod with additional options.
 * Realtime Cutscene for ev5030
@@ -432,56 +448,72 @@
 * Added "BossRifle\_SHOT2-4\_v1.41.hmm" For those still on version 1.41. To apply this, open "mod.ini" and change the code file name to this file.
 * Adjusted Monologue Descriptions.
 
-# Aggro-Titans (Release Version Jan. 16)
+
+
+##### **Aggro-Titans (Release Version Jan. 16)**
 
 * Public Mod Release
 
-##### Aggro Titans Pre-release Patches
+
+
+###### Aggro Titans Pre-release Patches
 
 Things that were done right when I thought I was done with the mod as a whole, but almost ended up missing a few things that I forgot to do, extending the original planned release date.
 
-* R1: Further fixing QTE files so QTE inputs register properly.
-* R2: Last minute tweaks to gun QTEs.
-* R3: Changed cutscene bo4160.
-* R4: Tweaked a certain shot for cutscene bo4110
-* R5: Fixed Shoot01 in "Restored": Sonic was clipping through the first "Red Circle" QTE graphic.
-* R6: Adjusted Supreme's Drone Homing Missile to avoid a bug where the homing missiles and Supreme's counter swipe attack making Sonic unable to parry. Slight update to Supreme's idle animation.
-* R7: Updated "Combat Mods" Hmm code option: Added "BossBitConfig.hmm"
-* R8: Tweaked a few parameters across several scenes. Reset Supreme's idle pose back to default for the time being.
-* R9: Last minute fix to Shoot01 again in "Restored" option where Sonic was clipping through another "Red Circle" QTE Graphic on the 3rd shot during the slow-motion button prompt. Fixed a scene in "Retooled" option where one of the QTE prompt types didn't match. Tweaked an animation for Supreme when parrying his counter spin attack.
-* R10: Adjusted "Winglaser\_v1" QTE. Added effects to a Mash QTE that was missing effects in a certain area when Supreme tried to crush Sonic with his hands. Added 4k.usm files for 4k Resolution Support for Cutscenes.
 * R11: Adjusted "bo6xxx.pac". I hope it reduces lag during the SS2 transformation cutscenes.
+* R10: Adjusted "Winglaser\_v1" QTE. Added effects to a Mash QTE that was missing effects in a certain area when Supreme tried to crush Sonic with his hands. Added 4k.usm files for 4k Resolution Support for Cutscenes.
+* R9: Last minute fix to Shoot01 again in "Restored" option where Sonic was clipping through another "Red Circle" QTE Graphic on the 3rd shot during the slow-motion button prompt. Fixed a scene in "Retooled" option where one of the QTE prompt types didn't match. Tweaked an animation for Supreme when parrying his counter spin attack.
+* R8: Tweaked a few parameters across several scenes. Reset Supreme's idle pose back to default for the time being.
+* R7: Updated "Combat Mods" Hmm code option: Added "BossBitConfig.hmm"
+* R6: Adjusted Supreme's Drone Homing Missile to avoid a bug where the homing missiles and Supreme's counter swipe attack making Sonic unable to parry. Slight update to Supreme's idle animation.
+* R5: Fixed Shoot01 in "Restored": Sonic was clipping through the first "Red Circle" QTE graphic.
+* R4: Tweaked a certain shot for cutscene bo4110
+* R3: Changed cutscene bo4160.
+* R2: Last minute tweaks to gun QTEs.
+* R1: Further fixing QTE files so QTE inputs register properly.
 
-##### Aggro-Titans V0.2.2
+
+
+###### V0.2.2
 
 * Adjustments to Supreme's QTE files for better pacing and to cut down on length for some.
 
-##### Aggro-Titans V0.2.1
+
+
+###### V0.2.1
 
 * New Grand Slam animation for Hyper Sonic skin option when selecting "ParryMiss QTE option".
 * "Zev\_Parrymiss\_Riflebeast.pac" adjusted to remove a detail that didn't quite make sense.
 
-##### Aggro-Titans V0.2.0
+
+
+###### V0.2.0
 
 * Files reuploaded to the GitHub Repo
 * Tweaks and adjustments made to Boss Health and Attack Patterns to both Rifle01 and Riflebeast
 * Added Holoska's code for "AT\_SHOT2" to play "Zev\_Rfl\_Sp02"
 * Updated "Event/Scene/bo4xxx.pac" (For bo4110)
 
-##### Aggro-Titans V0.1.9
+
+
+###### V0.1.9
 
 * Some adjustments to Supreme's attack speed and attack patterns.
 * Adjusted Supreme's "attackHomingLaser" and "attackHandLaser" parameters.
 * Adjusted "immediateActions" parameters
 
-##### Aggro-Titans V0.1.8
+
+
+###### V0.1.8
 
 * Riflebeast "attackPattern" and "attackPatternAfter" slightly changed.
 * Riflebeast "attackHominglaserPattern" slightly changed.
 * Adjusted Winglaser\_2 slightly. Fixed a problem where the QTE didn't fail immediately on the wrong button press. Second QTE prompt changed: "TheEndVariant" -> "PressPrompt".
 * Other slight changes.
 
-##### Aggro-Titans V0.1.7
+
+
+###### V0.1.7
 
 * A fix for SSCyber and SSDamage model and assets not loading in the cutscene.
 * Event/Scene bo6140 (Phase2) updated. Overlapping voices of Sage, Amy, Knux, and Tails are fixed.
@@ -491,7 +523,9 @@ Things that were done right when I thought I was done with the mod as a whole, b
 * Event/Scene "bo4160" is slightly updated more changes coming soon.
 * Barrier HP in Extreme Mode changed: 67 -> 50
 
-##### Aggro-Titans V0.1.6
+
+
+###### V0.1.6
 
 * Changed animation for Riflebeast's recoil animation when parrying Claw attacks.
 * Changed "slowSetting" parameters for "cyloopState" when SS2 crushes Riflebeast are adjusted.
@@ -511,7 +545,9 @@ Things that were done right when I thought I was done with the mod as a whole, b
 * "@attack\_counter\_bite\_start" and "bite\_dead" cam-anim files (for Supreme) are properly working now.
 * Low HP phase for og Supreme's attack pattern slightly adjusted.
 
-##### Aggro-Titans V0.1.5
+
+
+###### V0.1.5
 
 * Optimized certain QTEs related to Shoot02 and its variants across the mod to load quicker in the fight.
 * Fixed Winglaser\_2 QTE's second input auto failing due to incorrect timescale parameter.
@@ -519,7 +555,9 @@ Things that were done right when I thought I was done with the mod as a whole, b
 * New short QTE animation for the "Restored" option during Phase 1.
 * Supreme's @attack\_counter01 animation file swapped with @attack\_counter04.
 
-##### Aggro-Titans V0.1.4
+
+
+###### V0.1.4
 
 * Rearranged files
 * Adjusted Red Circle QTE on "Zev\_Blow" for Fixed Vanilla option
@@ -529,24 +567,32 @@ Things that were done right when I thought I was done with the mod as a whole, b
 * Adjusted "bo6xxx.pac" for the Hyper Sonic skin option as it was an outdated version of what I used for the Monologue mod.
 * "Zev\_rfl\_Shoot01" had an issue with Sonic being in the wrong spot when failing parts of the QTE. So this scene was updated with new fail scenes.
 
-##### Aggro-Titans V0.1.3
+
+
+###### V0.1.3
 
 * Patched Rifle01.pac
 * Added and revised certain Final Horizons QTEs to support Hyper Sonic's blue outline
 * Final Horizons Monologue Mod update coming soon.
 * Fixed Mod.ini
 
-##### Aggro-Titans V0.1.2
+
+
+###### V0.1.2
 
 * Tweaked some things.
 * Fixed a soft lock from incorrect Resource Pointer parameters related to Shoot02
 * Fixed a soft lock from "immediateActions" triggering "AT\_Bit\_Wave" in which Supreme will lock himself after spawning his drones.
 
-##### Aggro-Titans V0.1.1
+
+
+###### V0.1.1
 
 * Updated Combat Mod Option. Now converted to HMM code for reduced file size.
 
-## Aggro-Titans V0.0
+
+
+###### V0.0.0
 
 Work In Progress
 
