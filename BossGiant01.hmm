@@ -342,6 +342,8 @@ Code "Giganto Dynamics" by "Hypernova"
 	
 	string eventName = evtPlayer->GetCurrentEventName();
 	string currentStage = LevelInfo.GetCurrentStageID();
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 	
 	if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
@@ -361,7 +363,7 @@ Code "Giganto Dynamics" by "Hypernova"
 				pkinematics->Position = new System.Numerics.Vector3(81.0f, 319.0f, -60.5f);
 				pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
 				
-				if (LevelInfo.GetCurrentStageID() == "w1t01")
+				if (gameModeBossRush)
 				{
 					var setupData = new EventPlayer.EventSetupData("bo1142");
 					evtPlayer->PlayEvent(ref setupData);
@@ -402,9 +404,6 @@ Code "Giganto Dynamics" by "Hypernova"
 				break;
 			}
 		}
-		
-		bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 		
 		if (gameModeBossRush)
 		{
