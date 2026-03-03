@@ -10,7 +10,7 @@
 
 ##### ***Aggro-Titans*** *(Test) **1.4***
 
-* ###### ***R-18 Changes***
+* ***(R-18 Changes)***
 * Added Sonic Power Boost scene that now starts and ends more quickly.
 * Small animation tweaks in bo1xxx.pac
 * Fixed Sonic's position after Giganto's Phase 2 event(s) end to patch a bug that occurred after implementing the Skip Cutscene feature.
