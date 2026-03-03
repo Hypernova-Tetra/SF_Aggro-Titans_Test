@@ -61,20 +61,14 @@
 * Custom Event: "Winglaser v2" file updated with new animation.
 * Updated "bo6xxx.pac"
 * **R-12 Changes**
-* **Giant01**
-* HP updated: 250k -> 300k
-* **Dragon01**
-* HP updated: 275k -> 325k
-* **Knight01**
-* HP updated: 300k -> 350k
+* Giant01 HP updated: 250k -> 300k
+* Dragon01 HP updated: 275k -> 325k
+* Knight01 HP updated: 300k -> 350k
 * Updated bo3xxx.pac to resolve transition issues.
 * Updated "shieldride02\_aerial" event file.
-* **Rifle01**
-* HP updated: 333k -> 385k (Base Story)
-* HP updated: 350k -> 400k (Another Story)
+* Rifle01 HP updated: 333k -> 385k (Base Story) / 350k -> 400k (Another Story)
 * Updated Bitlaser01 and laser01 event files.
-* **RifleBeast**
-* HP updated: 367k -> 420k
+* RifleBeast HP updated: 367k -> 420k
 * **R-11 Changes**
 * Fixed an error in Wyvern's Grand Slam that caused the game to crash.
 * Updated "bo4xxx" and "bo6xxx"
