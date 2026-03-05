@@ -354,27 +354,27 @@ Code "Giganto Dynamics" by "Hypernova"
 	if (BO1120 == 0) { /* 0x1414534C8 */ BO1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (BO1160 == 0) { /* 0x141453520 */ BO1160 = ScanSignature ("bo1160", "xxxxxx"); }
 
+	if (evtPlayer->IsEventPlaying("bo1141"))
+	{ 
+		pkinematics->Position = new System.Numerics.Vector3(81.0f, 319.0f, -60.5f);
+		pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
+		
+		if (gameModeBossRush)
+		{
+			var setupData = new EventPlayer.EventSetupData("bo1142");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+		else
+		{
+			var setupData = new EventPlayer.EventSetupData("bo1140");
+			evtPlayer->PlayEvent(ref setupData);
+		}
+	}
+
 	if (GameManager.GetGameObject("Giant0") != null)
 	{
 		if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 		{
-			if (evtPlayer->IsEventPlaying("bo1141"))
-			{ 
-				pkinematics->Position = new System.Numerics.Vector3(81.0f, 319.0f, -60.5f);
-				pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
-				
-				if (gameModeBossRush)
-				{
-					var setupData = new EventPlayer.EventSetupData("bo1142");
-					evtPlayer->PlayEvent(ref setupData);
-				}
-				else
-				{
-					var setupData = new EventPlayer.EventSetupData("bo1140");
-					evtPlayer->PlayEvent(ref setupData);
-				}
-			}
-			
 			switch (eventName)
 			{
 				case "bo1120":
