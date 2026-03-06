@@ -1,3 +1,12 @@
+Patch "Knight Address Edits" by "Hypernova"
+{
+	WriteProtected<byte> (/* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3141")); // To make Knight's Phase 2 skippable.
+	WriteProtected<byte> (/* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3145\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	WriteProtected<byte> (/* 0x14145C238 */ ScanSignature ("boss_giant03_bo3140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	WriteProtected<byte> (/* 0x14145C298 */ ScanSignature ("boss_giant03_bo3160","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+	WriteProtected<byte> (/* 0x14145C2C0 */ ScanSignature ("boss_giant03_bo3180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+}
+
 Code "Knight_Combat"
 //
 	#include "Reflection" noemit
@@ -17,29 +26,26 @@ Code "Knight_Combat"
 		
 	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.625f);
 		
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if (gameModeBattleRush)
 	{
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+		
 		if (isBSRActive)
 		{ 
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 125000);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
 		}
 		else
 		{
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
 		}
 	}
-
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
     if (gameModeBossRush)
 	{ 
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 3);
@@ -146,8 +152,33 @@ Code "Knight Dynamics" by "Hypernova"
 
 	if ((IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
 	{	
-		if (GameManager.GetGameObject("Knight0") != null) 
+		if ((Lua.Call<int>("IsPlayingDiEventAll") == 1) && (GameManager.GetGameObject("Knight0") != null))
 		{
+			if (Address3180 == 0) {/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");} // Sonic loses his rings
+			
+			var pkinematics = Player.Kinematics.Get();
+			
+			bool isRide01_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride01");
+			bool isRide01_Short = evtPlayer->IsEventPlaying("zev_knight_shieldride01_short");
+			bool isRide02_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride02");
+			
+			if ((isRide01_Nrmal) || (isRide01_Short) || (isRide02_Nrmal))
+			{ pkinematics->Position = new System.Numerics.Vector3(350.310f, 600.000f, 847.872f); }
+				
+			string eventName = evtPlayer->GetCurrentEventName();
+			switch (eventName)
+			{
+				case "bo3120":
+				case "bo3122":
+					WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180"));
+					break;
+				
+				case "bo3140":
+				case "bo3145":
+					WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181"));
+					break;	
+			}
+
 			if (AtkIntrrupt == 0) {/* 0x141459958 */ AtkIntrrupt = ScanSignature ("battle1_interrupt", "xxxxxxxxxxxxxxxxx");} // Phase 1 Counter Attack after Shieldride 
 			if (B1SwordRage == 0) {/* 0x141459870 */ B1SwordRage = ScanSignature ("battle1_sword_rage", "xxxxxxxxxxxxxxxxxx");} // Sword Counter Phase 2
 			if (B1SwordSide == 0) {/* 0x1414598A0 */ B1SwordSide = ScanSignature ("battle1_sword_side", "xxxxxxxxxxxxxxxxxx");} // Sword Attack Side Phase 1
@@ -216,35 +247,7 @@ Code "Knight Dynamics" by "Hypernova"
 					evtPlayer->PlayEvent(ref setupData);
 				}
 			}
-		}
-			
-		if (Lua.Call<int>("IsPlayingDiEventAll") == 1)
-		{
-			if (Address3180 == 0) {/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");} // Sonic loses his rings
-			
-			var pkinematics = Player.Kinematics.Get();
-			
-			bool isRide01_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride01");
-			bool isRide01_Short = evtPlayer->IsEventPlaying("zev_knight_shieldride01_short");
-			bool isRide02_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride02");
-			
-			if ((isRide01_Nrmal) || (isRide01_Short) || (isRide02_Nrmal))
-			{ pkinematics->Position = new System.Numerics.Vector3(350.310f, 600.000f, 847.872f); }
-				
-			string eventName = evtPlayer->GetCurrentEventName();
-			switch (eventName)
-			{
-				case "bo3120":
-				case "bo3122":
-					WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180"));
-					break;
-				
-				case "bo3140":
-				case "bo3145":
-					WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181"));
-					break;	
-			}
-		}
+		}	
 	}
 }
 

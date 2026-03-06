@@ -1,3 +1,14 @@
+Patch "Wyvern Address Edits" by "Hypernova"
+{
+	WriteProtected<byte> (/* 0x14144C97C */ ScanSignature ("bo2140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2141")); // To make Wyvern's Phase 2 skippable.
+	WriteProtected<byte> (/* 0x141556030 */ ScanSignature ("boss_giant02_bo2110","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+	WriteProtected<byte> (/* 0x14144C948 */ ScanSignature ("boss_giant02_bo2115","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+	WriteProtected<byte> (/* 0x14144C968 */ ScanSignature ("boss_giant02_bo2120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+	WriteProtected<byte> (/* 0x14144C988 */ ScanSignature ("boss_giant02_bo2140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	WriteProtected<byte> (/* 0x14144CA50 */ ScanSignature ("boss_giant02_bo2160","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal")); // unused audio reference name
+	WriteProtected<byte> (/* 0x14144C9A8 */ ScanSignature ("boss_giant02_bo2180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+}
+
 Code "Wyvern_Combat"
 //
 	#include "Reflection" noemit
@@ -109,7 +120,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 	if (SonicParametersInfo.pData == null)
 		return;
 	
-	if (GameManager.GetGameObject("Dragon0") != null)
+	if ((Lua.Call<int>("IsPlayingDiEventAll") == 1) && (GameManager.GetGameObject("Dragon0") != null))
 	{
 		if (AddressSp01 == 0) {/* 0x14144C9C0 */ AddressSp01 = ScanSignature ("zev_dragon_sp_01", "xxxxxxxxxxxxxxxx");}
 		if (AdCntrLsr01 == 0) {/* 0x14144B308 */ AdCntrLsr01 = ScanSignature ("attack_counter01_r", "xxxxxxxxxxxxxxxxxx");}

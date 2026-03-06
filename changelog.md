@@ -1,4 +1,4 @@
-# **Aggro-Titans Blackscreen Removal** - 2026.03.03
+# **Aggro-Titans Blackscreen Removal** - 2026.03.06
 
 
 
@@ -10,7 +10,15 @@
 
 ***V 1.40 (Test)***
 
-***R-18***
+***R-19***
+
+* Removed "BossCutsceneAudio.hmm" scattered its code across their respective Titan-related hmm file.
+* Giganto's unused "attack\_back\_beam01\_start" for "AT\_Counter\_Sp\_03" in Boss Rush got a small tweak with Sonic's positioning.
+* Updated BossRifle01.hmm's "Supreme Dynamic Event" script (again).
+
+
+
+R-18
 
 * Added Sonic Power Boost scene that now starts and ends more quickly.
 * Small animation tweaks in bo1xxx.pac
