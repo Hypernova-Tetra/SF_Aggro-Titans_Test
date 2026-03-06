@@ -59,15 +59,6 @@
 				"DefaultValue":"MBoss_Audio_0rgn"
 				},
 				{
-				"Name":"BossRifleStart",
-				"DisplayName":"Supreme's Intro",
-				"Description":["Choose the scene of Supreme's appearence when the fight starts."],
-				"Type":"RifleStart",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"1"
-				},
-				{
 				"Name":"IncludeDir3",
 				"DisplayName":"Supreme QTE Preset",
 				"Description":["Choose between 3 batches of QTE Scenes for Supreme."],
@@ -225,32 +216,6 @@
 			"DisplayName":"Sound Overhaul",
 			"Value":"MBoss_Audio_SO",
 			"Description":["Sound Overhaul"]
-			}
-		],
-		"RifleStart":
-		[
-			{
-			"DisplayName":"Original",
-			"Value":"0",
-			"Description":["The default Intro animation to supreme."]
-			},
-			{
-			"DisplayName":"Extended",
-			"Value":"1",
-			"Description":["The extended Intro with new animation."]
-			}
-		],
-		"RifleEvent":
-		[
-			{
-			"DisplayName":"Off",
-			"Value":"0",
-			"Description":["00."]
-			},
-			{
-			"DisplayName":"On",
-			"Value":"1",
-			"Description":["01."]
 			}
 		],
 		"RifleWing":
