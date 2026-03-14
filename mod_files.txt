@@ -19,6 +19,7 @@ add Main/raw/event/scene/ev5020.pac
 add Main/raw/event/scene/ev5030.pac
 add Main/raw/event/scene/ev5040.pac
 add Main/raw/event/scene/ev6030.pac
+add Main/raw/event/scene/ga122x.pac
 add Main/raw/event/scene/zev_blow_rifleboss.pac
 add Main/raw/event/scene/zev_blow_riflebs0E.pac
 add Main/raw/event/scene/zev_dragon_finish_00.pac
@@ -63,15 +64,12 @@ add Main/raw/misc/bossrush.pac
 
 add Main/raw/movie/bo4140.usm
 add Main/raw/movie/bo4141.usm
+add Main/raw/movie/bo4142.usm
 add Main/raw/movie/bo4162.usm
 add Main/raw/movie/bo6110.usm
 add Main/raw/movie/bo6110_4k.usm
 add Main/raw/movie/bo6111.usm
 add Main/raw/movie/bo6111_4k.usm
-add Main/raw/movie/bo6210.usm
-add Main/raw/movie/bo6210_4k.usm
-add Main/raw/movie/bo6211.usm
-add Main/raw/movie/bo6211_4k.usm
 add Main/raw/movie/ev5030.usm
 add Main/raw/movie/ev5030_4k.usm
 add Main/raw/movie/ev6030.usm
@@ -525,6 +523,10 @@ delete Main/raw/movie/bo2141.usm
 delete Main/raw/movie/bo1141.usm
 delete Main/raw/movie/bo3141.usm
 delete Main/raw/movie/bo4160.usm
+delete Main/raw/movie/bo6210.usm
+delete Main/raw/movie/bo6210_4k.usm
+delete Main/raw/movie/bo6211.usm
+delete Main/raw/movie/bo6211_4k.usm
 
 delete Main/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 delete Main/raw/sound/extra_sound

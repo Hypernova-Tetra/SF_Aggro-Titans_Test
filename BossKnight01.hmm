@@ -128,8 +128,6 @@ Code "Knight Dynamics" by "Hypernova"
     { /* sup */ "zev_knight_sonic_damage01", "zev_knight_sonic_damage01", "zev_knight_sonic_damage02", "zev_knight_sonic_damage02", "zev_knight_sonic_damage03", "zev_knight_sonic_damage03", "zev_knight_sonic_damage04", "zev_knight_sonic_damage04", "zev_knight_sonic_damage05", "zev_knight_sonic_damage05", "zev_knight_sonic_damage06", "zev_knight_sonic_damage06", "zev_knight_sonic_damage07", "zev_knight_sonic_damage08" };
 //
 {
-	string currentStage = LevelInfo.GetCurrentStageID();
-	
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
@@ -149,18 +147,22 @@ Code "Knight Dynamics" by "Hypernova"
 	//Asm File "State_49" = battle2_interrupt
 	//Asm File "State_60" = battle2_sword_side
 	//Asm File "State_56" = battle2_sword_vert
-
-	if ((IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper()))
-	{	
-		if ((Lua.Call<int>("IsPlayingDiEventAll") == 1) && (GameManager.GetGameObject("Knight0") != null))
+	
+	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
+	if (!SuperBattle)
+		return;
+	{
+		bool ZevKnight = ((Lua.Call<int>("IsPlayingDiEventAll") == 1) && (GameManager.GetGameObject("Knight0") != null))
+		if (!ZevKnight) 
+			return;
 		{
 			if (Address3180 == 0) {/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");} // Sonic loses his rings
 			
 			var pkinematics = Player.Kinematics.Get();
 			
-			bool isRide01_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride01");
-			bool isRide01_Short = evtPlayer->IsEventPlaying("zev_knight_shieldride01_short");
-			bool isRide02_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride02");
+			bool isRide01_Nrmal = Lua.Call<int>("IsPlayingDiEvent", "zev_knight_shieldride01") == 1
+			bool isRide01_Short = Lua.Call<int>("IsPlayingDiEvent", "zev_knight_shieldride01_short") == 1
+			bool isRide02_Nrmal = Lua.Call<int>("IsPlayingDiEvent", "zev_knight_shieldride02") == 1
 			
 			if ((isRide01_Nrmal) || (isRide01_Short) || (isRide02_Nrmal))
 			{ pkinematics->Position = new System.Numerics.Vector3(350.310f, 600.000f, 847.872f); }
@@ -192,7 +194,7 @@ Code "Knight Dynamics" by "Hypernova"
 			else
 			{ WriteProtected<byte>(SonicDamage, System.Text.Encoding.UTF8.GetBytes(HurtRNG[new Random().Next(0, HurtRNG.Length)])); }
 		
-			bool isKnightSkipF2 = evtPlayer->IsEventPlaying("bo3141");
+			bool isKnightSkipF2 = evtPlayer->IsEventPlaying("bo3141")
 			bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
 			bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 			if (gameModeBossRush)

@@ -67,71 +67,6 @@ Code "Supreme_End_Combat"
     }
 }
 
-Code "No_Tackle" by "thej01"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BossRifleBeastConfig"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-
-    static bool IsConfigInitialised = false;
-	static int NoTackle = 0;
-    static bool shieldBool = false;
-    static int ReplaceNum = 0;
-    static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[2];
-
-    // there was originally more to this array 
-    AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_CROW_L;
-    AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_CROW_R;
-
-    var RifleBeastInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-//
-{
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
-        IsConfigInitialised = true;
-
-        if (NoTackle == 1)
-        { shieldBool = true; }
-        else
-        { shieldBool = false; }
-    }
-	
-	if (!shieldBool)
-		return;
-	{
-		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-
-		if (BossRifleBeastConfigInfo.pData == null)
-			return;
-
-		for (int i = 0; i < 12; ++i)
-		{
-			for (int j = 0; j < 10; ++j)
-			{
-				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
-				{
-					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
-					++ReplaceNum;
-					if (ReplaceNum > 1)
-						ReplaceNum = 0;
-				}
-			}
-		}
-	}
-}
-
 Code "Monologue" by "Hypernova"
 //
 	#include "Reflection" noemit
@@ -186,139 +121,142 @@ Code "Monologue" by "Hypernova"
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
 		var ini = INI.Read(modConfigIniPath);
 
-		SupremeM = INI.Parse<int>(ini["Main"]["RifleBeastYap"], SupremeM);
-		SupremeA = INI.Parse<int>(ini["Main"]["RifleBeastAnm"], SupremeA);
-		ZevAura = INI.Parse<int>(ini["Main"]["SS2_Aura"], ZevAura);
-        IsConfigInitialised = true;
+		if (Lua.Call<int>("IsPlayingDiEvent", "bo4162") == 1)
+		{
+			SupremeM = INI.Parse<int>(ini["Main"]["RifleBeastYap"], SupremeM);
+			SupremeA = INI.Parse<int>(ini["Main"]["RifleBeastAnm"], SupremeA);
+			ZevAura = INI.Parse<int>(ini["Main"]["SS2_Aura"], ZevAura);
+			IsConfigInitialised = true;
 		
-		if (ZevAura == 0)
-		{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6180")); }
-	
-		if (ZevAura == 1)
-		{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6181")); }
+			if (ZevAura == 0)
+			{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6180")); }
 		
-		if (ZevAura == 2)
-		{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6182")); }
+			if (ZevAura == 1)
+			{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6181")); }
+			
+			if (ZevAura == 2)
+			{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6182")); }
+			
+			if (SupremeM == 0) // Default Intro
+			{ WriteProtected<byte>(Addressbo6110, System.Text.Encoding.UTF8.GetBytes("bo6110")); }
 		
-		if (SupremeM == 0) // Default Intro
-		{ WriteProtected<byte>(Addressbo6110, System.Text.Encoding.UTF8.GetBytes("bo6110")); }
-	
-		if (SupremeM == 1) // Intro with Monologue
-		{ WriteProtected<byte>(Addressbo6110, System.Text.Encoding.UTF8.GetBytes("bo6111")); }
-	
-		if ((SupremeA == 0) && (ZevAura == 0)) // Default
-		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_rifleboss")); }
+			if (SupremeM == 1) // Intro with Monologue
+			{ WriteProtected<byte>(Addressbo6110, System.Text.Encoding.UTF8.GetBytes("bo6111")); }
 		
-		if ((SupremeA == 0) && (ZevAura == 1)) // Blue Aura
-		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0B")); }
+			if ((SupremeA == 0) && (ZevAura == 0)) // Default
+			{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_rifleboss")); }
+			
+			if ((SupremeA == 0) && (ZevAura == 1)) // Blue Aura
+			{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0B")); }
+			
+			if ((SupremeA == 0) && (ZevAura == 2)) // Asu-Purple Aura
+			{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0P")); }
 		
-		if ((SupremeA == 0) && (ZevAura == 2)) // Asu-Purple Aura
-		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0P")); }
-	
-		if ((SupremeA == 1) && (ZevAura == 0)) // Edited Animation
-		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0E")); }
+			if ((SupremeA == 1) && (ZevAura == 0)) // Edited Animation
+			{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0E")); }
+			
+			if ((SupremeA == 1) && (ZevAura == 1)) // Edited Animation Blue Aura
+			{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1B")); }
+			
+			if ((SupremeA == 1) && (ZevAura == 2)) // Edited Animation Asu-Purple Aura
+			{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1P")); }
 		
-		if ((SupremeA == 1) && (ZevAura == 1)) // Edited Animation Blue Aura
-		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1B")); }
-		
-		if ((SupremeA == 1) && (ZevAura == 2)) // Edited Animation Asu-Purple Aura
-		{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1P")); }
-	
-        if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 0)) // bo61x0 - Default
-        { 
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6120"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6140"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6160"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6165"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6190"));
-		}
-		if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 1)) // bo61x1 - Default with Blue Aura
-        { 
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6121"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6141"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6161"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6166"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6191"));
-		}
-		if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 2)) // bo61x2 - Default with Asu-Purple Aura
-        { 
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6122"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6142"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6167"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6192"));
-		}
-        if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 0)) // bo62x0 - Monologue Active
-        {
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6220"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6240"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6260"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6265"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6290"));
-		}
-		if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 1)) // bo62x1 - Monologue with Blue Aura
-        {
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6221"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6241"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6261"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6266"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6291"));
-		}
-		if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 2)) // bo62x2 - Monologue with Asu-Purple Aura
-        {
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6222"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6242"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6267"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
-		}
-		if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 0)) // bo63x0 - Edited Animation with Default Aura
-        { 
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6320"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6340"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6160"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6365"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6390"));
-		}
-		if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 1)) // bo63x1 - Edited Animation with Blue Aura
-        { 
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6321"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6341"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6161"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6366"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6391"));
-		}
-		if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 2)) // bo63x2 - Edited Animation with Asu-Purple Aura
-        { 
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6322"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6342"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6367"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6392"));
-		}
-        if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 0)) // bo64x0 - Monologue with Edited Animation and Default Aura
-        {
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6420"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6440"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6260"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6465"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6490"));
-		}
-		if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 1)) // bo64x1 - Monologue with Edited Animation and Blue Aura
-        {
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6421"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6441"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6261"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6466"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6491"));
-		}
-		if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 2)) // bo64x2 - Monologue with Edited Animation and Asu-Purple Aura
-        {
-			WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6422"));
-			WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6442"));
-			WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
-			WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6467"));
-			WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6492"));
+			if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 0)) // bo61x0 - Default
+			{ 
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6120"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6140"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6160"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6165"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6190"));
+			}
+			if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 1)) // bo61x1 - Default with Blue Aura
+			{ 
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6121"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6141"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6161"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6166"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6191"));
+			}
+			if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 2)) // bo61x2 - Default with Asu-Purple Aura
+			{ 
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6122"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6142"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6167"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6192"));
+			}
+			if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 0)) // bo62x0 - Monologue Active
+			{
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6220"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6240"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6260"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6265"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6290"));
+			}
+			if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 1)) // bo62x1 - Monologue with Blue Aura
+			{
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6221"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6241"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6261"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6266"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6291"));
+			}
+			if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 2)) // bo62x2 - Monologue with Asu-Purple Aura
+			{
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6222"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6242"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6267"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
+			}
+			if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 0)) // bo63x0 - Edited Animation with Default Aura
+			{ 
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6320"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6340"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6160"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6365"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6390"));
+			}
+			if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 1)) // bo63x1 - Edited Animation with Blue Aura
+			{ 
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6321"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6341"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6161"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6366"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6391"));
+			}
+			if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 2)) // bo63x2 - Edited Animation with Asu-Purple Aura
+			{ 
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6322"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6342"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6367"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6392"));
+			}
+			if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 0)) // bo64x0 - Monologue with Edited Animation and Default Aura
+			{
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6420"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6440"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6260"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6465"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6490"));
+			}
+			if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 1)) // bo64x1 - Monologue with Edited Animation and Blue Aura
+			{
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6421"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6441"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6261"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6466"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6491"));
+			}
+			if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 2)) // bo64x2 - Monologue with Edited Animation and Asu-Purple Aura
+			{
+				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6422"));
+				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6442"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
+				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6467"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6492"));
+			}
 		}
     }
 }

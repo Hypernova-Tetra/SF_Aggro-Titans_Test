@@ -1,4 +1,4 @@
-# **Aggro-Titans Blackscreen Removal** - 2026.03.06
+# **Aggro-Titans Blackscreen Removal** - 2026.03.14
 
 
 
@@ -10,7 +10,26 @@
 
 ***V 1.40 (Test)***
 
-***R-19***
+***R-20: The Finale***
+
+* Another round of optimizing code files to the best of my ability.
+* Animation tweaks across different scenes.
+* Added unsquished Giganto intro scene. Thanks Ashrindy.
+* Updated scene bo1140 for players using a no cutscene border mod to fix Super Sonic from poking out from the top of the screen.
+* Small Adjustment to Wyvern's attack pattern in the "seq" section
+* Added Sonic voices to Knight's QTEs.
+* Fixed a crash for Knight's Phase 2 in Boss Rush.
+* Added a script that hides Supreme's large drones during certain phase 2 events when played after destroying the small drones manually.
+* Tweaked event animations for Supreme in "Retooled" Preset.
+* Tweaked event animations for Supreme in "Bitlaser" Preset.
+* Updated Monologue script to trigger when the alternate Supreme Defeat scene plays in Final Horizons instead of it triggering from loading the Ouranos Island Another Story.
+* Changed a Sound file inside a custom acb.
+* Deleted usm files that weren't needed.
+* Fixed broken scene for Winglaser v2.
+
+
+
+R-19
 
 * Removed "BossCutsceneAudio.hmm" scattered its code across their respective Titan-related hmm file.
 * Giganto's unused "attack\_back\_beam01\_start" for "AT\_Counter\_Sp\_03" in Boss Rush got a small tweak with Sonic's positioning.
@@ -413,7 +432,7 @@ V 1.23 (Test)
 * Fixed a 1 frame camera error in Cutscene bo4140.
 * Adjusted "Counter\_Attack" RNG code for Giganto and Supreme
 * Optimized .hmm code files for "Rifle01.hmm" and "BossRifleBeast.hmm" to fix instability problems in Final Horizons Ouranos Island.
-  (Did I finally fix the Crash Problem on Final Horizons Ouranos Island?)
+(Did I finally fix the Crash Problem on Final Horizons Ouranos Island?)
 * Very small barely noticeable tweaks made to 3 animation files for Supreme.
 * Fixed a Battle Rush QTE error in which a Phase 1 QTE appeared in Phase 2.
 * Adjustments to Knight.

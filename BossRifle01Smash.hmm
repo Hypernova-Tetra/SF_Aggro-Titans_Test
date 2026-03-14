@@ -1,5 +1,5 @@
-Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holoska, and Ashrindy"
-//
+Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Sonic, Hypernova, Holoska, Ashrindy, and thej01"
+// 
 	using System.Numerics;
     using System.Collections.Generic;
     using System.IO;
@@ -36,10 +36,12 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 	static long AddressSplDmg = 0;
 	
 	static bool healthBool = false;
+	static bool shieldBool = false;
 	static bool smashBool = false;
 	static bool initialized = false;
 	static bool IsConfigInitialised = false;
 	
+	static int NoTackle = 0;
 	static int BossRifleSp00 = 0;
 	static int ReplaceNum = 0;
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[2];
@@ -93,14 +95,20 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 		var ini = INI.Read(modConfigIniPath);
 
 		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
+		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
         IsConfigInitialised = true;
 	
         if (BossRifleSp00 == 1)
         {smashBool = true;}
         else
         {smashBool = false;}
+	
+        if (NoTackle == 1)
+        { shieldBool = true; }
+        else
+        { shieldBool = false; }
     }
-
+	
 	if (!smashBool)
 		return;
 	{
@@ -118,32 +126,38 @@ Code "Supreme Unused Grand Slam EventPlayer" by "Batman Sonic, Hypernova, Holosk
 			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.quickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
 			RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Smash);
 			
-			bool isSmashSS = ((Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS) && (XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)))
-			if ((isSmashSS))
+			if ((Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS) && (XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)))
 			{
 				var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp01");
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 				evtPlayer->PlayEvent(ref setupData);
-			}
-			if ((isSmashSS) && (rings < 400))
-			{
-				pBlackboardItem->RingCount += 10;
-				if(rings > maxrings)
-				pBlackboardItem->RingCount = maxrings;
-				if(rings < 0)
-				pBlackboardItem->RingCount = 0;
+				
+				if (rings < 400)
+				{
+					pBlackboardItem->RingCount += 10;
+					if(rings > maxrings)
+					pBlackboardItem->RingCount = maxrings;
+					if(rings < 0)
+					pBlackboardItem->RingCount = 0;
+				}
 			}
 			
-			bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_grndsp01");
-			if ((eventGrandS1))
+			if (evtPlayer->IsEventPlaying("zev_rfl_grndsp01"))
 			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grandsmash")); }
 			else 
 			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop")); }
 		}
 		else 
 		{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
-		
+
+		shieldBool = true; 
+	}
+	
+	if (!shieldBool)
+		return;
+	{
 		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+
 		if (BossRifleBeastConfigInfo.pData == null)
 			return;
 
