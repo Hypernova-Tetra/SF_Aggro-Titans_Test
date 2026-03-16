@@ -155,7 +155,7 @@ Code "Supreme moveset" by "Hypernova"
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 75);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SP02);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_HOMINGLASER_NORMAL);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
@@ -359,7 +359,9 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 				bool isZevSpX2 = evtPlayer->IsEventPlaying("zev_rfl_spX2");
 				bool isZevSp02 = evtPlayer->IsEventPlaying("zev_rfl_sp02");
 				bool isZevLsXX = evtPlayer->IsEventPlaying("zev_rfl_lsXX");
-				if ((isLaser0b) || (isSpQTE01) || (isLaser01) || (isShoot01))
+				bool isZevLs00 = evtPlayer->IsEventPlaying("zev_rfl_ls00");
+				bool isZevLs02 = evtPlayer->IsEventPlaying("zev_rfl_ls02");
+				if ((isLaser0b) || (isSpQTE01) || (isLaser01) || (isShoot01) || (isZevLs00) || (isZevLs02))
 				{ 				
 					pkinematics->Position = new System.Numerics.Vector3(-125.826f, 238.337f, -1170.940f);
 					pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
