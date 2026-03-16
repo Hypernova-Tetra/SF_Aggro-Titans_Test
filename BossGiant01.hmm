@@ -183,9 +183,7 @@ Code "Giganto Dynamics" by "Hypernova"
 	}
 	
 	var pkinematics = Player.Kinematics.Get();
-	
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-	
+
 	bool isGiantSkipF2 = evtPlayer->IsEventPlaying("bo1141")
 	if (!isGiantSkipF2) // This has to stay here outside of any inner bracket to function.
 		return;
@@ -193,7 +191,7 @@ Code "Giganto Dynamics" by "Hypernova"
 		pkinematics->Position = new System.Numerics.Vector3(81.0f, 319.0f, -60.5f);
 		pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
 		
-		if (gameModeBossRush)
+		if (GameMode.GetName() == "GameModeBossRush")
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1142");
 			evtPlayer->PlayEvent(ref setupData);
@@ -219,8 +217,7 @@ Code "Giganto_ActionType"
 	if (!isGiganto) 
 		return;
 	{
-		bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-		if (gameModeBossRush)
+		if (GameMode.GetName() == "GameModeBossRush")
 		{
 			var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
 			if (BossGiantConfigInfo.pData == null)

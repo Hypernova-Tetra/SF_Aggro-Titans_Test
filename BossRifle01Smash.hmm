@@ -150,7 +150,7 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 		else 
 		{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
 
-		shieldBool = true; 
+		shieldBool = true; // Making sure this activates when Grand Slam option is on.
 	}
 	
 	if (!shieldBool)

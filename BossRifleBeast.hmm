@@ -121,7 +121,7 @@ Code "Monologue" by "Hypernova"
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
 		var ini = INI.Read(modConfigIniPath);
 
-		if (Lua.Call<int>("IsPlayingDiEvent", "bo4162") == 1)
+		if (evtPlayer->IsEventPlaying("bo4162"))
 		{
 			SupremeM = INI.Parse<int>(ini["Main"]["RifleBeastYap"], SupremeM);
 			SupremeA = INI.Parse<int>(ini["Main"]["RifleBeastAnm"], SupremeA);

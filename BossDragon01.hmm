@@ -26,22 +26,20 @@ Code "Wyvern_Combat"
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
 	if (BossDragonConfigInfo.pData == null)
 		return;
-		
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-	if (gameModeBattleRush)
+	
+	if (GameMode.GetName() == "GameModeBattleRush")
 	{
 		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
 		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3500);
 		
+		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 		if (isBSRActive)
 		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 115000); }
 		else
 		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
 	}
 	
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-    if (gameModeBossRush)
+    if (GameMode.GetName() == "GameModeBossRush")
 	{ 
 		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
 		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
@@ -173,7 +171,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 	if (!ZevDragon) 
 		return;
 	{
-		bool isDrgnRdMake = (Lua.Call<int>("IsPlayingDiEvent", "bo2115") == 1)
+		bool isDrgnRdMake = evtPlayer->IsEventPlaying("bo2115")
 		if (!isDrgnRdMake)
 			return;
 		{
