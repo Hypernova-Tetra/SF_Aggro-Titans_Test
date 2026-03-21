@@ -351,16 +351,18 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 				bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01") 
 				bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01") 
 				bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01") 
-				bool isZevWing = evtPlayer->IsEventPlaying("zev_rfl_wing") 
 				bool isZevSpX2 = evtPlayer->IsEventPlaying("zev_rfl_spX2") 
 				bool isZevSp02 = evtPlayer->IsEventPlaying("zev_rfl_sp02") 
 				bool isZevLsXX = evtPlayer->IsEventPlaying("zev_rfl_lsXX") 
+				bool isZevWng0 = evtPlayer->IsEventPlaying("zev_rfl_wing") 
+				bool isZevWng1 = evtPlayer->IsEventPlaying("zev_rfl_wng1") 
+				bool isZevWng2 = evtPlayer->IsEventPlaying("zev_rfl_wng2") 
 				if ((isLaser0b) || (isSpQTE01) || (isLaser01) || (isShoot01))
 				{ 				
 					pkinematics->Position = new System.Numerics.Vector3(-125.826f, 238.337f, -1170.940f);
 					pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
 				}
-				else if ((isLaser02) || (isZevWing) || (isZevLsXX) || (isZevSp02) || (isZevSpX2))
+				else if ((isLaser02) || (isZevLsXX) || (isZevSp02) || (isZevSpX2) || (isZevWng0) || (isZevWng1) || (isZevWng2))
 				{ 
 					Lua.Call("HideObjectInEvent", "BossLargeBit2", true);
 					Lua.Call("HideObjectInEvent", "BossLargeBit3", true);
