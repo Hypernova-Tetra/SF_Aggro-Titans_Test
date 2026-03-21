@@ -16,7 +16,7 @@
 * Added Sonic's voice to Knight's QTEs.
 * Added Sonic's voice to a small amount of Supreme's QTEs.
 * Tweaked Animation for "Retooled" and "Bitlaser" QTE presets.
-* Fixed an issue with Riflebeast's bo6xxx scenes in where not skipping the scene causes a 3 second delay.
+* Fixed an issue with Riflebeast's bo6xxx scenes in where not skipping the first SS2 power up scene causes a 3 second delay to gameplay.
 * Removed toggle option for Riflebeast Darkball QTE, now a permanent feature.
 * Unused Cinematic Grand Slam now has a Phase 2 animation.
 
