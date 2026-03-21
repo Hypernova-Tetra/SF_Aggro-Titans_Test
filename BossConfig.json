@@ -128,15 +128,6 @@
 				"MaxValue":null,
 				"DefaultValue":"0"
 				},
-				{
-				"Name":"BossBeastBall",
-				"DisplayName":"Riflebeast Darkball QTE",
-				"Description":["Experimental QTE option"],
-				"Type":"BossDarkballQTE",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"1"
-				},
 			]
 		}
 	],

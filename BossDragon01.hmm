@@ -26,20 +26,22 @@ Code "Wyvern_Combat"
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
 	if (BossDragonConfigInfo.pData == null)
 		return;
-	
-	if (GameMode.GetName() == "GameModeBattleRush")
+		
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+	if (gameModeBattleRush)
 	{
 		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
 		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3500);
 		
-		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 		if (isBSRActive)
 		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 115000); }
 		else
 		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
 	}
 	
-    if (GameMode.GetName() == "GameModeBossRush")
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+    if (gameModeBossRush)
 	{ 
 		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
 		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
@@ -58,7 +60,7 @@ Code "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 			
-        if ((BossHP == 1) || (BossHP == 2))
+		if (BossHP != 0)
         {
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8250);
@@ -116,7 +118,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 	if (Address2120 == 0) {/* 0x14144C95C */ Address2120 = ScanSignature ("bo2120", "xxxxxx");}
 	if (Address2180 == 0) {/* 0x14144C99D */ Address2180 = ScanSignature ("bo2180", "xxxxxx");}
 		
-	bool DragonFight = ((BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle)) && (GameManager.GetGameObject("Dragon0") != null))
+	bool DragonFight = ((BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle)) && (GameManager.GetGameObject("Dragon0") != null) && (Player.State.GetStatePlugin("StatePluginBossBattle") != null))
 	if (!DragonFight) 
 		return;
 	{
@@ -127,6 +129,10 @@ Code "Wyvern Dynamics" by "Hypernova"
 		{
 			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter03_r"));
 			WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2181"));
+			
+			var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
+			if (BossDragonConfigInfo.pData == null)
+				return;
 				
 			if (gameModeBossRush)
 			{ 
@@ -138,6 +144,10 @@ Code "Wyvern Dynamics" by "Hypernova"
 				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psycho");
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 				evtPlayer->PlayEvent(ref setupData);
+				
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
 			}
 			else if (gameModeBattleRush)
 			{ 
@@ -149,6 +159,10 @@ Code "Wyvern Dynamics" by "Hypernova"
 				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psych1");
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 				evtPlayer->PlayEvent(ref setupData);
+				
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
 			}
 			else
 			{ 
@@ -160,6 +174,10 @@ Code "Wyvern Dynamics" by "Hypernova"
 				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_missile2");
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 				evtPlayer->PlayEvent(ref setupData);
+				
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
 			}
 		}
 		
@@ -167,38 +185,24 @@ Code "Wyvern Dynamics" by "Hypernova"
 		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
 	}
 	
-	bool ZevDragon = ((Lua.Call<int>("IsPlayingDiEventAll") == 1) && (GameManager.GetGameObject("Dragon0") != null))
-	if (!ZevDragon) 
+	bool isDrgnRdMake = (Lua.Call<int>("IsPlayingDiEvent", "bo2115") == 1) && (GameManager.GetGameObject("Dragon0") != null)
+	if (!isDrgnRdMake)
 		return;
 	{
-		bool isDrgnRdMake = evtPlayer->IsEventPlaying("bo2115")
-		if (!isDrgnRdMake)
-			return;
+		WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
+		WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
+		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
+		WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
+
+		if (gameModeBossRush)
 		{
-			WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
-			WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
-			WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
+			WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2121"));
 			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
-			WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
-			
-			var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
-			if (BossDragonConfigInfo.pData == null)
-				return;
-			
-			if (gameModeBossRush)
-			{
-				WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2121")); 
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
-			}
-			else
-			{
-				WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120"));
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
-			}
+		}
+		else
+		{
+			WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120"));
+			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
 		}
 	}
 }

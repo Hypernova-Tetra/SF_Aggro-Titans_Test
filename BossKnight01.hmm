@@ -26,7 +26,10 @@ Code "Knight_Combat"
 		
 	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.625f);
 	
-	if (GameMode.GetName() == "GameModeBattleRush")
+	
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	if (!gameModeBattleRush)
+		return;
 	{
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
@@ -44,7 +47,10 @@ Code "Knight_Combat"
 			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
 		}
 	}
-    if (GameMode.GetName() == "GameModeBossRush")
+	
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+    if (!gameModeBossRush)
+		return;
 	{ 
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 3);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
@@ -65,7 +71,7 @@ Code "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		if ((BossHP == 1) || (BossHP == 2))
+		if (BossHP != 0)
         {
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 8);
@@ -115,11 +121,11 @@ Code "Knight Dynamics" by "Hypernova"
 	
 	static long B1SwordSide = 0;
 	static string[] SideRNG = new[]
-    { /* sup */ "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert" };
+    { /* sup */ "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert" };
 	
 	static long B1SwordVert = 0;
 	static string[] VertRNG = new[]
-    { /* sup */ "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage" };
+    { /* sup */ "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage" };
 		
 	static long SonicDamage = 0;
     static string[] HurtRNG = new[]
@@ -128,10 +134,6 @@ Code "Knight Dynamics" by "Hypernova"
 {
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-		
-	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
-	if (SonicParametersInfo.pData == null)
 		return;
 	
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -146,39 +148,37 @@ Code "Knight Dynamics" by "Hypernova"
 	//Asm File "State_60" = battle2_sword_side
 	//Asm File "State_56" = battle2_sword_vert
 	
-	bool SuperBattle = IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper();
-	if (!SuperBattle)
-		return;
+	 
 	{
-		bool ZevKnight = ((Lua.Call<int>("IsPlayingDiEventAll") == 1) && (GameManager.GetGameObject("Knight0") != null))
-		if (!ZevKnight) 
+		string eventName = evtPlayer->GetCurrentEventName();
+		switch (eventName)
+		{
+			case "bo3120":
+			case "bo3122":
+				WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180"));
+				break;
+			
+			case "bo3140":
+			case "bo3145":
+				WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181"));
+				break;	
+		}
+
+		bool isGiantBoss03 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Knight0") != null) && BlackboardStatus.IsSuper();
+		if (!isGiantBoss03)
 			return;
 		{
 			if (Address3180 == 0) {/* 0x14145C2B4 */ Address3180 = ScanSignature ("bo3180", "xxxxxx");} // Sonic loses his rings
-			
+				
 			var pkinematics = Player.Kinematics.Get();
-			
+				
 			bool isRide01_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride01")
 			bool isRide01_Short = evtPlayer->IsEventPlaying("zev_knight_shieldride01_short")
 			bool isRide02_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride02")
-			
+				
 			if ((isRide01_Nrmal) || (isRide01_Short) || (isRide02_Nrmal))
 			{ pkinematics->Position = new System.Numerics.Vector3(350.310f, 600.000f, 847.872f); }
 				
-			string eventName = evtPlayer->GetCurrentEventName();
-			switch (eventName)
-			{
-				case "bo3120":
-				case "bo3122":
-					WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180"));
-					break;
-				
-				case "bo3140":
-				case "bo3145":
-					WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181"));
-					break;	
-			}
-
 			if (AtkIntrrupt == 0) {/* 0x141459958 */ AtkIntrrupt = ScanSignature ("battle1_interrupt", "xxxxxxxxxxxxxxxxx");} // Phase 1 Counter Attack after Shieldride 
 			if (B1SwordRage == 0) {/* 0x141459870 */ B1SwordRage = ScanSignature ("battle1_sword_rage", "xxxxxxxxxxxxxxxxxx");} // Sword Counter Phase 2
 			if (B1SwordSide == 0) {/* 0x1414598A0 */ B1SwordSide = ScanSignature ("battle1_sword_side", "xxxxxxxxxxxxxxxxxx");} // Sword Attack Side Phase 1
@@ -191,11 +191,11 @@ Code "Knight Dynamics" by "Hypernova"
 			{/* 0x141455908 */ SonicDamage = ScanSignature ("zev_knight_sonic_damage01", "xxxxxxxxxxxxxxxxxxxxxxxxx");}
 			else
 			{ WriteProtected<byte>(SonicDamage, System.Text.Encoding.UTF8.GetBytes(HurtRNG[new Random().Next(0, HurtRNG.Length)])); }
-		
+			
 			bool isKnightSkipF2 = evtPlayer->IsEventPlaying("bo3141")
 			bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
 			bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-			if (gameModeBossRush)
+			if (gameModeBossRush) // Master King
 			{
 				WriteProtected<byte>(AtkIntrrupt, System.Text.Encoding.UTF8.GetBytes(IntrRNG[new Random().Next(0, IntrRNG.Length)]));
 				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
@@ -204,7 +204,7 @@ Code "Knight Dynamics" by "Hypernova"
 				WriteProtected<byte>(F2SwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp03"));
 				WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3122")); 
 				WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));
-				
+					
 				if (isKnightSkipF2)
 				{
 					{ var setupData = new EventPlayer.EventSetupData("bo3145"); evtPlayer->PlayEvent(ref setupData); }
@@ -215,7 +215,7 @@ Code "Knight Dynamics" by "Hypernova"
 					}
 				};
 			}
-			else if (gameModeBattleRush)
+			else if (gameModeBattleRush) // Battle Rush
 			{
 				WriteProtected<byte>(AtkIntrrupt, System.Text.Encoding.UTF8.GetBytes("battle2_interrupt"));
 				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
@@ -224,17 +224,17 @@ Code "Knight Dynamics" by "Hypernova"
 				WriteProtected<byte>(F2SwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02"));
 				WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));
 				WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2"));
-				
+					
 				if (isKnightSkipF2)
 				{
 					var setupData = new EventPlayer.EventSetupData("bo3140");
 					evtPlayer->PlayEvent(ref setupData);
 				}
 			}
-			else
+			else // Base Story
 			{	
 				WriteProtected<byte>(AtkIntrrupt, System.Text.Encoding.UTF8.GetBytes("battle1_interrupt"));
-				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));
+				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
 				WriteProtected<byte>(B1SwordSide, System.Text.Encoding.UTF8.GetBytes("battle1_sword_side"));
 				WriteProtected<byte>(B1SwordVert, System.Text.Encoding.UTF8.GetBytes("battle1_sword_vert"));
 				WriteProtected<byte>(F2SwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01"));
@@ -247,7 +247,7 @@ Code "Knight Dynamics" by "Hypernova"
 					evtPlayer->PlayEvent(ref setupData);
 				}
 			}
-		}	
+		}
 	}
 }
 

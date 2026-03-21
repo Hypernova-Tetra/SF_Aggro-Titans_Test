@@ -32,6 +32,8 @@ Code "Giganto_Combat"
 		
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+	
 	if (gameModeBattleRush)
 	{ 
 		WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1120")); // Original Animation
@@ -47,9 +49,7 @@ Code "Giganto_Combat"
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
 		}
 	}
-	
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-    if (gameModeBossRush)
+    else if (gameModeBossRush)
 	{ 
 		WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); // Tru-Blu Animation
 		WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
@@ -77,8 +77,8 @@ Code "Giganto_Combat"
 		
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-			
-        if ((BossHP == 1) || (BossHP == 2))
+		
+        if (BossHP != 0)
         {
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 125000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
@@ -125,15 +125,6 @@ Code "Giganto Dynamics" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-	string eventName = evtPlayer->GetCurrentEventName();
-	
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-
-	var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
-	if (SonicParametersInfo.pData == null)
-		return;
 	
 	if (AttackShout == 0) { /* 0x1414508E8 */ AttackShout = ScanSignature ("attack_howl", "xxxxxxxxxxx"); }
 	if (AdCyloopAtk == 0) { /* 0x14140F690 */ AdCyloopAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
@@ -142,11 +133,12 @@ Code "Giganto Dynamics" by "Hypernova"
 	if (Address1120 == 0) { /* 0x1414534C8 */ Address1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (Address1160 == 0) { /* 0x141453520 */ Address1160 = ScanSignature ("bo1160", "xxxxxx"); }
 	if (Address1180 == 0) { /* 0x141453544 */ Address1180 = ScanSignature ("bo1180", "xxxxxx"); }
-
+	
 	bool isGiant01 = (GameManager.GetGameObject("Giant0") != null)
 	if (!isGiant01)
 		return;
 	{		
+		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)
 		{
 			case "ga1225":
@@ -182,12 +174,11 @@ Code "Giganto Dynamics" by "Hypernova"
 		}
 	}
 	
-	var pkinematics = Player.Kinematics.Get();
-
 	bool isGiantSkipF2 = evtPlayer->IsEventPlaying("bo1141")
 	if (!isGiantSkipF2) // This has to stay here outside of any inner bracket to function.
 		return;
 	{	
+		var pkinematics = Player.Kinematics.Get();
 		pkinematics->Position = new System.Numerics.Vector3(81.0f, 319.0f, -60.5f);
 		pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
 		
@@ -213,8 +204,8 @@ Code "Giganto_ActionType"
     #import "Services"
 //
 {
-	bool isGiganto = (GameManager.GetGameObject("Giant0") != null)
-	if (!isGiganto) 
+	bool isGiant01 = (GameManager.GetGameObject("Giant0") != null)
+	if (!isGiant01)
 		return;
 	{
 		if (GameMode.GetName() == "GameModeBossRush")

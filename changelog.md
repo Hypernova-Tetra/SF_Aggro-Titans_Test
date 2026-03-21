@@ -1,16 +1,28 @@
-# **Aggro-Titans Blackscreen Removal** - 2026.03.14
+# **Aggro-Titans Blackscreen Removal** - 2026.03.20
 
 
 
 #### ***Aggro-Titans***
 
-* Going for a March 2026 release I suppose... Didn't think it'd take this long.
+* At this point I'm settling for April 2026.
 
 
 
 ***V 1.40 (Test)***
 
-***R-20: The Finale***
+***R-21***
+
+* Code tweaks again.
+* Added Sonic's voice to Knight's QTEs.
+* Added Sonic's voice to a small amount of Supreme's QTEs.
+* Tweaked Animation for "Retooled" and "Bitlaser" QTE presets.
+* Fixed an issue with Riflebeast's bo6xxx scenes in where not skipping the scene causes a 3 second delay.
+* Removed toggle option for Riflebeast Darkball QTE, now a permanent feature.
+* Unused Cinematic Grand Slam now has a Phase 2 animation.
+
+
+
+R-20
 
 * Another round of optimizing code files to the best of my ability.
 * Animation tweaks across different scenes.
