@@ -175,10 +175,23 @@ Code "Knight Dynamics" by "Hypernova"
 			bool isRide01_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride01")
 			bool isRide01_Short = evtPlayer->IsEventPlaying("zev_knight_shieldride01_short")
 			bool isRide02_Nrmal = evtPlayer->IsEventPlaying("zev_knight_shieldride02")
-				
 			if ((isRide01_Nrmal) || (isRide01_Short) || (isRide02_Nrmal))
 			{ pkinematics->Position = new System.Numerics.Vector3(350.310f, 600.000f, 847.872f); }
-				
+			
+			bool isDamage01 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage01")
+			bool isDamage02 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage02")
+			bool isDamage03 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage03")
+			bool isDamage04 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage04")
+			bool isDamage05 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage05")
+			bool isDamage06 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage06")
+			bool isDamage07 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage07")
+			bool isDamage08 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage08")
+			if ((isDamage01) || (isDamage02) || (isDamage03) || (isDamage04) || (isDamage05) || (isDamage06) || (isDamage07) || (isDamage08))
+			{
+				pkinematics->Position = new System.Numerics.Vector3(607.0f, 700.0f, 1085.0f);
+				pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
+			}
+			
 			if (AtkIntrrupt == 0) {/* 0x141459958 */ AtkIntrrupt = ScanSignature ("battle1_interrupt", "xxxxxxxxxxxxxxxxx");} // Phase 1 Counter Attack after Shieldride 
 			if (B1SwordRage == 0) {/* 0x141459870 */ B1SwordRage = ScanSignature ("battle1_sword_rage", "xxxxxxxxxxxxxxxxxx");} // Sword Counter Phase 2
 			if (B1SwordSide == 0) {/* 0x1414598A0 */ B1SwordSide = ScanSignature ("battle1_sword_side", "xxxxxxxxxxxxxxxxxx");} // Sword Attack Side Phase 1
