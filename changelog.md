@@ -1,4 +1,4 @@
-# **Aggro-Titans Blackscreen Removal** - 2026.03.21
+# **Aggro-Titans Blackscreen Removal** - 2026.03.22
 
 
 
@@ -19,6 +19,7 @@
 * Fixed an issue with Riflebeast's bo6xxx scenes in where not skipping the first SS2 power up scene causes a 3 second delay to gameplay.
 * Removed toggle option for Riflebeast Darkball QTE, now a permanent feature.
 * Unused Cinematic Grand Slam now has a Phase 2 animation.
+* Fixed an error in the Retooled Preset with one of the QTEs causing softlocks. (Version R21a)
 
 
 
