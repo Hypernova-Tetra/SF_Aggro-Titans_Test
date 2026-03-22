@@ -566,7 +566,6 @@ delete MBoss_Audio_SO/raw/movie/bo6460.usm
 delete MBoss_Audio_SO/raw/movie/bo6461.usm
 
 delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser00.pac
-delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laser02.pac
 delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_sp01.pac
 
 delete MBoss_Bo6x00a_Silen0/raw/event/scene/bo6xxx.pac
