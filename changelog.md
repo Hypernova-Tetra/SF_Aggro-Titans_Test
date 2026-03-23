@@ -503,9 +503,7 @@ Rifle01 (Supreme)
 
 * Public Update Release after game update 1.42
 
-
-
-###### (Update Beta)
+(Update Beta)
 
 * Merged Monologue Add-on with Main Mod with additional options.
 * Realtime Cutscene for ev5030
@@ -534,9 +532,9 @@ Rifle01 (Supreme)
 
 
 
-###### Aggro Titans Pre-release Patches
+#### **Aggro-Titans Pre-Release**
 
-Things that were done right when I thought I was done with the mod as a whole, but almost ended up missing a few things that I forgot to do, extending the original planned release date.
+(Things that were done right when I thought I was done with the mod as a whole, but almost ended up missing a few things that I forgot to do, extending the original planned release date.)
 
 * R11: Adjusted "bo6xxx.pac". I hope it reduces lag during the SS2 transformation cutscenes.
 * R10: Adjusted "Winglaser\_v1" QTE. Added effects to a Mash QTE that was missing effects in a certain area when Supreme tried to crush Sonic with his hands. Added 4k.usm files for 4k Resolution Support for Cutscenes.
@@ -556,14 +554,10 @@ V0.22
 
 * Adjustments to Supreme's QTE files for better pacing and to cut down on length for some.
 
-
-
 V0.21
 
 * New Grand Slam animation for Hyper Sonic skin option when selecting "ParryMiss QTE option".
 * "Zev\_Parrymiss\_Riflebeast.pac" adjusted to remove a detail that didn't quite make sense.
-
-
 
 V0.20
 
@@ -572,15 +566,11 @@ V0.20
 * Added Holoska's code for "AT\_SHOT2" to play "Zev\_Rfl\_Sp02"
 * Updated "Event/Scene/bo4xxx.pac" (For bo4110)
 
-
-
 V0.19
 
 * Some adjustments to Supreme's attack speed and attack patterns.
 * Adjusted Supreme's "attackHomingLaser" and "attackHandLaser" parameters.
 * Adjusted "immediateActions" parameters
-
-
 
 V0.18
 
@@ -588,8 +578,6 @@ V0.18
 * Riflebeast "attackHominglaserPattern" slightly changed.
 * Adjusted Winglaser\_2 slightly. Fixed a problem where the QTE didn't fail immediately on the wrong button press. Second QTE prompt changed: "TheEndVariant" -> "PressPrompt".
 * Other slight changes.
-
-
 
 V0.17
 
@@ -600,8 +588,6 @@ V0.17
 * Event/Scene "bo4110" is slightly updated.
 * Event/Scene "bo4160" is slightly updated more changes coming soon.
 * Barrier HP in Extreme Mode changed: 67 -> 50
-
-
 
 V0.16
 
@@ -623,8 +609,6 @@ V0.16
 * "@attack\_counter\_bite\_start" and "bite\_dead" cam-anim files (for Supreme) are properly working now.
 * Low HP phase for og Supreme's attack pattern slightly adjusted.
 
-
-
 V0.15
 
 * Optimized certain QTEs related to Shoot02 and its variants across the mod to load quicker in the fight.
@@ -632,8 +616,6 @@ V0.15
 * Changed Supreme's "immediateActions" or rather what the asm file calls "counterPose" animation.
 * New short QTE animation for the "Restored" option during Phase 1.
 * Supreme's @attack\_counter01 animation file swapped with @attack\_counter04.
-
-
 
 V0.14
 
@@ -645,8 +627,6 @@ V0.14
 * Adjusted "bo6xxx.pac" for the Hyper Sonic skin option as it was an outdated version of what I used for the Monologue mod.
 * "Zev\_rfl\_Shoot01" had an issue with Sonic being in the wrong spot when failing parts of the QTE. So this scene was updated with new fail scenes.
 
-
-
 V0.13
 
 * Patched Rifle01.pac
@@ -654,21 +634,15 @@ V0.13
 * Final Horizons Monologue Mod update coming soon.
 * Fixed Mod.ini
 
-
-
 V0.12
 
 * Tweaked some things.
 * Fixed a soft lock from incorrect Resource Pointer parameters related to Shoot02
 * Fixed a soft lock from "immediateActions" triggering "AT\_Bit\_Wave" in which Supreme will lock himself after spawning his drones.
 
-
-
 V0.11
 
 * Updated Combat Mod Option. Now converted to HMM code for reduced file size.
-
-
 
 V0.10
 
