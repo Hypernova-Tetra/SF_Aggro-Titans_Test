@@ -270,24 +270,6 @@ Rifle01 (Supreme)
 
 
 
-###### ***Aggro-Titans version Big3 (Separate download)***
-
-* Giganto, Wyvern, and Knight are a mod built from version 1.37.
-* Includes Kronos Reimagined support for Giganto.
-* Ares Reimagined works as is without any additional changes.
-* Certain Adjustments were made for Giganto, see patch notes 1.37.
-
-
-
-###### ***Aggro-Titans version Rifle (Separate download)***
-
-* Standalone build for Supreme with support for "Kronos Reimagined" and "Kronos with Ares Island Reimagined" mods.
-* Removed "QTE" presets in this build in place of a folder config for "Default" and "Reimagined" Ouranos Island option.
-* Reimagined option will show relocated "ev5020", "ev5030", "ev1770", "bo4xxx", and "bo6xxx" events to reflect Supreme's battle being in the crater.
-* Reduced loading times for certain cutscenes, see patch notes 1.37.
-
-
-
 *Test Version 1.36*
 
 * Further tweaks to Super Sonic 2's transformation for the "Edited" Animation type: Now references the Final Horizons Trailer camera panning when first transforming.
@@ -333,7 +315,7 @@ Rifle01 (Supreme)
 
 
 
-###### **Aggro-Titans version 1.3**
+#### **Aggro-Titans 1.30**
 
 * Bumped to version 1.3 for release.
 
@@ -440,7 +422,7 @@ Rifle01 (Supreme)
 
 
 
-###### ***Version 1.20***
+#### **Aggro-Titans 1.20**
 
 * Supreme's scratch attacks are slightly faster.
 * Supreme's Bit Drone projectiles have been retextured.
@@ -498,7 +480,7 @@ Rifle01 (Supreme)
 
 
 
-###### ***Version 1.12***
+#### **Aggro-Titans 1.12**
 
 * Improved a method in which to support the mod for version 1.41.
 * Fixed animation for bo6190.
@@ -507,7 +489,7 @@ Rifle01 (Supreme)
 
 
 
-###### ***Version 1.11***
+#### **Aggro-Titans 1.11**
 
 * Monologue files adjustments.
 * Fixing an audio problem in which the Italian voice line plays a line twice.
@@ -517,7 +499,7 @@ Rifle01 (Supreme)
 
 
 
-###### ***Version 1.10* (Release Feb. 01)**
+#### **Aggro-Titans 1.10**
 
 * Public Update Release after game update 1.42
 
