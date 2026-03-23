@@ -2,15 +2,18 @@
 
 
 
-#### ***Aggro-Titans***
-
-* At this point I'm settling for April 2026.
+* At this point I'm settling for April 2026. Current Mod File Size: "5.27GB" (when compressed to .RAR archive)
 
 
 
-***V 1.40 (Test)***
+#### ***Aggro-Titans Test 1.40.R22***
 
-***R-21***
+* Went through to fix errors that may have cropped up in code files.
+* Updated Supreme Cinematic Grand Slam Phase 1 camera file.
+
+
+
+R-21
 
 * Code tweaks again.
 * Added Sonic's voice to Knight's QTEs.
@@ -20,8 +23,6 @@
 * Removed toggle option for Riflebeast Darkball QTE, now a permanent feature.
 * Unused Cinematic Grand Slam now has a Phase 2 animation.
 * Fixed a softlock in Retooled preset due to one of the QTE files being deleted when updating.
-
-
 
 R-20
 
@@ -40,16 +41,12 @@ R-20
 * Deleted usm files that weren't needed.
 * Fixed broken scene for Winglaser v2.
 
-
-
 R-19
 
 * Removed "BossCutsceneAudio.hmm" scattered its code across their respective Titan-related hmm file.
 * Giganto's unused "attack\_back\_beam01\_start" for "AT\_Counter\_Sp\_03" in Boss Rush got a small tweak with Sonic's positioning.
 * Separated Supreme's Intro. Default plays in Base Story, Extended plays in Final Horizons Story.
 * Updated BossRifle01.hmm's "Supreme Dynamic Event" script (again).
-
-
 
 R-18
 
@@ -63,8 +60,6 @@ R-18
 * Knight's Shieldride02 event has been tweaked slightly.
 * Supreme's intro cutscene and extended intro now start and end more quickly.
 * Some HMM files have been tweaked.
-
-
 
 R-17
 
@@ -83,8 +78,6 @@ R-17
 * "Rifle01.hmm" script file updated to fix up some Dynamic event cycles when performing certain actions.
 * Fixed position offset errors causing the first "Winglaser" cutscene to take a while to transition back to gameplay.
 
-
-
 R-16
 
 * Further adjustments to some event and boss pac files.
@@ -95,14 +88,10 @@ R-16
 * "BossRush.hmm" script updated to add in "Time of Day" parameters differences based on whether or not "Boss Rush Cyberspace" mod is active.
 * Updated Unused Cinematic Grand Slam script to fix an error in which the scene does not trigger properly and having this option selected crashes the game when attempting to parry Riflebeast's shield tackle attack.
 
-
-
 R-15
 
 * Updated "bossconfig" to remove the option for Giganto's "Blue Rings", now they only show in base and Battle Rush Kronos Island while disappearing in Boss Rush (Master King Trials) Kronos.
 * Further animation adjustments to the "Oops All Bitlaser" QTE preset, new animations added to certain files.
-
-
 
 R-14
 
@@ -114,8 +103,6 @@ R-14
 * Fixed an issue where Wyvern's custom Phase 2 Grand Slam would crash the game.
 * Updated initial "Winglaser" QTE animation.
 
-
-
 R-13
 
 * Fixed an issue with Giganto's Phase 2 scene not being able to be skipped in base story Kronos Island.
@@ -125,8 +112,6 @@ R-13
 * Resolved certain issues involving incorrect dvscene parameter values, causing sounds not to play, or the game crashes when loading the scene.
 * Custom Event: "Winglaser v2" file updated with new animation.
 * Updated "bo6xxx.pac"
-
-
 
 R-12
 
@@ -139,8 +124,6 @@ R-12
 * Updated Bitlaser01 and laser01 event files.
 * RifleBeast HP updated: 367k -> 420k
 
-
-
 R-11
 
 * Fixed an error in Wyvern's Grand Slam that caused the game to crash.
@@ -149,41 +132,29 @@ R-11
 * Updated Rifle01.pac to update asm file to include new state names.
 * Updated Supreme's dynamic script files to bugcheck and add RNG to Supreme's Sp02 animation.
 
-
-
 R-10
 
 * Updated Sound Effects for Riflebeast in "Sound Edit" to add extra Sonic grunts. (And only Sonic, no Eggman grunts.)
-
-
 
 R-09
 
 * Update to Riflebeast's "Final Blow" QTE files to fix an error with transitioning to either the next scene or back to gameplay when failing.
 * Readded "Bossbit.hmm" for Supreme after it went missing previously.
 
-
-
 R-08
 
 * Adjustments to Knight's "sonic\_damage01" and custom "sonic\_damage02" event files.
 * Fixed an error with one of Supreme's attack move set scripts.
-
-
 
 R-07
 
 * Adjustments to Script files again, merged Dynamic files with Boss hmm files.
 * Adjustment to a QTE in "Vanilla Restored" preset to fix an error.
 
-
-
 R-06
 
 * Adjustments to bo6xxx.pac's animation files.
 * Further adjustments to Supreme's QTE Preset 1 (Vanilla Restored) files.
-
-
 
 R-05
 
@@ -192,34 +163,24 @@ R-05
 * Updated Giganto and Supreme's Dynamic script files.
 * Updated Supreme's Attack Moveset scripts.
 
-
-
 R-04
 
 * Updated Supreme for moveset adjustments.
-
-
 
 R-03
 
 * Update to Riflebeast's custom Grand Slam files.
 * Updated Riflebeast's pac file.
 
-
-
 R-02
 
 * Readded several mod files to fix issues.
 * Clean-up for file size optimization.
 
-
-
 R-01
 
 * Several small tweaks.
 * Added missing .usm files.
-
-
 
 R-00
 
@@ -233,21 +194,17 @@ R-00
 
 
 
-V 1.39 (Test)
+*Test Version 1.39*
 
 R-02
 
 * Another round of changes
 * Readded "zev\_sp\_riflebeast" for skin mods using "SuperSonicDamage" and "SuperSonicCyber" assets.
 
-
-
 R-01
 
 * Updated Version String
 * Updated "mod\_files.txt"
-
-
 
 R-00
 
@@ -261,14 +218,14 @@ R-00
 
 
 
-V 1.38 (Test)
+*Test Version 1.38*
 
 * Supreme's QTE dynamic script rewritten by GordonRamsy (Huge Thanks)
 * Some adjustments to "Dynamic" files for the other Titans.
 
 
 
-V 1.37 (Test)
+*Test Version 1.37*
 
 Giant01 (Giganto)
 
@@ -331,13 +288,13 @@ Rifle01 (Supreme)
 
 
 
-V 1.36 (Test)
+*Test Version 1.36*
 
 * Further tweaks to Super Sonic 2's transformation for the "Edited" Animation type: Now references the Final Horizons Trailer camera panning when first transforming.
 
 
 
-V 1.35 (Test)
+*Test Version 1.35*
 
 * Overhauled Monologue entries, less folders, more streamlined.
 * Some tweaks in bo6120, bo6165, and bo6190.
@@ -345,7 +302,7 @@ V 1.35 (Test)
 
 
 
-V 1.34 (Test)
+*Test Version 1.34*
 
 * Fixed a typo in one of the config values
 * Update Sonic 0 Ring Cutscene for Phase 2 in Supreme's fight.
@@ -353,7 +310,7 @@ V 1.34 (Test)
 
 
 
-V 1.33 (Test)
+*Test Version 1.33*
 
 * Updated code to have "AT\_Tackle" be automatically disabled when "Unused Grand Slam Event" option is selected for Supreme.
 * Added Tru-Blu animation for Super Sonic Transformation for Master King's Trial only.
@@ -362,27 +319,27 @@ V 1.33 (Test)
 
 
 
-V 1.32 (Test)
+*Test Version 1.32*
 
 * BossEvent.hmm and BossTitanFinish.hmm files removed.
 * Added "Boss(Name)Dynamics" hmm files for their respective Titan bosses and the code for "TitanFinish" is moved to the Dynamics hmm files based on the respective Titan.
 
 
 
-V 1.31 (Test)
+*Test Version 1.31*
 
 * Updated "bo3xxx.pac" Super Sonic now shows up when the Super Sonic transformation scene transitions to the fight.
 * Updated Grand Slam scene file for Riflebeast in name only for Phase 1 to avoid conflicts with Sonic skin mods.
 
 
 
-Aggro-Titans version 1.3
+###### **Aggro-Titans version 1.3**
 
 * Bumped to version 1.3 for release.
 
 
 
-V 1.26 (Test)
+*Test Version 1.26*
 
 * Updated "bo1xxx.pac" includes a new Phase 2 scene exclusive to Master King's Trial courtesy of Tru-blu.
 * Added a toggle option for Sonic's Animation Speed Changes
@@ -402,7 +359,7 @@ V 1.26 (Test)
 
 
 
-V 1.25 (Test)
+*Test Version 1.25*
 
 * Final touches in certain areas.
 * Updated Supreme's attacks.
@@ -423,7 +380,7 @@ V 1.25 (Test)
 
 
 
-V 1.24 (Test)
+*Test Version 1.24*
 
 * Slight tweaks to Rifle01 attack patterns
 * Tweaked "BossRifle01.hmm" to reflect the changed attack patterns across Phase 1's immediate Actions for Final Horizon.
@@ -437,7 +394,7 @@ V 1.24 (Test)
 
 
 
-V 1.23 (Test)
+*Test Version 1.23*
 
 * New option added in Riflebeast's config setting. (Darkball QTE) (Currently Experimental)
 * Adjusted Cutscene bo6190 to fix an error.
@@ -453,7 +410,7 @@ V 1.23 (Test)
 
 
 
-V 1.22 (Test)
+*Test Version 1.22*
 
 * Attempting to adjust and fix random crash issues with Riflebeast (turns out it's a memory leak problem.)
 * New Sword RNG attacks for Knight in Phase 1.
@@ -462,7 +419,7 @@ V 1.22 (Test)
 
 
 
-V 1.21 (Test)
+*Test Version 1.21*
 
 * Fixed the Edited "parrymiss" QTE having missing sounds when Riflebeast strikes Sonic to start the QTE.
 * Fixed the Edited "Final Blow" Riflebeast QTE having the wrong sound effects that used different names.
@@ -483,7 +440,7 @@ V 1.21 (Test)
 
 
 
-V 1.20 (Test)
+###### ***Version 1.20***
 
 * Supreme's scratch attacks are slightly faster.
 * Supreme's Bit Drone projectiles have been retextured.
@@ -541,7 +498,7 @@ V 1.20 (Test)
 
 
 
-V 1.12
+###### ***Version 1.12***
 
 * Improved a method in which to support the mod for version 1.41.
 * Fixed animation for bo6190.
@@ -550,7 +507,7 @@ V 1.12
 
 
 
-V 1.11
+###### ***Version 1.11***
 
 * Monologue files adjustments.
 * Fixing an audio problem in which the Italian voice line plays a line twice.
@@ -560,7 +517,7 @@ V 1.11
 
 
 
-V 1.1.0 (Release Feb. 01)
+###### ***Version 1.10* (Release Feb. 01)**
 
 * Public Update Release after game update 1.42
 
@@ -613,20 +570,20 @@ Things that were done right when I thought I was done with the mod as a whole, b
 
 
 
-V0.2.2
+V0.22
 
 * Adjustments to Supreme's QTE files for better pacing and to cut down on length for some.
 
 
 
-V0.2.1
+V0.21
 
 * New Grand Slam animation for Hyper Sonic skin option when selecting "ParryMiss QTE option".
 * "Zev\_Parrymiss\_Riflebeast.pac" adjusted to remove a detail that didn't quite make sense.
 
 
 
-V0.2.0
+V0.20
 
 * Files reuploaded to the GitHub Repo
 * Tweaks and adjustments made to Boss Health and Attack Patterns to both Rifle01 and Riflebeast
@@ -635,7 +592,7 @@ V0.2.0
 
 
 
-V0.1.9
+V0.19
 
 * Some adjustments to Supreme's attack speed and attack patterns.
 * Adjusted Supreme's "attackHomingLaser" and "attackHandLaser" parameters.
@@ -643,7 +600,7 @@ V0.1.9
 
 
 
-V0.1.8
+V0.18
 
 * Riflebeast "attackPattern" and "attackPatternAfter" slightly changed.
 * Riflebeast "attackHominglaserPattern" slightly changed.
@@ -652,7 +609,7 @@ V0.1.8
 
 
 
-V0.1.7
+V0.17
 
 * A fix for SSCyber and SSDamage model and assets not loading in the cutscene.
 * Event/Scene bo6140 (Phase2) updated. Overlapping voices of Sage, Amy, Knux, and Tails are fixed.
@@ -664,7 +621,7 @@ V0.1.7
 
 
 
-V0.1.6
+V0.16
 
 * Changed animation for Riflebeast's recoil animation when parrying Claw attacks.
 * Changed "slowSetting" parameters for "cyloopState" when SS2 crushes Riflebeast are adjusted.
@@ -686,7 +643,7 @@ V0.1.6
 
 
 
-V0.1.5
+V0.15
 
 * Optimized certain QTEs related to Shoot02 and its variants across the mod to load quicker in the fight.
 * Fixed Winglaser\_2 QTE's second input auto failing due to incorrect timescale parameter.
@@ -696,7 +653,7 @@ V0.1.5
 
 
 
-V0.1.4
+V0.14
 
 * Rearranged files
 * Adjusted Red Circle QTE on "Zev\_Blow" for Fixed Vanilla option
@@ -708,7 +665,7 @@ V0.1.4
 
 
 
-V0.1.3
+V0.13
 
 * Patched Rifle01.pac
 * Added and revised certain Final Horizons QTEs to support Hyper Sonic's blue outline
@@ -717,7 +674,7 @@ V0.1.3
 
 
 
-V0.1.2
+V0.12
 
 * Tweaked some things.
 * Fixed a soft lock from incorrect Resource Pointer parameters related to Shoot02
@@ -725,13 +682,13 @@ V0.1.2
 
 
 
-V0.1.1
+V0.11
 
 * Updated Combat Mod Option. Now converted to HMM code for reduced file size.
 
 
 
-V0.0.0
+V0.10
 
 Work In Progress
 
