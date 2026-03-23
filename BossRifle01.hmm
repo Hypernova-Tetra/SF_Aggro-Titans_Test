@@ -25,15 +25,15 @@ Code "Supreme moveset" by "Hypernova"
 {
 	if (Adr4110 == 0) { /* 0x1414624B0 */ Adr4110 = ScanSignature ("bo4110", "xxxxxx"); }
 	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
-		
+	
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-		
+	
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
-		
+	
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 	if (BossRifleConfigInfo.pData == null)
 		return;
@@ -41,13 +41,13 @@ Code "Supreme moveset" by "Hypernova"
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
-
+		
 		if (mod == null)
 			return;
-
+		
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
 		var ini = INI.Read(modConfigIniPath);
-
+		
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
@@ -91,15 +91,15 @@ Code "Supreme moveset" by "Hypernova"
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_COUNTER_BLOW);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT1);
-			
+		
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[3].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_SHOT2);
-
+		
 		if (Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1)
 		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT2); }
-
+		
 		if (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_wing") == 1)
 		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE); }
-	
+		
 		bool isShoot01 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_shoot01") == 1
 		bool isLsQTE02 = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_lsQTE02") == 1
 		if ((isShoot01) || (isLsQTE02))
@@ -473,17 +473,17 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsQTE02"));
 						break;	
 					
-					case "zev_rfl_lsQTE02":
 					case "zev_rfl_shoot02":
 					case "zev_rfl_spQTEX2":
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes(shot01_rng01[new Random().Next(0, shot01_rng01.Length)]));
 						break;	
-					
+				
 					case "zev_rfl_lsXX":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes(shot02_rng01[new Random().Next(0, shot02_rng01.Length)]));
 						break;
 					
+					case "zev_rfl_lsQTE02":
 					case "zev_rfl_spX2":
 					case "zev_rfl_sp02":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
