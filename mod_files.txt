@@ -375,7 +375,6 @@ delete MBoss_Audio_Edit/raw/movie/ev5040.usm
 delete MBoss_Audio_Edit/raw/movie/ev5040_4k.usm
 delete MBoss_Audio_Edit/raw/movie/bo1120.usm
 delete MBoss_Audio_Edit/raw/movie/bo3120.usm
-delete MBoss_Audio_Edit/raw/movie/bo2115.usm
 delete MBoss_Audio_Edit/raw/movie/bo6120.usm
 delete MBoss_Audio_Edit/raw/movie/bo6120_4k.usm
 delete MBoss_Audio_Edit/raw/movie/bo6121.usm
