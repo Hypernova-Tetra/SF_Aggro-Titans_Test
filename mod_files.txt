@@ -75,7 +75,6 @@ add Main/raw/movie/bo6290.usm
 add Main/raw/movie/bo6291.usm
 add Main/raw/movie/bo6292.usm
 add Main/raw/movie/ev503X.usm
-add Main/raw/movie/ev504X.usm
 add Main/raw/movie/ev603X.usm
 
 add Main/raw/sound/giantEX_sound/se_rangers_giant00.acb
@@ -93,7 +92,6 @@ add Main/raw/sound/voice_rangers_update_event_ja.awb
 
 add Main/raw/text/text_dlc_common_en.pac
 
-add MBoss_Audio_0rgn/raw/movie/bo2115.usm
 add MBoss_Audio_0rgn/raw/movie/ev1770.usm
 add MBoss_Audio_0rgn/raw/movie/ev1770_4k.usm
 add MBoss_Audio_0rgn/raw/movie/ev5020.usm
