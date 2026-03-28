@@ -486,6 +486,7 @@ delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant00.acb
 delete MBoss_Audio_Edit/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
 delete MBoss_Audio_Edit/raw/sound/riflebeast_sound/bgm_boss05.acb
 delete MBoss_Audio_Edit/raw/sound/riflebeast_sound/bgm_boss05.awb
+delete MBoss_Audio_Edit/raw/sound/riflebeast_sound
 
 delete MBoss_Audio_SO/raw/movie/ev5040.usm
 delete MBoss_Audio_SO/raw/movie/ev5040_4k.usm
@@ -592,6 +593,7 @@ delete MBoss_Audio_SO/raw/movie/bo6492.usm
 delete MBoss_Audio_SO/raw/movie/bo6492_4k.usm
 delete MBoss_Audio_SO/raw/sound/riflebeast_sound/bgm_boss05.acb
 delete MBoss_Audio_SO/raw/sound/riflebeast_sound/bgm_boss05.awb
+delete MBoss_Audio_SO/raw/sound/riflebeast_sound
 
 delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser00.pac
 delete MBoss_RifleQTE_02/raw/event/scene/zev_rfl_sp01.pac
@@ -623,7 +625,7 @@ delete MBoss_Bo6x00a_SilenB/raw/movie/bo6165_4k.usm
 delete MBoss_Bo6x00a_SilenB/raw/movie/bo6190.usm
 delete MBoss_Bo6x00a_SilenB/raw/movie/bo6190_4k.usm
 delete MBoss_Bo6x00a_SilenB/raw/movie
-delete MBoss_Bo6x00a_SilenB/raw/
+delete MBoss_Bo6x00a_SilenB/raw
 delete MBoss_Bo6x00a_SilenB
 
 delete MBoss_Bo6x00b_Mon0/raw/event/scene/bo6xxx.pac
@@ -799,7 +801,7 @@ delete MBoss_QTE_Miss_0rgnB
 delete MBoss_QTE_Miss_Edit0/raw/event/scene/zev_parrymiss_riflebeast.pac
 delete MBoss_QTE_Miss_Edit0/raw/event/scene/zev_sp_riflebeast.pac
 delete MBoss_QTE_Miss_Edit0/raw/event/scene/
-delete MBoss_QTE_Miss_Edit0/raw/event/
+delete MBoss_QTE_Miss_Edit0/raw/event
 delete MBoss_QTE_Miss_Edit0/raw/movie/zev_sp_riflebeast.usm
 delete MBoss_QTE_Miss_Edit0/raw/movie/zev_sp_riflebeast_4k.usm
 delete MBoss_QTE_Miss_Edit0/raw/movie
@@ -809,7 +811,7 @@ delete MBoss_QTE_Miss_Edit0
 delete MBoss_QTE_Miss_EditB/raw/event/scene/zev_parrymiss_riflebeast.pac
 delete MBoss_QTE_Miss_EditB/raw/event/scene/zev_sp_riflebeast.pac
 delete MBoss_QTE_Miss_EditB/raw/event/scene/
-delete MBoss_QTE_Miss_EditB/raw/event/
+delete MBoss_QTE_Miss_EditB/raw/event
 delete MBoss_QTE_Miss_EditB/raw/movie/zev_sp_riflebeast.usm
 delete MBoss_QTE_Miss_EditB/raw/movie/zev_sp_riflebeast_4k.usm
 delete MBoss_QTE_Miss_EditB/raw/movie
