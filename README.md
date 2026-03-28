@@ -1,4 +1,4 @@
-## Aggro-Titans Starfall Update
+## Aggro-Titans Compact Update
 
 Creator:
 
