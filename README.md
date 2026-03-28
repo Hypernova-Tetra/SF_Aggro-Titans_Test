@@ -18,7 +18,8 @@ Contributors:
 * Deechi
 * BatmanSonic
 * Stis
-* Blitz
+* Tru-Blu
+* Radical Rave
 * ik-01
 * Skrubd
 * The Duck Dealer
@@ -31,8 +32,8 @@ Contributors:
 * Nowasu
 * GordinRamsay
 * KirbyKrew661
+* Sonic Series Fan
 * Sol831
-* thelukespark
 * and many more
 
 
@@ -115,7 +116,7 @@ As of version 1.20 and onward of this mod, "Aggro Titans+" now includes all 4 of
 
 # Supreme (Rifle01) {Final Horizons DLC}
 
-~ Many of the changes of base game apply to here, below is a list of exclusive changes to the Final Horizons DLC.
+\~ Many of the changes of base game apply to here, below is a list of exclusive changes to the Final Horizons DLC.
 
 * Restored unused Bit Drone Homing Missile Attack
 * Restored unused Bit Drone Laser Attack
@@ -138,3 +139,4 @@ As of version 1.20 and onward of this mod, "Aggro Titans+" now includes all 4 of
 * Cutscene "bo6190" (The End's defeat) has a small prerendered section where Eggman aims his shot at the titans.
 * Grand Slam event is fully in real-time.
 * Super Sonic 2's death scene is updated.
+
