@@ -18,7 +18,6 @@ Code "Giganto_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-	
 	static long Address1120 = 0;
 	static long Address1160 = 0;
 //
