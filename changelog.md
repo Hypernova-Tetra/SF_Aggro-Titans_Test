@@ -2,13 +2,13 @@
 
 
 
-* At this point I'm settling for April 2026. Current Mod File Size: "1.62GB" (when compressed to .RAR archive)
+* At this point I'm settling for April 2026. Current Compressed Mod File Size: "1.62GB"
 
 
 
 #### ***Aggro-Titans Test 1.40.C-00***
 
-* Reduced overall mod size from 5.27GB to 1.62GB when compressed.
+* Reduced overall compressed mod size from 5.27GB to 1.62GB when compressed.
 * Removed several usm files
 * Added voice files to support bo6xxx scenes and overwrite certain cursed unused vocals found in the game.
 * Added EventCommon to debloat certain scene pacs that reuse assets.

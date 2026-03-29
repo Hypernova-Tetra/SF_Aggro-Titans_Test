@@ -85,13 +85,13 @@ Code "Supreme moveset" by "Hypernova"
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[11], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT4);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 80);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SP02);
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SHOT2);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_COUNTER_BLOW);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
@@ -225,10 +225,10 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	static long ATSHOT3 = 0;
 	
 	static long ATSHOT1 = 0;
-	static string[] shot01_rng01 = new[] { /* sup */ "zev_rfl_shoot02", "zev_rfl_shootX2", "zev_rfl_spQTE02", "zev_rfl_spQTEX2" };
+	static string[] shot01_rng01 = new[] { /* sup */ "zev_rfl_shoot02", "zev_rfl_shoot02", "zev_rfl_shootX2", "zev_rfl_shootX2", "zev_rfl_spQTE02", "zev_rfl_spQTE02", "zev_rfl_spQTEX2", "zev_rfl_spQTEX2" };
 	
 	static long ATSHOT2 = 0;
-	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_sp02"};
+	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_sp02", "zev_rfl_sp02", "zev_rfl_sp02"};
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -491,6 +491,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					case "zev_rfl_lsQTE02":
 					case "zev_rfl_spX2":
 					case "zev_rfl_sp02":
+						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes(shot01_rng01[new Random().Next(0, shot01_rng01.Length)]));
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
 						break;
 				}
@@ -525,19 +526,24 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
 	
 	static string[] rng_giant01 = new[]
 	{ /* sup */ 
-	"attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03",
+	"attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01",
+	"attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02",
+	"attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03",
 	};	
 	
 	static long AdAtkCnSp02 = 0;
 	static string[] rng_atksp02 = new[]
 	{ /* sup */ 
-	"attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", 
+	"attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", 
+	"attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", 
+	"attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", 
 	};
 {
 	var pBlackboardStatus = BlackboardStatus.Get();
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
 	
+	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 	bool isBoss = Player.State.GetStatePlugin("StatePluginBossBattle") != null;
 	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
 	

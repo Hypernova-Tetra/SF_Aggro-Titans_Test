@@ -177,7 +177,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6141"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6161"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6166"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6191"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6091"));
 			}
 			if ((SupremeM == 0) && (SupremeA == 0) && (ZevAura == 2)) // bo61x2 - Default with Asu-Purple Aura
 			{ 
@@ -185,7 +185,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6142"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6167"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6192"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6092"));
 			}
 			if ((SupremeM == 1) && (SupremeA == 0) && (ZevAura == 0)) // bo62x0 - Monologue Active
 			{
@@ -217,7 +217,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6340"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6160"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6365"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6390"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6090"));
 			}
 			if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 1)) // bo63x1 - Edited Animation with Blue Aura
 			{ 
@@ -225,7 +225,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6341"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6161"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6366"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6391"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6091"));
 			}
 			if ((SupremeM == 0) && (SupremeA == 1) && (ZevAura == 2)) // bo63x2 - Edited Animation with Asu-Purple Aura
 			{ 
@@ -233,7 +233,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6342"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6162"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6367"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6392"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6092"));
 			}
 			if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 0)) // bo64x0 - Monologue with Edited Animation and Default Aura
 			{
@@ -241,7 +241,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6440"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6260"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6465"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6490"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6290"));
 			}
 			if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 1)) // bo64x1 - Monologue with Edited Animation and Blue Aura
 			{
@@ -249,7 +249,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6441"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6261"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6466"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6491"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6291"));
 			}
 			if ((SupremeM == 1) && (SupremeA == 1) && (ZevAura == 2)) // bo64x2 - Monologue with Edited Animation and Asu-Purple Aura
 			{
@@ -257,7 +257,7 @@ Code "Monologue" by "Hypernova"
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6442"));
 				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6467"));
-				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6492"));
+				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
 			}
 		}
     }
