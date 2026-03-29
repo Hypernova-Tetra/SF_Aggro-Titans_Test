@@ -215,7 +215,7 @@ Code "Monologue" by "Hypernova"
 			{ 
 				WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6320"));
 				WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6340"));
-				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6160"));
+				WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6060"));
 				WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6365"));
 				WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6090"));
 			}
