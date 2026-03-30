@@ -6,7 +6,11 @@
 
 
 
-#### ***Aggro-Titans Test 1.40.C-00***
+#### ***Aggro-Titans Test 1.40.C-01***
+
+* Available for tesing.
+
+C-00
 
 * Reduced overall compressed mod size from 5.27GB to 1.62GB when compressed.
 * Removed several usm files
@@ -655,4 +659,55 @@ V0.11
 V0.10
 
 Work In Progress
+
+
+
+#### **Version 0 Demo**
+
+***Rifle01 - Supreme***
+
+* Increased HP
+* Slightly faster attacks
+* A complete overhaul to his attack patterns
+* Multiple attack patterns at different HP thresholds.
+* All possible unused attacks from Supreme are restored.
+* All possible unused attacks by Supreme's drones have been restored.
+* Every now-and-then Supreme will interrupt the player to perform a counterattack. (This is known as "immediateActions" in the rfl file)
+* Added Wings for Phase 2 (Thank the heavens and thank everyone that helped me through getting this to work.)
+* An overhaul to the boss's sound effects for certain attacks, certain cutscene sounds were moved to .usm files to make room for new sounds.
+* Supreme's "@attack\_counter" (Which is known as AT\_Counterblow in the rfl) can randomly play different animations. (Thanks to Holoska for this.) Due to this change, it also affects Giganto as they share the exact same animation file name.
+* Supreme's QTEs have a random selection of events that trigger when Supreme's drones are destroyed at certain points of the fight. (Thanks to Holoska for this too.)
+* Certain animation files of Supreme in the base fight were tweaked just so that it's not a complete copy-paste of Giganto.
+* "Zev\_Rfl\_Bitlaser" is now a QTE.
+* All unused QTEs restored with tweaks to have it be somewhat unique.
+* New QTEs in a "Retooled" option for the mod that may feature new animations but definitely uses some unused animation files that were hiding in the files.
+* A new QTE during Phase 2 only that utilizes his wings, even though it's just him shooting a bigger laser than "@attack\_CounterSp02". 
+* Extended Intro and Revised Outro scene.
+* Certain miscellaneous details have been fixed.
+* Missing effects from Supreme's "@attack\_counterSp02" and "smallBit\_laser" have been restored, thanks again Holoska.
+
+Things to do:
+
+* Fix the error of Supreme's Cylinders. The middle one on his shoulders don't show during gameplay.
+* Continue checking for bugs and issues.
+
+***Riflebeast - The End***
+
+* Increased HP
+* Increased cable HP. (Cyloop may be recommended to break the cable now.)
+* Alternate attacks between his Hominglaser Orbs and Triple Claw attack.
+* Slightly changed his attack patterns.
+* Possibly fixed the issue with trees obscuring the player's view, but this may come with a new issue of obscuring the view of the Homing orbs attacking Sonic. This still needs to be further tested.
+* Slightly increased Hominglaser\_Orbs' attack speed.
+* Fixed a mis-render. "Super Sonic 2" should now be seen instead of regular Super Sonic when the Phase 2 cutscene plays. Don't know how this ended up happening.
+* Fixed the Realtime Cutscene's Mod for Cutscene Bo6190 where Eggman's HUD scope isn't shown.
+* Fixed a mis-render of SS2's aura not visible when performing the QTE of escaping Supreme's grip, after failing the initial Final Blow QTE
+* Fixed another mis-render of SS2 himself not being visible when escaping Supreme's grip.
+* There's an option for said "Final Blow QTE" in the mod to either use the original version, or an edited version to where the latter half of the Final Blow QTE isn't reusing the "Parrymiss" QTE. The QTE prompts are also changed in the initial parts of the QTE.
+* The End Monologue from base game is implemented followed by a restoration of unused captions related to said monologue. This is a togglable option.
+* Added a slow-mo effect when parrying Supreme's "Triple Claw" attack. I also slightly modified beast's normally unseen animation where his hand recoils after the attack is parried.
+* Slightly modified SS2's transformations in both bo6120 and bo6165. This may need further tweaking for performance's sake.
+* Originally in Phase 1, Supreme would enter a stunned state when his health reaches 50%. This has been changed so that he gets stunned when his health reaches 0.
+
+
 
