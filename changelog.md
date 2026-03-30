@@ -12,7 +12,7 @@
 
 C-00
 
-* Reduced overall compressed mod size from 5.27GB to 1.62GB when compressed.
+* Reduced overall compressed mod size from 5.27GB to 1.64GB when compressed.
 * Removed several usm files
 * Added voice files to support bo6xxx scenes and overwrite certain cursed unused vocals found in the game.
 * Added EventCommon to debloat certain scene pacs that reuse assets.
@@ -681,7 +681,7 @@ Work In Progress
 * "Zev\_Rfl\_Bitlaser" is now a QTE.
 * All unused QTEs restored with tweaks to have it be somewhat unique.
 * New QTEs in a "Retooled" option for the mod that may feature new animations but definitely uses some unused animation files that were hiding in the files.
-* A new QTE during Phase 2 only that utilizes his wings, even though it's just him shooting a bigger laser than "@attack\_CounterSp02". 
+* A new QTE during Phase 2 only that utilizes his wings, even though it's just him shooting a bigger laser than "@attack\_CounterSp02".
 * Extended Intro and Revised Outro scene.
 * Certain miscellaneous details have been fixed.
 * Missing effects from Supreme's "@attack\_counterSp02" and "smallBit\_laser" have been restored, thanks again Holoska.
@@ -708,6 +708,4 @@ Things to do:
 * Added a slow-mo effect when parrying Supreme's "Triple Claw" attack. I also slightly modified beast's normally unseen animation where his hand recoils after the attack is parried.
 * Slightly modified SS2's transformations in both bo6120 and bo6165. This may need further tweaking for performance's sake.
 * Originally in Phase 1, Supreme would enter a stunned state when his health reaches 50%. This has been changed so that he gets stunned when his health reaches 0.
-
-
 
