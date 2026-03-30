@@ -81,7 +81,7 @@ Code "Knight_Combat"
 		}
         else
         {	
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 350000);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 333000);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);

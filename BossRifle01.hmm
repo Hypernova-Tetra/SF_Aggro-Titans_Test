@@ -82,7 +82,7 @@ Code "Supreme moveset" by "Hypernova"
 		WriteProtected<byte>(Adr4110, System.Text.Encoding.UTF8.GetBytes("bo4111"));
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
 		
-		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 400000);
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 380000);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
@@ -159,7 +159,7 @@ Code "Supreme moveset" by "Hypernova"
 			if (!rifleStart)
 				return;
 			{
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 385000);
+				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
