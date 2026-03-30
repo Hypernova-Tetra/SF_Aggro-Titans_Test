@@ -2,7 +2,7 @@
 
 
 
-* At this point I'm settling for April 2026. Current Compressed Mod File Size: "1.62GB"
+* At this point I'm settling for April 2026. Current Compressed Mod File Size: "1.64GB"
 
 
 
