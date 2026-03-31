@@ -80,7 +80,6 @@ Code "Wyvern Dynamics" by "Hypernova"
 	#include "Reflection" noemit
 	#lib "BossDragonConfig"
     #lib "HMM"
-	#lib "INI"
 	#lib "GameManager"
 	#lib "GameObject"
 	#lib "EventPlayer"
@@ -117,6 +116,20 @@ Code "Wyvern Dynamics" by "Hypernova"
 	if (AddressFn01 == 0) {/* 0x14144C9C0 */ AddressFn01 = ScanSignature ("zev_dragon_finish_01", "xxxxxxxxxxxxxxxxxxxx");}
 	if (Address2120 == 0) {/* 0x14144C95C */ Address2120 = ScanSignature ("bo2120", "xxxxxx");}
 	if (Address2180 == 0) {/* 0x14144C99D */ Address2180 = ScanSignature ("bo2180", "xxxxxx");}
+	
+	if (!gameModeBossRush)
+	{ WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120")); }
+	else
+	{ WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2121")); }
+		
+	if (evtPlayer->IsEventPlaying("bo2115"))
+	{
+		WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
+		WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
+		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
+		WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
+		WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
+	}
 		
 	bool DragonFight = ((BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle)) && (GameManager.GetGameObject("Dragon0") != null) && (Player.State.GetStatePlugin("StatePluginBossBattle") != null))
 	if (!DragonFight) 
@@ -183,27 +196,6 @@ Code "Wyvern Dynamics" by "Hypernova"
 		
 		if ((evtPlayer->IsEventPlaying("zev_dragon_sp_laser00")) || (evtPlayer->IsEventPlaying("zev_dragon_sp_laser01")))
 		{ WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile")); }
-	}
-	
-	bool isDrgnRdMake = (Lua.Call<int>("IsPlayingDiEvent", "bo2115") == 1) && (GameManager.GetGameObject("Dragon0") != null)
-	if (!isDrgnRdMake)
-		return;
-	{
-		WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
-		WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
-		WriteProtected<byte>(AddressSp01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_01"));
-		WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
-
-		if (gameModeBossRush)
-		{
-			WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2121"));
-			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
-		}
-		else
-		{
-			WriteProtected<byte>(Address2120, System.Text.Encoding.UTF8.GetBytes("bo2120"));
-			WriteProtected<byte>(AdCntrLsr01, System.Text.Encoding.UTF8.GetBytes("attack_counter01_r"));
-		}
 	}
 }
 

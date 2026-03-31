@@ -35,12 +35,10 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 	
 	static int BossHP = 0;
 	static int BossRifleSp00 = 0;
-	static int NoTackle = 0;
 	static long AddressSplDmg = 0;
 	static long AdObjGa3220 = 0;
 	
     static bool healthBool = false;
-	static bool shieldBool = false;
 	static bool smashBool = false;
 	static bool initialized = false;
 	static bool IsConfigInitialised = false;
@@ -76,27 +74,17 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 
 		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
         IsConfigInitialised = true;
-		
-		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
-        IsConfigInitialised = true;
-		
-		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
-		IsConfigInitialised = true;
-
-        if (BossRifleSp00 == 1)
+		if (BossRifleSp00 == 1)
         {smashBool = true;}
         else
         {smashBool = false;}
 		
+		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
+        IsConfigInitialised = true;
 		if (BossHP == 1)
         {healthBool = true;}
         else
         {healthBool = false;}
-	
-		if (NoTackle == 1)
-        { shieldBool = true; }
-        else
-        { shieldBool = false; }
     }
 
 	if (!smashBool)
@@ -144,9 +132,7 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 				
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-			{
-				shieldBool = true; // Making sure this activates when Grand Slam option is on.
-					
+			{				
 				if (AdObjGa3220 == 1)
 				{
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp01");
@@ -158,6 +144,24 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp02");
 					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 					evtPlayer->PlayEvent(ref setupData);
+				}
+				
+				var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+				if (BossRifleBeastConfigInfo.pData == null)
+					return;
+
+				for (int i = 0; i < 12; ++i)
+				{
+					for (int j = 0; j < 10; ++j)
+					{
+						if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
+						{
+							RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
+							++ReplaceNum;
+							if (ReplaceNum > 1)
+								ReplaceNum = 0;
+						}
+					}
 				}
 			}
 			
@@ -191,29 +195,6 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 				
 				if(rings < 0)
 				pBlackboardItem->RingCount = 0;
-			}
-		}
-	}
-	
-	if (!shieldBool)
-	return;
-	{
-		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-
-		if (BossRifleBeastConfigInfo.pData == null)
-			return;
-
-		for (int i = 0; i < 12; ++i)
-		{
-			for (int j = 0; j < 10; ++j)
-			{
-				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
-				{
-					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
-					++ReplaceNum;
-					if (ReplaceNum > 1)
-						ReplaceNum = 0;
-				}
 			}
 		}
 	}

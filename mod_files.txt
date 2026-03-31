@@ -38,9 +38,6 @@ add Main/raw/event/scene/zev_rfl_laser00.pac
 add Main/raw/event/scene/zev_rfl_sp00.pac
 add Main/raw/event/scene/zev_rfl_sp01.pac
 add Main/raw/event/scene/zev_rfl_start00.pac
-add Main/raw/event/scene/zev_rfl_wing.pac
-add Main/raw/event/scene/zev_rfl_wng1.pac
-add Main/raw/event/scene/zev_rfl_wng2.pac
 add Main/raw/event/scene/zev_sp_riflebeast.pac
 add Main/raw/event/scene/zev_sp_riflebst01.pac
 add Main/raw/event/scene/zev_sp_riflebst02.pac
@@ -92,6 +89,9 @@ add MBoss_Audio_0rgn/raw/event/scene/zev_knight_shieldride01.pac
 add MBoss_Audio_0rgn/raw/event/scene/zev_knight_shieldride01_short.pac
 add MBoss_Audio_0rgn/raw/event/scene/zev_knight_shieldride02.pac
 add MBoss_Audio_0rgn/raw/event/scene/zev_knight_shieldride02_aerial.pac
+add MBoss_Audio_0rgn/raw/event/scene/zev_rfl_wing.pac
+add MBoss_Audio_0rgn/raw/event/scene/zev_rfl_wng1.pac
+add MBoss_Audio_0rgn/raw/event/scene/zev_rfl_wng2.pac
 add MBoss_Audio_0rgn/raw/movie/ev1770.usm
 add MBoss_Audio_0rgn/raw/movie/ev1770_4k.usm
 add MBoss_Audio_0rgn/raw/movie/ev5020.usm
@@ -117,6 +117,9 @@ add MBoss_Audio_Edit/raw/event/scene/zev_knight_shieldride01.pac
 add MBoss_Audio_Edit/raw/event/scene/zev_knight_shieldride01_short.pac
 add MBoss_Audio_Edit/raw/event/scene/zev_knight_shieldride02.pac
 add MBoss_Audio_Edit/raw/event/scene/zev_knight_shieldride02_aerial.pac
+add MBoss_Audio_Edit/raw/event/scene/zev_rfl_wing.pac
+add MBoss_Audio_Edit/raw/event/scene/zev_rfl_wng1.pac
+add MBoss_Audio_Edit/raw/event/scene/zev_rfl_wng2.pac
 add MBoss_Audio_Edit/raw/movie/bo2115.usm
 add MBoss_Audio_Edit/raw/movie/ev1770.usm
 add MBoss_Audio_Edit/raw/movie/ev1770_4k.usm
@@ -153,6 +156,9 @@ add MBoss_Audio_SO/raw/event/scene/zev_knight_shieldride01.pac
 add MBoss_Audio_SO/raw/event/scene/zev_knight_shieldride01_short.pac
 add MBoss_Audio_SO/raw/event/scene/zev_knight_shieldride02.pac
 add MBoss_Audio_SO/raw/event/scene/zev_knight_shieldride02_aerial.pac
+add MBoss_Audio_SO/raw/event/scene/zev_rfl_wing.pac
+add MBoss_Audio_SO/raw/event/scene/zev_rfl_wng1.pac
+add MBoss_Audio_SO/raw/event/scene/zev_rfl_wng2.pac
 add MBoss_Audio_SO/raw/movie/bo2115.usm
 add MBoss_Audio_SO/raw/movie/ev1770.usm
 add MBoss_Audio_SO/raw/movie/ev1770_4k.usm
@@ -248,6 +254,9 @@ delete Main/raw/event/scene/zev_knight_sonic_damage04.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage05.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage06.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage07.pac
+delete Main/raw/event/scene/zev_rfl_wing.pac
+delete Main/raw/event/scene/zev_rfl_wng1.pac
+delete Main/raw/event/scene/zev_rfl_wng2.pac
 
 delete Main/raw/hedgehog/level/master.levels
 delete Main/raw/hedgehog/level/

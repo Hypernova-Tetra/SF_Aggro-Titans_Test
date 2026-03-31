@@ -1,18 +1,28 @@
-# **Aggro-Titans Compact** - 2026.03.29
+# **Aggro-Titans Compact** - 2026.03.31
 
 
 
-* At this point I'm settling for April 2026. Current Compressed Mod File Size: "1.64GB"
+* At this point I'm settling for April 2026. Current Compressed Mod File Size: "1.65GB"
 
 
 
-#### ***Aggro-Titans Test 1.40.C-01***
+#### ***Aggro-Titans Test 1.40c.02***
+
+* Fixed an error in which a QTE didn't properly play during the Wyvern fight.
+* Added Sonic's voices to some events.
+* Small update to Final Horizons boss scenes.
+* Reverted a code change to the Shield Tackle removal after the option stopped functioning.
+* Updated code for Wyvern's Super Sonic transform scene in Boss Rush after the code stopped functioning.
+
+
+
+C-01
 
 * Available for tesing.
 
 C-00
 
-* Reduced overall compressed mod size from 5.27GB to 1.64GB when compressed.
+* Reduced overall compressed mod size from 5.27GB to less than 2GB when compressed.
 * Removed several usm files
 * Added voice files to support bo6xxx scenes and overwrite certain cursed unused vocals found in the game.
 * Added EventCommon to debloat certain scene pacs that reuse assets.
