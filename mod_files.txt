@@ -64,16 +64,6 @@ add Main/raw/movie/ev603X.usm
 
 add Main/raw/sound/giantEX_sound/se_rangers_giant00.acb
 add Main/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
-add Main/raw/sound/voice_rangers_update_event_de.acb
-add Main/raw/sound/voice_rangers_update_event_de.awb
-add Main/raw/sound/voice_rangers_update_event_es.acb
-add Main/raw/sound/voice_rangers_update_event_es.awb
-add Main/raw/sound/voice_rangers_update_event_fr.acb
-add Main/raw/sound/voice_rangers_update_event_fr.awb
-add Main/raw/sound/voice_rangers_update_event_it.acb
-add Main/raw/sound/voice_rangers_update_event_it.awb
-add Main/raw/sound/voice_rangers_update_event_ja.acb
-add Main/raw/sound/voice_rangers_update_event_ja.awb
 
 add Main/raw/text/text_dlc_common_en.pac
 
@@ -96,14 +86,24 @@ add MBoss_Audio_0rgn/raw/movie/ev1770.usm
 add MBoss_Audio_0rgn/raw/movie/ev1770_4k.usm
 add MBoss_Audio_0rgn/raw/movie/ev5020.usm
 add MBoss_Audio_0rgn/raw/movie/ev504X.usm
-add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_en.acb
-add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_en.awb
 add MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 add MBoss_Audio_0rgn/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_0rgn/raw/sound/dragon01_sound/se_rangers_giant02.acb
 add MBoss_Audio_0rgn/raw/sound/knight01_sound/se_rangers_giant03.acb
 add MBoss_Audio_0rgn/raw/sound/rifle01_sound/se_rangers_giant04.acb
 add MBoss_Audio_0rgn/raw/sound/the_end01_sound/se_rangers_boss_the_end.acb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_en.acb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_en.awb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_de.acb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_de.awb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_es.acb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_es.awb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_fr.acb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_fr.awb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_it.acb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_it.awb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_ja.acb
+add MBoss_Audio_0rgn/raw/sound/voice_rangers_update_event_ja.awb
 
 add MBoss_Audio_Edit/raw/event/scene/zev_dragon_finish_00.pac
 add MBoss_Audio_Edit/raw/event/scene/zev_dragon_finish_01.pac
@@ -127,8 +127,6 @@ add MBoss_Audio_Edit/raw/movie/ev5020.usm
 add MBoss_Audio_Edit/raw/movie/ev504X.usm
 add MBoss_Audio_Edit/raw/movie/zev_knight_sonic_sp01.usm
 add MBoss_Audio_Edit/raw/movie/zev_knight_sonic_sp01_phase2.usm
-add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_en.acb
-add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_en.awb
 add MBoss_Audio_Edit/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 add MBoss_Audio_Edit/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_Edit/raw/sound/dragon01_sound/se_rangers_giant02.acb
@@ -143,6 +141,18 @@ add MBoss_Audio_Edit/raw/sound/chargercommon_sound/se_rangers_miniboss_charger.a
 add MBoss_Audio_Edit/raw/sound/spidercommon_sound/se_rangers_miniboss_spider.acb
 add MBoss_Audio_Edit/raw/sound/sumo01_sound/se_rangers_miniboss_sumo.acb
 add MBoss_Audio_Edit/raw/sound/tyrant01_sound/se_rangers_miniboss_tyrant.acb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_en.acb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_en.awb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_de.acb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_de.awb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_es.acb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_es.awb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_fr.acb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_fr.awb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_it.acb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_it.awb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_ja.acb
+add MBoss_Audio_Edit/raw/sound/voice_rangers_update_event_ja.awb
 
 add MBoss_Audio_SO/raw/event/scene/zev_dragon_finish_00.pac
 add MBoss_Audio_SO/raw/event/scene/zev_dragon_finish_01.pac
@@ -166,8 +176,6 @@ add MBoss_Audio_SO/raw/movie/ev5020.usm
 add MBoss_Audio_SO/raw/movie/ev504X.usm
 add MBoss_Audio_SO/raw/movie/zev_knight_sonic_sp01.usm
 add MBoss_Audio_SO/raw/movie/zev_knight_sonic_sp01_phase2.usm
-add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_en.acb
-add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_en.awb
 add MBoss_Audio_SO/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 add MBoss_Audio_SO/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_SO/raw/sound/dragon01_sound/se_rangers_giant02.acb
@@ -182,6 +190,18 @@ add MBoss_Audio_SO/raw/sound/chargercommon_sound/se_rangers_miniboss_charger.acb
 add MBoss_Audio_SO/raw/sound/spidercommon_sound/se_rangers_miniboss_spider.acb
 add MBoss_Audio_SO/raw/sound/sumo01_sound/se_rangers_miniboss_sumo.acb
 add MBoss_Audio_SO/raw/sound/tyrant01_sound/se_rangers_miniboss_tyrant.acb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_en.acb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_en.awb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_de.acb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_de.awb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_es.acb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_es.awb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_fr.acb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_fr.awb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_it.acb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_it.awb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_ja.acb
+add MBoss_Audio_SO/raw/sound/voice_rangers_update_event_ja.awb
 
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser01.pac
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser02.pac
@@ -257,6 +277,17 @@ delete Main/raw/event/scene/zev_knight_sonic_damage07.pac
 delete Main/raw/event/scene/zev_rfl_wing.pac
 delete Main/raw/event/scene/zev_rfl_wng1.pac
 delete Main/raw/event/scene/zev_rfl_wng2.pac
+
+delete Main/raw/sound/voice_rangers_update_event_de.acb
+delete Main/raw/sound/voice_rangers_update_event_de.awb
+delete Main/raw/sound/voice_rangers_update_event_es.acb
+delete Main/raw/sound/voice_rangers_update_event_es.awb
+delete Main/raw/sound/voice_rangers_update_event_fr.acb
+delete Main/raw/sound/voice_rangers_update_event_fr.awb
+delete Main/raw/sound/voice_rangers_update_event_it.acb
+delete Main/raw/sound/voice_rangers_update_event_it.awb
+delete Main/raw/sound/voice_rangers_update_event_ja.acb
+delete Main/raw/sound/voice_rangers_update_event_ja.awb
 
 delete Main/raw/hedgehog/level/master.levels
 delete Main/raw/hedgehog/level/

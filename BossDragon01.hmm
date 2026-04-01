@@ -80,6 +80,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 	#include "Reflection" noemit
 	#lib "BossDragonConfig"
     #lib "HMM"
+	#lib "Lua"
 	#lib "GameManager"
 	#lib "GameObject"
 	#lib "EventPlayer"
@@ -136,7 +137,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 		return;
 	{
 		if (evtPlayer->IsEventPlaying("bo2141"))
-		{ var setupData = new EventPlayer.EventSetupData("bo2140"); evtPlayer->PlayEvent(ref setupData); }
+		{ Lua.Call("PlayDiEventFrozen", "bo2140"); }
 		
 		if (evtPlayer->IsEventPlaying("bo2140"))
 		{

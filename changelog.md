@@ -6,15 +6,20 @@
 
 
 
-#### ***Aggro-Titans Test 1.40c.02***
+#### ***Aggro-Titans Test 1.40c.03***
 
-* Fixed an error in which a QTE didn't properly play during the Wyvern fight.
+* Updated voice files.
+* Updated Super Sonic 2 transformation scene from ending too early.
+
+
+
+C-02
+
+* Fixed an error in which the 2nd to last QTE didn't properly play during the Wyvern fight in Master King's Trial.
 * Added Sonic's voices to some events.
 * Small update to Final Horizons boss scenes.
 * Reverted a code change to the Shield Tackle removal after the option stopped functioning.
 * Updated code for Wyvern's Super Sonic transform scene in Boss Rush after the code stopped functioning.
-
-
 
 C-01
 
@@ -27,6 +32,12 @@ C-00
 * Added voice files to support bo6xxx scenes and overwrite certain cursed unused vocals found in the game.
 * Added EventCommon to debloat certain scene pacs that reuse assets.
 * Updated SuperSonicCyber's roar using RadicalRave's version.
+
+
+
+#### **Aggro-Titans 1.40 (Test Pre-Release)**
+
+Before the mod went into a downscaling phase. It was much bigger and by the end of the R22 build, the mod size was over 5GB when compressed for download.
 
 
 

@@ -56,7 +56,7 @@
 				"Type":"TitanAudio",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"MBoss_Audio_0rgn"
+				"DefaultValue":"MBoss_Audio_Edit"
 				},
 				{
 				"Name":"IncludeDir3",
