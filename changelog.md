@@ -1,4 +1,4 @@
-# **Aggro-Titans Compact** - 2026.03.31
+# **Aggro-Titans Compact** - 2026.04.01
 
 
 
@@ -23,7 +23,7 @@ C-02
 
 C-01
 
-* Available for tesing.
+* Available for testing.
 
 C-00
 
