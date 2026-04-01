@@ -8,8 +8,9 @@
 
 #### **Aggro-Titans 1.40c.03**
 
-* Updated voice files.
+* Updated voice files for Final Horizons Monologue
 * Updated Super Sonic 2 transformation scene from ending too early.
+* Small tweaks.
 
 
 
