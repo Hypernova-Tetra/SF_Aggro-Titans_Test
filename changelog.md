@@ -6,7 +6,7 @@
 
 
 
-#### ***Aggro-Titans Test 1.40c.03***
+#### **Aggro-Titans 1.40c.03**
 
 * Updated voice files.
 * Updated Super Sonic 2 transformation scene from ending too early.
