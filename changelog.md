@@ -1,18 +1,23 @@
-# **Aggro-Titans Compact** - 2026.04.01
+# **Aggro-Titans Compact** - 2026.04.06
 
 
 
-* At this point I'm settling for April 2026. Current Compressed Mod File Size: "1.65GB"
+* At this point I'm settling for April 2026. Current 7z Compressed Mod File Size: "1.08GB"
 
 
 
-#### **Aggro-Titans 1.40c.03**
+#### **Aggro-Titans 1.40c.04**
+
+* During the Wyvern fight, when missing a parry under certain attacks (excluding the Laser attack) in Phase 1, Wyvern may continue attack instead of chase.
+* Added a new mlevel file inside the Bosscommon pac file for something specific later.
+
+
+
+C-03
 
 * Updated voice files for Final Horizons Monologue
 * Updated Super Sonic 2 transformation scene from ending too early.
 * Small tweaks.
-
-
 
 C-02
 

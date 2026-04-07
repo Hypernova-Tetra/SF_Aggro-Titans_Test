@@ -1,8 +1,8 @@
 Patch "Knight Address Edits" by "Hypernova"
 {
 	WriteProtected<byte> (/* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3141")); // To make Knight's Phase 2 skippable.
-	WriteProtected<byte> (/* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3145\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
-	WriteProtected<byte> (/* 0x14145C238 */ ScanSignature ("boss_giant03_bo3140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	WriteProtected<byte> (/* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+	WriteProtected<byte> (/* 0x14145C238 */ ScanSignature ("boss_giant03_bo3140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x14145C298 */ ScanSignature ("boss_giant03_bo3160","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x14145C2C0 */ ScanSignature ("boss_giant03_bo3180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
@@ -132,7 +132,6 @@ Code "Knight Dynamics" by "Hypernova"
     { /* sup */ "zev_knight_sonic_damage01", "zev_knight_sonic_damage01", "zev_knight_sonic_damage02", "zev_knight_sonic_damage02", "zev_knight_sonic_damage03", "zev_knight_sonic_damage03", "zev_knight_sonic_damage04", "zev_knight_sonic_damage04", "zev_knight_sonic_damage05", "zev_knight_sonic_damage05", "zev_knight_sonic_damage06", "zev_knight_sonic_damage06", "zev_knight_sonic_damage07", "zev_knight_sonic_damage08" };
 //
 {
-	var pBlackboardStatus = BlackboardStatus.Get();
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
 		return;
 	
@@ -263,8 +262,6 @@ Code "Knight Dynamics" by "Hypernova"
 		}
 	}
 }
-
-///
 
 Library "BossKnightConfig"
 {

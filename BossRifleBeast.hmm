@@ -438,8 +438,6 @@ Code "No_Tackle" by "thej01"
 	}
 }
 
-///
-
 Library "BossRifleBeastConfig"
 {
     #load "System.Numerics.dll"

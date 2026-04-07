@@ -41,7 +41,7 @@
 		  "Elements":
 			[
 				{
-				"Name":"IncludeDir2",
+				"Name":"IncludeDir1",
 				"DisplayName":"Titan Re-Texture",
 				"Description":["For Wyvern and Knight, a toggle option for default black or Purple Wyvern and Red Knight."],
 				"Type":"TitanSkin1",
@@ -50,16 +50,7 @@
 				"DefaultValue":"Main_FittingTexture"
 				},
 				{
-				"Name":"IncludeDir1",
-				"DisplayName":"Titan Audio",
-				"Description":["Sound Effect settings."],
-				"Type":"TitanAudio",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"MBoss_Audio_Edit"
-				},
-				{
-				"Name":"IncludeDir3",
+				"Name":"IncludeDir2",
 				"DisplayName":"Supreme QTE Preset",
 				"Description":["Choose between 3 batches of QTE Scenes for Supreme."],
 				"Type":"SupremeB",
@@ -191,24 +182,6 @@
 			"Description":["Tier 2 Color (Purple) for Wyvern and Tier 3 Color (Red) for Knight."]
 			}
 		],
-		"TitanAudio":
-		[
-			{
-			"DisplayName":"Original Audio",
-			"Value":"MBoss_Audio_0rgn",
-			"Description":["Original Audio from release."]
-			},
-			{
-			"DisplayName":"Sound Edit",
-			"Value":"MBoss_Audio_Edit",
-			"Description":["Edited Sounds"]
-			},
-			{
-			"DisplayName":"Sound Overhaul",
-			"Value":"MBoss_Audio_SO",
-			"Description":["Sound Overhaul"]
-			}
-		],
 		"RifleWing":
 		[
 			{
@@ -315,34 +288,6 @@
 			"Description":["When using Asu's Hyper Sonic mod when using the light purple outline color."]
 			},
 		],
-		"BossDarkballQTE":
-		[
-			{
-			"DisplayName":"Off",
-			"Value":"0",
-			"Description":["Disabled"]
-			},
-			{
-			"DisplayName":"On",
-			"Value":"1",
-			"Description":["Enabled"]
-			}
-		],
-	
-		"TestDir":
-		[
-			{
-			"DisplayName":"Test00",
-			"Value":"TestA",
-			"Description":["00."]
-			},
-			{
-			"DisplayName":"Test01",
-			"Value":"TestB",
-			"Description":["01."]
-			}
-		]
 	},
-
    "IniFile":"mod.ini"
 }

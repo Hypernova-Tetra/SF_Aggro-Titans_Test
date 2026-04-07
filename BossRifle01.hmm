@@ -601,8 +601,6 @@ Patch "Supreme Wing Laser"
     }
 }
 
-/// 
-
 Library "BossRifleConfig"
 {
     #load "System.Numerics.dll"

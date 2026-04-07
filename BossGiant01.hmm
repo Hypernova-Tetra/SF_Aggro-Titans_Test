@@ -2,7 +2,7 @@ Patch "Giganto Address Edits" by "Hypernova"
 {
 	WriteProtected<byte> (/* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141")); // To make Giganto's Phase 2 skippable.
 	WriteProtected<byte> (/* 0x1414534D0 */ ScanSignature ("boss_giant01_bo1120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
-	WriteProtected<byte> (/* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1140\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
+	WriteProtected<byte> (/* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x141453528 */ ScanSignature ("boss_giant01_bo1160","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x141453550 */ ScanSignature ("boss_giant01_bo1180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
@@ -136,7 +136,7 @@ Code "Giganto Dynamics" by "Hypernova"
 	bool isGiant01 = (GameManager.GetGameObject("Giant0") != null)
 	if (!isGiant01)
 		return;
-	{		
+	{	
 		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)
 		{
@@ -155,20 +155,19 @@ Code "Giganto Dynamics" by "Hypernova"
 				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
 			break;
 			
-			case "bo1140":
+			case "bo1141":
 				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("atk_howl_02"));
 				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
 				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
-				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
 				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
 			break;
 			
+			case "bo1140":
+				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
+			break;
+			
 			case "bo1142":
-				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("atk_howl_02"));
-				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
-				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
 				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));
-				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
 			break;
 		}
 	}
@@ -421,8 +420,6 @@ Code "Giganto_ActionType"
 		}
 	}
 }
-
-///
 
 Library "BossGiantConfig"
 {
