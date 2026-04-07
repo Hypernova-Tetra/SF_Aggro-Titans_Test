@@ -10,7 +10,7 @@
 
 * During the Wyvern fight, when missing a parry under certain attacks (excluding the Laser attack) in Phase 1, Wyvern may continue attack instead of chase.
 * Added a new mlevel file inside the Bosscommon pac file for something specific later.
-* Removed "Original" and "Sound Overhaul" audio options. Will still be available add-ons to place above the main Aggro Titans mod.
+* Removed "Original" and "Sound Overhaul" audio options. Will still be available as add-ons to place above the main Aggro Titans mod.
 
 
 
