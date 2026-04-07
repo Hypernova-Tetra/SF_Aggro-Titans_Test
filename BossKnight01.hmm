@@ -7,7 +7,42 @@ Patch "Knight Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14145C2C0 */ ScanSignature ("boss_giant03_bo3180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
 
-Code "Knight_Combat"
+Code "Knight_Combat_1"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossKnightConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+//
+{
+	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
+	if (BossKnightConfigInfo.pData == null)
+		return;
+	
+	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.625f);
+	
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	if (gameModeBattleRush)
+	{
+		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+		if (isBSRActive)
+		{ 
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 125000);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
+		}
+		else
+		{
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
+		}
+	}
+	else
+	{ RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.033f); }
+};
+
+Patch "Knight_Combat_2"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -23,40 +58,6 @@ Code "Knight_Combat"
 	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
 	if (BossKnightConfigInfo.pData == null)
 		return;
-		
-	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.625f);
-	
-	
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	if (!gameModeBattleRush)
-		return;
-	{
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-		
-		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (isBSRActive)
-		{ 
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 125000);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
-		}
-		else
-		{
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
-		}
-	}
-	
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-    if (!gameModeBossRush)
-		return;
-	{ 
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 3);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 9);
-		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.033f);
-	}
 	
     if (!IsConfigInitialised)
     {
@@ -64,7 +65,7 @@ Code "Knight_Combat"
 
 		if (mod == null)
 			return;
-
+		
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
 		var ini = INI.Read(modConfigIniPath);
 
@@ -74,10 +75,9 @@ Code "Knight_Combat"
 		if (BossHP != 0)
         {
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 8);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 8);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 16);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
 		}
         else
         {	
@@ -85,7 +85,6 @@ Code "Knight_Combat"
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
 		}
     }
 };
@@ -105,6 +104,14 @@ Code "Knight Dynamics" by "Hypernova"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
+	
+	//Asm File "State_03" = battle1_interrupt
+	//Asm File "State_26" = battle1_sword_rage
+	//Asm File "State_07" = battle1_sword_side
+	//Asm File "State_06" = battle1_sword_vert
+	//Asm File "State_49" = battle2_interrupt
+	//Asm File "State_60" = battle2_sword_side
+	//Asm File "State_56" = battle2_sword_vert
 	
 	static long AddressSP02 = 0;
 	static long F2SwordLast = 0;
@@ -138,16 +145,6 @@ Code "Knight Dynamics" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-		
-	//Asm File "State_03" = battle1_interrupt
-	//Asm File "State_26" = battle1_sword_rage
-	//Asm File "State_07" = battle1_sword_side
-	//Asm File "State_06" = battle1_sword_vert
-	//Asm File "State_49" = battle2_interrupt
-	//Asm File "State_60" = battle2_sword_side
-	//Asm File "State_56" = battle2_sword_vert
-	
-	 
 	{
 		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)
@@ -261,7 +258,7 @@ Code "Knight Dynamics" by "Hypernova"
 			}
 		}
 	}
-}
+};
 
 Library "BossKnightConfig"
 {

@@ -7,17 +7,14 @@ Patch "Giganto Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x141453550 */ ScanSignature ("boss_giant01_bo1180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
 
-Code "Giganto_Combat"
+Code "Giganto_Combat_1"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
 	#lib "BossGiantConfig"
     #lib "HMM"
-	#lib "INI"
     #import "Services"
 
-    static bool IsConfigInitialised = false;
-	static int BossHP = 0;
 	static long Address1120 = 0;
 	static long Address1160 = 0;
 //
@@ -36,7 +33,7 @@ Code "Giganto_Combat"
 	if (gameModeBattleRush)
 	{ 
 		WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1120")); // Original Animation
-
+	
 		if (isBSRActive)
 		{
 			WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
@@ -52,23 +49,33 @@ Code "Giganto_Combat"
 	{ 
 		WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); // Tru-Blu Animation
 		WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
-		
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 2);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 3);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 5);
 	}
 	else
-	{		
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-	}
-	
+	{ return; }
+}
+
+Patch "Giganto_Combat_2"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossGiantConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+
+    static bool IsConfigInitialised = false;
+	static int BossHP = 0;
+//
+{
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
 
 		if (mod == null)
+			return;
+		
+		var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
+		if (BossGiantConfigInfo.pData == null)
 			return;
 
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
@@ -76,7 +83,7 @@ Code "Giganto_Combat"
 		
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-		
+			
         if (BossHP != 0)
         {
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 125000);
@@ -191,7 +198,7 @@ Code "Giganto Dynamics" by "Hypernova"
 			evtPlayer->PlayEvent(ref setupData);
 		}
 	}
-}
+};
 
 Code "Giganto_ActionType"
 //
