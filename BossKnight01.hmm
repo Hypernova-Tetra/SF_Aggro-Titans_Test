@@ -15,8 +15,6 @@ Code "Knight_Combat_1"
     #lib "HMM"
 	#lib "INI"
     #import "Services"
-	
-	static long Address3120 = 0;
 //
 {
 	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
@@ -24,14 +22,10 @@ Code "Knight_Combat_1"
 		return;
 	
 	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.625f);
-	
-	if (Address3120 == 0) {/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");} // Transformation to Super Sonic
-	
+
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if (gameModeBattleRush)
-	{
-		WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3122"));
-		
+	{	
 		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 		if (isBSRActive)
 		{ 
@@ -47,7 +41,6 @@ Code "Knight_Combat_1"
 	}
 	else
 	{
-		WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));
 		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.033f);
 	}
 };
@@ -125,6 +118,7 @@ Code "Knight Dynamics" by "Hypernova"
 	
 	static long AddressSP02 = 0;
 	static long F2SwordLast = 0;
+	static long Address3120 = 0;
 	static long Address3180 = 0;
 
 	static long AtkIntrrupt = 0;
@@ -155,6 +149,14 @@ Code "Knight Dynamics" by "Hypernova"
 	if (evtPlayer == null)
 		return;
 	{
+		if (Address3120 == 0) {/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");} // Transformation to Super Sonic
+		
+		bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+		if (!gameModeBossRush) // Not Master King
+		{ WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));}
+		else
+		{ WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3122"));}
+		
 		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)
 		{
@@ -210,7 +212,6 @@ Code "Knight Dynamics" by "Hypernova"
 			else
 			{ WriteProtected<byte>(SonicDamage, System.Text.Encoding.UTF8.GetBytes(HurtRNG[new Random().Next(0, HurtRNG.Length)])); }
 			
-			bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
 			bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 			if (gameModeBossRush) // Master King
 			{
