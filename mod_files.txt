@@ -165,16 +165,15 @@ add CombatDX.dll
 delete Main/raw/boss/dragon01.pac
 delete Main/raw/boss/knight01.pac
 
-delete Main/raw/sound/voice_rangers_update_event_de.acb
-delete Main/raw/sound/voice_rangers_update_event_de.awb
-delete Main/raw/sound/voice_rangers_update_event_es.acb
-delete Main/raw/sound/voice_rangers_update_event_es.awb
-delete Main/raw/sound/voice_rangers_update_event_fr.acb
-delete Main/raw/sound/voice_rangers_update_event_fr.awb
-delete Main/raw/sound/voice_rangers_update_event_it.acb
-delete Main/raw/sound/voice_rangers_update_event_it.awb
-delete Main/raw/sound/voice_rangers_update_event_ja.acb
-delete Main/raw/sound/voice_rangers_update_event_ja.awb
+delete Main/raw/event/scene/zev_dragon_laser.pac
+delete Main/raw/event/scene/zev_dragon_sp_laser.pac
+delete Main/raw/event/scene/zev_rfl_sp02.pac
+delete Main/raw/event/scene/zev_knight_shieldride01_aerial.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage03.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage04.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage05.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage06.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage07.pac
 
 delete Main/raw/hedgehog/level/master.levels
 delete Main/raw/hedgehog/level/
@@ -209,8 +208,6 @@ delete Main/raw/movie/zev_sp_riflebstP1.usm
 delete Main/raw/movie/zev_sp_riflebstP1_4k.usm
 delete Main/raw/movie/zev_sp_riflebstP2.usm
 delete Main/raw/movie/zev_sp_riflebstP2_4k.usm
-delete Main/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
-delete Main/raw/sound/extra_sound
 
 delete MBoss_Bo4x00_Intro_0rgn/raw/event/scene/bo4xxx.pac
 delete MBoss_Bo4x00_Intro_0rgn/raw/event/scene
