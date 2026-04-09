@@ -165,31 +165,6 @@ add CombatDX.dll
 delete Main/raw/boss/dragon01.pac
 delete Main/raw/boss/knight01.pac
 
-delete Main/raw/event/scene/zev_dragon_laser.pac
-delete Main/raw/event/scene/zev_dragon_sp_laser.pac
-delete Main/raw/event/scene/zev_rfl_sp02.pac
-delete Main/raw/event/scene/zev_dragon_finish_00.pac
-delete Main/raw/event/scene/zev_dragon_finish_01.pac
-delete Main/raw/event/scene/zev_dragon_sp_01.pac
-delete Main/raw/event/scene/zev_dragon_sp_missile.pac
-delete Main/raw/event/scene/zev_dragon_sp_psycho.pac
-delete Main/raw/event/scene/zev_knight_atk_sp01.pac
-delete Main/raw/event/scene/zev_knight_atk_sp02.pac
-delete Main/raw/event/scene/zev_knight_atk_sp03.pac
-delete Main/raw/event/scene/zev_knight_shieldride01.pac
-delete Main/raw/event/scene/zev_knight_shieldride01_short.pac
-delete Main/raw/event/scene/zev_knight_shieldride01_aerial.pac
-delete Main/raw/event/scene/zev_knight_shieldride02.pac
-delete Main/raw/event/scene/zev_knight_shieldride02_aerial.pac
-delete Main/raw/event/scene/zev_knight_sonic_damage03.pac
-delete Main/raw/event/scene/zev_knight_sonic_damage04.pac
-delete Main/raw/event/scene/zev_knight_sonic_damage05.pac
-delete Main/raw/event/scene/zev_knight_sonic_damage06.pac
-delete Main/raw/event/scene/zev_knight_sonic_damage07.pac
-delete Main/raw/event/scene/zev_rfl_wing.pac
-delete Main/raw/event/scene/zev_rfl_wng1.pac
-delete Main/raw/event/scene/zev_rfl_wng2.pac
-
 delete Main/raw/sound/voice_rangers_update_event_de.acb
 delete Main/raw/sound/voice_rangers_update_event_de.awb
 delete Main/raw/sound/voice_rangers_update_event_es.acb
