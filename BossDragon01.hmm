@@ -154,7 +154,15 @@ Code "Wyvern Dynamics" by "Hypernova"
 		return;
 	{
 		if (evtPlayer->IsEventPlaying("bo2141"))
-		{ Lua.Call("PlayDiEventFrozen", "bo2140"); }
+		{
+			if ((gameModeBossRush) || (gameModeBattleRush))
+			{
+				var setupData = new EventPlayer.EventSetupData("bo2140");
+				evtPlayer->PlayEvent(ref setupData);
+			}
+			else
+			{ Lua.Call("PlayDiEventFrozen", "bo2140"); } // Using this in other modes causes a game crash.
+		}
 		
 		if (evtPlayer->IsEventPlaying("bo2140"))
 		{
@@ -172,7 +180,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psych0")); 
 				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); 
 				
-				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psycho");
+				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_missile2");
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
 				evtPlayer->PlayEvent(ref setupData);
 				
@@ -201,10 +209,6 @@ Code "Wyvern Dynamics" by "Hypernova"
 				WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile"));
 				WriteProtected<byte>(AddressPsyc, System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psycho"));
 				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_01")); 
-
-				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_missile2");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
-				evtPlayer->PlayEvent(ref setupData);
 				
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
