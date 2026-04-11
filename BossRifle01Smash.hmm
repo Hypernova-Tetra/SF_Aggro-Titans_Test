@@ -86,35 +86,30 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
         else
         {healthBool = false;}
     }
-
+	
+	bool isGiantBoss04 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null) && BlackboardStatus.IsSuper();
+	
 	if (!smashBool)
 		return;
 	{	
 		if (AdObjGa3220 == 0) { /* 0x141556068 */ AdObjGa3220 = ScanSignature ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"); }
 		if (AddressSplDmg == 0) { /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 		
-		bool isGiantBoss04 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null) && BlackboardStatus.IsSuper();
 		if (isGiantBoss04)
 		{
-			bool isStrt04 = evtPlayer->IsEventPlaying("bo4110")
-			bool isStrt06 = evtPlayer->IsEventPlaying("bo4111")
-			if ((isStrt04) || (isStrt06)) // Phase 1
+			if (evtPlayer->IsEventPlaying("bo4111")) // Phase 1
 			{ 
 				AdObjGa3220 = 1
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp01"));
 			}
 			
-			bool isPhz204 = evtPlayer->IsEventPlaying("bo4142")
-			bool isPhz206 = evtPlayer->IsEventPlaying("bo4140")
-			if ((isPhz204) || (isPhz206)) // Phase 2
+			if (evtPlayer->IsEventPlaying("bo4140")) // Phase 2
 			{
 				AdObjGa3220 = 2
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp02"));
 			}
 			
-			bool isFinZ04 = evtPlayer->IsEventPlaying("bo4160")
-			bool isFinZ06 = evtPlayer->IsEventPlaying("bo4162")
-			if ((isFinZ04) || (isFinZ06)) // End
+			if ((evtPlayer->IsEventPlaying("bo4162")) || (evtPlayer->IsEventPlaying("ev5020")))
 			{ 
 				AdObjGa3220 = 0
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("obj_event_ga3220"));
@@ -128,11 +123,15 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 
 			if(rings < 0)
 			{pBlackboardItem->RingCount = 0;}
-	
-			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
+			
+			bool isGiantBoss05 = (GameManager.GetGameObject("Riflebeast") != null)
+			if (!isGiantBoss05)
+			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+			else 
+			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop")); }
 				
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-			{				
+			{			
 				if (AdObjGa3220 == 1)
 				{
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp01");
@@ -179,7 +178,6 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 	if (!healthBool && !smashBool)
 		return;
 	{
-		bool isGiantBoss04 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null) && BlackboardStatus.IsSuper();
 		if (!isGiantBoss04)
 			return;
 		{

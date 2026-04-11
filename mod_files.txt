@@ -54,8 +54,6 @@ add Main/raw/event/scene/zev_blow_riflebs0E.pac
 add Main/raw/event/scene/zev_sp_riflebeast.pac
 add Main/raw/event/scene/zev_sp_riflebst01.pac
 add Main/raw/event/scene/zev_sp_riflebst02.pac
-add Main/raw/event/scene/zev_end.pac
-add Main/raw/event/scene/zev_end_shooting.pac
 add Main/raw/event/scene/zev_spider_dive_again.pac
 add Main/raw/event/scene/zev_spider_dive_start.pac
 add Main/raw/event/scene/zev_sonic_ring_max.pac
@@ -174,6 +172,8 @@ delete Main/raw/event/scene/zev_knight_sonic_damage04.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage05.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage06.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage07.pac
+delete Main/raw/event/scene/zev_end.pac
+delete Main/raw/event/scene/zev_end_shooting.pac
 
 delete Main/raw/hedgehog/level/master.levels
 delete Main/raw/hedgehog/level/

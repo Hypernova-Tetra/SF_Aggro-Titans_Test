@@ -1,4 +1,4 @@
-# **Aggro-Titans Compact** - 2026.04.06
+# **Aggro-Titans Compact** - 2026.04.10
 
 
 
@@ -6,7 +6,15 @@
 
 
 
-#### **Aggro-Titans 1.40c.04**
+#### **Aggro-Titans 1.40c.05**
+
+* Unused Cinematic Grand Slam code updated to trigger only for Final Horizons Story Mode due to a bug occurring when triggering the cinematic in the base game.
+* Reinserted Eggman's texture files in to ev1770 after previously removing them to minimize asset reuse. There's a bit of a problem with other mods also using "EventCommon", so the bug still persists with regular Supreme for the base game's story mode with "ev5030" and "ev5040"
+* Removed "zev\_end", and "zev\_end\_shooting" so that the mod manager reads these files using the vanilla files due to the previously mentioned bug in the above note.
+
+
+
+C-04
 
 * During the Wyvern fight, when missing a parry under certain attacks (excluding the Laser attack) in Phase 1, Wyvern may continue attack instead of chase.
 * Added a new mlevel file inside the Bosscommon pac file for something specific later.

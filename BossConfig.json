@@ -59,15 +59,6 @@
 				"DefaultValue":"MBoss_RifleQTE_01"
 				},
 				{
-				"Name":"BossZevRifleSp00",
-				"DisplayName":"Supreme Grand Slam",
-				"Description":["Choose how you want the Grand Slam to play out."],
-				"Type":"BossRifleSp00",
-				"MinValue":null,
-				"MaxValue":null,
-				"DefaultValue":"0"
-				},
-				{
 				"Name":"BossRifleWing",
 				"DisplayName":"Secondary WingLaser QTE",
 				"Description":["An alternate event for Supreme's Wing Laser QTE will play at low health."],
@@ -84,6 +75,15 @@
 		  "Elements":
 			[
 				{
+				"Name":"BossZevRifleSp00",
+				"DisplayName":"Supreme (Regular) Grand Slam",
+				"Description":["Choose how you want the Grand Slam to play out. Due to a bug occuring when triggering in the base story, this cinematic will only play in Final Horizons for now."],
+				"Type":"BossRifleSp00",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"0"
+				},
+				{
 				"Name":"RifleShieldFix",
 				"DisplayName":"Riflebeast Shield Tackle Removal",
 				"Description":["Toggle this option to disable Supreme's Shield Tackle if parrying this attack causes your game to crash."],
@@ -99,7 +99,7 @@
 				"Type":"SupremeM",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"0"
+				"DefaultValue":"1"
 				},
 				{
 				"Name":"RifleBeastAnm",
@@ -108,7 +108,7 @@
 				"Type":"SupremeA",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"0"
+				"DefaultValue":"1"
 				},
 				{
 				"Name":"SS2_Aura",
