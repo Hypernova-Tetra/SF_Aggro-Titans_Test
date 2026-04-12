@@ -1,18 +1,24 @@
-# **Aggro-Titans Compact** - 2026.04.10
+# **Aggro-Titans Compact** - 2026.04.12
 
 
 
-* At this point I'm settling for April 2026. Current 7z Compressed Mod File Size: "1.08GB"
+* At this point I'm settling for April 2026. Current 7z Compressed Mod File Size: "1.07GB"
 
 
 
-#### **Aggro-Titans 1.40c.05**
+#### **Aggro-Titans 1.40c.06**
+
+* "EventCommon" file removed due to incompatibility with the "Sock's Rio Sonic" mod.
+* Moved "Eggman" texture files from "ev1770" to "bo6xxx" after discovering that apparently Eggman's textures load from this one file in Final Horizons.
+* Re-added "Supreme" and "The End" texture files to only ev5040 after discovering the rest of the "World 5" scenes seem to load the assets from that one file.
+
+
+
+C-05
 
 * Unused Cinematic Grand Slam code updated to trigger only for Final Horizons Story Mode due to a bug occurring when triggering the cinematic in the base game.
 * Reinserted Eggman's texture files in to ev1770 after previously removing them to minimize asset reuse. There's a bit of a problem with other mods also using "EventCommon", so the bug still persists with regular Supreme for the base game's story mode with "ev5030" and "ev5040"
 * Removed "zev\_end" and "zev\_end\_shooting" so that the mod manager reads these files using the vanilla files due to the previously mentioned bug in the above note.
-
-
 
 C-04
 
