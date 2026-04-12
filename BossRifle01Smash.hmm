@@ -95,12 +95,13 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 		if (AdObjGa3220 == 0) { /* 0x141556068 */ AdObjGa3220 = ScanSignature ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"); }
 		if (AddressSplDmg == 0) { /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 		
-		if (isGiantBoss04)
+		if ((isGiantBoss04) && (GameManager.GetGameObject("RifleBeast0") != null))
 		{
 			if (evtPlayer->IsEventPlaying("bo4111")) // Phase 1
 			{ 
 				AdObjGa3220 = 1
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp01"));
+				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 			}
 			
 			if (evtPlayer->IsEventPlaying("bo4140")) // Phase 2
@@ -109,10 +110,11 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp02"));
 			}
 			
-			if ((evtPlayer->IsEventPlaying("bo4162")) || (evtPlayer->IsEventPlaying("ev5020")))
+			if (evtPlayer->IsEventPlaying("bo4162"))
 			{ 
 				AdObjGa3220 = 0
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("obj_event_ga3220"));
+				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
 			}
 			
 			int maxrings = pBlackboardItem->RingCapacity;
@@ -124,12 +126,6 @@ Code "Supreme Unused Grand Slam EventPlayer and No ShieldTackle" by "Batman Soni
 			if(rings < 0)
 			{pBlackboardItem->RingCount = 0;}
 			
-			bool isGiantBoss05 = (GameManager.GetGameObject("Riflebeast") != null)
-			if (!isGiantBoss05)
-			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
-			else 
-			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop")); }
-				
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 			{			
 				if (AdObjGa3220 == 1)

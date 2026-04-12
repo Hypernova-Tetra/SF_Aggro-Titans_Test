@@ -86,7 +86,7 @@ Code "Supreme moveset" by "Hypernova"
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT4);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
@@ -262,8 +262,8 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	if (!SuperBattle) 
 		return;
 	{
-		bool gameModeBossRush = GameMode.GetName() == "GameModeBattleRush"
-		if (gameModeBossRush)
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		if (gameModeBattleRush)
 		{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_start00")); }
 		
 		bool ZevRifle = ((evtPlayer != null) && (GameManager.GetGameObject("Rifle0") != null))
@@ -284,11 +284,8 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 				bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 				if (evtPlayer->IsEventPlaying("bo4141"))
 				{ 		
-					if ((isRifleBeast0) || (gameModeBossRush))
-					{
-						var setupData = new EventPlayer.EventSetupData("bo4140");
-						evtPlayer->PlayEvent(ref setupData);
-					}
+					if ((isRifleBeast0) || (gameModeBattleRush))
+					{ Lua.Call("PlayDiEventFrozen", "bo4140");  }
 					else
 					{
 						var setupData = new EventPlayer.EventSetupData("bo4142");
@@ -310,7 +307,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wing"));
 					}
-					else if (gameModeBossRush)
+					else if (gameModeBattleRush)
 					{ 
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB2"));
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
