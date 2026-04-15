@@ -1,4 +1,4 @@
-# **Aggro-Titans Compact** - 2026.04.12
+# **Aggro-Titans Compact** - 2026.04.15
 
 
 
@@ -11,6 +11,7 @@
 * "EventCommon" file removed due to incompatibility with the "Sock's Rio Sonic" mod.
 * Moved "Eggman" texture files from "ev1770" to "bo6xxx" after discovering that apparently Eggman's textures load from this one file in Final Horizons.
 * Re-added "Supreme" and "The End" texture files to only ev5040 after discovering the rest of the "World 5" scenes seem to load the assets from that one file.
+* Fixed a QTE scene in Supreme's 3rd Preset
 
 
 
