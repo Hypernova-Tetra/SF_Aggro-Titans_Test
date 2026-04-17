@@ -282,40 +282,17 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 				}
 				
 				bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
-				if (evtPlayer->IsEventPlaying("bo4141"))
+				if (Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1)
 				{ 		
+					pkinematics->Position = new System.Numerics.Vector3(-125.826f, 238.337f, -1170.940f);
+					pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
+					
 					if ((isRifleBeast0) || (gameModeBattleRush))
 					{ Lua.Call("PlayDiEventFrozen", "bo4140");  }
 					else
 					{
 						var setupData = new EventPlayer.EventSetupData("bo4142");
 						evtPlayer->PlayEvent(ref setupData);
-					}
-				}
-
-				if ((evtPlayer->IsEventPlaying("bo4140")) || (evtPlayer->IsEventPlaying("bo4142")))
-				{
-					pkinematics->Position = new System.Numerics.Vector3(-125.826f, 238.337f, -1170.940f);
-					pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
-					
-					WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
-					WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
-					WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4181"));
-					
-					if (isRifleBeast0)
-					{ 
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wing"));
-					}
-					else if (gameModeBattleRush)
-					{ 
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB2"));
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
-					}
-					else 
-					{
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA2"));
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
 					}
 				}
 				
@@ -430,6 +407,28 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 
 					case "zev_rfl_wing":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
+						break;
+						
+					case "bo4140":
+					case "bo4142":	
+						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
+						WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4181"));
+						if (isRifleBeast0)
+						{ 
+							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
+							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wing"));
+						}
+						else if (gameModeBattleRush)
+						{ 
+							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB2"));
+							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
+						}
+						else 
+						{
+							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA2"));
+							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
+						}
 						break;
 						
 					case "zev_rfl_bitlaser02":

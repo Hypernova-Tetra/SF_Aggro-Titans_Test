@@ -149,9 +149,9 @@ add BossConfig.json
 add BossGiant01.hmm
 add BossDragon01.hmm
 add BossKnight01.hmm
-add BossRifle01Bossbit.hmm
 add BossRifle01.hmm
-add BossRifle01Smash.hmm
+add BossRifleBit.hmm
+add BossRifleSp.hmm
 add BossRifleBeast.hmm
 add BossRush.hmm
 add BossSonicComboTweaks.hmm
@@ -966,8 +966,10 @@ delete BossCutsceneAudio.hmm
 delete BossGiantDynamics.hmm
 delete BossDragonDynamics.hmm
 delete BossKnightDynamics.hmm
+delete BossRifle01Dynamics.hmm
 delete BossRifle01Dynamic1.hmm
 delete BossRifle01Dynamic2.hmm
+delete BossRifle01Bossbit.hmm
+delete BossRifle01Smash.hmm
 delete BossRifleBeastDynamics.hmm
 delete BossRifleDynamics.hmm
-delete BossRifle01Dynamics.hmm

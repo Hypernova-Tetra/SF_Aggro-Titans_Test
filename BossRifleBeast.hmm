@@ -6,6 +6,7 @@ Code "Supreme_End_Combat"
     #lib "HMM"
 	#lib "INI"
     #import "Services"
+	#lib "SonicParameters"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
@@ -129,15 +130,35 @@ Code "Monologue" by "Hypernova"
 			SupremeA = INI.Parse<int>(ini["Main"]["RifleBeastAnm"], SupremeA);
 			ZevAura = INI.Parse<int>(ini["Main"]["SS2_Aura"], ZevAura);
 			IsConfigInitialised = true;
-		
+			
+			var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
+			
 			if (ZevAura == 0)
 			{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6180")); }
 		
 			if (ZevAura == 1)
-			{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6181")); }
+			{
+				WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6181"));
+
+				if (SonicParametersInfo.pData == null)
+					return;
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.R, 0.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.G, 1.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.B, 1.0f);
+			}
 			
 			if (ZevAura == 2)
-			{ WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6182")); }
+			{
+				WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6182"));
+
+				if (SonicParametersInfo.pData == null)
+					return;
+				
+				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.R, 0.6f);
+				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.G, 0.1f);
+				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.B, 0.8f);
+			}
 			
 			if (SupremeM == 0) // Default Intro
 			{ WriteProtected<byte>(Addressbo6110, System.Text.Encoding.UTF8.GetBytes("bo6010")); }
