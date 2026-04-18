@@ -348,24 +348,18 @@ Code "Darkball QTE" by "Hypernova"
 				
 			case "bo6040":
 			case "bo6240":
-			case "bo6340":
-			case "bo6440":
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02"));
 				WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebst02"));
 				break;
 						
 			case "bo6041":
 			case "bo6241":
-			case "bo6341":
-			case "bo6441":
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB2"));
 				WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstB2"));
 				break;
 					
 			case "bo6042":
 			case "bo6242":
-			case "bo6342":
-			case "bo6442":
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsP2"));
 				WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstP2"));
 				break;
