@@ -27,8 +27,7 @@ add Main/raw/event/scene/zev_dragon_sp_02.pac
 add Main/raw/event/scene/zev_dragon_sp_laser01.pac
 add Main/raw/event/scene/zev_dragon_sp_missile.pac
 add Main/raw/event/scene/zev_dragon_sp_psycho.pac
-add Main/raw/event/scene/zev_knight_sonic_damage01.pac
-add Main/raw/event/scene/zev_knight_sonic_damage02.pac
+add Main/raw/event/scene/zev_knight_sonic_damageXX.pac
 add Main/raw/event/scene/zev_knight_sonic_sp01.pac
 add Main/raw/event/scene/zev_knight_sonic_sp01_phase2.pac
 add Main/raw/event/scene/zev_knight_sonic_sp02_phase2.pac
@@ -151,7 +150,6 @@ add BossDragon01.hmm
 add BossKnight01.hmm
 add BossRifle01.hmm
 add BossRifleBit.hmm
-add BossRifleSp.hmm
 add BossRifleBeast.hmm
 add BossRush.hmm
 add BossSonicComboTweaks.hmm
@@ -167,6 +165,8 @@ delete Main/raw/event/scene/zev_dragon_laser.pac
 delete Main/raw/event/scene/zev_dragon_sp_laser.pac
 delete Main/raw/event/scene/zev_rfl_sp02.pac
 delete Main/raw/event/scene/zev_knight_shieldride01_aerial.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage01.pac
+delete Main/raw/event/scene/zev_knight_sonic_damage02.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage03.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage04.pac
 delete Main/raw/event/scene/zev_knight_sonic_damage05.pac
@@ -971,5 +971,6 @@ delete BossRifle01Dynamic1.hmm
 delete BossRifle01Dynamic2.hmm
 delete BossRifle01Bossbit.hmm
 delete BossRifle01Smash.hmm
+delete BossRifleSp.hmm
 delete BossRifleBeastDynamics.hmm
 delete BossRifleDynamics.hmm

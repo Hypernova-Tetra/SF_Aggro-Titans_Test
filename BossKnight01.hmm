@@ -21,7 +21,7 @@ Code "Knight_Combat_1"
 	if (BossKnightConfigInfo.pData == null)
 		return;
 	
-	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.625f);
+	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.6f);
 
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if (gameModeBattleRush)
@@ -41,7 +41,7 @@ Code "Knight_Combat_1"
 	}
 	else
 	{
-		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.033f);
+		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
 	}
 };
 
@@ -139,7 +139,7 @@ Code "Knight Dynamics" by "Hypernova"
 		
 	static long SonicDamage = 0;
     static string[] HurtRNG = new[]
-    { /* sup */ "zev_knight_sonic_damage01", "zev_knight_sonic_damage01", "zev_knight_sonic_damage02", "zev_knight_sonic_damage02", "zev_knight_sonic_damage03", "zev_knight_sonic_damage03", "zev_knight_sonic_damage04", "zev_knight_sonic_damage04", "zev_knight_sonic_damage05", "zev_knight_sonic_damage05", "zev_knight_sonic_damage06", "zev_knight_sonic_damage06", "zev_knight_sonic_damage07", "zev_knight_sonic_damage08" };
+    { /* sup */ "zev_knight_sonic_damageX1", "zev_knight_sonic_damageX1", "zev_knight_sonic_damageX2", "zev_knight_sonic_damageX2", "zev_knight_sonic_damageX3", "zev_knight_sonic_damageX3", "zev_knight_sonic_damageX4", "zev_knight_sonic_damageX4", "zev_knight_sonic_damageX5", "zev_knight_sonic_damageX5", "zev_knight_sonic_damageX6", "zev_knight_sonic_damageX6", "zev_knight_sonic_damageX7", "zev_knight_sonic_damageX8" };
 //
 {
 	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
@@ -185,18 +185,10 @@ Code "Knight Dynamics" by "Hypernova"
 			if ((isRide01_Nrmal) || (isRide01_Short) || (isRide02_Nrmal))
 			{ pkinematics->Position = new System.Numerics.Vector3(350.310f, 600.000f, 847.872f); }
 			
-			bool isDamage01 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage01")
-			bool isDamage02 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage02")
-			bool isDamage03 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage03")
-			bool isDamage04 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage04")
-			bool isDamage05 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage05")
-			bool isDamage06 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage06")
-			bool isDamage07 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage07")
-			bool isDamage08 = evtPlayer->IsEventPlaying("zev_knight_sonic_damage08")
 			bool isKnightF2 = evtPlayer->IsEventPlaying("bo3141")
-			if ((isDamage01) || (isDamage02) || (isDamage03) || (isDamage04) || (isDamage05) || (isDamage06) || (isDamage07) || (isDamage08) || (isKnightF2))
+			if (isKnightF2)
 			{
-				pkinematics->Position = new System.Numerics.Vector3(607.0f, 700.0f, 1085.0f);
+				pkinematics->Position = new System.Numerics.Vector3(607.0f, 670.0f, 1085.0f);
 				pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
 			}
 			

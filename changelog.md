@@ -1,19 +1,25 @@
-# **Aggro-Titans Test** - 2026.04.17
+# **Aggro-Titans Test** - 2026.04.24
+
+* I May actually release this after all. Current 7z Compressed Mod File Size: "1.07GB"
 
 
 
-* At this point I'm settling for April 2026. Current 7z Compressed Mod File Size: "1.07GB"
+#### **1.40c.08**
+
+* Fixed a crash problem with Supreme Phase 2.
+* Updated Riflebeast code file to trigger certain scenes when specific Hyper Sonic mods are active, may change aura color depending on mod.
+* Overhauled ShieldTackle Removal code, will activate when certain mods and/or codes are running and updated AttackReplacers.
+* Fixed a QTE in Retooled and Oops All Bitlaser that had issues.
+* Updated "zev\_knight\_sonic\_damage" events.
 
 
 
-#### **1.40c.07**
+C-07
 
 * Code Adjustment for Phase 2 Supreme's memory address trigger.
 * Updated "zev\_dragon\_finish\_00"
 * Added parameter for Sonic's aura color that changes SS2's aura color when choosing the aura option.
 * Updated "The End's Defeat" in Final Horizons for the blue and purple aura color option in where The End makes a desperation attack towards Sonic.
-
-
 
 C-06
 
@@ -21,8 +27,6 @@ C-06
 * Moved "Eggman" texture files from "ev1770" to "bo6xxx" after discovering that apparently Eggman's textures load from this one file in Final Horizons.
 * Re-added "Supreme" and "The End" texture files to only ev5040 after discovering the rest of the "World 5" scenes seem to load the assets from that one file.
 * Fixed a QTE scene in Supreme's 3rd Preset
-
-
 
 C-05
 
@@ -35,8 +39,6 @@ C-04
 * During the Wyvern fight, when missing a parry under certain attacks (excluding the Laser attack) in Phase 1, Wyvern may continue attack instead of chase.
 * Added a new mlevel file inside the Bosscommon pac file for something specific later.
 * Removed "Original" and "Sound Overhaul" audio options. Will still be available as add-ons to place above the main Aggro Titans mod.
-
-
 
 C-03
 
