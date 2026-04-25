@@ -480,6 +480,7 @@ Code "No_Tackle" by "thej01"
 		bool isDefEdtMod = HMM.GetMods().Where(x => x.Name == "Definitive Edition").Count() > 0;
 		bool isSuprChrge = HMM.GetMods().Where(x => x.Name == "Supercharged Combat").Count() > 0;
 		bool isUnlshdBst = HMM.GetMods().Where(x => x.Name == "Unleashed Boost Aura").Count() > 0;
+		bool isRevisit01 = HMM.GetMods().Where(x => x.Name == "Revisited Physics").Count() > 0;
 		
 		bool isCrashSn00 = HMM.GetCodes().Contains("Gameplay/Skills/Sonic/Allow Cyclone Kick for Traversal")
 		bool isCrashSn01 = HMM.GetCodes().Contains("Gameplay/Skills/Sonic/Allow Dodging from Homing Shot")
@@ -522,7 +523,7 @@ Code "No_Tackle" by "thej01"
 		
 		bool isCrashSn27 = HMM.GetCodes().Contains("Animation/Somersault Landing at High Velocity")
 		
-		if ((isDefShad01) || (isVnllPlusE) || (isDefEdtMod) || (isSuprChrge) || (isCrashSn00) || (isCrashSn01) || (isCrashSn02) || (isCrashSn03) || (isCrashSn04) || (isCrashSn05) || (isCrashSn06) || (isCrashSn07) || (isCrashSn08) || (isCrashSn09) || (isCrashSn10) || (isCrashSn11) || (isCrashSn12) || (isCrashSn13) || (isCrashSn14) || (isCrashSn15) || (isCrashSn16) || (isCrashSn17) || (isCrashSn18) || (isCrashSn19) || (isCrashSn20) || (isCrashSn21) || (isCrashSn22) || (isCrashSn23) || (isCrashSn24) || (isCrashSn25) || (isCrashSn26) || (isCrashSn27) || (isSoftLck00) || (isSoftLck01) || (isSoftLck02))
+		if ((isDefShad01) || (isVnllPlusE) || (isDefEdtMod) || (isSuprChrge) || (isRevisit01) || (isCrashSn00) || (isCrashSn01) || (isCrashSn02) || (isCrashSn03) || (isCrashSn04) || (isCrashSn05) || (isCrashSn06) || (isCrashSn07) || (isCrashSn08) || (isCrashSn09) || (isCrashSn10) || (isCrashSn11) || (isCrashSn12) || (isCrashSn13) || (isCrashSn14) || (isCrashSn15) || (isCrashSn16) || (isCrashSn17) || (isCrashSn18) || (isCrashSn19) || (isCrashSn20) || (isCrashSn21) || (isCrashSn22) || (isCrashSn23) || (isCrashSn24) || (isCrashSn25) || (isCrashSn26) || (isCrashSn27) || (isSoftLck00) || (isSoftLck01) || (isSoftLck02))
         { shieldRemove = true; }
         else
         { shieldRemove = false; }
