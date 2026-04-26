@@ -214,7 +214,7 @@ Code "Monologue" by "Hypernova"
 					WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6242"));
 					WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
 					WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6267"));
-					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6290"));
+					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
 				}
 				if ((SupremeM == 0) && (SupremeA == 1))
 				{ 
@@ -230,7 +230,7 @@ Code "Monologue" by "Hypernova"
 					WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6242"));
 					WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
 					WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6467"));
-					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6092"));
+					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
 				}
 
 				if (SonicParametersInfo.pData == null)

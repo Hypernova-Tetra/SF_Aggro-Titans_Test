@@ -29,8 +29,8 @@ Code "Wyvern_Combat_1"
 	
 	if (gameModeBattleRush)
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3500);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6500);
 		
 		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 		if (isBSRActive)
@@ -40,8 +40,8 @@ Code "Wyvern_Combat_1"
 	}
     else if (gameModeBossRush)
 	{ 
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 6000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3000);
 	}
 	else
 	{ return; }

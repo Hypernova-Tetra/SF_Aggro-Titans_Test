@@ -58,7 +58,8 @@ add Main/raw/event/scene/zev_sonic_ring_max.pac
 add Main/raw/movie/bo2115.usm
 add Main/raw/movie/bo4140.usm
 add Main/raw/movie/bo4141.usm
-add Main/raw/movie/bo4142.usm
+add Main/raw/movie/bo4145.usm
+add Main/raw/movie/bo4146.usm
 add Main/raw/movie/bo4162.usm
 add Main/raw/movie/bo6090.usm
 add Main/raw/movie/bo6091.usm
@@ -183,6 +184,7 @@ delete Main/raw/movie/bo2140.usm
 delete Main/raw/movie/bo2141.usm
 delete Main/raw/movie/bo1141.usm
 delete Main/raw/movie/bo3141.usm
+delete Main/raw/movie/bo4142.usm
 delete Main/raw/movie/bo4160.usm
 delete Main/raw/movie/bo6110.usm
 delete Main/raw/movie/bo6110_4k.usm

@@ -172,14 +172,9 @@
 			"Description":["A different event is played here."]
 			},
 			{
-			"DisplayName":"Version 1",
+			"DisplayName":"On",
 			"Value":"1",
-			"Description":["Supreme uses his wings to shoot a massive laser."]
-			},
-			{
-			"DisplayName":"Version 2",
-			"Value":"2",
-			"Description":["Supreme uses his wings to shoot a massive laser."]
+			"Description":["Supreme uses his wings to shoot a massive laser for a second time, but Sonic reacts differently."]
 			},
 		],
 		"BossRifleSp00":

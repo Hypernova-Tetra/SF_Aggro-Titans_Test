@@ -1,18 +1,25 @@
-# **Aggro-Titans Test** - 2026.04.24
+# **Aggro-Titans Test** - 2026.04.26
 
 * I May actually release this after all. Current 7z Compressed Mod File Size: "1.07GB"
 
 
 
-#### **1.40c.08**
+#### **1.40c.09**
+
+* Updated bo4xxx.
+* Fixed an error with The End's Monologue for purple aura.
+* Fixed a couple of issues with Supreme.
+* Buffed Wyvern Grand Slam Damage
+
+
+
+C-08
 
 * Fixed a crash problem with Supreme Phase 2.
 * Updated Riflebeast code file to trigger certain scenes when specific Hyper Sonic mods are active, may change aura color depending on mod.
 * Overhauled ShieldTackle Removal code, will activate when certain mods and/or codes are running and updated AttackReplacers.
 * Fixed a QTE in Retooled and Oops All Bitlaser that had issues.
 * Updated "zev\_knight\_sonic\_damage" events.
-
-
 
 C-07
 

@@ -1,6 +1,5 @@
 Patch "Supreme Phase 2 Address" by "Hypernova"
 { 
-	WriteProtected<byte> (/* 0x1414624C0 */ ScanSignature ("bo4140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo4141")); // For making Supreme's Phase 2 skippable.
 	WriteProtected<byte> (/* 0x14145D190 */ ScanSignature ("ev5030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev503X")); // Just to have 1 usm file required for audio.
 	WriteProtected<byte> (/* 0x1414348B4 */ ScanSignature ("ev5040", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev504X")); // Just to have 1 usm file required for audio.
 	WriteProtected<byte> (/* 0x14143739C */ ScanSignature ("ev6030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev603X")); // Just to have 1 usm file required for audio.
@@ -74,18 +73,17 @@ Code "Supreme moveset" by "Hypernova"
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
 		
 		bool rifleStrt2 = Lua.Call<int>("IsPlayingDiEvent", "bo4111") == 1
-		if (!rifleStrt2)
-			return;
+		if (rifleStrt2)
 		{
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 380000);
 			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT4);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_LASER);
 			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 80);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SHOT2);
@@ -99,7 +97,7 @@ Code "Supreme moveset" by "Hypernova"
 		if (Lua.Call<int>("IsPlayingDiEvent", "bo4140") == 1)
 		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT2); }
 		
-		if (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_wing") == 1)
+		if (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_wng1") == 1)
 		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE); }
 
 		if ((Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_shoot01") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_lsQTE02") == 1))
@@ -113,16 +111,35 @@ Code "Supreme moveset" by "Hypernova"
 		WriteProtected<byte>(Adr4110, System.Text.Encoding.UTF8.GetBytes("bo4110"));
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
 			
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
-		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		if (!gameModeBattleRush)
+		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE); }
+		else
+		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3); }
 		
-		if ((Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp02") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spX2") == 1))
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_LASER);
+		
+		if ((Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp02") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spX2") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_wing") == 1))
 		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE); }
 		
+		bool rifleStrt1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1
 		bool rifleBattl = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_start00") == 1
-		if (!rifleBattl) // Battlerush
-			return;
+		
+		if (rifleStrt1) // Base Story
+		{
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000);
+			
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
+			
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_COUNTER_BLOW);
+		}
+		if (rifleBattl) // Battlerush
 		{
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (isBSRActive)
@@ -130,28 +147,11 @@ Code "Supreme moveset" by "Hypernova"
 			else
 			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 65000); }
 	
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
-		}
-		
-		bool rifleStrt1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1
-		if (!rifleStrt1) // Base Story
-			return;
-		{
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000);
-			
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[10], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
-			
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SP01);
 		}
 	}
 }
@@ -193,18 +193,17 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	
 	#include "Reflection" noemit
 	
-	static long ATSHOTB = 0;	
-	static long Abo4110 = 0;
-	static long Abo4180 = 0;
-	static long AdCyAtk = 0;
-	static long AdCyPry = 0;
+		
+	static long ATPHASE = 0;
+	static long AT0RING = 0;
+	static long ATSHOTB = 0;
 	static long ATSHOT3 = 0;
-	
 	static long ATSHOT1 = 0;
 	static string[] shot01_rng01 = new[] { /* sup */ "zev_rfl_shoot02", "zev_rfl_shoot02", "zev_rfl_shootX2", "zev_rfl_shootX2", "zev_rfl_spQTE02", "zev_rfl_spQTE02", "zev_rfl_spQTEX2", "zev_rfl_spQTEX2" };
-	
 	static long ATSHOT2 = 0;
-	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_sp02", "zev_rfl_sp02", "zev_rfl_sp02"};
+	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_sp02", "zev_rfl_sp02", "zev_rfl_sp02" };
+	static long AdCyAtk = 0;
+	static long AdCyPry = 0;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -218,11 +217,12 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	var pkinematics = Player.Kinematics.Get();
 	
 	// These should be okay since they should only execute once
+	if (ATPHASE == 0) { /* 0x1414624C0 */ ATPHASE = ScanSignature ("bo4140", "xxxxxx"); }
+	if (AT0RING == 0) { /* 0x1414624C8 */ AT0RING = ScanSignature ("bo4180", "xxxxxx"); }
 	if (ATSHOTB == 0) { /* 0x141462108 */ ATSHOTB = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
 	if (ATSHOT3 == 0) { /* 0x141461EF0 */ ATSHOT3 = ScanSignature ("zev_rfl_laser01", "xxxxxxxxxxxxxxx"); }
 	if (ATSHOT1 == 0) { /* 0x141461EE0 */ ATSHOT1 = ScanSignature ("zev_rfl_shoot02", "xxxxxxxxxxxxxxx"); }
 	if (ATSHOT2 == 0) { /* 0x141461F10 */ ATSHOT2 = ScanSignature ("zev_rfl_sp02", "xxxxxxxxxxxx"); }
-	if (Abo4180 == 0) { /* 0x1414624C8 */ Abo4180 = ScanSignature ("bo4180", "xxxxxx"); }
 	if (AdCyAtk == 0) { /* 0x14140F690 */ AdCyAtk = ScanSignature ("cyloop_counter", "xxxxxxxxxxxxxx"); }
 	if (AdCyPry == 0) { /* 0x14140F6A0 */ AdCyPry = ScanSignature ("cyloop_counter_parry", "xxxxxxxxxxxxxxxxxxxx"); }
 
@@ -257,23 +257,24 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
 				}
 				
-				bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
-				if (Lua.Call<int>("IsPlayingDiEvent", "bo4141") == 1)
+				if (Lua.Call<int>("IsPlayingDiEvent", "bo4146") == 1)
 				{ 		
 					pkinematics->Position = new System.Numerics.Vector3(-125.826f, 238.337f, -1170.940f);
 					pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
 					
-					if ((isRifleBeast0) || (gameModeBattleRush))
-					{
-						var setupData = new EventPlayer.EventSetupData("bo4140");
-						evtPlayer->PlayEvent(ref setupData);
-					}
-					else
-					{
-						var setupData = new EventPlayer.EventSetupData("bo4142");
-						evtPlayer->PlayEvent(ref setupData);
-					}
+					var setupData = new EventPlayer.EventSetupData("bo4141");
+					evtPlayer->PlayEvent(ref setupData);
 				}
+				
+				if (Lua.Call<int>("IsPlayingDiEvent", "bo4145") == 1)
+				{ 		
+					pkinematics->Position = new System.Numerics.Vector3(-125.826f, 238.337f, -1170.940f);
+					pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
+					
+					var setupData = new EventPlayer.EventSetupData("bo4140");
+					evtPlayer->PlayEvent(ref setupData);
+				}
+				
 				
 				// Making sure Sonic gets teleported back to origin, especially after getting hit by breaking his drones that sends him towards the sea, which may cause a delay when activating a scene.
 				bool isLaser0b = evtPlayer->IsEventPlaying("zev_rfl_laser0b") 
@@ -306,9 +307,13 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					Lua.Call("HideObjectInEvent", "BossLargeBit3", false);
 				}
 				
+				bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
+				bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+				
 				string eventName = evtPlayer->GetCurrentEventName();	
 				switch (eventName)
 				{
+					//Phase 1
 					case "bo4110":
 					case "bo4111":
 					case "bo4180":
@@ -316,19 +321,22 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					case "zev_rfl_start00":
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); 
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
-						WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4180"));
+						WriteProtected<byte>(AT0RING, System.Text.Encoding.UTF8.GetBytes("bo4180"));
 						if (isRifleBeast0)
 						{ 
+							WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4146")); 
 							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
+							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls02"));
 						}
 						else if (gameModeBattleRush)
 						{ 
+							WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
 							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB1"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls02"));
+							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
 						}
 						else 
 						{
+							WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4146")); 
 							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA1"));
 							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls01"));
 						}
@@ -341,11 +349,13 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB1"));
 						break;
 					case "zev_rfl_laser01":
+						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser02"));
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b"));
 						break;	
 					case "zev_rfl_spQTE01":
+						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00"));
 						break;
 					case "zev_rfl_laser00":
@@ -353,16 +363,25 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						break;
 					case "zev_rfl_ls00":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls01"));
+						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
 						break;
 					case "zev_rfl_ls02":
+						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
+						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+						break;
 					case "zev_rfl_ls01":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
+						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b"));
 						break;
 					case "zev_rfl_laser0b":
+						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02"));
 						break;
 					case "zev_rfl_laser02":
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b"));
+						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0Z"));
+						break;
+					case "zev_rfl_laser0Z":
+						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02"));
 						break;
 					case "zev_rfl_gunlaser02":
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser01"));
@@ -370,23 +389,24 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					case "zev_rfl_gunlaser01":
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser02"));
 						break;
-					case "zev_rfl_wing":
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
-						break;	
+					//Phase 2
 					case "bo4140":
-					case "bo4142":	
+					case "bo4141":	
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
-						WriteProtected<byte>(Abo4180, System.Text.Encoding.UTF8.GetBytes("bo4181"));
+						WriteProtected<byte>(AT0RING, System.Text.Encoding.UTF8.GetBytes("bo4181"));
 						if (isRifleBeast0)
 						{ 
 							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wing"));
+							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng1"));
 						}
 						else if (gameModeBattleRush)
 						{ 
 							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB2"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2"));
+							if (isBSRActive)
+							{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wing")); }
+							else
+							{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2")); }
 						}
 						else 
 						{
@@ -405,16 +425,17 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsQTE02"));
 						break;
 					case "zev_rfl_wng1":
-					case "zev_rfl_wng2":
+						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
+						break;	
+					//Phase Low HP
+					case "zev_rfl_wnglsr2":
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX3"));
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2"));
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
 						break;
 					case "zev_rfl_sp01":
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2"));
 						break;
 					case "zev_rfl_bitlaserX3":
@@ -434,8 +455,8 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes(shot01_rng01[new Random().Next(0, shot01_rng01.Length)]));
 						break;	
-				
 					case "zev_rfl_lsXX":
+					case "zev_rfl_wing":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes(shot02_rng01[new Random().Next(0, shot02_rng01.Length)]));
 						break;
 					case "zev_rfl_lsQTE02":
@@ -541,15 +562,11 @@ Patch "Supreme Wing Laser"
 		
 		if (ATSHOT4 == 0) { /* 0x141461F00 */ ATSHOT4 = ScanSignature ("zev_rfl_sp01   ", "xxxxxxxxxxxxxxx"); }
 		
-		if (RifleWing == 0)
+		if (RifleWing != 0)
+		{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wnglsr2")); }
+		else
 		{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01   ")); }
-		
-		if (RifleWing == 1)
-		{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng1   ")); }
-		
-		if (RifleWing == 2)
-		{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng2   ")); }
-    }
+	}	
 }
 
 Library "BossRifleConfig"
