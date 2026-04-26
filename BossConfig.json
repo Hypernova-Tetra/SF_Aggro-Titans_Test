@@ -115,15 +115,10 @@
 			"Description":["Vanilla"]
 			},
 			{
-			"DisplayName":"Level 1 Sonic or Nonspecific Combat Mods",
+			"DisplayName":"On",
 			"Value":"1",
-			"Description":["Lowered HP for non-specfic combat mods that change Sonic's combat style, while maintaining balance with the boss fight."]
+			"Description":["Lowered HP for non-specfic combat mods that change Sonic's combat style, while maintaining balance with the boss fight. Or if playing on Extreme Mode. Or Sonic's stats are Level 1."]
 			},
-			{
-			"DisplayName":"Chaos Polarity",
-			"Value":"2",
-			"Description":["Boss HP specific for when using the Chaos Polarity mod."]
-			}
 		],
 		"SonicBattle":
 		[

@@ -50,20 +50,17 @@ Code "Supreme moveset" by "Hypernova"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle) && (GameManager.GetGameObject("Rifle0") != null);
-        if (!SuperBattle)
-			return;
-        {
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
-			
-			if (BossHP == 1)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 200000); }
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
 		
-			if (BossHP == 2)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000); }
-		}
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		if (isChaosPolarity)
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000); }
+		else if (BossHP == 1)
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 167000); }
+		else
+		{ return; }	
     }
 	
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
@@ -72,11 +69,11 @@ Code "Supreme moveset" by "Hypernova"
 		WriteProtected<byte>(Adr4110, System.Text.Encoding.UTF8.GetBytes("bo4111"));
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
 		
+		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 380000);
+		
 		bool rifleStrt2 = Lua.Call<int>("IsPlayingDiEvent", "bo4111") == 1
 		if (rifleStrt2)
 		{
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 380000);
-			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
@@ -113,9 +110,20 @@ Code "Supreme moveset" by "Hypernova"
 			
 		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 		if (!gameModeBattleRush)
-		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE); }
+		{
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+		}
 		else
-		{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3); }
+		{
+			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+			if (isBSRActive)
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000); }
+			else
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 65000); }
+		
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
+		}
 		
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 		RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
@@ -130,8 +138,6 @@ Code "Supreme moveset" by "Hypernova"
 		
 		if (rifleStrt1) // Base Story
 		{
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000);
-			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 			
@@ -141,12 +147,6 @@ Code "Supreme moveset" by "Hypernova"
 		}
 		if (rifleBattl) // Battlerush
 		{
-			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-			if (isBSRActive)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000); }
-			else
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 65000); }
-	
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 			

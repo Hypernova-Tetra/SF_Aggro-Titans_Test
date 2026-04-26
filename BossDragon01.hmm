@@ -76,8 +76,10 @@ Patch "Wyvern_Combat_2"
 
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-			
-		if (BossHP != 0)
+		
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		
+		if ((BossHP != 0) || (isChaosPolarity))
         {
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 150000);
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8250);

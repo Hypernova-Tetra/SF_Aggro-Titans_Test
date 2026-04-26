@@ -26,43 +26,31 @@ Code "Supreme_End_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 
-        if (BossHP == 1) //Standard Combat Mods//
-        {
-			if (BossRifleBeastConfigInfo.pData == null)
+		if (BossRifleBeastConfigInfo.pData == null)
 				return;
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 180000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2100);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.075f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.1f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
-		}
-		if (BossHP == 2) //Chaos Polarity//
+		
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		
+        if ((BossHP != 0) || (isChaosPolarity))
         {
-			if (BossRifleBeastConfigInfo.pData == null)
-				return;
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 200000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 1050);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.075f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.1f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.15f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
 		}
         else
         { 
-			if (BossRifleBeastConfigInfo.pData == null)
-				return;
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 400000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 4200);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.08f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.2f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.3f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 5000);
 		}
     }
@@ -523,7 +511,9 @@ Code "No_Tackle" by "thej01"
 		
 		bool isCrashSn27 = HMM.GetCodes().Contains("Animation/Somersault Landing at High Velocity")
 		
-		if ((isDefShad01) || (isVnllPlusE) || (isDefEdtMod) || (isSuprChrge) || (isRevisit01) || (isCrashSn00) || (isCrashSn01) || (isCrashSn02) || (isCrashSn03) || (isCrashSn04) || (isCrashSn05) || (isCrashSn06) || (isCrashSn07) || (isCrashSn08) || (isCrashSn09) || (isCrashSn10) || (isCrashSn11) || (isCrashSn12) || (isCrashSn13) || (isCrashSn14) || (isCrashSn15) || (isCrashSn16) || (isCrashSn17) || (isCrashSn18) || (isCrashSn19) || (isCrashSn20) || (isCrashSn21) || (isCrashSn22) || (isCrashSn23) || (isCrashSn24) || (isCrashSn25) || (isCrashSn26) || (isCrashSn27) || (isSoftLck00) || (isSoftLck01) || (isSoftLck02))
+		bool isCrashSn28 = HMM.GetCodes().Contains("Effects/Double Jump Effect")
+		
+		if ((isDefShad01) || (isVnllPlusE) || (isDefEdtMod) || (isSuprChrge) || (isRevisit01) || (isCrashSn00) || (isCrashSn01) || (isCrashSn02) || (isCrashSn03) || (isCrashSn04) || (isCrashSn05) || (isCrashSn06) || (isCrashSn07) || (isCrashSn08) || (isCrashSn09) || (isCrashSn10) || (isCrashSn11) || (isCrashSn12) || (isCrashSn13) || (isCrashSn14) || (isCrashSn15) || (isCrashSn16) || (isCrashSn17) || (isCrashSn18) || (isCrashSn19) || (isCrashSn20) || (isCrashSn21) || (isCrashSn22) || (isCrashSn23) || (isCrashSn24) || (isCrashSn25) || (isCrashSn26) || (isCrashSn27) || (isCrashSn28) || (isSoftLck00) || (isSoftLck01) || (isSoftLck02))
         { shieldRemove = true; }
         else
         { shieldRemove = false; }

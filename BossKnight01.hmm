@@ -75,7 +75,9 @@ Patch "Knight_Combat_2"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		if (BossHP != 0)
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		
+        if ((BossHP != 0) || (isChaosPolarity))
         {
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 167000);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
