@@ -1,10 +1,18 @@
-# **Aggro-Titans Test** - 2026.04.26
+# **Aggro-Titans Test** - 2026.05.01
 
 * I May actually release this after all. Current 7z Compressed Mod File Size: "1.07GB"
 
 
 
-#### **1.40c.09**
+#### **1.40c.10**
+
+* Updated bo2xxx to resolve an issue where Phase 2 Wyvern still had a chance of a black screen after the scene ends during the base story.
+* Tweaked the Combat Mod settings. Also renamed it to "Combat Toggle".
+* Chaos Polarity should now automatically toggle the bosses HP to be reduced. (Needs testing.)
+
+
+
+C-09
 
 * Updated bo4xxx.
 * Fixed an error with The End's Monologue for purple aura.
@@ -12,8 +20,6 @@
 * Buffed Wyvern Grand Slam Damage
 * Updated Combat Mod option. When using Chaos Polarity, Boss HP will automatically be reduced.
 * Fixed in error in where HP values may not have been reduced when Combat Mod options were on.
-
-
 
 C-08
 

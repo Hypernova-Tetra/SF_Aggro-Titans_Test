@@ -10,12 +10,16 @@ Code "Supreme_End_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
+	static bool healthBool = false;
 //
 {
+	var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+	if (BossRifleBeastConfigInfo.pData == null)
+		return;
+			
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
-		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
 		
 		if (mod == null)
 			return;
@@ -25,36 +29,27 @@ Code "Supreme_End_Combat"
 
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-
-		if (BossRifleBeastConfigInfo.pData == null)
-				return;
 		
 		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
-		
-        if ((BossHP != 0) || (isChaosPolarity))
-        {
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 200000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.075f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.15f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
-		}
+		if ((BossHP == 1) || (isChaosPolarity))
+        { healthBool = true; }
         else
-        { 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 400000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[0].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.actionParams[1].changePatternHP, 1.0f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 4200);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.battaleState.SmashDamageRatio, 0.05f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloop.pressDamageRatio, 0.08f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.cyloopState.cyloopDamageRate, 1.3f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 5000);
-		}
+        { healthBool = false; }
     }
-}
+	
+	if (!healthBool)
+	{
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 400000);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 4000);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3000);
+	}
+	else
+	{
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 200000);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
+	}
+}		
 
 Code "Monologue" by "Hypernova"
 //
@@ -129,6 +124,7 @@ Code "Monologue" by "Hypernova"
 			bool isHyperDon2 = HMM.GetMods().Where(x => x.Name == "Dons Hyper Sonic Aura Update").Count() > 0;
 			bool isDefShad01 = HMM.GetMods().Where(x => x.Name == "Shadow The Hedgehog").Count() > 0;
 			bool isHyperAsu0 = HMM.GetMods().Where(x => x.Name == "Asu's Simple Hyper Sonic (reskin)").Count() > 0;
+			bool isZephRangr = HMM.GetMods().Where(x => x.Name == "Zephyr Frontiers: God's Among Dimensions(Demo)").Count() > 0;
 			
 			if ((isHyperDon1) || (isHyperDon2) || (isDefShad01))
 			{
@@ -179,7 +175,7 @@ Code "Monologue" by "Hypernova"
 				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.G, 1.0f);
 				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.B, 1.0f);
 			}
-			else if (isHyperAsu0)
+			else if ((isHyperAsu0) || (isZephRangr))
 			{
 				WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6182"));
 				
@@ -517,7 +513,7 @@ Code "No_Tackle" by "thej01"
         { shieldRemove = true; }
         else
         { shieldRemove = false; }
-	
+		
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
 		var ini = INI.Read(modConfigIniPath);
 
