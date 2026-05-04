@@ -1,5 +1,6 @@
 Patch "Wyvern Address Edits" by "Hypernova"
 {
+	WriteProtected<byte> (/* 0x141446894 */ ScanSignature ("bo2xxx", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2x00"));
 	WriteProtected<byte> (/* 0x14144C97C */ ScanSignature ("bo2140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2141")); // To make Wyvern's Phase 2 skippable.
 	WriteProtected<byte> (/* 0x141556030 */ ScanSignature ("boss_giant02_bo2110","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x14144C948 */ ScanSignature ("boss_giant02_bo2115","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
@@ -10,44 +11,7 @@ Patch "Wyvern Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14144C9D8 */ ScanSignature ("boss_giant02_drgn_giantswing","xxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 }
 
-Code "Wyvern_Combat_1"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BossDragonConfig"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-//
-{
-	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
-	if (BossDragonConfigInfo.pData == null)
-		return;
-		
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-	
-	if (gameModeBattleRush)
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6500);
-		
-		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (isBSRActive)
-		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 115000); }
-		else
-		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
-	}
-    else if (gameModeBossRush)
-	{ 
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 6000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3000);
-	}
-	else
-	{ return; }
-};
-
-Patch "Wyvern_Combat_2"
+Patch "Wyvern_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -64,6 +28,28 @@ Patch "Wyvern_Combat_2"
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
 	if (BossDragonConfigInfo.pData == null)
 		return;
+		
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+	
+	if (gameModeBattleRush)
+	{
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6500);
+		
+		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+		if (isBSRActive)
+		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
+		else
+		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
+	}
+    else if (gameModeBossRush)
+	{ 
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 6000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3000);
+	}
+	else
+	{ return; }
 		
     if (!IsConfigInitialised)
     {
@@ -87,7 +73,7 @@ Patch "Wyvern_Combat_2"
 	
 	if (!healthBool)
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 312500);
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 250000);
 		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 25000);
 		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 12500);
 	}

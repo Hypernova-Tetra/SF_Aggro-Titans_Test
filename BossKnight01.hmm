@@ -7,45 +7,7 @@ Patch "Knight Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14145C2C0 */ ScanSignature ("boss_giant03_bo3180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
 
-Code "Knight_Combat_1"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BossKnightConfig"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-//
-{
-	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
-	if (BossKnightConfigInfo.pData == null)
-		return;
-	
-	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.6f);
-
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	if (gameModeBattleRush)
-	{	
-		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (isBSRActive)
-		{ 
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 125000);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
-
-		}
-		else
-		{
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
-		}
-	}
-	else
-	{
-		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
-	}
-};
-
-Patch "Knight_Combat_2"
+Patch "Knight_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -62,6 +24,29 @@ Patch "Knight_Combat_2"
 	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
 	if (BossKnightConfigInfo.pData == null)
 		return;
+		
+	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.6f);
+
+	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+	if (gameModeBattleRush)
+	{	
+		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+		if (isBSRActive)
+		{ 
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 120000);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
+
+		}
+		else
+		{
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
+		}
+	}
+	else
+	{
+		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
+	}
 	
     if (!IsConfigInitialised)
     {
@@ -85,14 +70,14 @@ Patch "Knight_Combat_2"
 	
 	if (!healthBool)
 	{
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 333000);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 275000);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 	}
 	else
 	{
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 150000);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 137500);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);

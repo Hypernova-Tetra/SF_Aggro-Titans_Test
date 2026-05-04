@@ -1,5 +1,6 @@
 Patch "Giganto Address Edits" by "Hypernova"
 {
+	WriteProtected<byte> (/* 0x14144E178 */ ScanSignature ("bo1xxx", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1x00"));
 	WriteProtected<byte> (/* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141")); // To make Giganto's Phase 2 skippable.
 	WriteProtected<byte> (/* 0x1414534D0 */ ScanSignature ("boss_giant01_bo1120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
@@ -7,22 +8,27 @@ Patch "Giganto Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x141453550 */ ScanSignature ("boss_giant01_bo1180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
 
-Code "Giganto_Combat_1"
+Patch "Giganto_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
 	#lib "BossGiantConfig"
     #lib "HMM"
+	#lib "INI"
     #import "Services"
 
 	static long Address1120 = 0;
 	static long Address1160 = 0;
+	
+    static bool IsConfigInitialised = false;
+	static int BossHP = 0;
+	static bool healthBool = false;
 //
 {
 	var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
 	if (BossGiantConfigInfo.pData == null)
 		return;
-	
+		
 	if (Address1120 == 0) { /* 0x1414534C8 */ Address1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (Address1160 == 0) { /* 0x141453520 */ Address1160 = ScanSignature ("bo1160", "xxxxxx"); }
 		
@@ -52,25 +58,6 @@ Code "Giganto_Combat_1"
 	}
 	else
 	{ return; }
-}
-
-Patch "Giganto_Combat_2"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BossGiantConfig"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-
-    static bool IsConfigInitialised = false;
-	static int BossHP = 0;
-	static bool healthBool = false;
-//
-{
-	var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
-	if (BossGiantConfigInfo.pData == null)
-		return;
 		
     if (!IsConfigInitialised)
     {
@@ -94,14 +81,14 @@ Patch "Giganto_Combat_2"
 	
 	if (!healthBool)
 	{
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 300000);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 225000);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 	}
 	else
 	{
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 112500);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
@@ -232,7 +219,7 @@ Code "Giganto_ActionType"
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[7], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_02);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[11], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[12], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
-			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
+			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[14], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[16], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[19], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_JUMP);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.meshShapeKeyFrame.meshShapeKeyFrames[112].isUse, false);

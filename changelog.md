@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.05.01
+# **Aggro-Titans Test** - 2026.05.04
 
 * I May actually release this after all. Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -8,7 +8,8 @@
 
 * Updated bo2xxx to resolve an issue where Phase 2 Wyvern still had a chance of a black screen after the scene ends during the base story.
 * Tweaked the Combat Mod settings. Also renamed it to "Combat Toggle".
-* Chaos Polarity should now automatically toggle the bosses HP to be reduced. (Needs testing.)
+* Chaos Polarity should now automatically toggle the bosses HP to be reduced.
+* Small Tweaks to Boss HP.
 
 
 
