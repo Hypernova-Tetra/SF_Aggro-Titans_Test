@@ -80,14 +80,14 @@ Patch "Giganto_Combat"
 	
 	if (!healthBool)
 	{
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 225000);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 300000);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 	}
 	else
 	{
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 112500);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);

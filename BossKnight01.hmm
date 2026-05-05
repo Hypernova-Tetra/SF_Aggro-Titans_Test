@@ -70,14 +70,14 @@ Patch "Knight_Combat"
 	
 	if (!healthBool)
 	{
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 275000);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 340000);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 	}
 	else
 	{
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 137500);
+		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 150000);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
 		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);

@@ -161,9 +161,9 @@ Code "Supreme moveset" by "Hypernova"
 		else if ((gameModeBattleRush) && (!isBSRActive))
 		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
 		else if (!isRifleBeast0)
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 300000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 360000); }
 		else
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 380000); }
 		
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
@@ -176,9 +176,9 @@ Code "Supreme moveset" by "Hypernova"
 		else if ((gameModeBattleRush) && (!isBSRActive))
 		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
 		else if (!isRifleBeast0)
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 125000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 167000); }
 		else
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 150000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 175000); }
 		
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
