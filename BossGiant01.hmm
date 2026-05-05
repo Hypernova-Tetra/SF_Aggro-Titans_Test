@@ -1,6 +1,5 @@
 Patch "Giganto Address Edits" by "Hypernova"
 {
-	WriteProtected<byte> (/* 0x14144E178 */ ScanSignature ("bo1xxx", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1x00"));
 	WriteProtected<byte> (/* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141")); // To make Giganto's Phase 2 skippable.
 	WriteProtected<byte> (/* 0x1414534D0 */ ScanSignature ("boss_giant01_bo1120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
