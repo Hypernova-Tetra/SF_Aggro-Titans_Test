@@ -26,7 +26,7 @@
 				},
 				{
 					"Name":"BossCombat",
-					"DisplayName":"Combat Mods or Level 1 Sonic",
+					"DisplayName":"Combat Toggle",
 					"Description":["Using Combat Mods? Or are you by chance playing Extreme Mode or just running through the game normally with base level Sonic. Activate this option here. This changes the Boss's HP to a lower value that certain combat mods or a Level 1 Power Sonic can handle, gives rings though cylooping and Grand Slamming Giganto, Knight, and Supreme (not Riflebeast)."],
 					"Type":"BossHP",
 					"MinValue":null,
