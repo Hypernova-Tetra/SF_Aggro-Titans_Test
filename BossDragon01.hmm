@@ -147,13 +147,8 @@ Code "Wyvern Dynamics" by "Hypernova"
 	{
 		if (evtPlayer->IsEventPlaying("bo2141"))
 		{
-			if ((gameModeBossRush) || (gameModeBattleRush))
-			{
-				var setupData = new EventPlayer.EventSetupData("bo2140");
-				evtPlayer->PlayEvent(ref setupData);
-			}
-			else
-			{ Lua.Call("PlayDiEventFrozen", "bo2140"); } // Using this in other modes causes a game crash.
+			var setupData = new EventPlayer.EventSetupData("bo2140");
+			evtPlayer->PlayEvent(ref setupData);
 		}
 		
 		if (evtPlayer->IsEventPlaying("bo2140"))
