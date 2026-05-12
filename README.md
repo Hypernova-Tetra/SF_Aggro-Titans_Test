@@ -173,7 +173,7 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***Gameplay / Skills / Sonic***
+***Gameplay / Skills / Sonic***
 
 * Allow Cyclone Kick for Traversal
 * Allow Dodging from Homing Shot
@@ -183,7 +183,7 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***Gameplay / Skills***
+***Gameplay / Skills***
 
 * Always Allow Jumping Off Rails
 * Always Dodge in Stick Direction
@@ -196,13 +196,13 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***Physics / Sonic***
+***Physics / Sonic***
 
 * Airborne Drop Dash Rotation
 
 
 
-###### ***Physics***
+***Physics***
 
 * Allow Gravity to Affect Parry
 * Classic Jump Deceleration
@@ -212,7 +212,7 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***Fixes / Gameplay / States***
+***Fixes / Gameplay / States***
 
 * Fix Air Boost Transitions
 * Fix Drop Dash Transitions
@@ -221,7 +221,7 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***Fixes / Gameplay***
+***Fixes / Gameplay***
 
 * Fix Damage from Jumping into Enemies
 * Fix Rolling in 2D
@@ -229,17 +229,16 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***Gameplay / Open Zone / Skills / Sonic***
+***Gameplay / Open Zone / Skills / Sonic***
 
 * Disable Air Tricks from Terrain
 * Disable Air Tricks from Traversal Objects
 
 
 
-###### ***Animation / Amy***
+***Animation / Amy***
 
 * Disable Card Spin Boost Transition
-* Animation / Knuckles
 
 
 
