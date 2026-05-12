@@ -417,7 +417,7 @@ Code "No_Tackle" by "thej01"
 	
 	static long AddressSplDmg = 0;
 	static long AdObjGa3220 = 0;
-	
+
     static bool healthBool = false;
 	static bool smashBool = false;
 	static bool initialized = false;
@@ -459,73 +459,22 @@ Code "No_Tackle" by "thej01"
 
         IsConfigInitialised = true;
 		
-		bool isDefShad01 = HMM.GetMods().Where(x => x.Name == "Shadow The Hedgehog").Count() > 0;
-		bool isVnllPlusE = HMM.GetMods().Where(x => x.Name == "Vanilla+ Experience").Count() > 0;
-		bool isDefEdtMod = HMM.GetMods().Where(x => x.Name == "Definitive Edition").Count() > 0;
-		bool isSuprChrge = HMM.GetMods().Where(x => x.Name == "Supercharged Combat").Count() > 0;
-		bool isUnlshdBst = HMM.GetMods().Where(x => x.Name == "Unleashed Boost Aura").Count() > 0;
-		bool isRevisit01 = HMM.GetMods().Where(x => x.Name == "Revisited Physics").Count() > 0;
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
 		
-		bool isCrashSn00 = HMM.GetCodes().Contains("Gameplay/Skills/Sonic/Allow Cyclone Kick for Traversal")
-		bool isCrashSn01 = HMM.GetCodes().Contains("Gameplay/Skills/Sonic/Allow Dodging from Homing Shot")
-		bool isCrashSn02 = HMM.GetCodes().Contains("Gameplay/Skills/Sonic/Disable Sonic Boom for Regular Objects")
-		bool isSoftLck00 = HMM.GetCodes().Contains("Gameplay/Skills/Sonic/Air Trick from Rails")
-		bool isSoftLck01 = HMM.GetCodes().Contains("Gameplay/Skills/Sonic/Drop Dash on Slide")
-		
-		bool isCrashSn03 = HMM.GetCodes().Contains("Gameplay/Skills/Always Allow Jumping Off Rails")
-		bool isCrashSn04 = HMM.GetCodes().Contains("Gameplay/Skills/Always Dodge in Stick Direction")
-		bool isCrashSn05 = HMM.GetCodes().Contains("Gameplay/Skills/Always Dodge with Side Step")
-		bool isCrashSn06 = HMM.GetCodes().Contains("Gameplay/Skills/Always Stay on Climbable Walls")
-		bool isCrashSn07 = HMM.GetCodes().Contains("Gameplay/Skills/Rail Crouch")
-		bool isCrashSn08 = HMM.GetCodes().Contains("Gameplay/Skills/Rail Dash")
-		bool isCrashSn09 = HMM.GetCodes().Contains("Gameplay/Skills/Super Stomp")
-		bool isSoftLck02 = HMM.GetCodes().Contains("Gameplay/Skills/Allow Boost to damage objects")
-		
-		bool isCrashSn10 = HMM.GetCodes().Contains("Physics/Sonic/Airborne Drop Dash Rotation")
-		
-		bool isCrashSn11 = HMM.GetCodes().Contains("Physics/Allow Gravity to Affect Parry")
-		bool isCrashSn12 = HMM.GetCodes().Contains("Physics/Classic Jump Deceleration")
-		bool isCrashSn13 = HMM.GetCodes().Contains("Physics/Enhanced Homing Attack Rebound")
-		bool isCrashSn14 = HMM.GetCodes().Contains("Physics/Retain Horizontal Velocity from Jump")
-		bool isCrashSn15 = HMM.GetCodes().Contains("Physics/Retain Horizontal Velocity from Stomp")
-		
-		bool isCrashSn16 = HMM.GetCodes().Contains("Fixes/Gameplay/States/Fix Air Boost Transitions")
-		bool isCrashSn17 = HMM.GetCodes().Contains("Fixes/Gameplay/States/Fix Drop Dash Transitions")
-		bool isCrashSn18 = HMM.GetCodes().Contains("Fixes/Gameplay/States/Fix Spin Transitions")
-		bool isCrashSn19 = HMM.GetCodes().Contains("Fixes/Gameplay/States/Fix Stomp Transitions")
-		
-		bool isCrashSn20 = HMM.GetCodes().Contains("Fixes/Gameplay/Fix Damage from Jumping into Enemies")
-		bool isCrashSn21 = HMM.GetCodes().Contains("Fixes/Gameplay/Fix Rolling in 2D")
-		bool isCrashSn22 = HMM.GetCodes().Contains("Fixes/Gameplay/Fix Wall Walking")
-		
-		bool isCrashSn23 = HMM.GetCodes().Contains("Gameplay/Open Zone/Skills/Sonic/Disable Air Tricks from Terrain")
-		bool isCrashSn24 = HMM.GetCodes().Contains("Gameplay/Open Zone/Skills/Sonic/Disable Air Tricks from Traversal Objects")
-		
-		bool isCrashSn25 = HMM.GetCodes().Contains("Animation/Amy/Disable Card Spin Boost Transition")
-		
-		bool isCrashSn26 = HMM.GetCodes().Contains("Animation/Tails/Disable Cyclone Transition")
-		
-		bool isCrashSn27 = HMM.GetCodes().Contains("Animation/Somersault Landing at High Velocity")
-		
-		bool isCrashSn28 = HMM.GetCodes().Contains("Effects/Double Jump Effect")
-		
-		if ((isDefShad01) || (isVnllPlusE) || (isDefEdtMod) || (isSuprChrge) || (isRevisit01) || (isCrashSn00) || (isCrashSn01) || (isCrashSn02) || (isCrashSn03) || (isCrashSn04) || (isCrashSn05) || (isCrashSn06) || (isCrashSn07) || (isCrashSn08) || (isCrashSn09) || (isCrashSn10) || (isCrashSn11) || (isCrashSn12) || (isCrashSn13) || (isCrashSn14) || (isCrashSn15) || (isCrashSn16) || (isCrashSn17) || (isCrashSn18) || (isCrashSn19) || (isCrashSn20) || (isCrashSn21) || (isCrashSn22) || (isCrashSn23) || (isCrashSn24) || (isCrashSn25) || (isCrashSn26) || (isCrashSn27) || (isCrashSn28) || (isSoftLck00) || (isSoftLck01) || (isSoftLck02))
+		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);		
+		if (NoTackle == 1)
         { shieldRemove = true; }
         else
         { shieldRemove = false; }
-		
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
 
 		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
-        IsConfigInitialised = true;
 		if (BossRifleSp00 == 1)
         {smashBool = true;}
         else
         {smashBool = false;}
 		
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
-        IsConfigInitialised = true;
 		if (BossHP == 1)
         {healthBool = true;}
         else

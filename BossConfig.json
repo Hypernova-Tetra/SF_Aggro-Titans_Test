@@ -32,13 +32,13 @@
 		  "Elements":
 			[
 				{
-					"Name":"BossCombat",
-					"DisplayName":"Titan HP",
-					"Description":["Using Combat Mods? Or are you by chance playing Extreme Mode or just running through the game normally with base level Sonic. Activate this option here. This changes the Boss's HP to a lower value that certain combat mods or a Level 1 Power Sonic can handle, gives rings though cylooping and Grand Slamming Giganto, Knight, and Supreme (not Riflebeast)."],
-					"Type":"BossHP",
-					"MinValue":null,
-					"MaxValue":null,
-					"DefaultValue":"0"
+				"Name":"BossCombat",
+				"DisplayName":"Titan HP",
+				"Description":["Using Combat Mods? Or are you by chance playing Extreme Mode or just running through the game normally with base level Sonic. Activate this option here. This changes the Boss's HP to a lower value that certain combat mods or a Level 1 Power Sonic can handle, gives rings though cylooping and Grand Slamming Giganto, Knight, and Supreme (not Riflebeast)."],
+				"Type":"BossHP",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"0"
 				},
 				{
 				"Name":"IncludeDir1",
@@ -74,6 +74,15 @@
 		  "DisplayName": "Final Horizons Settings",
 		  "Elements":
 			[
+				{
+				"Name":"RifleShieldFix",
+				"DisplayName":"Riflebeast Shield Tackle",
+				"Description":["Toggle this option to disable Supreme's Shield Tackle if parrying this attack causes your game to crash."],
+				"Type":"NoTackle",
+				"MinValue":null,
+				"MaxValue":null,
+				"DefaultValue":"0"
+				},
 				{
 				"Name":"BossZevRifleSp00",
 				"DisplayName":"Supreme (Regular) Grand Slam",
@@ -228,6 +237,19 @@
 			"Value":"1",
 			"Description":["Certain changes to the cutscenes."]
 			},
+		],
+		"NoTackle":
+		[
+			{
+			"DisplayName":"Enabled",
+			"Value":"0",
+			"Description":["This option means Supreme will attempt to strike at Sage's shield. If you have no issues crashing, leave it enabled."]
+			},
+			{
+			"DisplayName":"Disabled",
+			"Value":"1",
+			"Description":["ONLY USE IF YOUR GAME CRASHES WHEN PARRYING. The Shield Tackle will be removed and instead Supreme will use other attacks instead."]
+			}
 		],
 	},
    "IniFile":"mod.ini"
