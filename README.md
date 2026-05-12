@@ -242,13 +242,13 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***Animation / Tails***
+***Animation / Tails***
 
 * Disable Cyclone Transition
 
 
 
-###### ***Animation***
+***Animation***
 
 * Somersault Landing at High Velocity
 
@@ -262,7 +262,7 @@ I compiled together a list of Community Codes in the HMM Code Tab that are curre
 
 
 
-###### ***If you're using codes or mods from any of the currently listed above, go in to the "Riflebeast Shield Tackle" option in Aggro Titans settings and select: "Disabled" to remove the attack.***
+***If you're using codes or mods from any of the currently listed above, go in to the "Riflebeast Shield Tackle" option in Aggro Titans settings and select: "Disabled" to remove the attack.***
 
 
 
@@ -279,6 +279,4 @@ Thirdly, changes to the "Playercommon.pac" file may have a chance at crashing th
 
 
 As stated before, this can happen to some people even unmodded and that is the most difficult to pin down. If I missed any codes feel free to let me know in the comments, for now I just wanted to spread more awareness on this.
-
-
 
