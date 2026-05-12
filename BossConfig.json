@@ -76,8 +76,8 @@
 			[
 				{
 				"Name":"RifleShieldFix",
-				"DisplayName":"Riflebeast Shield Tackle",
-				"Description":["Toggle this option to disable Supreme's Shield Tackle if parrying this attack causes your game to crash."],
+				"DisplayName":"Riflebeast Shield Tackle (Read Description)",
+				"Description":["https://gamebanana.com/threads/228353 for more info. - This is a toggle option only for those facing a known crash problem with a specific attack, parrying the flurry of Supreme's back-arms causing the game to crash."],
 				"Type":"NoTackle",
 				"MinValue":null,
 				"MaxValue":null,
