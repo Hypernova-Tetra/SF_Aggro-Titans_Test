@@ -241,12 +241,12 @@
 		"NoTackle":
 		[
 			{
-			"DisplayName":"Enabled",
+			"DisplayName":"Attack Enabled",
 			"Value":"0",
 			"Description":["This option means Supreme will attempt to strike at Sage's shield. If you have no issues crashing, leave it enabled."]
 			},
 			{
-			"DisplayName":"Disabled",
+			"DisplayName":"Attack Disabled",
 			"Value":"1",
 			"Description":["ONLY USE IF YOUR GAME CRASHES WHEN PARRYING. The Shield Tackle will be removed and instead Supreme will use other attacks instead."]
 			}
