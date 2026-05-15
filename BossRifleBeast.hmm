@@ -5,8 +5,9 @@ Code "Supreme_End_Combat"
 	#lib "BossRifleBeastConfig"
     #lib "HMM"
 	#lib "INI"
-    #import "Services"
 	#lib "SonicParameters"
+	
+	#import "Services"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
