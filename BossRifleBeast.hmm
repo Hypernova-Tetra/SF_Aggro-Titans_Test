@@ -377,6 +377,76 @@ Code "Darkball QTE" by "Hypernova"
 
 Code "No_Tackle" by "thej01"
 //
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossRifleBeastConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+
+    static bool IsConfigInitialised = false;
+	static bool shieldBool = false;
+	static int NoTackle = 0;
+    static int ReplaceNum = 0;
+    static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
+
+	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING00;
+	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING08;
+    AttackReplacers[2] = BossRifleBeastConfig.AtackType.AT_CROW_L;
+    AttackReplacers[3] = BossRifleBeastConfig.AtackType.AT_CROW_R;
+	AttackReplacers[4] = BossRifleBeastConfig.AtackType.AT_HIMING02;
+	AttackReplacers[5] = BossRifleBeastConfig.AtackType.AT_HIMING04;
+    AttackReplacers[6] = BossRifleBeastConfig.AtackType.AT_CROW_R;
+    AttackReplacers[7] = BossRifleBeastConfig.AtackType.AT_CROW_L;
+
+    var RifleBeastInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+//
+{
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
+        IsConfigInitialised = true;
+
+        if (NoTackle == 1)
+        { shieldBool = true; }
+        else
+        { shieldBool = false; }
+    }
+	
+	if (!shieldBool)
+		return;
+	{
+		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+
+		if (BossRifleBeastConfigInfo.pData == null)
+			return;
+
+		for (int i = 0; i < 12; ++i)
+		{
+			for (int j = 0; j < 10; ++j)
+			{
+				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
+				{
+					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
+					++ReplaceNum;
+					if (ReplaceNum > 1)
+						ReplaceNum = 0;
+				}
+			}
+		}
+	}
+}
+
+Code "Unused Cinematic Grand Slam" by "Hypernova"
+//
 	using System.Numerics;
     using System.Collections.Generic;
     using System.IO;
@@ -413,8 +483,6 @@ Code "No_Tackle" by "thej01"
 	
 	static int BossHP = 0;
 	static int BossRifleSp00 = 0;
-	static int NoTackle = 0;
-    static int ReplaceNum = 0;
 	
 	static long AddressSplDmg = 0;
 	static long AdObjGa3220 = 0;
@@ -425,14 +493,15 @@ Code "No_Tackle" by "thej01"
 	static bool IsConfigInitialised = false;
 	static bool shieldRemove = false;
 	
+	static int ReplaceNum = 0;
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
 
-	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING00;
-	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING08;
+	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING08;
+	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING04;
     AttackReplacers[2] = BossRifleBeastConfig.AtackType.AT_CROW_L;
     AttackReplacers[3] = BossRifleBeastConfig.AtackType.AT_CROW_R;
 	AttackReplacers[4] = BossRifleBeastConfig.AtackType.AT_HIMING02;
-	AttackReplacers[5] = BossRifleBeastConfig.AtackType.AT_HIMING04;
+	AttackReplacers[5] = BossRifleBeastConfig.AtackType.AT_HIMING00;
     AttackReplacers[6] = BossRifleBeastConfig.AtackType.AT_CROW_R;
     AttackReplacers[7] = BossRifleBeastConfig.AtackType.AT_CROW_L;
 
@@ -462,12 +531,6 @@ Code "No_Tackle" by "thej01"
 		
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
 		var ini = INI.Read(modConfigIniPath);
-		
-		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);		
-		if (NoTackle == 1)
-        { shieldRemove = true; }
-        else
-        { shieldRemove = false; }
 
 		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
 		if (BossRifleSp00 == 1)
@@ -486,7 +549,7 @@ Code "No_Tackle" by "thej01"
 	
 	if (!smashBool)
 		return;
-	{	
+	{
 		if (AdObjGa3220 == 0) { /* 0x141556068 */ AdObjGa3220 = ScanSignature ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"); }
 		if (AddressSplDmg == 0) { /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 		
@@ -574,7 +637,7 @@ Code "No_Tackle" by "thej01"
 	
 	if (!shieldRemove)
 		return;
-	{
+	{	
 		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
 
 		if (BossRifleBeastConfigInfo.pData == null)
