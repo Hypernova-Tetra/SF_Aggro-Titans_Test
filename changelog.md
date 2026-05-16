@@ -4,11 +4,15 @@
 
 
 
-#### **1.41**
+#### **Aggro-Titans 1.41 (Pre-Release)**
 
-* Version bumped for final round of tests and bug searching to patch out before release, no further major development will be made for now.
+* 1.41b - Fixed an issue where the Shield Tackle Code only functioned when Grand Slam option is set to "Unused Cinematic".
+* 1.41a - Fixed an error with The Final Horizons Intro of "The End" that had some caption issues and a lack of camera shaking in some parts.
+* 1.41. - Version bumped for final round of tests and bug searching to patch out before release, no further major development will be made.
 
 
+
+#### **Aggro-Titans 1.40 (Pre-Release)**
 
 C-10
 
@@ -16,7 +20,6 @@ C-10
 * Tweaked the Combat Mod settings. Also renamed it to "Combat Toggle".
 * Chaos Polarity should now automatically toggle the bosses HP to be reduced.
 * Small Tweaks to HP values and renamed "Combat Mod" name to "Titan HP" and description, then relocated the option in to "Titan Boss Setting" section.
-* Fixed an issue where the Shield Tackle Code only functioned when Grand Slam option is set to "Unused Cinematic".
 
 C-09
 
@@ -88,8 +91,6 @@ C-00
 * Updated SuperSonicCyber's roar using RadicalRave's version.
 
 
-
-#### **Aggro-Titans 1.40 (Test Pre-Release)**
 
 Before the mod went into a downscaling phase. It was much bigger and by the end of the R22 build, the mod size was over 5GB when compressed for download.
 
