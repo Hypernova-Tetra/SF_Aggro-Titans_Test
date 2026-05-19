@@ -1,5 +1,6 @@
 Patch "Giganto Address Edits" by "Hypernova"
 {
+	WriteProtected<byte> (/* 0x14144E178 */ ScanSignature ("bo1xxx", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1xxx"));
 	WriteProtected<byte> (/* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141")); // To make Giganto's Phase 2 skippable.
 	WriteProtected<byte> (/* 0x1414534D0 */ ScanSignature ("boss_giant01_bo1120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x1414534F0 */ ScanSignature ("boss_giant01_bo1140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
@@ -21,7 +22,9 @@ Patch "Giganto_Combat"
 	
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-	static bool healthBool = false;
+	static bool HP100k = false;
+	static bool HP200k = false;
+	static bool HP300k = false;
 //
 {
 	var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");
@@ -57,7 +60,7 @@ Patch "Giganto_Combat"
 	}
 	else
 	{ return; }
-		
+	
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -73,12 +76,34 @@ Patch "Giganto_Combat"
 		
 		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
 		if ((BossHP == 1) || (isChaosPolarity))
-        { healthBool = true; }
+        { HP100k = true; }
+		else if (BossHP == 2)
+        { HP200k = true; }
+		else if (BossHP == 3)
+        { HP300k = true; }
         else
-        { healthBool = false; }
+        { 
+			HP100k = false;
+			HP200k = false;
+			HP300k = false;
+		}
     }
 	
-	if (!healthBool)
+	if (HP100k)
+	{
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+	}
+	else if (HP200k)
+	{
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 200000);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+	}
+	else if (HP300k)
 	{
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 300000);
 		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
@@ -87,10 +112,10 @@ Patch "Giganto_Combat"
 	}
 	else
 	{
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
-		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 400000);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+		RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 	}
 };
 

@@ -1,10 +1,12 @@
 Patch "Wyvern Address Edits" by "Hypernova"
 {
+	WriteProtected<byte> (/* 0x141446894 */ ScanSignature ("bo2xxx", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2xxx"));
 	WriteProtected<byte> (/* 0x14144C97C */ ScanSignature ("bo2140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2141")); // To make Wyvern's Phase 2 skippable.
 	WriteProtected<byte> (/* 0x141556030 */ ScanSignature ("boss_giant02_bo2110","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x14144C948 */ ScanSignature ("boss_giant02_bo2115","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x14144C968 */ ScanSignature ("boss_giant02_bo2120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x14144C988 */ ScanSignature ("boss_giant02_bo2140","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
+	WriteProtected<byte> (/* 0x14144CA50 */ ScanSignature ("boss_giant02_bo2160","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal")); // unused audio reference name
 	WriteProtected<byte> (/* 0x14144C9A8 */ ScanSignature ("boss_giant02_bo2180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 	WriteProtected<byte> (/* 0x14144C9D8 */ ScanSignature ("boss_giant02_drgn_giantswing","xxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 }
@@ -20,7 +22,9 @@ Patch "Wyvern_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-	static bool healthBool = false;
+	static bool HP100k = false;
+	static bool HP200k = false;
+	static bool HP300k = false;
 //
 {
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
@@ -48,7 +52,7 @@ Patch "Wyvern_Combat"
 	}
 	else
 	{ return; }
-		
+	
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -64,22 +68,42 @@ Patch "Wyvern_Combat"
 		
 		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
 		if ((BossHP == 1) || (isChaosPolarity))
-        { healthBool = true; }
+        { HP100k = true; }
+		else if (BossHP == 2)
+        { HP200k = true; }
+		else if (BossHP == 3)
+        { HP300k = true; }
         else
-        { healthBool = false; }
+        { 
+			HP100k = false;
+			HP200k = false;
+			HP300k = false;
+		}
     }
 	
-	if (!healthBool)
+	if (HP100k)
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 312000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 25000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 12500);
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 100000);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 10000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4500);
+	}
+	else if (HP200k)
+	{
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 200000);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 15000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 5000);
+	}
+	else if (HP300k)
+	{
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 300000);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 17500);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 5500);
 	}
 	else
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 9000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4500);
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 400000);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 20000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6000);
 	}
 };
 

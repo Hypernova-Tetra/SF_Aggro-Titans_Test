@@ -119,14 +119,24 @@
 		"BossHP":
 		[
 			{
-			"DisplayName":"Max Level Sonic (vanilla damage)",
-			"Value":"0",
-			"Description":["Titans in Story Mode starting at 300k and progress higher after each titan, maxing out at 400k for Riflebeast. Will take a long time for a nerfed or Level 1 Sonic. Recommended for New Game+ runs. Unless you'd like to spend a long time on bosses with Combat Mods, DO NOT use this option."]
+			"DisplayName":"Low HP",
+			"Value":"1",
+			"Description":["Recommended for either Extreme Mode where Sonic's stats are Level 1, starting out a new game, or running certain Combat Mods that nerf Sonic's damage output. Titans start at 100,000 HP in the Story Modes only, Battle Rush and Master King Trials have their own HP Values."]
 			},
 			{
-			"DisplayName":"Level 1 Power or Combat Mods",
-			"Value":"1",
-			"Description":["Titans starting at 100k when either starting a New Game (not NG+), Extreme Mode, or using Combat Mod tweaks that lower Sonic's damage, even at Max Level."]
+			"DisplayName":"Medium HP",
+			"Value":"2",
+			"Description":["Titans start at 200,000 HP in the Story Mode only."]
+			},
+			{
+			"DisplayName":"High HP",
+			"Value":"3",
+			"Description":["Titans start at 300,000 HP in the Story Mode only."]
+			},
+			{
+			"DisplayName":"Very High HP",
+			"Value":"0",
+			"Description":["DO NOT USE WITH COMBAT MODS THAT NERF SONIC UNLESS YOU WANT TO SPEND AN ETERNITY FIGHTING A SINGLE TITAN! Titans are at 400,000 for every encounter. Recommended for Max Power and Max Ring level Sonic."]
 			},
 		],
 		"SonicBattle":
