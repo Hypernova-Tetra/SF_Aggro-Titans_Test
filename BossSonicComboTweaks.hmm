@@ -182,9 +182,9 @@ Code "Sonic Battle Edits"
 		{
 			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 			{
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.3f);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 45.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 16.5f);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 164);
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 35.0f);
@@ -205,9 +205,9 @@ Code "Sonic Battle Edits"
 			}
 			else
 			{	
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 0);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 200.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 175);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 0);
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 1.0f);
@@ -237,9 +237,9 @@ Code "Sonic Battle Edits"
 		{
 			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
 			{
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.3f);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 40.0f);
+				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 16.5f);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 164);
 				
 				RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 35.0f);
