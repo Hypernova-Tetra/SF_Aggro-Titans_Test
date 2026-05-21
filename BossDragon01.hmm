@@ -22,9 +22,8 @@ Patch "Wyvern_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-	static bool HP100k = false;
-	static bool HP200k = false;
-	static bool HP300k = false;
+	static bool HP_01 = false;
+	static bool HP_02 = false;
 //
 {
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
@@ -68,42 +67,33 @@ Patch "Wyvern_Combat"
 		
 		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
 		if ((BossHP == 1) || (isChaosPolarity))
-        { HP100k = true; }
+        { HP_01 = true; }
 		else if (BossHP == 2)
-        { HP200k = true; }
-		else if (BossHP == 3)
-        { HP300k = true; }
+        { HP_02 = true; }
         else
         { 
-			HP100k = false;
-			HP200k = false;
-			HP300k = false;
+			HP_01 = false;
+			HP_02 = false;
 		}
     }
 	
-	if (HP100k)
+	if (HP_01)
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 100000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 10000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4500);
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 82500);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 5000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4550);
 	}
-	else if (HP200k)
+	else if (HP_02)
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 200000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 15000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 5000);
-	}
-	else if (HP300k)
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 300000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 17500);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 5500);
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12500);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9500);
 	}
 	else
 	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 400000);
+		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 250000);
 		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 20000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6000);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 15000);
 	}
 };
 

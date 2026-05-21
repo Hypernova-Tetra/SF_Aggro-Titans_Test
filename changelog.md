@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.05.18
+# **Aggro-Titans Test** - 2026.05.21
 
 * I May actually release this after all. Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -6,10 +6,10 @@
 
 #### **Aggro-Titans 1.41 (Pre-Release)**
 
-* 1.41. - Version bumped for final round of tests and bug searching to patch out before release, no further major development will be made.
-* 1.41a - Fixed an error with The Final Horizons Intro of "The End" that had some caption issues and a lack of camera shaking in some parts.
-* 1.41b - Fixed an issue where the Shield Tackle Code only functioned when Grand Slam option is set to "Unused Cinematic".
-* 1.41c - Adjusted Combat Mod settings, now has 4 options. "Low HP", "Medium HP", "High HP", "Very High HP".
+* Version bumped for final round of tests and bug searching to patch out before release, no further major development will be made.
+* Fixed an error with The Final Horizons Intro of "The End" that had some caption issues and a lack of camera shaking in some parts.
+* Fixed an issue where the Shield Tackle Code only functioned when Grand Slam option is set to "Unused Cinematic".
+* Adjusted Combat Mod settings with the following options: "Low HP", "Medium HP", "High HP", ~~"Very High HP"~~.
 
 
 
