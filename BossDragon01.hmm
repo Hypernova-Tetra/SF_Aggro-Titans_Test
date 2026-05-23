@@ -39,10 +39,10 @@ Patch "Wyvern_Combat"
 		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6500);
 		
 		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (isBSRActive)
-		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
-		else
+		if (!isBSRActive)
 		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
+		else
+		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 85000); }
 	}
     else if (gameModeBossRush)
 	{ 
@@ -186,7 +186,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
 			}
 			else if (gameModeBattleRush)
 			{ 

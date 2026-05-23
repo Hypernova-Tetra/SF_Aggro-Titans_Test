@@ -41,15 +41,15 @@ Patch "Giganto_Combat"
 	{ 
 		WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1120")); // Original Animation
 	
-		if (isBSRActive)
+		if (!isBSRActive)
 		{
-			WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 150000);
+			WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1160")); 
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
 		}
 		else
 		{ 
-			WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1160")); 
-			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
+			WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1170"));
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 80000);
 		}
 	}
     else if (gameModeBossRush)

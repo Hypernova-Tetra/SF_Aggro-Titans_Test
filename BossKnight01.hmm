@@ -27,21 +27,20 @@ Patch "Knight_Combat"
 		return;
 		
 	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.6f);
-
+	
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	if (gameModeBattleRush)
 	{	
 		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (isBSRActive)
+		if (!isBSRActive)
 		{ 
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 120000);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
-
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
 		}
 		else
 		{
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 60000);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.0275f);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 87500);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.035f);
 		}
 	}
 	else
