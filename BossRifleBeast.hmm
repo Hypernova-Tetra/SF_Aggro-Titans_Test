@@ -46,13 +46,13 @@ Code "Supreme_End_Combat"
 	
 	if (HP_01)
 	{
-		RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 100000);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 17500);
 		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
 		RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
 	}
 	else if (HP_02)
 	{
-		RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 200000);
+		RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 275000);
 		RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2500);
 		RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
 	}
