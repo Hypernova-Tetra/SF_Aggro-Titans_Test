@@ -182,9 +182,9 @@ Code "Supreme moveset" by "Hypernova"
 	else if (HP_02)
 	{
 		if (!isRifleBeast0)
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 250000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 267000); }
 		else
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 200000); }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 225000); }
 	
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
 		RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
