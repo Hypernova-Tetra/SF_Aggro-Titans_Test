@@ -1,6 +1,13 @@
-# **Aggro-Titans Test** - 2026.06.02
+# **Aggro-Titans Test** - 2026.06.04
 
-* I May actually release this after all. Current 7z Compressed Mod File Size: "1.07GB"
+* Current 7z Compressed Mod File Size: "1.07GB"
+
+
+
+#### **Aggro-Titans 1.41a - Battle Rush Patch**
+
+* Fixed a problem where the Titans in Battle Rush were not using their original values.
+* Fixed a problem where the Titans in Battle Rush were not using modified Medium HP values when "Boss Select Rematch" mod is active.
 
 
 

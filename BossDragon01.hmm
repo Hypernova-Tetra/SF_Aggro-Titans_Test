@@ -11,7 +11,7 @@ Patch "Wyvern Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14144C9D8 */ ScanSignature ("boss_giant02_drgn_giantswing","xxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 }
 
-Patch "Wyvern_Combat"
+Code "Wyvern_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -22,8 +22,6 @@ Patch "Wyvern_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
-	static bool HP_01 = false;
-	static bool HP_02 = false;
 //
 {
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
@@ -31,27 +29,18 @@ Patch "Wyvern_Combat"
 		return;
 		
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
-	
 	if (gameModeBattleRush)
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 6500);
-		
-		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (isBSRActive)
-		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
-		else
-		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
-	}
-    else if (gameModeBossRush)
 	{ 
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 6000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 3000);
-	}
-	else
-	{ return; }
+		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+		if (!isBSRActive)
+		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000);  }
+		else
+		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);  }
 	
+		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
+		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
+	}
+		
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -64,37 +53,27 @@ Patch "Wyvern_Combat"
 
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-		
-		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+			
+        bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
 		if ((BossHP == 1) || (isChaosPolarity))
-        { HP_01 = true; }
+        { 
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 82500);
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 5000);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4550);
+		}
 		else if (BossHP == 2)
-        { HP_02 = true; }
+        {
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12500);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9500);
+		}
         else
         { 
-			HP_01 = false;
-			HP_02 = false;
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 275000);
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 20000);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 15000);
 		}
     }
-	
-	if (HP_01)
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 82500);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 5000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4550);
-	}
-	else if (HP_02)
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12500);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9500);
-	}
-	else
-	{
-		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 250000);
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 20000);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 15000);
-	}
 };
 
 Code "Wyvern Dynamics" by "Hypernova"
@@ -186,7 +165,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
 			}
 			else if (gameModeBattleRush)
 			{ 
