@@ -8,6 +8,7 @@
 
 * Fixed a problem where the Titans in Battle Rush were not using their original values.
 * Fixed a problem where the Titans in Battle Rush were not using modified Medium HP values when "Boss Select Rematch" mod is active.
+* Fixed an issue where the variant Super Sonic transformation scenes for Giganto weren't playing in certain intended game modes.
 
 
 
