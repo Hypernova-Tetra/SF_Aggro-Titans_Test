@@ -3,10 +3,9 @@ Patch "Supreme Address Edits" by "Hypernova"
 	#lib "Memory"
 //
 { 
-	WriteProtected<byte> (/* 0x14145D188 */ ScanSignature ("bo4xxx", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo4xxx")); // Testing this later.
-	WriteProtected<byte> (/* 0x14145D190 */ ScanSignature ("ev5030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev503X")); // Just to have 1 usm file required for audio.
-	WriteProtected<byte> (/* 0x1414348B4 */ ScanSignature ("ev5040", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev504X")); // Just to have 1 usm file required for audio.
-	WriteProtected<byte> (/* 0x14143739C */ ScanSignature ("ev6030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev603X")); // Just to have 1 usm file required for audio.
+	WriteProtected<byte> (/* 0x14145D190 */ ScanSignature ("ev5030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev503X"));
+	WriteProtected<byte> (/* 0x1414348B4 */ ScanSignature ("ev5040", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev504X"));
+	WriteProtected<byte> (/* 0x14143739C */ ScanSignature ("ev6030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev603X"));
 	
 	// Shot2 = zev_rfl_sp02
     if(ScanSignature("\xB0\xFD\x02\x03\x4C\x8B\xC0\x48\x8B\xCB\xE8\x3D\x84\xF9\xFF\x48\x8B\x4C\x24\x58\x48\x85\xC9\x74\x05\xE8\x9E\xDD", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx") == 0) 
