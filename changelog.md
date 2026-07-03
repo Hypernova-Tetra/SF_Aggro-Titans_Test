@@ -11,7 +11,7 @@
 
 ***(Update 1)***:
 
-* Added a new Ashrindy Script that makes Super Sonic 2's aura outline actually match the color when fighting Riflebeast. No more using DvElementAura params in Dvscenes for bo6xxx.
+* Added a new Ashrindy Script that makes Super Sonic 2's aura outline actually match the color when fighting Riflebeast. No more using DvElementAura params in Dvscenes for bo6xxx and other Riflebeast event pacs.
 
 
 
