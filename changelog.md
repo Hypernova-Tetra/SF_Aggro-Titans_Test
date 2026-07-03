@@ -1,13 +1,17 @@
-# **Aggro-Titans Test** - 2026.06.27
+# **Aggro-Titans Test** - 2026.07.03
 
 * Current 7z Compressed Mod File Size: "1.07GB"
 
 
 
-#### **Aggro-Titans 1.43 - Small ss2\_aura01 Cemt Removal**
+#### **Aggro-Titans 1.43 - SS2\_Aura Patch Update**
 
 * Skipped number "1.42" to avoid confusion with the current PC version of the game.
-* Removed a few cemt assets in specific Riflebeast scenes so that Super Sonic 2's default aura is pulled from "supersonic2.pac" instead of certain .pac files.
+* Removed a few cemt assets in specific Riflebeast scenes so that Super Sonic 2's default aura is pulled from "supersonic2.pac" instead of certain event pac files.
+
+***(Update 1)***:
+
+* Added a new Ashrindy Script that makes Super Sonic 2's aura outline actually match the color when fighting Riflebeast. No more using DvElementAura params in Dvscenes for bo6xxx.
 
 
 

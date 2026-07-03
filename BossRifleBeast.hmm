@@ -1,3 +1,11 @@
+Patch "DvElementAura Fix" by "Ashrindy"
+WriteProtected<byte>(0x14011FDB3, 0xE9);
+WriteProtected<byte>(0x14011FDB4, 0x7E);
+WriteProtected<byte>(0x14011FDB5, 0x01);
+WriteProtected<byte>(0x14011FDB6, 0x00);
+WriteProtected<byte>(0x14011FDB7, 0x00);
+WriteProtected<byte>(0x14011FDB8, 0x90);
+
 Code "Riflebeast_Combat"
 //
 	#include "Reflection" noemit
@@ -73,7 +81,6 @@ Code "Monologue" by "Hypernova"
     static bool IsConfigInitialised = false;
 	static int SupremeM = 0;
 	static int SupremeA = 0;
-	static int ZevAura = 0;
 	static long Addressbo6110 = 0;
 	static long Addressbo6120 = 0;
 	static long Addressbo6140 = 0;
@@ -87,7 +94,7 @@ Code "Monologue" by "Hypernova"
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-
+	
 	if (Addressbo6110 == 0) { /* 0x141466CF0 */ Addressbo6110 = ScanSignature ("bo6110", "xxxxxx"); }
 	if (Addressbo6120 == 0) { /* 0x141466D20 */ Addressbo6120 = ScanSignature ("bo6120", "xxxxxx"); }
 	if (Addressbo6140 == 0) { /* 0x141466D18 */ Addressbo6140 = ScanSignature ("bo6140", "xxxxxx"); }
@@ -127,7 +134,7 @@ Code "Monologue" by "Hypernova"
 			bool isHyperAsu0 = HMM.GetMods().Where(x => x.Name == "Asu's Simple Hyper Sonic (reskin)").Count() > 0;
 			bool isZephRangr = HMM.GetMods().Where(x => x.Name == "Zephyr Frontiers: God's Among Dimensions(Demo)").Count() > 0;
 			
-			if ((isHyperDon1) || (isHyperDon2) || (isDefShad01))
+			if ((isHyperDon1) || (isHyperDon2) || (isDefShad01) || (isHyperAsu0) || (isZephRangr))
 			{
 				WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6181"));
 				
@@ -168,62 +175,6 @@ Code "Monologue" by "Hypernova"
 					WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6466"));
 					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6291"));
 				}
-
-				if (SonicParametersInfo.pData == null)
-					return;
-				
-				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.R, 0.0f);
-				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.G, 1.0f);
-				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.B, 1.0f);
-			}
-			else if ((isHyperAsu0) || (isZephRangr))
-			{
-				WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6182"));
-				
-				if (SupremeA != 0)
-				{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1P")); }
-				else
-				{ WriteProtected<byte>(AddressBlow00, System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs0P")); }
-				
-				if ((SupremeM == 0) && (SupremeA == 0))
-				{
-					WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6022"));
-					WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6042"));
-					WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6062"));
-					WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6067"));
-					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6092"));
-				}
-				if ((SupremeM == 1) && (SupremeA == 0))
-				{
-					WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6222"));
-					WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6242"));
-					WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
-					WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6267"));
-					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
-				}
-				if ((SupremeM == 0) && (SupremeA == 1))
-				{ 
-					WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6322"));
-					WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6042"));
-					WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6062"));
-					WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6367"));
-					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6092"));
-				}
-				if ((SupremeM == 1) && (SupremeA == 1))
-				{ 
-					WriteProtected<byte>(Addressbo6120, System.Text.Encoding.UTF8.GetBytes("bo6422"));
-					WriteProtected<byte>(Addressbo6140, System.Text.Encoding.UTF8.GetBytes("bo6242"));
-					WriteProtected<byte>(Addressbo6160, System.Text.Encoding.UTF8.GetBytes("bo6262"));
-					WriteProtected<byte>(Addressbo6165, System.Text.Encoding.UTF8.GetBytes("bo6467"));
-					WriteProtected<byte>(Addressbo6190, System.Text.Encoding.UTF8.GetBytes("bo6292"));
-				}
-
-				if (SonicParametersInfo.pData == null)
-					return;
-				
-				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.R, 0.6f);
-				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.G, 0.1f);
-				RFL_SET_PARAM(SonicParametersInfo, common.supersonic.auraColor2.B, 0.8f);
 			}
 			else
 			{ 
@@ -304,7 +255,7 @@ Code "Darkball QTE" by "Hypernova"
 	string eventName = evtPlayer->GetCurrentEventName();
 
 	bool isGiantBoss05 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("RifleBeast0") != null)
-	if (!isGiantBoss05) // This check is probably more expensive, so let's do it later
+	if (!isGiantBoss05)
 		return;
 	{
 		switch (eventName)
@@ -324,15 +275,7 @@ Code "Darkball QTE" by "Hypernova"
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB1"));
 				WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstB1"));
 				break;
-				
-			case "bo6022":
-			case "bo6222":
-			case "bo6322":
-			case "bo6422":
-				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsP1"));
-				WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstP1"));
-				break;
-				
+			
 			case "bo6040":
 			case "bo6240":
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebs02"));
@@ -344,13 +287,7 @@ Code "Darkball QTE" by "Hypernova"
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB2"));
 				WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstB2"));
 				break;
-					
-			case "bo6042":
-			case "bo6242":
-				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsP2"));
-				WriteProtected<byte>(AddressGrandSp0, System.Text.Encoding.UTF8.GetBytes("zev_sp_riflebstP2"));
-				break;
-				
+			
 			case "bo6065":
 			case "bo6265":
 			case "bo6365":
@@ -364,13 +301,7 @@ Code "Darkball QTE" by "Hypernova"
 			case "bo6466":
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB3"));
 				break;
-					
-			case "bo6067":
-			case "bo6267":
-			case "bo6367":
-			case "bo6467":
-				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsP3"));
-				break;
+			
 		}
 	}
 }
@@ -589,13 +520,13 @@ Code "Unused Cinematic Grand Slam" by "Hypernova"
 				if (AdObjGa3220 == 1)
 				{
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp01");
-					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 					evtPlayer->PlayEvent(ref setupData);
 				}
 				if (AdObjGa3220 == 2)
 				{					
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp02");
-					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 					evtPlayer->PlayEvent(ref setupData);
 				}
 				

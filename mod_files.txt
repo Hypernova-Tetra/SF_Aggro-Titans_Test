@@ -63,10 +63,8 @@ add Main/raw/movie/bo4146.usm
 add Main/raw/movie/bo4162.usm
 add Main/raw/movie/bo6090.usm
 add Main/raw/movie/bo6091.usm
-add Main/raw/movie/bo6092.usm
 add Main/raw/movie/bo6290.usm
 add Main/raw/movie/bo6291.usm
-add Main/raw/movie/bo6292.usm
 add Main/raw/movie/ev1770.usm
 add Main/raw/movie/ev1770_4k.usm
 add Main/raw/movie/ev5020.usm
@@ -186,6 +184,8 @@ delete Main/raw/movie/bo1141.usm
 delete Main/raw/movie/bo3141.usm
 delete Main/raw/movie/bo4142.usm
 delete Main/raw/movie/bo4160.usm
+delete Main/raw/movie/bo6092.usm
+delete Main/raw/movie/bo6292.usm
 delete Main/raw/movie/bo6110.usm
 delete Main/raw/movie/bo6110_4k.usm
 delete Main/raw/movie/bo6111.usm
