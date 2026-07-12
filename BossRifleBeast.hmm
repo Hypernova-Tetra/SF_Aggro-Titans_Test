@@ -392,7 +392,6 @@ Code "Unused Cinematic Grand Slam" by "Hypernova"
 	
 	#lib "Reflection"
 	#lib "BlackboardItem"
-	#lib "BlackboardStatus"
     #lib "HMM"
 	#lib "INI"
 	#lib "Player"
@@ -443,10 +442,6 @@ Code "Unused Cinematic Grand Slam" by "Hypernova"
 	if (evtPlayer == null)
 		return;
 	
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
-
 	var pBlackboardItem = BlackboardItem.Get();
 	if (pBlackboardItem == null)
 		return;
@@ -476,7 +471,7 @@ Code "Unused Cinematic Grand Slam" by "Hypernova"
         {healthBool = false;}
     }
 	
-	bool isGiantBoss04 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null) && BlackboardStatus.IsSuper();
+	bool isGiantBoss04 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null)
 	
 	if (!smashBool)
 		return;
@@ -486,14 +481,14 @@ Code "Unused Cinematic Grand Slam" by "Hypernova"
 		
 		if ((isGiantBoss04) && (GameManager.GetGameObject("RifleBeast0") != null))
 		{
-			if (evtPlayer->IsEventPlaying("bo4111")) // Phase 1
+			if (evtPlayer->IsEventPlaying("bo4111"))
 			{ 
 				AdObjGa3220 = 1
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp01"));
 				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 			}
 			
-			if (evtPlayer->IsEventPlaying("bo4140")) // Phase 2
+			if (evtPlayer->IsEventPlaying("bo4140"))
 			{
 				AdObjGa3220 = 2
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp02"));

@@ -131,7 +131,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 		WriteProtected<byte>(Address2180, System.Text.Encoding.UTF8.GetBytes("bo2180"));
 	}
 	
-	bool DragonFight = ((BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle)) && (GameManager.GetGameObject("Dragon0") != null) && (Player.State.GetStatePlugin("StatePluginBossBattle") != null))
+	bool DragonFight = ((GameManager.GetGameObject("Dragon0") != null) && (Player.State.GetStatePlugin("StatePluginBossBattle") != null))
 	if (!DragonFight) 
 		return;
 	{
@@ -158,7 +158,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00")); 
 				
 				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_missile2");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 				evtPlayer->PlayEvent(ref setupData);
 				
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
@@ -173,7 +173,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				WriteProtected<byte>(AddressFn01, System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_01")); 
 					
 				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psych1");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB; //CantSkip//
+				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 				evtPlayer->PlayEvent(ref setupData);
 				
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);

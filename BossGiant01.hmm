@@ -118,12 +118,12 @@ Code "Giganto Dynamics" by "Hypernova"
 	bool isGiant01 = (GameManager.GetGameObject("Giant0") != null)
 	if (!isGiant01)
 		return;
-	{	
+	{
 		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)
 		{
 			case "ga1225":
-				WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1122")); // Boi Animation
+				WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
 				WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1151")); 
 			break;
 			
@@ -158,7 +158,7 @@ Code "Giganto Dynamics" by "Hypernova"
 		
 		if (gameModeBattleRush)
 		{
-			WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1120")); // Original Animation
+			WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
 			
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
@@ -168,14 +168,14 @@ Code "Giganto Dynamics" by "Hypernova"
 		}
 		if (gameModeBossRush)
 		{
-			WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1121")); // Tru-Blu Animation
+			WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1121"));
 			WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
 		}
 
 	}
 	
 	bool isGiantSkipF2 = evtPlayer->IsEventPlaying("bo1141")
-	if (!isGiantSkipF2) // This has to stay here outside of any inner bracket to function.
+	if (!isGiantSkipF2)
 		return;
 	{	
 		var pkinematics = Player.Kinematics.Get();

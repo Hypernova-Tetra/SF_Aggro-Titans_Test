@@ -30,8 +30,6 @@ Code "Supreme moveset" by "Hypernova"
 	#lib "GameMode"
 	#lib "GameObject"
 	#lib "BossRifleConfig"
-	#lib "Player"
-	#lib "Sonic"
 	#import "Services"
 	
 	static long Adr4110 = 0;
@@ -46,9 +44,6 @@ Code "Supreme moveset" by "Hypernova"
 	if (Adr4110 == 0) { /* 0x1414624B0 */ Adr4110 = ScanSignature ("bo4110", "xxxxxx"); }
 	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
 	
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-		return;
 	
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 	if (BossRifleConfigInfo.pData == null)
@@ -58,7 +53,7 @@ Code "Supreme moveset" by "Hypernova"
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 	
-	if (isRifleBeast0) // Final Horizons
+	if (isRifleBeast0)
 	{
 		WriteProtected<byte>(Adr4110, System.Text.Encoding.UTF8.GetBytes("bo4111"));
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
@@ -95,7 +90,7 @@ Code "Supreme moveset" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_HOMINGLASER_NORMAL);
 		}
 	}
-	else // When Riflebeast's object doesn't exist.
+	else
 	{
 		WriteProtected<byte>(Adr4110, System.Text.Encoding.UTF8.GetBytes("bo4110"));
 		WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
@@ -123,7 +118,7 @@ Code "Supreme moveset" by "Hypernova"
 		bool rifleStrt1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1
 		bool rifleBattl = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_start00") == 1
 		
-		if (rifleStrt1) // Base Story
+		if (rifleStrt1)
 		{
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
@@ -132,7 +127,7 @@ Code "Supreme moveset" by "Hypernova"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SP01);
 		}
-		if (rifleBattl) // Battlerush
+		if (rifleBattl)
 		{
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
@@ -201,7 +196,6 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	#lib "GameMode"
 	#lib "Lua"
 	#lib "Player"
-	#lib "Sonic"
 	#lib "Memory"
 	
 	#import "Services"
@@ -228,13 +222,8 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	if (evtPlayer == null)
 		return;
 		
-	var pBlackboardStatus = BlackboardStatus.Get();
-	if (pBlackboardStatus == null || Player.GetPlayerType() != Player.PlayerType.Sonic || Lua.GetState() == 0)
-		return;
-	
 	var pkinematics = Player.Kinematics.Get();
 	
-	// These should be okay since they should only execute once
 	if (ATPHASE == 0) { /* 0x1414624C0 */ ATPHASE = ScanSignature ("bo4140", "xxxxxx"); }
 	if (AT0RING == 0) { /* 0x1414624C8 */ AT0RING = ScanSignature ("bo4180", "xxxxxx"); }
 	if (ATSHOTB == 0) { /* 0x141462108 */ ATSHOTB = ScanSignature ("zev_rfl_bitlaser02", "xxxxxxxxxxxxxxxxxx"); }
@@ -249,11 +238,9 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	
 	if (Lua.Call<int>("IsPlayingDiEvent", "ev5020") == 1)
 	{ Lua.Call("SetLayerEnabled", "w1r04_plan_common", false); }
-
-	// Only get the bools when we absolutely need them
 	
-	bool SuperBattle = BlackboardStatus.IsSuper() && IS_WORLD_FLAG(IsBattle);
-	if (!SuperBattle) 
+	bool RifleBattle = ((Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null))
+	if (!RifleBattle) 
 		return;
 	{
 		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
@@ -261,7 +248,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 		{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_start00")); }
 		
 		bool ZevRifle = ((evtPlayer != null) && (GameManager.GetGameObject("Rifle0") != null))
-		if (!ZevRifle) // This check is probably more expensive, so let's do it later
+		if (!ZevRifle)
 			return;
 		{			
 			WriteProtected<byte>(AdCyAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
@@ -293,8 +280,6 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					evtPlayer->PlayEvent(ref setupData);
 				}
 				
-				
-				// Making sure Sonic gets teleported back to origin, especially after getting hit by breaking his drones that sends him towards the sea, which may cause a delay when activating a scene.
 				bool isLaser0b = evtPlayer->IsEventPlaying("zev_rfl_laser0b") 
 				bool isLaser02 = evtPlayer->IsEventPlaying("zev_rfl_laser02") 
 				bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01") 
@@ -331,7 +316,6 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 				string eventName = evtPlayer->GetCurrentEventName();	
 				switch (eventName)
 				{
-					//Phase 1
 					case "bo4110":
 					case "bo4111":
 					case "bo4180":
@@ -407,7 +391,6 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					case "zev_rfl_gunlaser01":
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser02"));
 						break;
-					//Phase 2
 					case "bo4140":
 					case "bo4141":	
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
@@ -445,7 +428,6 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					case "zev_rfl_wng1":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
 						break;	
-					//Phase Low HP
 					case "zev_rfl_wnglsr2":
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX3"));
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2"));
