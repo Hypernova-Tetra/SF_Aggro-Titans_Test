@@ -496,7 +496,7 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
     static long AdRightHand = 0;	
 	static string[] rng_counter = new[]
 	{ /* sup */ 
-	"attack_counter_righthand_01","attack_counter_righthand_02", "attack_counter_righthand_03","attack_counter_head_01     "
+	"attack_counter_righthand_01","attack_counter_righthand_02", "attack_counter_righthand_03", "attack_counter_head_01     "
 	};	
 	
 	static string[] rng_giant01 = new[]
@@ -507,8 +507,8 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
 	static long AdAtkCnSp02 = 0;
 	static string[] rng_atksp02 = new[]
 	{ /* sup */ 
-	"attack_counter_sp_02", "attack_counter_sp_03", "attack_counter_sp_04",
-	}
+	"attack_counter_sp_02", "attack_counter_sp_03", "attack_counter_sp_04"
+	};
 {
 	
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
