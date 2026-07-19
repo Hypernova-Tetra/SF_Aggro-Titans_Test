@@ -120,9 +120,7 @@ Code "Monologue" by "Hypernova"
 			SupremeM = INI.Parse<int>(ini["Main"]["RifleBeastYap"], SupremeM);
 			SupremeA = INI.Parse<int>(ini["Main"]["RifleBeastAnm"], SupremeA);
 			IsConfigInitialised = true;
-			
-			var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
-			
+				
 			if (SupremeM != 0)
 			{ WriteProtected<byte>(Addressbo6110, System.Text.Encoding.UTF8.GetBytes("bo6011")); }
 			else
@@ -133,8 +131,9 @@ Code "Monologue" by "Hypernova"
 			bool isDefShad01 = HMM.GetMods().Where(x => x.Name == "Shadow The Hedgehog").Count() > 0;
 			bool isHyperAsu0 = HMM.GetMods().Where(x => x.Name == "Asu's Simple Hyper Sonic (reskin)").Count() > 0;
 			bool isZephRangr = HMM.GetMods().Where(x => x.Name == "Zephyr Frontiers: God's Among Dimensions(Demo)").Count() > 0;
+			bool isSprHprUDX = HMM.GetMods().Where(x => x.Name == "Super/Hyper Sonic Ultimate DX").Count() > 0;
 			
-			if ((isHyperDon1) || (isHyperDon2) || (isDefShad01) || (isHyperAsu0) || (isZephRangr))
+			if ((isHyperDon1) || (isHyperDon2) || (isDefShad01) || (isHyperAsu0) || (isZephRangr) || (isSprHprUDX))
 			{
 				WriteProtected<byte>(Addressbo6180, System.Text.Encoding.UTF8.GetBytes("bo6181"));
 				

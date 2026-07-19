@@ -196,7 +196,6 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	#lib "GameMode"
 	#lib "Lua"
 	#lib "Player"
-	#lib "Memory"
 	
 	#import "Services"
 	#import "GOComponents"
@@ -204,16 +203,15 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	#import "Plugins"
 	
 	#include "Reflection" noemit
-	
-		
+
 	static long ATPHASE = 0;
 	static long AT0RING = 0;
 	static long ATSHOTB = 0;
 	static long ATSHOT3 = 0;
 	static long ATSHOT1 = 0;
-	static string[] shot01_rng01 = new[] { /* sup */ "zev_rfl_shoot02", "zev_rfl_shoot02", "zev_rfl_shootX2", "zev_rfl_shootX2", "zev_rfl_spQTE02", "zev_rfl_spQTE02", "zev_rfl_spQTEX2", "zev_rfl_spQTEX2" };
+	static string[] shot01_rng01 = new[] { /* sup */ "zev_rfl_shoot02", "zev_rfl_shootX2", "zev_rfl_spQTE02", "zev_rfl_spQTEX2" };
 	static long ATSHOT2 = 0;
-	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_spX2", "zev_rfl_sp02", "zev_rfl_sp02", "zev_rfl_sp02" };
+	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_sp02" };
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
 //
@@ -281,16 +279,18 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 				}
 				
 				bool isLaser0b = evtPlayer->IsEventPlaying("zev_rfl_laser0b") 
-				bool isLaser02 = evtPlayer->IsEventPlaying("zev_rfl_laser02") 
 				bool isSpQTE01 = evtPlayer->IsEventPlaying("zev_rfl_spQTE01") 
 				bool isLaser01 = evtPlayer->IsEventPlaying("zev_rfl_laser01") 
 				bool isShoot01 = evtPlayer->IsEventPlaying("zev_rfl_shoot01") 
-				bool isZevSpX2 = evtPlayer->IsEventPlaying("zev_rfl_spX2") 
+
+				bool isLaser02 = evtPlayer->IsEventPlaying("zev_rfl_laser02")
+				bool isZevLsXX = evtPlayer->IsEventPlaying("zev_rfl_lsXX")
 				bool isZevSp02 = evtPlayer->IsEventPlaying("zev_rfl_sp02") 
-				bool isZevLsXX = evtPlayer->IsEventPlaying("zev_rfl_lsXX") 
+				bool isZevSpX2 = evtPlayer->IsEventPlaying("zev_rfl_spX2")
 				bool isZevWng0 = evtPlayer->IsEventPlaying("zev_rfl_wing") 
 				bool isZevWng1 = evtPlayer->IsEventPlaying("zev_rfl_wng1") 
 				bool isZevWng2 = evtPlayer->IsEventPlaying("zev_rfl_wng2") 
+				
 				if ((isLaser0b) || (isSpQTE01) || (isLaser01) || (isShoot01))
 				{ 				
 					pkinematics->Position = new System.Numerics.Vector3(-125.826f, 238.337f, -1170.940f);
@@ -496,23 +496,19 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
     static long AdRightHand = 0;	
 	static string[] rng_counter = new[]
 	{ /* sup */ 
-	"attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_head_01     ", "attack_counter_head_01     ", "attack_counter_head_01     ", "attack_counter_head_01     ",
+	"attack_counter_righthand_01","attack_counter_righthand_02", "attack_counter_righthand_03","attack_counter_head_01     "
 	};	
 	
 	static string[] rng_giant01 = new[]
 	{ /* sup */ 
-	"attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01", "attack_counter_righthand_01",
-	"attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02", "attack_counter_righthand_02",
-	"attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03", "attack_counter_righthand_03",
+	"attack_counter_righthand_01", "attack_counter_righthand_02", "attack_counter_righthand_03"
 	};	
 	
 	static long AdAtkCnSp02 = 0;
 	static string[] rng_atksp02 = new[]
 	{ /* sup */ 
-	"attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", "attack_counter_sp_02", 
-	"attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", "attack_counter_sp_03", 
-	"attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", "attack_counter_sp_04", 
-	};
+	"attack_counter_sp_02", "attack_counter_sp_03", "attack_counter_sp_04",
+	}
 {
 	
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);

@@ -1,4 +1,4 @@
-Code "Moveset_BossBit" by "Hypernova"
+Code "BossBit_Unused_Attack_Restore" by "Hypernova"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

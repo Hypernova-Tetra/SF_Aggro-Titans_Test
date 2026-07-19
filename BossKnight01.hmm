@@ -86,7 +86,6 @@ Code "Knight Dynamics" by "Hypernova"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
-	#lib "Lua"
 	#lib "GameObject"
 	#lib "GameManager"
 	#lib "Player"
@@ -104,19 +103,19 @@ Code "Knight Dynamics" by "Hypernova"
 
 	static long AtkIntrrupt = 0;
 	static string[] IntrRNG = new[]
-    { /* sup */ "battle1_interrupt", "battle1_interrupt", "battle1_interrupt", "battle2_interrupt", "battle2_interrupt", "battle2_interrupt" };
+    { /* sup */ "battle1_interrupt", "battle2_interrupt" };
 	
 	static long B1SwordRage = 0;
 	static string[] RageRNG = new[]
-    { /* sup */ "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert" };
+    { /* sup */ "battle1_sword_rage", "battle2_sword_vert", "battle1_sword_vert" };
 	
 	static long B1SwordSide = 0;
 	static string[] SideRNG = new[]
-    { /* sup */ "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle1_sword_side", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert", "battle2_sword_vert" };
+    { /* sup */ "battle1_sword_side", "battle2_sword_vert" };
 	
 	static long B1SwordVert = 0;
 	static string[] VertRNG = new[]
-    { /* sup */ "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_vert", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage", "battle1_sword_rage" };
+    { /* sup */ "battle1_sword_vert", "battle1_sword_rage" };
 		
 	static long SonicDamage = 0;
     static string[] HurtRNG = new[]

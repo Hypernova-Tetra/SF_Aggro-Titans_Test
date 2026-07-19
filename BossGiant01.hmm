@@ -78,15 +78,10 @@ Code "Giganto_Combat"
 
 Code "Giganto Dynamics" by "Hypernova"
 //
-	#include "Reflection" noemit
 	#lib "GameManager"
-	#lib "Reflection"
 	#lib "EventPlayer"
 	#lib "GameObject"
-	#lib "Lua"
 	#lib "Player"
-	#lib "Sonic"
-	#lib "Memory"
 	
 	#import "Services"
 	#import "GOComponents"
@@ -201,7 +196,6 @@ Code "Giganto_ActionType"
 	#lib "Reflection"
 	#lib "BossGiantConfig"
     #lib "HMM"
-    #import "Services"
 //
 {
 	var BossGiantConfigInfo = Reflection.GetDataInfo<BossGiantConfig.Root>("boss_giant");

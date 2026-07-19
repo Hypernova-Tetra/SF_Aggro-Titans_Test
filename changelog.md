@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.07.12
+# **Aggro-Titans Test** - 2026.07.18
 
 * Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -6,6 +6,7 @@
 
 #### **Aggro-Titans 1.43 - SS2\_Aura Patch Update**
 
+* Update 3 - Code trimming on RNG functions and deleting unused reference calls in several code sections... let's hope I didn't break anything.
 * Update 2 - Small script change that removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" to trigger functions during Boss Battles only instead of needing Super Sonic to exist.
 * Update 1 - Added a new Ashrindy Script that makes Super Sonic 2's aura outline actually match the color when fighting Riflebeast. No more using DvElementAura params in Dvscenes for bo6xxx and other Riflebeast event pacs.
 * Removed a few cemt assets in specific Riflebeast scenes so that Super Sonic 2's default aura is pulled from "supersonic2.pac" instead of certain event pac files.

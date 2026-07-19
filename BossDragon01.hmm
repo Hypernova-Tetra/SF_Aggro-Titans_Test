@@ -16,7 +16,6 @@ Code "Wyvern_Combat"
 	#lib "BossDragonConfig"
     #lib "HMM"
 	#lib "INI"
-    #import "Services"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
@@ -79,9 +78,9 @@ Code "Wyvern Dynamics" by "Hypernova"
 	#include "Reflection" noemit
 	#lib "BossDragonConfig"
     #lib "HMM"
-	#lib "Lua"
 	#lib "GameManager"
 	#lib "GameObject"
+	#lib "Player"
 	#lib "EventPlayer"
 	#lib "Reflection"	
 	
@@ -89,7 +88,6 @@ Code "Wyvern Dynamics" by "Hypernova"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	#include "Reflection" noemit
 	
 	static long AddressSp01 = 0;
 	static long AddressSnd1 = 0;
