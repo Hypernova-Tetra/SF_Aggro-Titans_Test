@@ -73,7 +73,7 @@ Code "Rings from Parry in Wyvern", by "Hypernova" and "thej01"
 	}
 }
 
-Code "BossRush_Time"
+Patch "BossRush_Time"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -116,7 +116,7 @@ Code "BossRush_Time"
 	}
 }
 
-Code "BossRush_Combat"
+Patch "BossRush_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

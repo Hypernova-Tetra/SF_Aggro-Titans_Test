@@ -7,7 +7,7 @@ Patch "Knight Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14145C2C0 */ ScanSignature ("boss_giant03_bo3180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
 
-Code "Knight_Combat"
+Patch "Knight_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

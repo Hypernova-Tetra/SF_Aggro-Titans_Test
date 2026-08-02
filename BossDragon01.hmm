@@ -9,7 +9,7 @@ Patch "Wyvern Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14144C9D8 */ ScanSignature ("boss_giant02_drgn_giantswing","xxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 }
 
-Code "Wyvern_Combat"
+Patch "Wyvern_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

@@ -6,7 +6,7 @@ WriteProtected<byte>(0x14011FDB6, 0x00);
 WriteProtected<byte>(0x14011FDB7, 0x00);
 WriteProtected<byte>(0x14011FDB8, 0x90);
 
-Code "Riflebeast_Combat"
+Patch "Riflebeast_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

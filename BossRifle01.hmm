@@ -20,12 +20,79 @@ Patch "Supreme Address Edits" by "Hypernova"
     { WriteProtected<byte> (0x1403239BB, new byte[] { 0x48, 0x8D, 0x15, 0x6E, 0xE5, 0x13, 0x01 }); }
 } 
 
-Code "Supreme moveset" by "Hypernova"
+Patch "Supreme Combat" by "Hypernova"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
     #lib "HMM"
 	#lib "INI"
+	#lib "BossRifleConfig"
+	#import "Services"
+	
+	static int BossHP = 0;
+	static bool IsConfigInitialised = false;
+//
+{
+	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
+	if (BossRifleConfigInfo.pData == null)
+		return;
+	
+	if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+		
+		if (mod == null)
+			return;
+		
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+			
+		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
+        IsConfigInitialised = true;
+		
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
+		if ((BossHP == 1) || (isChaosPolarity))
+        { 
+			if (!isRifleBeast0)
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 150000); }
+			else
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
+		
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 10);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
+		}
+		else if (BossHP == 2)
+        { 
+			if (!isRifleBeast0)
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 267000); }
+			else
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 225000); }
+		
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+		}
+        else
+        { 
+			if (!isRifleBeast0)
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 375000); }
+			else
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000); }
+		
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+		}
+	}
+}
+
+Code "Supreme moveset" by "Hypernova"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+    #lib "HMM"
 	#lib "Lua"
 	#lib "GameMode"
 	#lib "GameObject"
@@ -35,15 +102,11 @@ Code "Supreme moveset" by "Hypernova"
 	static long Adr4110 = 0;
 	static long Adr4140 = 0;
 	static long Adr4160 = 0;
-	static int BossHP = 0;
 	static bool IsConfigInitialised = false;
-	static bool HP_01 = false;
-	static bool HP_02 = false;
 //
 {
 	if (Adr4110 == 0) { /* 0x1414624B0 */ Adr4110 = ScanSignature ("bo4110", "xxxxxx"); }
 	if (Adr4160 == 0) { /* 0x1414624B8 */ Adr4160 = ScanSignature ("bo4160", "xxxxxx"); }
-	
 	
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
 	if (BossRifleConfigInfo.pData == null)
@@ -134,55 +197,6 @@ Code "Supreme moveset" by "Hypernova"
 			
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
-		}
-	}
-	
-	if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-		
-		if (mod == null)
-			return;
-		
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-			
-		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
-        IsConfigInitialised = true;
-		
-		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
-		if ((BossHP == 1) || (isChaosPolarity))
-        { 
-			if (!isRifleBeast0)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 150000); }
-			else
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
-		
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 10);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
-		}
-		else if (BossHP == 2)
-        { 
-			if (!isRifleBeast0)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 267000); }
-			else
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 225000); }
-		
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
-		}
-        else
-        { 
-			if (!isRifleBeast0)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 375000); }
-			else
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 350000); }
-		
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 		}
 	}
 }

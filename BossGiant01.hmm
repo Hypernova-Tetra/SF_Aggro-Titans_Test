@@ -7,7 +7,7 @@ Patch "Giganto Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x141453550 */ ScanSignature ("boss_giant01_bo1180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
 
-Code "Giganto_Combat"
+Patch "Giganto_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

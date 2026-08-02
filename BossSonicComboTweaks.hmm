@@ -1,4 +1,4 @@
-Code "Sonic Battle Edits"
+Code "Sonic Combo Edits"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -7,7 +7,6 @@ Code "Sonic Battle Edits"
 	#lib "GameManager"
 	#lib "GameObject"
 	#lib "SonicParameters"
-	#lib "BlackboardStatus"
 	#import "Services"
 	#import "Plugins"
     static bool IsConfigInitialised = false;
@@ -42,12 +41,6 @@ Code "Sonic Battle Edits"
 	if (!fightBool)
 		return;
 	{
-		var pBlackboardStatus = BlackboardStatus.Get();
-		if (Player.GetPlayerType() != Player.PlayerType.Sonic)
-			return;
-			
-		string currentStage = LevelInfo.GetCurrentStageID();
-
 		var SonicParametersInfo = Reflection.GetDataInfo<SonicParameters.Root>("player_common");
 
 		if (SonicParametersInfo.pData == null)
@@ -180,7 +173,7 @@ Code "Sonic Battle Edits"
 		bool isCond1 = ((BossRifleSp00 == 1) && (GameManager.GetGameObject("RifleBeast0") != null))
 		if (isCond1)
 		{
-			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
+			if (Player.State.GetStatePlugin("StatePluginBossBattle") != null)
 			{
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.3f);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
@@ -235,7 +228,8 @@ Code "Sonic Battle Edits"
 		}
 		else 
 		{
-			if (IS_WORLD_FLAG(IsBattle) && BlackboardStatus.IsSuper())
+			if (Player.State.GetStatePlugin("StatePluginBossBattle") == null)
+				return;
 			{
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.3f);
 				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
