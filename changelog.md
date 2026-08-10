@@ -1,6 +1,6 @@
-# **Aggro-Titans Test** - 2026.08.01
+# **Aggro-Titans Test** - 2026.08.09
 
-* Current 7z Compressed Mod File Size: "1.02GB"
+* Current 7z Compressed Mod File Size: "1.07GB"
 
 
 
@@ -12,7 +12,7 @@
 
 
 
-#### **Aggro-Titans 1.43 - SS2\_Aura Patch Update**
+#### **Aggro-Titans 1.43 - SS2 Aura Update**
 
 * Update 3 - Code trimming on RNG functions and deleting unused reference calls in several code sections... let's hope I didn't break anything.
 * Update 2 - Small script change that removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" to trigger functions during Boss Battles only instead of needing Super Sonic to exist.
