@@ -6,7 +6,7 @@
 
 #### **Aggro-Titans 1.45 - Testing stuff**
 
-* v00 - Trimmed out the Bool references of the Monologue options.
+* v0 - Trimmed out the Bool references of the Monologue options.
 
 
 
