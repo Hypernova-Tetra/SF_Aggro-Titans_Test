@@ -305,7 +305,7 @@ Code "Darkball QTE" by "Hypernova"
 	}
 }
 
-Patch "No_Tackle" by "thej01"
+Code "No_Tackle" by "thej01"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -315,6 +315,7 @@ Patch "No_Tackle" by "thej01"
     #import "Services"
 
     static bool IsConfigInitialised = false;
+	static bool shieldBool = false;
 	static int NoTackle = 0;
     static int ReplaceNum = 0;
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
@@ -344,25 +345,30 @@ Patch "No_Tackle" by "thej01"
 		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
         IsConfigInitialised = true;
 
-        if (NoTackle != 1)
+        if (NoTackle != 0)
+        { shieldBool = true; }
+        else
+        { shieldBool = false; }
+    }
+	
+	if (!shieldBool)
+		return;
+	{
+		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+
+		if (BossRifleBeastConfigInfo.pData == null)
 			return;
+
+		for (int i = 0; i < 12; ++i)
 		{
-			var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-
-			if (BossRifleBeastConfigInfo.pData == null)
-				return;
-
-			for (int i = 0; i < 12; ++i)
+			for (int j = 0; j < 10; ++j)
 			{
-				for (int j = 0; j < 10; ++j)
+				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
 				{
-					if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
-					{
-						RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
-						++ReplaceNum;
-						if (ReplaceNum > 1)
-							ReplaceNum = 0;
-					}
+					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
+					++ReplaceNum;
+					if (ReplaceNum > 1)
+						ReplaceNum = 0;
 				}
 			}
 		}
