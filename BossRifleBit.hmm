@@ -1,4 +1,4 @@
-Code "BossBit_Unused_Attack_Restore" by "Hypernova"
+Code "BossBit_Unused_Attack_Restore"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -10,17 +10,15 @@ Code "BossBit_Unused_Attack_Restore" by "Hypernova"
 	#import "Plugins"
 //
 {
+	var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
+	if (BossBitConfigInfo.pData == null)
+		return;
+		
 	bool isRifleBeast = (GameManager.GetGameObject("RifleBeast0") != null);
 	if (isRifleBeast)
-	{
-		var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
-		if (BossBitConfigInfo.pData == null)
-			return;
-		
+	{	
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
-		
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 150);
-		
 		//Drone Missiles//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].text.pValue, 8042);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.isParry, true);
@@ -44,7 +42,6 @@ Code "BossBit_Unused_Attack_Restore" by "Hypernova"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingLimitAngle, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.waveRotationSpeed, 225);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.flyMoveSpeed, 50);
-		
 		//Drone Laser//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].text.pValue, 8028);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isParry, true);
@@ -68,14 +65,8 @@ Code "BossBit_Unused_Attack_Restore" by "Hypernova"
 	}
 	else
 	{
-		var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
-		if (BossBitConfigInfo.pData == null)
-			return;
-		
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
-		
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 0);
-		
 		//Default Attack 1//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].text.pValue, 8042);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.isParry, true);
@@ -99,7 +90,6 @@ Code "BossBit_Unused_Attack_Restore" by "Hypernova"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingLimitAngle, 180);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.waveRotationSpeed, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.flyMoveSpeed, 100);
-		
 		//Default Attack 2//
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].text.pValue, 8028);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isParry, true);

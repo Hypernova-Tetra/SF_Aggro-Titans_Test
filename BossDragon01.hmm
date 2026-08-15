@@ -1,4 +1,4 @@
-Patch "Wyvern Address Edits" by "Hypernova"
+Patch "Wyvern Address Edits"
 {
 	WriteProtected<byte> (/* 0x14144C97C */ ScanSignature ("bo2140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo2141"));
 	WriteProtected<byte> (/* 0x141556030 */ ScanSignature ("boss_giant02_bo2110","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
@@ -9,7 +9,7 @@ Patch "Wyvern Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14144C9D8 */ ScanSignature ("boss_giant02_drgn_giantswing","xxxxxxxxxxxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal\x00\x00\x00\x00\x00\x00\x00\x00\x00"));
 }
 
-Patch "Wyvern_Combat"
+Code "Wyvern_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -25,19 +25,6 @@ Patch "Wyvern_Combat"
 	if (BossDragonConfigInfo.pData == null)
 		return;
 		
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	if (gameModeBattleRush)
-	{ 
-		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (!isBSRActive)
-		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000);  }
-		else
-		{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);  }
-	
-		RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
-		RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
-	}
-		
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -51,24 +38,39 @@ Patch "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 			
-        bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
-		if ((BossHP == 1) || (isChaosPolarity))
-        { 
-			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 82500);
-			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 5000);
-			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4550);
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		if (gameModeBattleRush)
+		{ 
+			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+			if (!isBSRActive)
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000);  }
+			else
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);  }
+		
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);
 		}
-		else if (BossHP == 2)
-        {
-			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);
-			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12500);
-			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9500);
-		}
-        else
-        { 
-			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 275000);
-			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 20000);
-			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 15000);
+		else
+		{
+			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+			if ((BossHP == 1) || (isChaosPolarity))
+			{ 
+				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 82500);
+				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 5000);
+				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 4550);
+			}
+			else if (BossHP == 2)
+			{
+				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);
+				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 12500);
+				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 9500);
+			}
+			else
+			{ 
+				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 275000);
+				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 20000);
+				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 15000);
+			}
 		}
     }
 };

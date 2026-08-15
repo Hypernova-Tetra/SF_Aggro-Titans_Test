@@ -1,4 +1,4 @@
-Patch "Knight Address Edits" by "Hypernova"
+Patch "Knight Address Edits"
 {
 	WriteProtected<byte> (/* 0x14145C230 */ ScanSignature ("bo3140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo3141"));
 	WriteProtected<byte> (/* 0x14145C108 */ ScanSignature ("boss_giant03_bo3120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
@@ -7,7 +7,7 @@ Patch "Knight Address Edits" by "Hypernova"
 	WriteProtected<byte> (/* 0x14145C2C0 */ ScanSignature ("boss_giant03_bo3180","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
 }
 
-Patch "Knight_Combat"
+Code "Knight_Combat"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -25,22 +25,7 @@ Patch "Knight_Combat"
 		return;
 	
 	RFL_SET_PARAM(BossKnightConfigInfo, battle1.damageEventTime, 0.6f);
-		
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	if (gameModeBattleRush)
-	{
-		bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		if (!isBSRActive)
-		{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);  }
-		else
-		{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 133000);  }
-		
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-		RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-		RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
-	}		
-	
+
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -54,35 +39,52 @@ Patch "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
-		if ((BossHP == 1) || (isChaosPolarity))
-        { 
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 90000);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 7);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 7);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 14);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
-		}
-		else if (BossHP == 2)
-        { 
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 150000);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.030f);
-		}
-        else
-        { 
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 300000);
+		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		if (gameModeBattleRush)
+		{
+			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+			if (!isBSRActive)
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);  }
+			else
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 133000);  }
+			
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
+		}		
+		else
+		{
+			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+			if ((BossHP == 1) || (isChaosPolarity))
+			{ 
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 90000);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 7);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 7);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 14);
+				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
+			}
+			else if (BossHP == 2)
+			{ 
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 150000);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.030f);
+			}
+			else
+			{ 
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 300000);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
+			}
 		}
     }
 };
 
-Code "Knight Dynamics" by "Hypernova"
+Code "Knight Dynamics"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -176,7 +178,7 @@ Code "Knight Dynamics" by "Hypernova"
 			if (F2SwordLast == 0) {/* 0x14145C278 */ F2SwordLast = ScanSignature ("zev_knight_atk_sp01", "xxxxxxxxxxxxxxxxxxx");}
 			if (AddressSP02 == 0) {/* 0x14145C1F8 */ AddressSP02 = ScanSignature ("zev_knight_sonic_sp01_phase2", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx");}
 			
-			if (SonicDamage == 0) // Sonic Damage Event
+			if (SonicDamage == 0)
 			{/* 0x141455908 */ SonicDamage = ScanSignature ("zev_knight_sonic_damage01", "xxxxxxxxxxxxxxxxxxxxxxxxx");}
 			else
 			{ WriteProtected<byte>(SonicDamage, System.Text.Encoding.UTF8.GetBytes(HurtRNG[new Random().Next(0, HurtRNG.Length)])); }

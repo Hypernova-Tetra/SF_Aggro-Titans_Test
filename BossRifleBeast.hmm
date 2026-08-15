@@ -1,4 +1,4 @@
-Patch "DvElementAura Fix" by "Ashrindy"
+Patch "DvElementAura Fix"
 WriteProtected<byte>(0x14011FDB3, 0xE9);
 WriteProtected<byte>(0x14011FDB4, 0x7E);
 WriteProtected<byte>(0x14011FDB5, 0x01);
@@ -60,7 +60,7 @@ Patch "Riflebeast_Combat"
     }
 }		
 
-Code "Monologue" by "Hypernova"
+Code "Monologue"
 //
 	#include "Reflection" noemit
     #import "GOComponents"
@@ -113,7 +113,7 @@ Code "Monologue" by "Hypernova"
 		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
 		var ini = INI.Read(modConfigIniPath);
 		
-		bool isBo4162 = evtPlayer->IsEventPlaying("bo4162");
+		bool isBo4162 = evtPlayer->IsEventPlaying("bo4162") && (Player.State.GetStatePlugin("StatePluginBossBattle") != null);
 		if (!isBo4162) 
 			return;
 		{
@@ -221,7 +221,7 @@ Code "Monologue" by "Hypernova"
     }
 }
 
-Code "Darkball QTE" by "Hypernova"
+Code "Darkball QTE"
 //
 	#include "Reflection" noemit
     #import "GOComponents"
@@ -300,12 +300,11 @@ Code "Darkball QTE" by "Hypernova"
 			case "bo6466":
 				WriteProtected<byte>(AddressParryMs1, System.Text.Encoding.UTF8.GetBytes("zev_parrymiss_riflebsB3"));
 				break;
-			
 		}
 	}
 }
 
-Code "No_Tackle" by "thej01"
+Code "No_Tackle"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -375,7 +374,7 @@ Code "No_Tackle" by "thej01"
 	}
 }
 
-Code "Unused Cinematic Grand Slam" by "Hypernova"
+Code "Unused Cinematic Grand Slam"
 //
 	using System.Numerics;
     using System.Collections.Generic;

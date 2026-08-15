@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.08.13
+# **Aggro-Titans Test** - 2026.08.14
 
 * Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -6,11 +6,12 @@
 
 #### **Aggro-Titans 1.45 - Testing stuff**
 
-* v0 - Trimmed out the Bool references of the Monologue options.
+* A - Trimmed out the Bool references of the Monologue options.
+* B - Small code tweaks, attempting to trim the fat anywhere I can.
 
 
 
-#### **Aggro-Titans 1.44 - Some Code Cleanup I guess**
+#### **Aggro-Titans 1.44 - Code Cleanup I guess**
 
 * Further trimmed out unused call references across hmm files.
 * Removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" in hmm file "SonicComboTweaks" that I forgot to update.
@@ -18,7 +19,7 @@
 
 
 
-#### **Aggro-Titans 1.43 - SS2 Aura Update**
+#### **Aggro-Titans 1.43 - SS2 Aura Cutscene Fix**
 
 * Update 3 - Code trimming on RNG functions and deleting unused reference calls in several code sections... let's hope I didn't break anything.
 * Update 2 - Small script change that removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" to trigger functions during Boss Battles only instead of needing Super Sonic to exist.

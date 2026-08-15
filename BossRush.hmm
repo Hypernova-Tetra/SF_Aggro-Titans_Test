@@ -1,4 +1,4 @@
-Code "Rings from Parry in Wyvern", by "Hypernova" and "thej01"
+Code "Rings from Parry in Wyvern"
 //
 	#include "Reflection" noemit
     #include "BlackboardStatus" noemit
