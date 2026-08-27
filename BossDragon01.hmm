@@ -45,7 +45,7 @@ Code "Wyvern_Combat"
 			if (!isBSRActive)
 			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000);  }
 			else
-			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 125000);  }
+			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 101200);  }
 		
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 4500);
 			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2800);

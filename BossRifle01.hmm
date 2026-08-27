@@ -115,7 +115,7 @@ Code "Supreme moveset" by "Hypernova"
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-	bool RifleBattle = ((Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null))
+	bool RifleBattle = (GameManager.GetGameObject("Rifle0") != null))
 	
 	if (!RifleBattle) 
 		return;
@@ -169,7 +169,7 @@ Code "Supreme moveset" by "Hypernova"
 				if (!isBSRActive)
 				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);  }
 				else
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 150000);  }
+				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 104000);  }
 				
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 			}
@@ -370,8 +370,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB1"));
 						break;
 					case "zev_rfl_laser01":
-						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser02"));
+						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145"));
 						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b"));
 						break;	
@@ -396,6 +395,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						break;
 					case "zev_rfl_laser0b":
 						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
+						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser01"));
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02"));
 						break;
 					case "zev_rfl_laser02":

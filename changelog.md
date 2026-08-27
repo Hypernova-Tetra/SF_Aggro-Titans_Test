@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.08.14
+# **Aggro-Titans Test** - 2026.08.27
 
 * Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -8,6 +8,7 @@
 
 * A - Trimmed out the Bool references of the Monologue options.
 * B - Small code tweaks, attempting to trim the fat anywhere I can.
+* C - A small code tweak to fix some possible issues cropping up.
 
 
 
