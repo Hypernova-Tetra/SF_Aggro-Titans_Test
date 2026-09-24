@@ -43,7 +43,7 @@ Code "Giganto_Combat"
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
-			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000); }
+			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 5); }
 			else
 			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
 			
@@ -88,14 +88,17 @@ Code "Giganto_Scenes"
 
 	static long Address1120 = 0;
 	static long Address1160 = 0;
+	static bool ModsChecked = false;
+	static bool isBSRActive = false;
 //
 {	
 	if (Address1120 == 0) { /* 0x1414534C8 */ Address1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (Address1160 == 0) { /* 0x141453520 */ Address1160 = ScanSignature ("bo1160", "xxxxxx"); }
 		
-	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+	if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
+	string gameModeName = GameMode.GetName();
+	bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
+	bool gameModeBossRush = gameModeName == "GameModeBossRush"
 	
 	if (gameModeBattleRush)
 	{ 

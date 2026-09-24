@@ -1,6 +1,13 @@
-# **Aggro-Titans Test** - 2026.09.14
+# **Aggro-Titans Test** - 2026.09.24
 
 * Current 7z Compressed Mod File Size: "1.07GB"
+
+
+
+#### **Aggro-Titans 1.47 - Development Purgatory**
+
+* Tweaked how much damage Wyvern takes during events so that it closely matches the percentage difference despite values being flat numbers.
+* Another round of code tweaks by Nowasu... hopefully it makes the game run better? Idk. I need this tested.
 
 
 

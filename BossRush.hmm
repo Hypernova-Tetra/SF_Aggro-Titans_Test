@@ -36,8 +36,9 @@ Code "Rings from Parry in Wyvern"
 	int rings = pBlackboardItem->RingCount;
 
 	string currentStage = LevelInfo.GetCurrentStageID();
-	if (LevelInfo.GetCurrentStageID() == "w2t01")
-    {	
+	if (currentStage != "w2t01")
+		return;
+	{	
 		string Anim = Lua.Call<string>("GetCurrentAnimationName");
 		if (Anim == "PARRY_FLY")
 		{

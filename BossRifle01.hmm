@@ -77,9 +77,9 @@ Code "Supreme Combat"
         else
         { 
 			if (!isRifleBeast0)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 195000); }
-			else
 			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 200000); }
+			else
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 250000); }
 		
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
@@ -103,6 +103,8 @@ Code "Supreme moveset" by "Hypernova"
 	static long Adr4140 = 0;
 	static long Adr4160 = 0;
 	static bool IsConfigInitialised = false;
+	static bool ModsChecked = false;
+	static bool isBSRActive = false;
 //
 {
 	if (Adr4110 == 0) { /* 0x1414624B0 */ Adr4110 = ScanSignature ("bo4110", "xxxxxx"); }
@@ -112,9 +114,9 @@ Code "Supreme moveset" by "Hypernova"
 	if (BossRifleConfigInfo.pData == null)
 		return;
 	
+	if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-	bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 	bool RifleBattle = (GameManager.GetGameObject("Rifle0") != null))
 	
 	if (!RifleBattle) 
@@ -233,6 +235,8 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_sp02" };
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
+	static bool ModsChecked = false;
+	static bool isBSRActive = false;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -330,7 +334,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 				}
 				
 				bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
-				bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+				if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
 				
 				string eventName = evtPlayer->GetCurrentEventName();	
 				switch (eventName)
