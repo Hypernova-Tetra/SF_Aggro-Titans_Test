@@ -3,114 +3,47 @@ Code "Supreme Grand Slam Damage" by Nowasu
 	#include "Reflection" noemit
 	#lib "Reflection"
 	#lib "Memory"
-	#lib "HMM"
 	#lib "GameObject"
 	#lib "GameManager"
 	#lib "EventPlayer"
-	#lib "Player"
-	#lib "BossRifleConfig"
 	#import "Services"
-	using System.Runtime.InteropServices;
-	static long[] HpAddrs = new long[8];
-	static int HpCount = 0;
-	static int ScanCooldown = 0;
-	static int ScanAttempts = 0;
+	#import "GOComponents"
 	static bool Applied = false;
-	static int MaxHp = 0;
 	static int GrandDmgPercent = 10;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
 	if (evtPlayer == null)
 		return;
-	if (GameManager.GetGameObject("Rifle0") == null)
+
+	var pRifle = GameManager.GetGameObject("Rifle0");
+	if (pRifle == null)
 		return;
 
 	bool grandS1 = evtPlayer->IsEventPlaying("zev_rfl_grndsp01");
 	bool grandS2 = evtPlayer->IsEventPlaying("zev_rfl_grndsp02");
-	bool grandS = grandS1 || grandS2;
 
-	// Find the boss's live HP once, while the grand slam is actually playing. The
-	// runtime status is { currentHp, maxHp } (max == the RFL healthPoint), so
-	// collect every address whose next int equals the max health and whose own
-	// value is a valid current HP.
-	if (grandS && HpCount == 0 && ScanAttempts < 24 && Player.State.GetStatePlugin("StatePluginBossBattle") != null)
+	if (grandS1 || grandS2)
 	{
-		if (ScanCooldown <= 0)
-		{
-			ScanCooldown = 90;
-			ScanAttempts++;
+		// Read the boss's live HP straight from its GOCHealth component:
+		// healthPoint at +0x80, maxHealthPoint at +0x84.
+		var pHealth = GameObject.GetGOC(pRifle, "GOCHealth");
+		if (pHealth == null)
+			return;
 
-			var configInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
-			if (configInfo.pData != null)
-			{
-				int maxHp = (int)configInfo.pData->bossBaseConfig.status.healthPoint;
-				MaxHp = maxHp;
-				ulong addr = (ulong)(long)GameManager.GetGameObject("Rifle0");
-				var memInfo = new Memory.MEMORY_BASIC_INFORMATION();
-				ulong budget = 128UL * 1024UL * 1024UL;
-				int regions = 0;
+		int cur = Read<int>((nint)((long)pHealth + 0x80));
+		int maxHp = Read<int>((nint)((long)pHealth + 0x84));
 
-				while (regions < 8 && budget > 0 && HpCount < 8)
-				{
-					if (Memory.VirtualQuery((nint)addr, ref memInfo, (UIntPtr)Marshal.SizeOf(typeof(Memory.MEMORY_BASIC_INFORMATION))) == IntPtr.Zero)
-						break;
-
-					ulong regionBase = (ulong)memInfo.BaseAddress;
-					ulong regionSize = (ulong)memInfo.RegionSize;
-					bool committed = (memInfo.State & 0x1000) != 0;
-					bool readable = (memInfo.Protect & 0x01) == 0 && (memInfo.Protect & 0x100) == 0;
-
-					if (committed && readable)
-					{
-						ulong scanEnd = regionBase + regionSize;
-						for (ulong p = regionBase; p + 8 <= scanEnd && budget > 0; p += 4)
-						{
-							budget -= 4;
-							int here = Read<int>((nint)(long)p);
-							if (here <= 0 || here > maxHp)
-								continue;
-							if (Read<int>((nint)(long)(p + 4)) == maxHp)
-							{
-								HpAddrs[HpCount] = (long)p;
-								HpCount++;
-								if (HpCount >= 8)
-									break;
-							}
-						}
-					}
-
-					addr = regionBase + regionSize;
-					regions++;
-				}
-			}
-		}
-		else
-		{
-			ScanCooldown--;
-		}
-	}
-
-	if (grandS)
-	{
-		if (!Applied && HpCount > 0)
+		if (!Applied && maxHp > 0 && cur > 0 && cur <= maxHp)
 		{
 			Applied = true;
 
-			// Only touch copies that still hold the current HP (keeps in-sync copies
-			// like the UI gauge consistent and avoids unrelated values).
-			// Damage is a percentage of the boss's max HP.
-			int cur = Read<int>((nint)HpAddrs[0]);
-			int dmg = (MaxHp * GrandDmgPercent) / 100;
+			int dmg = (maxHp * GrandDmgPercent) / 100;
 			if (dmg < 1) dmg = 1;
 			int after = cur - dmg;
 			if (after < 0) after = 0;
 
-			for (int i = 0; i < HpCount; i++)
-			{
-				if (Read<int>((nint)HpAddrs[i]) == cur)
-					WriteProtected<int>((nint)HpAddrs[i], after);
-			}
+			WriteProtected<int>((nint)((long)pHealth + 0x80), after);
 		}
 	}
 	else

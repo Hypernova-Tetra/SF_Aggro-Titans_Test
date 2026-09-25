@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.09.24
+# **Aggro-Titans Test** - 2026.09.25
 
 * Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -7,8 +7,8 @@
 #### **Aggro-Titans 1.47 - Development Purgatory**
 
 * Tweaked how much damage Wyvern takes during events so that it closely matches the percentage difference despite values being flat numbers.
-* Another round of code tweaks by Nowasu... hopefully it makes the game run better? Idk. I need this tested.
-* Supreme's unused Cinematic Grand Slam now does damage... under the hood. Visuals aren't applied yet.
+* Another round of code tweaks by Nowasu... hopefully it makes the game run better? Idk. I need this tested. (Seems to be working, but further tests are encouraged.)
+* Supreme's unused Cinematic Grand Slam now does damage... under the hood. Visuals aren't applied yet. (No longer stutters and runs checks for boss HP)
 
 
 
