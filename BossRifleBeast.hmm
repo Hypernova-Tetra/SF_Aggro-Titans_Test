@@ -47,13 +47,13 @@ Patch "Riflebeast_Combat"
 		}
 		else if (BossHP == 2)
         { 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 200000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 225000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2500);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
 		}
         else
         { 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 300000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 330000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 3000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3500);
 		}
