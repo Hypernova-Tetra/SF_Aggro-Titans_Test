@@ -43,7 +43,7 @@ Code "Giganto_Combat"
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
-			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 5); }
+			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000); }
 			else
 			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
 			
