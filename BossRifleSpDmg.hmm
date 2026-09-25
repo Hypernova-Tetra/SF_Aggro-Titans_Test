@@ -26,10 +26,15 @@ Code "Supreme Grand Slam Damage" by Nowasu
 	if (GameManager.GetGameObject("Rifle0") == null)
 		return;
 
-	// Find the boss's live HP once, while in the fight. The runtime status is
-	// { currentHp, maxHp } (max == the RFL healthPoint), so collect every address
-	// whose next int equals the max health and whose own value is a valid current HP.
-	if (HpCount == 0 && ScanAttempts < 12 && Player.State.GetStatePlugin("StatePluginBossBattle") != null)
+	bool grandS1 = evtPlayer->IsEventPlaying("zev_rfl_grndsp01");
+	bool grandS2 = evtPlayer->IsEventPlaying("zev_rfl_grndsp02");
+	bool grandS = grandS1 || grandS2;
+
+	// Find the boss's live HP once, while the grand slam is actually playing. The
+	// runtime status is { currentHp, maxHp } (max == the RFL healthPoint), so
+	// collect every address whose next int equals the max health and whose own
+	// value is a valid current HP.
+	if (grandS && HpCount == 0 && ScanAttempts < 24 && Player.State.GetStatePlugin("StatePluginBossBattle") != null)
 	{
 		if (ScanCooldown <= 0)
 		{
@@ -86,10 +91,7 @@ Code "Supreme Grand Slam Damage" by Nowasu
 		}
 	}
 
-	bool grandS1 = evtPlayer->IsEventPlaying("zev_rfl_grndsp01");
-	bool grandS2 = evtPlayer->IsEventPlaying("zev_rfl_grndsp02");
-
-	if ((grandS1) || (grandS2))
+	if (grandS)
 	{
 		if (!Applied && HpCount > 0)
 		{
