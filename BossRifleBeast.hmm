@@ -404,6 +404,7 @@ Code "Unused Cinematic Grand Slam"
 	
 	static long AddressSplDmg = 0;
 	static long AdObjGa3220 = 0;
+	static long Ga3220Phase = 0;
 
     static bool healthBool = false;
 	static bool smashBool = false;
@@ -469,22 +470,22 @@ Code "Unused Cinematic Grand Slam"
 		
 		if ((isGiantBoss04) && (GameManager.GetGameObject("RifleBeast0") != null))
 		{
-			if (evtPlayer->IsEventPlaying("ev1770"))
+			if (evtPlayer->IsEventPlaying("bo4111"))
 			{ 
-				AdObjGa3220 = 1
+				Ga3220Phase = 1
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp01"));
 				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop"));
 			}
 			
-			if (evtPlayer->IsEventPlaying("bo4140"))
+			if ((evtPlayer->IsEventPlaying("bo4140")) || (evtPlayer->IsEventPlaying("bo4141")))
 			{
-				AdObjGa3220 = 2
+				Ga3220Phase = 2
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp02"));
 			}
 			
 			if (evtPlayer->IsEventPlaying("bo4162"))
 			{ 
-				AdObjGa3220 = 0
+				Ga3220Phase = 0
 				WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("obj_event_ga3220"));
 				WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
 			}
@@ -500,13 +501,13 @@ Code "Unused Cinematic Grand Slam"
 			
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 			{			
-				if (AdObjGa3220 == 1)
+				if (Ga3220Phase == 1)
 				{
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp01");
 					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 					evtPlayer->PlayEvent(ref setupData);
 				}
-				if (AdObjGa3220 == 2)
+				if (Ga3220Phase == 2)
 				{					
 					var setupData = new EventPlayer.EventSetupData("zev_rfl_grndsp02");
 					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
@@ -524,7 +525,11 @@ Code "Unused Cinematic Grand Slam"
 			{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop")); }
 		}
 		else 
-		{ WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage")); }
+		{ 
+			Ga3220Phase = 0
+			WriteProtected<byte>(AdObjGa3220, System.Text.Encoding.UTF8.GetBytes("obj_event_ga3220"));
+			WriteProtected<byte>(AddressSplDmg, System.Text.Encoding.UTF8.GetBytes("special_atk_damage"));
+		}
 	}
 
 	if (!healthBool && !smashBool)
