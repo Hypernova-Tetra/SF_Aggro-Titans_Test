@@ -148,6 +148,7 @@ add BossGiant01.hmm
 add BossDragon01.hmm
 add BossKnight01.hmm
 add BossRifle01.hmm
+add BossRifleSpDmg.hmm
 add BossRifleBit.hmm
 add BossRifleBeast.hmm
 add BossRush.hmm
