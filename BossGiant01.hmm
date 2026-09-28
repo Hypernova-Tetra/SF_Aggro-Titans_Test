@@ -24,7 +24,6 @@ Code "Giganto_Combat"
 	if (BossGiantConfigInfo.pData == null)
 		return;
 	
-	bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 	
     if (!IsConfigInitialised)
     {
@@ -38,6 +37,7 @@ Code "Giganto_Combat"
 		
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
+        bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
 			
 		if (gameModeBattleRush)
 		{ 
@@ -201,7 +201,8 @@ Code "Giganto Dynamics" by "Hypernova"
 		pkinematics->Position = new System.Numerics.Vector3(81.0f, 319.0f, -60.5f);
 		pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
 		
-		if (GameMode.GetName() == "GameModeBossRush")
+		string gmName = GameMode.GetName();
+		if (gmName == "GameModeBossRush")
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1142");
 			evtPlayer->PlayEvent(ref setupData);
@@ -230,7 +231,8 @@ Code "Giganto_ActionType"
 	if (!isGiant01)
 		return;
 	{
-		if (GameMode.GetName() == "GameModeBossRush")
+		string gmName = GameMode.GetName();
+		if (gmName == "GameModeBossRush")
 		{
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_01);

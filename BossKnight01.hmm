@@ -130,7 +130,8 @@ Code "Knight Dynamics"
 	{
 		if (Address3120 == 0) {/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");}
 		
-		bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+		string gmName = GameMode.GetName();
+		bool gameModeBossRush = gmName == "GameModeBossRush"
 		if (!gameModeBossRush)
 		{ WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));}
 		else
@@ -183,7 +184,7 @@ Code "Knight Dynamics"
 			else
 			{ WriteProtected<byte>(SonicDamage, System.Text.Encoding.UTF8.GetBytes(HurtRNG[new Random().Next(0, HurtRNG.Length)])); }
 			
-			bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+			bool gameModeBattleRush = gmName == "GameModeBattleRush"
 			if (gameModeBossRush)
 			{
 				WriteProtected<byte>(AtkIntrrupt, System.Text.Encoding.UTF8.GetBytes(IntrRNG[new Random().Next(0, IntrRNG.Length)]));
