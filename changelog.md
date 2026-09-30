@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.09.27
+# **Aggro-Titans Test** - 2026.09.30
 
 * Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -9,6 +9,7 @@
 * Tweaked how much damage Wyvern takes during events so that it closely matches the percentage difference despite values being flat numbers.
 * Code Tweaks/Optimization by Nowasu to make Frontiers run better. (Improvements have been made, but still can't hurt to keep testing.)
 * Supreme's unused Cinematic Grand Slam now does damage... under the hood. Visuals aren't applied, yet.
+* Updated unused Supreme Cinematic Grand Slam Animation slightly
 
 
 
