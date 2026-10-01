@@ -1,4 +1,4 @@
-# **Aggro-Titans Test** - 2026.09.30
+# **Aggro-Titans Test** - 2026.10.01
 
 * Current 7z Compressed Mod File Size: "1.07GB"
 
@@ -8,7 +8,7 @@
 
 * Tweaked how much damage Wyvern takes during events so that it closely matches the percentage difference despite values being flat numbers.
 * Code Tweaks/Optimization by Nowasu to make Frontiers run better. (Improvements have been made, but still can't hurt to keep testing.)
-* Supreme's unused Cinematic Grand Slam now does damage... under the hood. Visuals aren't applied, yet. Thanks Nowasu!
+* Supreme's unused Cinematic Grand Slam now does damage, although it won't visually show during the event. Thanks again Nowasu!
 * Updated unused Supreme Cinematic Grand Slam Animation slightly
 * Tweaked Knight's Phase 2 events to fix camera cuts when the scene plays in 60FPS after using "Uncap FPS in Cutscenes" code.
 * Tweaked Knight's Zero Ring cutscenes to fade out before Sonic hits the screen.

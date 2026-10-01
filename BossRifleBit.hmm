@@ -15,55 +15,7 @@ Code "BossBit_Unused_Attack_Restore"
 		return;
 		
 	bool isRifleBeast = (GameManager.GetGameObject("RifleBeast0") != null);
-	if (isRifleBeast)
-	{	
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 150);
-		//Drone Missiles//
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].text.pValue, 8042);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.isParry, true);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.time, 3);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.angleSpeed, 10);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.bulletType, BossBitConfig.BulletType.Homing);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.rotAngle, 5);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.phaseRotTime, 10);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootSpeed, 150);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.addShootSpeed, 5);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootAccel, 5);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootAccelMax, 0);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootAccelDelay, 4);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.wayNum, 2);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.wayAngle, 180);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootTime, 2);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.phaseShootTime, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.periodShootCoolTime, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingAccuracy, 10);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingDelay, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingLimitAngle, 0);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.waveRotationSpeed, 225);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.flyMoveSpeed, 50);
-		//Drone Laser//
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].text.pValue, 8028);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isParry, true);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.time, 8);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.bulletType, BossBitConfig.BulletType.Laser);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.phaseRotTime, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootNum, 0);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootSpeed, 0);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootAccelMax, 0);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootAccelDelay, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.wayNum, 0);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.wayAngle, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootTime, 8);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.phaseShootTime, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.periodShootCoolTime, 2);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.homingDelay, 1);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.homingLimitAngle, 0);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isHomingLowFly, true);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.waveRotationSpeed, 30.5f);
-		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.flyMoveSpeed, 0);
-	}
-	else
+	if (!isRifleBeast)
 	{
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 0);
@@ -110,6 +62,54 @@ Code "BossBit_Unused_Attack_Restore"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isHomingLowFly, false);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.waveRotationSpeed, 0);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.flyMoveSpeed, 100);
+	}
+	else
+	{	
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitLaserParam.dropRingNum, 5);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[21].param.flyMoveSpeed, 150);
+		//Drone Missiles//
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].text.pValue, 8042);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.isParry, true);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.time, 3);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.angleSpeed, 10);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.bulletType, BossBitConfig.BulletType.Homing);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.rotAngle, 5);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.phaseRotTime, 10);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootSpeed, 150);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.addShootSpeed, 5);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootAccel, 5);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootAccelMax, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootAccelDelay, 4);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.wayNum, 2);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.wayAngle, 180);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.shootTime, 2);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.phaseShootTime, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.periodShootCoolTime, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingAccuracy, 10);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingDelay, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.homingLimitAngle, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.waveRotationSpeed, 225);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[22].param.flyMoveSpeed, 50);
+		//Drone Laser//
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].text.pValue, 8028);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isParry, true);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.time, 8);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.bulletType, BossBitConfig.BulletType.Laser);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.phaseRotTime, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootNum, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootSpeed, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootAccelMax, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootAccelDelay, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.wayNum, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.wayAngle, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.shootTime, 8);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.phaseShootTime, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.periodShootCoolTime, 2);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.homingDelay, 1);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.homingLimitAngle, 0);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.isHomingLowFly, true);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.waveRotationSpeed, 30.5f);
+		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.flyMoveSpeed, 0);
 	}
 }
 

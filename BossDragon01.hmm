@@ -38,7 +38,9 @@ Code "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 			
-		bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
+		string gameModeName = GameMode.GetName();
+		bool gameModeBossRush = gameModeName == "GameModeBossRush"
+		bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
 		if (gameModeBattleRush)
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
@@ -50,6 +52,11 @@ Code "Wyvern_Combat"
 			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
 			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 1000);
 		}
+		else if (gameModeBossRush)
+		{ 		
+			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 7000);
+			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 1500);
+		}
 		else
 		{
 			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
@@ -57,19 +64,19 @@ Code "Wyvern_Combat"
 			{ 
 				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000);
 				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 1000);
+				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2000);
 			}
 			else if (BossHP == 2)
 			{
 				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 100000);
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 10000);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 1500);
+				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 9000);
+				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2250);
 			}
 			else
 			{ 
 				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 175000);
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 17500);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2000);
+				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 10000);
+				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2500);
 			}
 		}
     }

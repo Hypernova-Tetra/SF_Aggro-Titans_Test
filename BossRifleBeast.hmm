@@ -124,7 +124,6 @@ Patch "Monologue"
 		bool isHyperAsu0 = HMM.GetMods().Where(x => x.Name == "Asu's Simple Hyper Sonic (reskin)").Count() > 0;
 		bool isZephRangr = HMM.GetMods().Where(x => x.Name == "Zephyr Frontiers: God's Among Dimensions(Demo)").Count() > 0;
 		bool isSprHprUDX = HMM.GetMods().Where(x => x.Name == "Super/Hyper Sonic Ultimate DX").Count() > 0;
-		
 		bool MonoEdit = (SupremeM == 1) && (SupremeA == 1);
 		bool MonoOrgn = (SupremeM == 1) && (SupremeA == 0);
 		bool NoneEdit = (SupremeM == 0) && (SupremeA == 1);

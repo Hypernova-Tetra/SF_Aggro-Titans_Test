@@ -37,8 +37,9 @@ Code "Giganto_Combat"
 		
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-        bool gameModeBattleRush = GameMode.GetName() == "GameModeBattleRush"
-			
+        
+		string gameModeName = GameMode.GetName();
+		bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
 		if (gameModeBattleRush)
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
