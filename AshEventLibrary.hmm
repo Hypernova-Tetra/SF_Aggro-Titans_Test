@@ -1,3 +1,18 @@
+Patch "Disable FPS Limit in Cutscenes (experimental)" in "Graphics/Display" by "RagdollClash" does 
+//
+    #lib "Memory"
+//
+{
+    /* v1.41: 0x140146A1C */
+    long jmpAddr = ScanSignature
+    ( "\x74\x23\x48\x8B\x05\xCC\xCC\xCC\xCC\xF3\x0F\x10\x0D", "xxxxx????xxxx" );
+
+    if (jmpAddr == 0)
+       return;
+    
+    Memory.WriteForceJump(jmpAddr);
+}
+
 Library "EventPlayer" by "Ashrindy"
 {
     #include "Helpers" noemit

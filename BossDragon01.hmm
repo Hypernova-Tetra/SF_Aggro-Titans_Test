@@ -16,15 +16,25 @@ Code "Wyvern_Combat"
 	#lib "BossDragonConfig"
     #lib "HMM"
 	#lib "INI"
+	#lib "GameObject"
+	#lib "GameManager"
+	#lib "Memory"
+	#import "Services"
+	#import "GOComponents"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
+
+	static double WyvernSpecialRatio = 0.0;
+	static double WyvernQte1Ratio = 0.0;
+	static int WyvernLastSpecial = -1;
+	static int WyvernLastQte1 = -1;
 //
 {
 	var BossDragonConfigInfo = Reflection.GetDataInfo<BossDragonConfig.Root>("boss_dragon");
 	if (BossDragonConfigInfo.pData == null)
 		return;
-		
+	
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -37,49 +47,78 @@ Code "Wyvern_Combat"
 
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
-			
-		string gameModeName = GameMode.GetName();
-		bool gameModeBossRush = gameModeName == "GameModeBossRush"
+		
+		string gameModeName = GameMode.GetName();		
 		bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
-		if (gameModeBattleRush)
+		bool gameModeBossRush = gameModeName == "GameModeBossRush"
+		
+		if (gameModeBattleRush)	
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+			uint hp;
 			if (!isBSRActive)
-			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000);  }
+			{ hp = 80000; }
 			else
-			{ RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 90000);  }
-		
-			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
-			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 1000);
+			{ hp = 90000; }
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
+			WyvernSpecialRatio = 8000.0 / hp;
+			WyvernQte1Ratio = 1000.0 / hp;
 		}
-		else if (gameModeBossRush)
-		{ 		
-			RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 7000);
-			RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 1500);
+		else if (gameModeBossRush)	
+		{
+			WyvernSpecialRatio = 4500.0 / 115000.0;
+			WyvernQte1Ratio = 2800.0 / 115000.0;
 		}
 		else
 		{
 			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+			uint hp;
 			if ((BossHP == 1) || (isChaosPolarity))
 			{ 
-				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 80000);
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 8000);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2000);
+				hp = 80000;
+				WyvernSpecialRatio = 8000.0 / hp;
+				WyvernQte1Ratio = 1000.0 / hp;
 			}
 			else if (BossHP == 2)
 			{
-				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 100000);
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 9000);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2250);
+				hp = 100000;
+				WyvernSpecialRatio = 10000.0 / hp;
+				WyvernQte1Ratio = 1500.0 / hp;
 			}
 			else
 			{ 
-				RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, 175000);
-				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, 10000);
-				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, 2500);
+				hp = 175000;
+				WyvernSpecialRatio = 17500.0 / hp;
+				WyvernQte1Ratio = 2000.0 / hp;
 			}
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
 		}
     }
+		
+	if (WyvernSpecialRatio > 0)
+	{
+		var pDragon = GameManager.GetGameObject("Dragon0");
+		if (pDragon == null)
+			return;
+		
+		var pHealth = GameObject.GetGOC(pDragon, "GOCHealth");
+		if (pHealth == null)
+			return;
+		
+		long maxHp = Read<int>((nint)((long)pHealth + 0x84));
+		if (maxHp > 0)
+		{
+			int special = (int)(maxHp * WyvernSpecialRatio);
+			int qte1 = (int)(maxHp * WyvernQte1Ratio);
+			if (special != WyvernLastSpecial || qte1 != WyvernLastQte1)
+			{
+				WyvernLastSpecial = special;
+				WyvernLastQte1 = qte1;
+				RFL_SET_PARAM(BossDragonConfigInfo, specialAttackDamage, special);
+				RFL_SET_PARAM(BossDragonConfigInfo, qte1Damage, qte1);
+			}
+		}
+	}
 };
 
 Code "Wyvern Dynamics" by "Hypernova"
