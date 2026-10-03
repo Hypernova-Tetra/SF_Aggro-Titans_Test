@@ -38,9 +38,9 @@ Code "Giganto_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
         
-		string gameModeName = GameMode.GetName();
-		bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
-		if (gameModeBattleRush)
+		string gmName = GameMode.GetName();
+		bool isBattleRush = gmName == "GameModeBattleRush";
+		if (isBattleRush)
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
@@ -91,29 +91,34 @@ Code "Giganto_Scenes"
 	static long Address1160 = 0;
 	static bool ModsChecked = false;
 	static bool isBSRActive = false;
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo1120");
+	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo1170");
+	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("bo1160");
+	static byte[] _gb3 = System.Text.Encoding.UTF8.GetBytes("bo1121");
+	static byte[] _gb4 = System.Text.Encoding.UTF8.GetBytes("bo1161");
 //
 {	
 	if (Address1120 == 0) { /* 0x1414534C8 */ Address1120 = ScanSignature ("bo1120", "xxxxxx"); }
 	if (Address1160 == 0) { /* 0x141453520 */ Address1160 = ScanSignature ("bo1160", "xxxxxx"); }
 		
 	if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
-	string gameModeName = GameMode.GetName();
-	bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
-	bool gameModeBossRush = gameModeName == "GameModeBossRush"
+	string gmName = GameMode.GetName();
+	bool isBattleRush = gmName == "GameModeBattleRush";
+	bool isBossRush   = gmName == "GameModeBossRush";
 	
-	if (gameModeBattleRush)
+	if (isBattleRush)
 	{ 
-		WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1120"));
+		WriteProtected<byte>(Address1120, _gb0);
 	
 		if (isBSRActive)
-		{ WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1170")); }
+		{ WriteProtected<byte>(Address1160, _gb1); }
 		else
-		{ WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1160")); }
+		{ WriteProtected<byte>(Address1160, _gb2); }
 	}
-    else if (gameModeBossRush)
+    else if (isBossRush)
 	{ 
-		WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1121"));
-		WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1161")); 
+		WriteProtected<byte>(Address1120, _gb3);
+		WriteProtected<byte>(Address1160, _gb4); 
 	}
 	else
 	{ return; }
@@ -141,6 +146,18 @@ Code "Giganto Dynamics" by "Hypernova"
 	static long Address1120 = 0;
 	static long Address1160 = 0;
 	static long Address1180 = 0;
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo1122");
+	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo1151");
+	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("attack_howl");
+	static byte[] _gb3 = System.Text.Encoding.UTF8.GetBytes("cyloop_counter");
+	static byte[] _gb4 = System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry");
+	static byte[] _gb5 = System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02");
+	static byte[] _gb6 = System.Text.Encoding.UTF8.GetBytes("bo1180");
+	static byte[] _gb7 = System.Text.Encoding.UTF8.GetBytes("atk_howl_02");
+	static byte[] _gb8 = System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r");
+	static byte[] _gb9 = System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r");
+	static byte[] _gb10 = System.Text.Encoding.UTF8.GetBytes("bo1181");
+	static byte[] _gb11 = System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03");
 //
 {	
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -163,33 +180,33 @@ Code "Giganto Dynamics" by "Hypernova"
 		switch (eventName)
 		{
 			case "ga1225":
-				WriteProtected<byte>(Address1120, System.Text.Encoding.UTF8.GetBytes("bo1122"));
-				WriteProtected<byte>(Address1160, System.Text.Encoding.UTF8.GetBytes("bo1151")); 
+				WriteProtected<byte>(Address1120, _gb0);
+				WriteProtected<byte>(Address1160, _gb1); 
 			break;
 			
 			case "bo1120": 
 			case "bo1121":
 			case "bo1122":
-				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("attack_howl"));
-				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
-				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
-				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
-				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1180"));
+				WriteProtected<byte>(AttackShout, _gb2);
+				WriteProtected<byte>(AdCyloopAtk, _gb3);
+				WriteProtected<byte>(AdCyloopPry, _gb4);
+				WriteProtected<byte>(AdAtkCnSp02, _gb5);
+				WriteProtected<byte>(Address1180, _gb6);
 			break;
 			
 			case "bo1141":
-				WriteProtected<byte>(AttackShout, System.Text.Encoding.UTF8.GetBytes("atk_howl_02"));
-				WriteProtected<byte>(AdCyloopAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r"));
-				WriteProtected<byte>(AdCyloopPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r"));
-				WriteProtected<byte>(Address1180, System.Text.Encoding.UTF8.GetBytes("bo1181"));
+				WriteProtected<byte>(AttackShout, _gb7);
+				WriteProtected<byte>(AdCyloopAtk, _gb8);
+				WriteProtected<byte>(AdCyloopPry, _gb9);
+				WriteProtected<byte>(Address1180, _gb10);
 			break;
 			
 			case "bo1140":
-				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_02"));
+				WriteProtected<byte>(AdAtkCnSp02, _gb5);
 			break;
 			
 			case "bo1142":
-				WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_03"));
+				WriteProtected<byte>(AdAtkCnSp02, _gb11);
 			break;
 		}
 	}
@@ -203,7 +220,8 @@ Code "Giganto Dynamics" by "Hypernova"
 		pkinematics->Rotation = new System.Numerics.Quaternion(0.0f, 0.701707f, 0.0f, 0.701707f);
 		
 		string gmName = GameMode.GetName();
-		if (gmName == "GameModeBossRush")
+		bool isBossRush   = gmName == "GameModeBossRush";
+		if (isBossRush)
 		{
 			var setupData = new EventPlayer.EventSetupData("bo1142");
 			evtPlayer->PlayEvent(ref setupData);
@@ -233,7 +251,8 @@ Code "Giganto_ActionType"
 		return;
 	{
 		string gmName = GameMode.GetName();
-		if (gmName == "GameModeBossRush")
+		bool isBossRush   = gmName == "GameModeBossRush";
+		if (isBossRush)
 		{
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[1], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_HOWL);
 			RFL_SET_PARAM(BossGiantConfigInfo, battleParam.immediateActions[3], BossGiantConfig.BossGiantBattleParam_ActionType.BossGiantBattleParam_ActionType_AT_COUNTER_SP_01);

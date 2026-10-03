@@ -1,11 +1,14 @@
 Patch "Supreme Address Edits"
 //
 	#lib "Memory"
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("ev503X");
+	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("ev504X");
+	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("ev603X");
 //
 { 
-	WriteProtected<byte> (/* 0x14145D190 */ ScanSignature ("ev5030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev503X"));
-	WriteProtected<byte> (/* 0x1414348B4 */ ScanSignature ("ev5040", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev504X"));
-	WriteProtected<byte> (/* 0x14143739C */ ScanSignature ("ev6030", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("ev603X"));
+	WriteProtected<byte> (/* 0x14145D190 */ ScanSignature ("ev5030", "xxxxxx"), _gb0);
+	WriteProtected<byte> (/* 0x1414348B4 */ ScanSignature ("ev5040", "xxxxxx"), _gb1);
+	WriteProtected<byte> (/* 0x14143739C */ ScanSignature ("ev6030", "xxxxxx"), _gb2);
 	
 	// Shot2 = zev_rfl_sp02
     if(ScanSignature("\xB0\xFD\x02\x03\x4C\x8B\xC0\x48\x8B\xCB\xE8\x3D\x84\xF9\xFF\x48\x8B\x4C\x24\x58\x48\x85\xC9\x74\x05\xE8\x9E\xDD", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx") == 0) 
@@ -105,6 +108,10 @@ Code "Supreme moveset" by "Hypernova"
 	static bool IsConfigInitialised = false;
 	static bool ModsChecked = false;
 	static bool isBSRActive = false;
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo4111");
+	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo4162");
+	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("bo4110");
+	static byte[] _gb3 = System.Text.Encoding.UTF8.GetBytes("bo4160");
 //
 {
 	if (Adr4110 == 0) { /* 0x1414624B0 */ Adr4110 = ScanSignature ("bo4110", "xxxxxx"); }
@@ -123,8 +130,8 @@ Code "Supreme moveset" by "Hypernova"
 		bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 		if (isRifleBeast0)
 		{
-			WriteProtected<byte>(Adr4110, System.Text.Encoding.UTF8.GetBytes("bo4111"));
-			WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4162"));
+			WriteProtected<byte>(Adr4110, _gb0);
+			WriteProtected<byte>(Adr4160, _gb1);
 			
 			bool rifleStrt2 = Lua.Call<int>("IsPlayingDiEvent", "bo4111") == 1
 			if (rifleStrt2)
@@ -159,12 +166,11 @@ Code "Supreme moveset" by "Hypernova"
 		}
 		else
 		{
-			WriteProtected<byte>(Adr4110, System.Text.Encoding.UTF8.GetBytes("bo4110"));
-			WriteProtected<byte>(Adr4160, System.Text.Encoding.UTF8.GetBytes("bo4160"));
+			WriteProtected<byte>(Adr4110, _gb2);
+			WriteProtected<byte>(Adr4160, _gb3);
 			
-			string gameModeName = GameMode.GetName();
-			bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
-			if (!gameModeBattleRush)
+			bool isBattleRush = gmName == "GameModeBattleRush";
+			if (!isBattleRush)
 			{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE); }
 			else
 			{ 
@@ -236,6 +242,43 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	static long AdCyPry = 0;
 	static bool ModsChecked = false;
 	static bool isBSRActive = false;
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_start00");
+	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("cyloop_counter");
+	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry");
+	static byte[] _gb3 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01");
+	static byte[] _gb4 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01");
+	static byte[] _gb5 = System.Text.Encoding.UTF8.GetBytes("bo4180");
+	static byte[] _gb6 = System.Text.Encoding.UTF8.GetBytes("bo4146");
+	static byte[] _gb7 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01");
+	static byte[] _gb8 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls02");
+	static byte[] _gb9 = System.Text.Encoding.UTF8.GetBytes("bo4145");
+	static byte[] _gb10 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB1");
+	static byte[] _gb11 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00");
+	static byte[] _gb12 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA1");
+	static byte[] _gb13 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls01");
+	static byte[] _gb14 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b");
+	static byte[] _gb15 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00");
+	static byte[] _gb16 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser01");
+	static byte[] _gb17 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02");
+	static byte[] _gb18 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0Z");
+	static byte[] _gb19 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser02");
+	static byte[] _gb20 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01");
+	static byte[] _gb21 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02");
+	static byte[] _gb22 = System.Text.Encoding.UTF8.GetBytes("bo4181");
+	static byte[] _gb23 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02");
+	static byte[] _gb24 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng1");
+	static byte[] _gb25 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB2");
+	static byte[] _gb26 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wing");
+	static byte[] _gb27 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2");
+	static byte[] _gb28 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA2");
+	static byte[] _gb29 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02");
+	static byte[] _gb30 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsQTE02");
+	static byte[] _gb31 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX");
+	static byte[] _gb32 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX3");
+	static byte[] _gb33 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2");
+	static byte[] _gb34 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02");
+	static byte[] _gb35 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03");
+	static byte[] _gb36 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2");
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -263,17 +306,20 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	if (!RifleBattle) 
 		return;
 	{
-		string gameModeName = GameMode.GetName();
-		bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
-		if (gameModeBattleRush)
-		{ WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_start00")); }
+		
+		string gmName = GameMode.GetName();
+		bool isBattleRush = gmName == "GameModeBattleRush";
+		bool isBossRush = gmName == "GameModeBossRush";
+		
+		if (isBattleRush)
+		{ WriteProtected<byte>(ATSHOT3, _gb0); }
 		
 		bool ZevRifle = ((evtPlayer != null) && (GameManager.GetGameObject("Rifle0") != null))
 		if (!ZevRifle)
 			return;
 		{			
-			WriteProtected<byte>(AdCyAtk, System.Text.Encoding.UTF8.GetBytes("cyloop_counter"));
-			WriteProtected<byte>(AdCyPry, System.Text.Encoding.UTF8.GetBytes("cyloop_counter_parry"));
+			WriteProtected<byte>(AdCyAtk, _gb1);
+			WriteProtected<byte>(AdCyPry, _gb2);
 
 			if (evtPlayer != null)
 			{
@@ -344,138 +390,138 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					case "bo4180":
 					case "bo4181":
 					case "zev_rfl_start00":
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01")); 
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
-						WriteProtected<byte>(AT0RING, System.Text.Encoding.UTF8.GetBytes("bo4180"));
+						WriteProtected<byte>(ATSHOT3, _gb3); 
+						WriteProtected<byte>(ATSHOT1, _gb4);
+						WriteProtected<byte>(AT0RING, _gb5);
 						if (isRifleBeast0)
 						{ 
-							WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4146")); 
-							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser01"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls02"));
+							WriteProtected<byte>(ATPHASE, _gb6); 
+							WriteProtected<byte>(ATSHOTB, _gb7);
+							WriteProtected<byte>(ATSHOT2, _gb8);
 						}
-						else if (gameModeBattleRush)
+						else if (isBattleRush)
 						{ 
-							WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
-							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB1"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
+							WriteProtected<byte>(ATPHASE, _gb9); 
+							WriteProtected<byte>(ATSHOTB, _gb10);
+							WriteProtected<byte>(ATSHOT2, _gb11);
 						}
 						else 
 						{
-							WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4146")); 
-							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA1"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls01"));
+							WriteProtected<byte>(ATPHASE, _gb6); 
+							WriteProtected<byte>(ATSHOTB, _gb12);
+							WriteProtected<byte>(ATSHOT2, _gb13);
 						}
 						break;
 					case "zev_rfl_bitlaser01":
 					case "zev_rfl_bitlaserB1":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA1"));
+						WriteProtected<byte>(ATSHOTB, _gb12);
 						break;
 					case "zev_rfl_bitlaserA1":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB1"));
+						WriteProtected<byte>(ATSHOTB, _gb10);
 						break;
 					case "zev_rfl_laser01":
-						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145"));
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b"));
+						WriteProtected<byte>(ATPHASE, _gb9);
+						WriteProtected<byte>(ATSHOT3, _gb3);
+						WriteProtected<byte>(ATSHOT1, _gb14);
 						break;	
 					case "zev_rfl_spQTE01":
-						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser00"));
+						WriteProtected<byte>(ATPHASE, _gb9); 
+						WriteProtected<byte>(ATSHOT3, _gb15);
 						break;
 					case "zev_rfl_laser00":
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE01"));
+						WriteProtected<byte>(ATSHOT3, _gb3);
 						break;
 					case "zev_rfl_ls00":
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls01"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+						WriteProtected<byte>(ATSHOT2, _gb13);
+						WriteProtected<byte>(ATSHOT1, _gb4);
 						break;
 					case "zev_rfl_ls02":
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser01"));
+						WriteProtected<byte>(ATSHOT2, _gb11);
+						WriteProtected<byte>(ATSHOT1, _gb4);
 						break;
 					case "zev_rfl_ls01":
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls00"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0b"));
+						WriteProtected<byte>(ATSHOT2, _gb11);
+						WriteProtected<byte>(ATSHOT1, _gb14);
 						break;
 					case "zev_rfl_laser0b":
-						WriteProtected<byte>(ATPHASE, System.Text.Encoding.UTF8.GetBytes("bo4145")); 
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser01"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02"));
+						WriteProtected<byte>(ATPHASE, _gb9); 
+						WriteProtected<byte>(ATSHOTB, _gb16);
+						WriteProtected<byte>(ATSHOT1, _gb17);
 						break;
 					case "zev_rfl_laser02":
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser0Z"));
+						WriteProtected<byte>(ATSHOT1, _gb18);
 						break;
 					case "zev_rfl_laser0Z":
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_laser02"));
+						WriteProtected<byte>(ATSHOT1, _gb17);
 						break;
 					case "zev_rfl_gunlaser02":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser01"));
+						WriteProtected<byte>(ATSHOTB, _gb16);
 						break;
 					case "zev_rfl_gunlaser01":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_gunlaser02"));
+						WriteProtected<byte>(ATSHOTB, _gb19);
 						break;
 					case "bo4140":
 					case "bo4141":	
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
-						WriteProtected<byte>(AT0RING, System.Text.Encoding.UTF8.GetBytes("bo4181"));
+						WriteProtected<byte>(ATSHOT3, _gb20);
+						WriteProtected<byte>(ATSHOT1, _gb21);
+						WriteProtected<byte>(AT0RING, _gb22);
 						if (isRifleBeast0)
 						{ 
-							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser02"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng1"));
+							WriteProtected<byte>(ATSHOTB, _gb23);
+							WriteProtected<byte>(ATSHOT2, _gb24);
 						}
-						else if (gameModeBattleRush)
+						else if (isBattleRush)
 						{ 
-							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB2"));
+							WriteProtected<byte>(ATSHOTB, _gb25);
 							if (isBSRActive)
-							{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wing")); }
+							{ WriteProtected<byte>(ATSHOT2, _gb26); }
 							else
-							{ WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spX2")); }
+							{ WriteProtected<byte>(ATSHOT2, _gb27); }
 						}
 						else 
 						{
-							WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA2"));
-							WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp02"));
+							WriteProtected<byte>(ATSHOTB, _gb28);
+							WriteProtected<byte>(ATSHOT2, _gb29);
 						}
 						break;
 					case "zev_rfl_bitlaser02":
 					case "zev_rfl_bitlaserB2":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA2"));
+						WriteProtected<byte>(ATSHOTB, _gb28);
 						break;
 					case "zev_rfl_bitlaserA2":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserB2"));
+						WriteProtected<byte>(ATSHOTB, _gb25);
 						break;
 					case "zev_rfl_shoot01":
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsQTE02"));
+						WriteProtected<byte>(ATSHOT3, _gb30);
 						break;
 					case "zev_rfl_wng1":
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
+						WriteProtected<byte>(ATSHOT2, _gb31);
 						break;	
 					case "zev_rfl_wnglsr2":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserX3"));
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
+						WriteProtected<byte>(ATSHOTB, _gb32);
+						WriteProtected<byte>(ATSHOT3, _gb33);
+						WriteProtected<byte>(ATSHOT1, _gb34);
 						break;
 					case "zev_rfl_sp01":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2"));
+						WriteProtected<byte>(ATSHOTB, _gb35);
+						WriteProtected<byte>(ATSHOT3, _gb21);
+						WriteProtected<byte>(ATSHOT1, _gb36);
 						break;
 					case "zev_rfl_bitlaserX3":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaser03"));
+						WriteProtected<byte>(ATSHOTB, _gb35);
 						break;	
 					case "zev_rfl_bitlaser03":
-						WriteProtected<byte>(ATSHOTB, System.Text.Encoding.UTF8.GetBytes("zev_rfl_bitlaserA2"));
+						WriteProtected<byte>(ATSHOTB, _gb28);
 						break;	
 					case "zev_rfl_shootX2":
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2"));
+						WriteProtected<byte>(ATSHOT1, _gb33);
 						break;
 					case "zev_rfl_spQTE02":
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsQTE02"));
+						WriteProtected<byte>(ATSHOT1, _gb30);
 						break;	
 					case "zev_rfl_shoot02":
 					case "zev_rfl_spQTEX2":
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot01"));
+						WriteProtected<byte>(ATSHOT3, _gb20);
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes(shot01_rng01[new Random().Next(0, shot01_rng01.Length)]));
 						break;	
 					case "zev_rfl_lsXX":
@@ -484,14 +530,14 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						break;
 					case "zev_rfl_lsQTE02":
 					case "zev_rfl_spX2":
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTEX2"));
+						WriteProtected<byte>(ATSHOT3, _gb33);
 						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes(shot01_rng01[new Random().Next(0, shot01_rng01.Length)]));
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
+						WriteProtected<byte>(ATSHOT2, _gb31);
 						break;
 					case "zev_rfl_sp02":
-						WriteProtected<byte>(ATSHOT3, System.Text.Encoding.UTF8.GetBytes("zev_rfl_shoot02"));
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes("zev_rfl_spQTE02"));
-						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes("zev_rfl_lsXX"));
+						WriteProtected<byte>(ATSHOT3, _gb34);
+						WriteProtected<byte>(ATSHOT1, _gb21);
+						WriteProtected<byte>(ATSHOT2, _gb31);
 						break;
 				}
 			}
@@ -518,25 +564,22 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
 	
     static long AdRightHand = 0;	
 	static string[] rng_counter = new[]
-	{ /* sup */ 
-	"attack_counter_righthand_01","attack_counter_righthand_02", "attack_counter_righthand_03", "attack_counter_head_01     "
-	};	
+	{ /* sup */ "attack_counter_righthand_01","attack_counter_righthand_02", "attack_counter_righthand_03", "attack_counter_head_01     " };	
 	
 	static string[] rng_giant01 = new[]
-	{ /* sup */ 
-	"attack_counter_righthand_01", "attack_counter_righthand_02", "attack_counter_righthand_03"
-	};	
+	{ /* sup */ "attack_counter_righthand_01", "attack_counter_righthand_02", "attack_counter_righthand_03" };	
 	
 	static long AdAtkCnSp02 = 0;
 	static string[] rng_atksp02 = new[]
-	{ /* sup */ 
-	"attack_counter_sp_02", "attack_counter_sp_03", "attack_counter_sp_04"
-	};
+	{ /* sup */ "attack_counter_sp_02", "attack_counter_sp_03", "attack_counter_sp_04" };
 {
 	
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 	bool isBoss = Player.State.GetStatePlugin("StatePluginBossBattle") != null;
 	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
+	
+	string gmName = GameMode.GetName();
+	bool isBossRush = gmName == "GameModeBossRush";
 	
 	if (AdRightHand == 0) {/* 0x1414514C8 */ AdRightHand = ScanSignature ("attack_counter_righthand_01", "xxxxxxxxxxxxxxxxxxxxxxxxxxx");}
 	if (AdAtkCnSp02 == 0) {/* 0x141451370 */ AdAtkCnSp02 = ScanSignature ("attack_counter_sp_02", "xxxxxxxxxxxxxxxxxxxx");}
@@ -546,7 +589,7 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
 		WriteProtected<byte>(AdRightHand, System.Text.Encoding.UTF8.GetBytes(rng_counter[new Random().Next(0, rng_counter.Length)])); 
 		WriteProtected<byte>(AdAtkCnSp02, System.Text.Encoding.UTF8.GetBytes(rng_atksp02[new Random().Next(0, rng_atksp02.Length)]));
 	}
-	else if ((GameManager.GetGameObject("Giant0") != null) && (gameModeBossRush) && (isBoss))
+	else if ((GameManager.GetGameObject("Giant0") != null) && (isBossRush) && (isBoss))
 	{ 
 		WriteProtected<byte>(AdRightHand, System.Text.Encoding.UTF8.GetBytes(rng_giant01[new Random().Next(0, rng_giant01.Length)])); 
 	}
@@ -565,6 +608,8 @@ Patch "Supreme Wing Laser"
     static bool IsConfigInitialised = false;
 	static int RifleWing = 0;
 	static long ATSHOT4 = 0;
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wnglsr2");
+	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01   ");
 //
 {
     if (!IsConfigInitialised)
@@ -582,9 +627,9 @@ Patch "Supreme Wing Laser"
 		if (ATSHOT4 == 0) { /* 0x141461F00 */ ATSHOT4 = ScanSignature ("zev_rfl_sp01   ", "xxxxxxxxxxxxxxx"); }
 		
 		if (RifleWing != 0)
-		{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_wnglsr2")); }
+		{ WriteProtected<byte>(ATSHOT4, _gb0); }
 		else
-		{ WriteProtected<byte>(ATSHOT4, System.Text.Encoding.UTF8.GetBytes("zev_rfl_sp01   ")); }
+		{ WriteProtected<byte>(ATSHOT4, _gb1); }
 	}	
 }
 

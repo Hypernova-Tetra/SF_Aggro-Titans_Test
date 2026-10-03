@@ -39,9 +39,8 @@ Code "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		string gameModeName = GameMode.GetName();
-		bool gameModeBattleRush = gameModeName == "GameModeBattleRush"
-		if (gameModeBattleRush)
+		bool isBattleRush = gmName == "GameModeBattleRush";
+		if (isBattleRush)
 		{
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
@@ -123,6 +122,21 @@ Code "Knight Dynamics"
 	static long SonicDamage = 0;
     static string[] HurtRNG = new[]
     { /* sup */ "zev_knight_sonic_damageX1", "zev_knight_sonic_damageX2", "zev_knight_sonic_damageX3", "zev_knight_sonic_damageX4", "zev_knight_sonic_damageX5", "zev_knight_sonic_damageX6", "zev_knight_sonic_damageX7", "zev_knight_sonic_damageX8" };
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo3120");
+	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo3122");
+	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("bo3180");
+	static byte[] _gb3 = System.Text.Encoding.UTF8.GetBytes("bo3181");
+	static byte[] _gb4 = System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp03");
+	static byte[] _gb5 = System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2");
+	static byte[] _gb6 = System.Text.Encoding.UTF8.GetBytes("battle2_interrupt");
+	static byte[] _gb7 = System.Text.Encoding.UTF8.GetBytes("battle2_sword_vert");
+	static byte[] _gb8 = System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage");
+	static byte[] _gb9 = System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02");
+	static byte[] _gb10 = System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2");
+	static byte[] _gb11 = System.Text.Encoding.UTF8.GetBytes("battle1_interrupt");
+	static byte[] _gb12 = System.Text.Encoding.UTF8.GetBytes("battle1_sword_side");
+	static byte[] _gb13 = System.Text.Encoding.UTF8.GetBytes("battle1_sword_vert");
+	static byte[] _gb14 = System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01");
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -132,23 +146,23 @@ Code "Knight Dynamics"
 		if (Address3120 == 0) {/* 0x14145C100 */ Address3120 = ScanSignature ("bo3120", "xxxxxx");}
 		
 		string gmName = GameMode.GetName();
-		bool gameModeBossRush = gmName == "GameModeBossRush"
-		if (!gameModeBossRush)
-		{ WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3120"));}
+		bool isBossRush = gmName == "GameModeBossRush";
+		if (!isBossRush)
+		{ WriteProtected<byte>(Address3120, _gb0);}
 		else
-		{ WriteProtected<byte>(Address3120, System.Text.Encoding.UTF8.GetBytes("bo3122"));}
+		{ WriteProtected<byte>(Address3120, _gb1);}
 		
 		string eventName = evtPlayer->GetCurrentEventName();
 		switch (eventName)
 		{
 			case "bo3120":
 			case "bo3122":
-				WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3180"));
+				WriteProtected<byte>(Address3180, _gb2);
 				break;
 			
 			case "bo3140":
 			case "bo3145":
-				WriteProtected<byte>(Address3180, System.Text.Encoding.UTF8.GetBytes("bo3181"));
+				WriteProtected<byte>(Address3180, _gb3);
 				break;	
 		}
 
@@ -185,15 +199,30 @@ Code "Knight Dynamics"
 			else
 			{ WriteProtected<byte>(SonicDamage, System.Text.Encoding.UTF8.GetBytes(HurtRNG[new Random().Next(0, HurtRNG.Length)])); }
 			
-			bool gameModeBattleRush = gmName == "GameModeBattleRush"
-			if (gameModeBossRush)
+			bool isBattleRush = gmName == "GameModeBattleRush";
+			if (isBattleRush)
+			{
+				WriteProtected<byte>(AtkIntrrupt, _gb6);
+				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
+				WriteProtected<byte>(B1SwordSide, _gb7);
+				WriteProtected<byte>(B1SwordVert, _gb8);
+				WriteProtected<byte>(F2SwordLast, _gb9);
+				WriteProtected<byte>(AddressSP02, _gb10);
+					
+				if (isKnightF2)
+				{
+					var setupData = new EventPlayer.EventSetupData("bo3140");
+					evtPlayer->PlayEvent(ref setupData);
+				}
+			}
+			else if (isBossRush)
 			{
 				WriteProtected<byte>(AtkIntrrupt, System.Text.Encoding.UTF8.GetBytes(IntrRNG[new Random().Next(0, IntrRNG.Length)]));
 				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
 				WriteProtected<byte>(B1SwordSide, System.Text.Encoding.UTF8.GetBytes(SideRNG[new Random().Next(0, SideRNG.Length)]));
 				WriteProtected<byte>(B1SwordVert, System.Text.Encoding.UTF8.GetBytes(VertRNG[new Random().Next(0, VertRNG.Length)]));
-				WriteProtected<byte>(F2SwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp03"));
-				WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp02_phase2"));
+				WriteProtected<byte>(F2SwordLast, _gb4);
+				WriteProtected<byte>(AddressSP02, _gb5);
 					
 				if (isKnightF2)
 				{
@@ -205,29 +234,14 @@ Code "Knight Dynamics"
 					}
 				};
 			}
-			else if (gameModeBattleRush)
-			{
-				WriteProtected<byte>(AtkIntrrupt, System.Text.Encoding.UTF8.GetBytes("battle2_interrupt"));
-				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
-				WriteProtected<byte>(B1SwordSide, System.Text.Encoding.UTF8.GetBytes("battle2_sword_vert"));
-				WriteProtected<byte>(B1SwordVert, System.Text.Encoding.UTF8.GetBytes("battle1_sword_rage"));
-				WriteProtected<byte>(F2SwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp02"));
-				WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2"));
-					
-				if (isKnightF2)
-				{
-					var setupData = new EventPlayer.EventSetupData("bo3140");
-					evtPlayer->PlayEvent(ref setupData);
-				}
-			}
 			else
 			{	
-				WriteProtected<byte>(AtkIntrrupt, System.Text.Encoding.UTF8.GetBytes("battle1_interrupt"));
+				WriteProtected<byte>(AtkIntrrupt, _gb11);
 				WriteProtected<byte>(B1SwordRage, System.Text.Encoding.UTF8.GetBytes(RageRNG[new Random().Next(0, RageRNG.Length)]));
-				WriteProtected<byte>(B1SwordSide, System.Text.Encoding.UTF8.GetBytes("battle1_sword_side"));
-				WriteProtected<byte>(B1SwordVert, System.Text.Encoding.UTF8.GetBytes("battle1_sword_vert"));
-				WriteProtected<byte>(F2SwordLast, System.Text.Encoding.UTF8.GetBytes("zev_knight_atk_sp01"));
-				WriteProtected<byte>(AddressSP02, System.Text.Encoding.UTF8.GetBytes("zev_knight_sonic_sp01_phase2"));
+				WriteProtected<byte>(B1SwordSide, _gb12);
+				WriteProtected<byte>(B1SwordVert, _gb13);
+				WriteProtected<byte>(F2SwordLast, _gb14);
+				WriteProtected<byte>(AddressSP02, _gb10);
 				
 				if (isKnightF2)
 				{
