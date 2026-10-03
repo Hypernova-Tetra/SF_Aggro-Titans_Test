@@ -39,6 +39,7 @@ Code "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
+		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (isBattleRush)
 		{

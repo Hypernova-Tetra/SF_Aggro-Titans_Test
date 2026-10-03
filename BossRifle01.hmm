@@ -169,6 +169,7 @@ Code "Supreme moveset" by "Hypernova"
 			WriteProtected<byte>(Adr4110, _gb2);
 			WriteProtected<byte>(Adr4160, _gb3);
 			
+			string gmName = GameMode.GetName();
 			bool isBattleRush = gmName == "GameModeBattleRush";
 			if (!isBattleRush)
 			{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE); }
