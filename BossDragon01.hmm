@@ -234,7 +234,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 				evtPlayer->PlayEvent(ref setupData);
 				
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.45f);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
 			}
