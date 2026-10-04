@@ -577,7 +577,6 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
 	
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 	bool isBoss = Player.State.GetStatePlugin("StatePluginBossBattle") != null;
-	bool gameModeBossRush = GameMode.GetName() == "GameModeBossRush"
 	
 	string gmName = GameMode.GetName();
 	bool isBossRush = gmName == "GameModeBossRush";

@@ -47,7 +47,5 @@ Code "Supreme Grand Slam Damage" by Nowasu
 		}
 	}
 	else
-	{
-		Applied = false;
-	}
+	{Applied = false;}
 }

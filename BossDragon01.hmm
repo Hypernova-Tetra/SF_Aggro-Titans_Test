@@ -49,12 +49,13 @@ Code "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
+		uint hp;
+
 		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (isBattleRush)
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-			uint hp;
 			if (!isBSRActive)
 			{ hp = 80000; }
 			else
@@ -64,7 +65,6 @@ Code "Wyvern_Combat"
 		else
 		{
 			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
-			uint hp;
 			if ((BossHP == 1) || (isChaosPolarity))
 			{ hp = 80000; }
 			else if (BossHP == 2)
@@ -74,8 +74,8 @@ Code "Wyvern_Combat"
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
 		}
 		
-		WyvernSpecialRatio = 10 / 100;
-		WyvernQte1Ratio = 5 / 100;
+		WyvernSpecialRatio = 33 / hp;
+		WyvernQte1Ratio = 25 / hp;
     }
 		
 	if (WyvernSpecialRatio > 0)
@@ -234,9 +234,9 @@ Code "Wyvern Dynamics" by "Hypernova"
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 				evtPlayer->PlayEvent(ref setupData);
 				
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.27f);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
 			}
 			else
 			{ 
