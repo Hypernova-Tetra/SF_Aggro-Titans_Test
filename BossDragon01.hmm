@@ -74,8 +74,8 @@ Code "Wyvern_Combat"
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
 		}
 		
-		WyvernSpecialRatio = 33 / hp;
-		WyvernQte1Ratio = 25 / hp;
+		WyvernSpecialRatio = 35 / hp;
+		WyvernQte1Ratio = 20 / hp;
     }
 		
 	if (WyvernSpecialRatio > 0)
@@ -234,7 +234,7 @@ Code "Wyvern Dynamics" by "Hypernova"
 				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 				evtPlayer->PlayEvent(ref setupData);
 				
-				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.27f);
+				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 0.4f);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.SPECIAL_ATTACK);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, true);
 			}
