@@ -1,10 +1,17 @@
-# **Aggravated Bosses** Playtest - 2026.10.04
+# **Aggravated Bosses** Playtest - 2026.10.06
 
 * Current 7z Compressed Mod File Size: "1.02GB"
 
 
 
 This may be the final update prior to a possible Open Beta phase with a new name for this mod.
+
+
+
+#### **Aggra.Bosses.β01**
+
+* Another Tweak to Supreme's unused Grand Slam event to avoid visual hiccups when transitioning out of the event.
+* A very unnoticeable hiccup with Wyvern was spotted in where his limbs will randomly flip out when Wyvern's Grand Slam event plays... only when in 60FPS it seems.
 
 
 
