@@ -1,10 +1,17 @@
-# **Aggravated Bosses** Playtest - 2026.10.06
+# **Aggravated Bosses** Playtest - 2026.10.08
 
 * Current 7z Compressed Mod File Size: "1.02GB"
 
 
 
 This may be the final update prior to a possible Open Beta phase with a new name for this mod.
+
+
+
+#### **Aggra.Bosses.β02**
+
+* Changed a custom event for Supreme so that it starts with Supreme in the air when the event was triggered in the air.
+* Updated Supreme's animation so that the animation that plays prior to Bitlaser after parrying his Spin Attack while his drones are up, changes in Phase 2.
 
 
 

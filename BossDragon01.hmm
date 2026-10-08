@@ -74,8 +74,8 @@ Code "Wyvern_Combat"
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
 		}
 		
-		WyvernSpecialRatio = 35 / hp;
-		WyvernQte1Ratio = 20 / hp;
+		WyvernSpecialRatio = 50 / hp;
+		WyvernQte1Ratio = 35 / hp;
     }
 		
 	if (WyvernSpecialRatio > 0)
