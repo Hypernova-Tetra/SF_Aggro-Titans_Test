@@ -10,7 +10,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 #### **Aggra.Bosses.β02**
 
-* Changed a custom event for Supreme so that it starts with Supreme in the air when the event was triggered in the air.
+* Changed a Phase 2 custom event for Supreme's 3rd Preset option so that it starts with Supreme in the air when the event was triggered in the air.
 * Rifle01.pac for several asm edits and renamed a few anm.pxd files
 * A big asm edit change so that the animation that plays prior to Bitlaser after parrying his Spin Attack while his drones are up, changes in Phase 2.
 
