@@ -545,15 +545,6 @@ Code "Unused Cinematic Grand Slam"
 				WriteProtected<byte>(AddressSplDmg, _gb4);
 			}
 			
-			int maxrings = pBlackboardItem->RingCapacity;
-			int rings = pBlackboardItem->RingCount;
-
-			if(rings > maxrings)
-			{pBlackboardItem->RingCount = maxrings;}
-
-			if(rings < 0)
-			{pBlackboardItem->RingCount = 0;}
-			
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 			{			
 				if (Ga3220Phase == 1)
@@ -584,28 +575,6 @@ Code "Unused Cinematic Grand Slam"
 			Ga3220Phase = 0
 			WriteProtected<byte>(AdObjGa3220, _gb3);
 			WriteProtected<byte>(AddressSplDmg, _gb4);
-		}
-	}
-
-	if (!healthBool && !smashBool)
-		return;
-	{
-		if (!isGiantBoss04)
-			return;
-		{
-			int maxrings = pBlackboardItem->RingCapacity;
-			int rings = pBlackboardItem->RingCount;
-			
-			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
-			{
-				pBlackboardItem->RingCount += 10;
-				
-				if(rings > maxrings)
-				pBlackboardItem->RingCount = maxrings;
-				
-				if(rings < 0)
-				pBlackboardItem->RingCount = 0;
-			}
 		}
 	}
 	
