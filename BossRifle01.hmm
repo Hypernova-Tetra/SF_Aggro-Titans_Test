@@ -115,6 +115,7 @@ Code "Supreme moveset" by "Hypernova"
 	static bool IsConfigInitialised = false;
 	static bool ModsChecked = false;
 	static bool isBSRActive = false;
+	static bool isChaosPolarity = false;
 	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo4111");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo4162");
 	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("bo4110");

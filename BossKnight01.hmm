@@ -18,6 +18,9 @@ Code "Knight_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
+	static bool ModsChecked = false;
+	static bool isBSRActive = false;
+	static bool isChaosPolarity = false;
 //
 {
 	var BossKnightConfigInfo = Reflection.GetDataInfo<BossKnightConfig.Root>("boss_knight01");
@@ -39,13 +42,13 @@ Code "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
+		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
 		
 		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (isBattleRush)
 		{
-			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
 			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);  }
 			else if (isChaosPolarity)

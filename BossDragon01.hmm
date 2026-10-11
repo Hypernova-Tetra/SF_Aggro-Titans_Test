@@ -24,6 +24,9 @@ Code "Wyvern_Combat"
 
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
+	static bool ModsChecked = false;
+	static bool isBSRActive = false;
+	static bool isChaosPolarity = false;
 
 	static double WyvernSpecialRatio = 0.0;
 	static double WyvernQte1Ratio = 0.0;
@@ -49,7 +52,8 @@ Code "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
+		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
 		
 		uint hp;
 		
@@ -57,7 +61,6 @@ Code "Wyvern_Combat"
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (isBattleRush)
 		{ 
-			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
 			{ hp = 80000; }
 			else if (isChaosPolarity)
