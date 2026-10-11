@@ -49,8 +49,10 @@ Code "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		
 		uint hp;
-
+		
 		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (isBattleRush)
@@ -58,15 +60,18 @@ Code "Wyvern_Combat"
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
 			{ hp = 80000; }
+			else if (isChaosPolarity)
+			{ hp = 77500; }
 			else
-			{ hp = 90000; }
+			{ hp = 110000; }
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
 		}
 		else
 		{
-			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
-			if ((BossHP == 1) || (isChaosPolarity))
+			if (BossHP == 1)
 			{ hp = 80000; }
+			else if (isChaosPolarity)
+			{ hp = 77500; }
 			else if (BossHP == 2)
 			{ hp = 100000; }
 			else

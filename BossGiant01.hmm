@@ -38,15 +38,17 @@ Code "Giganto_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
         
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		
 		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (isBattleRush)
 		{ 
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-			if (!isBSRActive)
+			if ((!isBSRActive) || (isChaosPolarity))
 			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000); }
 			else
-			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
+			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
 			
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
@@ -54,7 +56,6 @@ Code "Giganto_Combat"
 		}
 		else
 		{
-			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
 			if ((BossHP == 1) || (isChaosPolarity))
 			{ 
 				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);

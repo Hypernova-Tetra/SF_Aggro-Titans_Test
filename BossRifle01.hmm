@@ -56,7 +56,7 @@ Code "Supreme Combat"
 		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
 		bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 		if ((BossHP == 1) || (isChaosPolarity))
-        { 
+        {
 			if (!isRifleBeast0)
 			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
 			else
@@ -65,6 +65,13 @@ Code "Supreme Combat"
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 10);
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
+		}
+		else if (isChaosPolarity)
+        { 
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 85000);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 12);
 		}
 		else if (BossHP == 2)
         { 
@@ -122,13 +129,64 @@ Code "Supreme moveset" by "Hypernova"
 		return;
 	
 	if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
+	if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
 	
 	bool RifleBattle = (GameManager.GetGameObject("Rifle0") != null))
 	if (!RifleBattle) 
 		return;
 	{
 		bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
-		if (isRifleBeast0)
+		if (!isRifleBeast0)
+		{
+			WriteProtected<byte>(Adr4110, _gb2);
+			WriteProtected<byte>(Adr4160, _gb3);
+			
+			string gmName = GameMode.GetName();
+			bool isBattleRush = gmName == "GameModeBattleRush";
+			if (!isBattleRush)
+			{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE); }
+			else
+			{ 
+				if (!isBSRActive)
+				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);  }
+				else if (isChaosPolarity)
+				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 82000);  }
+				else
+				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 104000);  }
+				
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
+			}
+			
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[5], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
+			
+			if ((Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp02") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spX2") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_wing") == 1))
+			{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE); }
+
+			bool rifleStrt1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1
+			if (rifleStrt1)
+			{
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
+				
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 75);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
+			}
+			
+			bool rifleBattl = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_start00") == 1
+			if (rifleBattl)
+			{
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
+				
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
+			}
+		}
+		else
 		{
 			WriteProtected<byte>(Adr4110, _gb0);
 			WriteProtected<byte>(Adr4160, _gb1);
@@ -163,54 +221,6 @@ Code "Supreme moveset" by "Hypernova"
 			{
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].attackDatas[2].attackType, BossRifleConfig.ActionType.AT_LASER);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_HOMINGLASER_NORMAL);
-			}
-		}
-		else
-		{
-			WriteProtected<byte>(Adr4110, _gb2);
-			WriteProtected<byte>(Adr4160, _gb3);
-			
-			string gmName = GameMode.GetName();
-			bool isBattleRush = gmName == "GameModeBattleRush";
-			if (!isBattleRush)
-			{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE); }
-			else
-			{ 
-				if (!isBSRActive)
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);  }
-				else
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 104000);  }
-				
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
-			}
-			
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[5], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
-			
-			if ((Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_sp02") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_spX2") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_wing") == 1))
-			{ RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE); }
-
-			bool rifleStrt1 = Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1
-			if (rifleStrt1)
-			{
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
-				
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 75);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
-			}
-			
-			bool rifleBattl = Lua.Call<int>("IsPlayingDiEvent", "zev_rfl_start00") == 1
-			if (rifleBattl)
-			{
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-				
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
 			}
 		}
 	}
@@ -324,7 +334,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 		bool ZevRifle = ((evtPlayer != null) && (GameManager.GetGameObject("Rifle0") != null))
 		if (!ZevRifle)
 			return;
-		{			
+		{	
 			WriteProtected<byte>(AdCyAtk, _gb1);
 			WriteProtected<byte>(AdCyPry, _gb2);
 

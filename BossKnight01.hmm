@@ -39,6 +39,8 @@ Code "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
+		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		
 		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (isBattleRush)
@@ -46,8 +48,10 @@ Code "Knight_Combat"
 			bool isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
 			if (!isBSRActive)
 			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);  }
+			else if (isChaosPolarity)
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 78000);  }
 			else
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 96700);  }
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 120000);  }
 			
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
@@ -56,13 +60,20 @@ Code "Knight_Combat"
 		}		
 		else
 		{
-			bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
-			if ((BossHP == 1) || (isChaosPolarity))
+			if (BossHP == 1)
 			{ 
 				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);
 				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 7);
 				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 7);
 				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 14);
+				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
+			}
+			else if (isChaosPolarity)
+			{ 
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 78000);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
+				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 12);
 				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
 			}
 			else if (BossHP == 2)
