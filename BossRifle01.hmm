@@ -31,9 +31,10 @@ Code "Supreme Combat"
 	#lib "INI"
 	#lib "BossRifleConfig"
 	#import "Services"
-	
 	static int BossHP = 0;
 	static bool IsConfigInitialised = false;
+	static bool ModsChecked = false;
+	static bool isChaosPolarity = false;
 //
 {
 	var BossRifleConfigInfo = Reflection.GetDataInfo<BossRifleConfig.Root>("boss_rifle");
@@ -53,8 +54,10 @@ Code "Supreme Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
 		bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
+		
+		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
+
 		if ((BossHP == 1) || (isChaosPolarity))
         {
 			if (!isRifleBeast0)
@@ -129,8 +132,13 @@ Code "Supreme moveset" by "Hypernova"
 	if (BossRifleConfigInfo.pData == null)
 		return;
 	
-	if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
-	if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
+	if (!ModsChecked)
+	{ 
+		isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+		isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; 
+		
+		ModsChecked = true;
+	}
 	
 	bool RifleBattle = (GameManager.GetGameObject("Rifle0") != null))
 	if (!RifleBattle) 

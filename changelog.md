@@ -1,10 +1,18 @@
-# **Aggravated Bosses** Playtest - 2026.10.08
+# **Aggravated Bosses** Playtest - 2026.10.11
 
 * Current 7z Compressed Mod File Size: "1.02GB"
 
 
 
 This may be the final update prior to a possible Open Beta phase with a new name for this mod.
+
+
+
+#### **Aggra.Bosses.β03**
+
+* Adjustment to Supreme's moveset in Base Game and Final Horizons in regards to Phase 1 "immediateActions".
+* Adjustment to Riflebeast moveset in regards to when the boss tackles the shield if the mod's "Unused Cinematic" option is active, but the player doesn't trigger the unused Grand Slam itself in gameplay.
+* When using Chaos Polarity, the HP of the Titans will have their own value regardless of HP setting. This may be a restored feature from an earlier iteration of the mod. (This might expand to other mods that lower Sonic's damage output)
 
 
 

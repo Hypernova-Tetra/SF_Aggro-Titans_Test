@@ -14,11 +14,11 @@ Patch "Riflebeast_Combat"
     #lib "HMM"
 	#lib "INI"
 	#lib "SonicParameters"
-	
 	#import "Services"
-
-    static bool IsConfigInitialised = false;
 	static int BossHP = 0;
+    static bool IsConfigInitialised = false;
+	static bool ModsChecked = false;
+	static bool isChaosPolarity = false;
 //
 {
 	var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
@@ -38,7 +38,8 @@ Patch "Riflebeast_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		bool isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0;
+		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
+		
 		if (BossHP == 1)
         { 
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 150000);
@@ -77,16 +78,13 @@ Patch "Monologue"
     #lib "Reflection"
 	#lib "HMM"
 	#lib "INI"
-	using System.Numerics;
-    using System.Collections.Generic;
-    using System.IO;
     #load "WindowsBase.dll"
     #load "PresentationCore.dll"
     #load "System.Numerics.dll"
-
+	using System.Numerics;
+    using System.Collections.Generic;
+    using System.IO;
     static bool IsConfigInitialised = false;
-	static int SupremeM = 0;
-	static int SupremeA = 0;
 	static long Addressbo6110 = 0;
 	static long Addressbo6120 = 0;
 	static long Addressbo6140 = 0;
@@ -95,6 +93,8 @@ Patch "Monologue"
 	static long Addressbo6180 = 0;
 	static long Addressbo6190 = 0;
 	static long AddressBlow00 = 0;
+	static int SupremeM = 0;
+	static int SupremeA = 0;
 	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo6011");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo6010");
 	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("zev_blow_riflebs1B");
@@ -129,6 +129,13 @@ Patch "Monologue"
 	static byte[] _gb31 = System.Text.Encoding.UTF8.GetBytes("bo6265");
 	static byte[] _gb32 = System.Text.Encoding.UTF8.GetBytes("bo6020");
 	static byte[] _gb33 = System.Text.Encoding.UTF8.GetBytes("bo6065");
+	static bool ModsChecked = false;
+	static bool isHyperDon1 = false;
+	static bool isHyperDon2 = false;
+	static bool isDefShad01 = false;
+	static bool isHyperAsu0 = false;
+	static bool isZephRangr = false;
+	static bool isSprHprUDX = false;
 //
 {
 	if (Addressbo6110 == 0) { /* 0x141466CF0 */ Addressbo6110 = ScanSignature ("bo6110", "xxxxxx"); }
@@ -152,18 +159,24 @@ Patch "Monologue"
 		SupremeM = INI.Parse<int>(ini["Main"]["RifleBeastYap"], SupremeM);
 		SupremeA = INI.Parse<int>(ini["Main"]["RifleBeastAnm"], SupremeA);
 		IsConfigInitialised = true;
+
+		if (!ModsChecked)
+		{ 
+			isHyperDon1 = HMM.GetMods().Where(x => x.Name == "Dons Hyper Sonic update 3 (BLUE EYES)").Count() > 0;
+			isHyperDon2 = HMM.GetMods().Where(x => x.Name == "Dons Hyper Sonic Aura Update").Count() > 0;
+			isDefShad01 = HMM.GetMods().Where(x => x.Name == "Shadow The Hedgehog").Count() > 0;
+			isHyperAsu0 = HMM.GetMods().Where(x => x.Name == "Asu's Simple Hyper Sonic (reskin)").Count() > 0;
+			isZephRangr = HMM.GetMods().Where(x => x.Name == "Zephyr Frontiers: God's Among Dimensions(Demo)").Count() > 0;
+			isSprHprUDX = HMM.GetMods().Where(x => x.Name == "Super/Hyper Sonic Ultimate DX").Count() > 0;
 			
+			ModsChecked = true;
+		}
+		
 		if (SupremeM != 0)
 		{ WriteProtected<byte>(Addressbo6110, _gb0); }
 		else
 		{ WriteProtected<byte>(Addressbo6110, _gb1); }
-		
-		bool isHyperDon1 = HMM.GetMods().Where(x => x.Name == "Dons Hyper Sonic update 3 (BLUE EYES)").Count() > 0;
-		bool isHyperDon2 = HMM.GetMods().Where(x => x.Name == "Dons Hyper Sonic Aura Update").Count() > 0;
-		bool isDefShad01 = HMM.GetMods().Where(x => x.Name == "Shadow The Hedgehog").Count() > 0;
-		bool isHyperAsu0 = HMM.GetMods().Where(x => x.Name == "Asu's Simple Hyper Sonic (reskin)").Count() > 0;
-		bool isZephRangr = HMM.GetMods().Where(x => x.Name == "Zephyr Frontiers: God's Among Dimensions(Demo)").Count() > 0;
-		bool isSprHprUDX = HMM.GetMods().Where(x => x.Name == "Super/Hyper Sonic Ultimate DX").Count() > 0;
+
 		bool MonoEdit = (SupremeM == 1) && (SupremeA == 1);
 		bool MonoOrgn = (SupremeM == 1) && (SupremeA == 0);
 		bool NoneEdit = (SupremeM == 0) && (SupremeA == 1);
@@ -268,7 +281,6 @@ Code "Darkball QTE"
     #load "WindowsBase.dll"
     #load "PresentationCore.dll"
     #load "System.Numerics.dll"
-
     static bool IsConfigInitialised = false;
     static long AddressParryMs1 = 0;
 	static long AddressGrandSp0 = 0;
@@ -343,90 +355,17 @@ Code "Darkball QTE"
 	}
 }
 
-Code "No_Tackle"
-//
-	#include "Reflection" noemit
-	#lib "Reflection"
-	#lib "BossRifleBeastConfig"
-    #lib "HMM"
-	#lib "INI"
-    #import "Services"
-
-    static bool IsConfigInitialised = false;
-	static bool shieldBool = false;
-	static int NoTackle = 0;
-    static int ReplaceNum = 0;
-    static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
-
-	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING00;
-	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING08;
-    AttackReplacers[2] = BossRifleBeastConfig.AtackType.AT_CROW_L;
-    AttackReplacers[3] = BossRifleBeastConfig.AtackType.AT_CROW_R;
-	AttackReplacers[4] = BossRifleBeastConfig.AtackType.AT_HIMING02;
-	AttackReplacers[5] = BossRifleBeastConfig.AtackType.AT_HIMING04;
-    AttackReplacers[6] = BossRifleBeastConfig.AtackType.AT_CROW_R;
-    AttackReplacers[7] = BossRifleBeastConfig.AtackType.AT_CROW_L;
-
-    var RifleBeastInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-//
-{
-    if (!IsConfigInitialised)
-    {
-		var mod = HMM.GetModByID("566416");
-
-		if (mod == null)
-			return;
-
-		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
-		var ini = INI.Read(modConfigIniPath);
-
-		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
-        IsConfigInitialised = true;
-
-        if (NoTackle != 0)
-        { shieldBool = true; }
-        else
-        { shieldBool = false; }
-    }
-	
-	if (!shieldBool)
-		return;
-	{
-		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-
-		if (BossRifleBeastConfigInfo.pData == null)
-			return;
-
-		for (int i = 0; i < 12; ++i)
-		{
-			for (int j = 0; j < 10; ++j)
-			{
-				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
-				{
-					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
-					++ReplaceNum;
-					if (ReplaceNum > 1)
-						ReplaceNum = 0;
-				}
-			}
-		}
-	}
-}
-
 Code "Unused Cinematic Grand Slam"
 //
 	using System.Numerics;
     using System.Collections.Generic;
     using System.IO;
 	using System.Windows.Input;
-	
 	#import "Services"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	
 	#include "Reflection" noemit
-	
 	#lib "Reflection"
 	#lib "BlackboardItem"
     #lib "HMM"
@@ -443,27 +382,20 @@ Code "Unused Cinematic Grand Slam"
 	#lib "GameObject"
 	#lib "GameManager"
 	#lib "BossRifleBeastConfig"
-	
     #load "WindowsBase.dll"
     #load "PresentationCore.dll"
     #load "System.Numerics.dll"
-	
-	static int BossHP = 0;
-	static int BossRifleSp00 = 0;
-	
 	static long AddressSplDmg = 0;
 	static long AdObjGa3220 = 0;
 	static long Ga3220Phase = 0;
-
-    static bool healthBool = false;
 	static bool smashBool = false;
 	static bool initialized = false;
 	static bool IsConfigInitialised = false;
 	static bool shieldRemove = false;
-	
+	static int BossRifleSp00 = 0;
+	static int NoTackle = 0;
 	static int ReplaceNum = 0;
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
-
 	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING08;
 	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING04;
     AttackReplacers[2] = BossRifleBeastConfig.AtackType.AT_CROW_L;
@@ -472,7 +404,6 @@ Code "Unused Cinematic Grand Slam"
 	AttackReplacers[5] = BossRifleBeastConfig.AtackType.AT_HIMING00;
     AttackReplacers[6] = BossRifleBeastConfig.AtackType.AT_CROW_R;
     AttackReplacers[7] = BossRifleBeastConfig.AtackType.AT_CROW_L;
-
     var RifleBeastInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
 	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp01");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop");
@@ -486,8 +417,8 @@ Code "Unused Cinematic Grand Slam"
 	if (evtPlayer == null)
 		return;
 	
-	var pBlackboardItem = BlackboardItem.Get();
-	if (pBlackboardItem == null)
+	var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+	if (BossRifleBeastConfigInfo.pData == null)
 		return;
 	
     if (!IsConfigInitialised)
@@ -503,26 +434,49 @@ Code "Unused Cinematic Grand Slam"
 		var ini = INI.Read(modConfigIniPath);
 
 		BossRifleSp00 = INI.Parse<int>(ini["Main"]["BossZevRifleSp00"], BossRifleSp00);
-		if (BossRifleSp00 == 1)
-        {smashBool = true;}
+		if (BossRifleSp00 != 0)
+        {
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[0], BossRifleBeastConfig.AtackType.AT_HIMING06);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[5], BossRifleBeastConfig.AtackType.AT_CROW_R);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[9], BossRifleBeastConfig.AtackType.AT_TACKLE);
+			smashBool = true;
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.easyBarrierHP, 200);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.normalBarrierHP, 150);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.hardBarrierHP, 120);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.veryHardBarrierHP, 100);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.tackleDamage, 9);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.drummingTime, 2.5f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.playerHoldTime, 4.0f);
+		}
         else
-        {smashBool = false;}
+        {
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[0], BossRifleBeastConfig.AtackType.AT_TACKLE);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[5], BossRifleBeastConfig.AtackType.AT_TACKLE);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackPatternAfter[0].attackPattern[9], BossRifleBeastConfig.AtackType.AT_HIMING06);
+			smashBool = false;
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.easyBarrierHP, 200);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.normalBarrierHP, 150);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.hardBarrierHP, 100);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.veryHardBarrierHP, 50);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.tackleDamage, 49);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.drummingTime, 8.0f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.playerHoldTime, 2.0f);
+		}
 		
-		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
-		if (BossHP == 1)
-        {healthBool = true;}
+		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
+        if (NoTackle != 0)
+        { shieldRemove = true; }
         else
-        {healthBool = false;}
+        { shieldRemove = false; }
     }
-	
-	bool isGiantBoss04 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null)
 	
 	if (!smashBool)
 		return;
-	{
+	{		
 		if (AdObjGa3220 == 0) { /* 0x141556068 */ AdObjGa3220 = ScanSignature ("obj_event_ga3220", "xxxxxxxxxxxxxxxx"); }
 		if (AddressSplDmg == 0) { /* 0x14140F5D0 */ AddressSplDmg = ScanSignature ("special_atk_damage", "xxxxxxxxxxxxxxxxxx"); }
 		
+		bool isGiantBoss04 = (Player.State.GetStatePlugin("StatePluginBossBattle") != null) && (GameManager.GetGameObject("Rifle0") != null)
 		if ((isGiantBoss04) && (GameManager.GetGameObject("RifleBeast0") != null))
 		{
 			if (evtPlayer->IsEventPlaying("bo4111"))
@@ -544,7 +498,7 @@ Code "Unused Cinematic Grand Slam"
 				WriteProtected<byte>(AdObjGa3220, _gb3);
 				WriteProtected<byte>(AddressSplDmg, _gb4);
 			}
-			
+
 			if ((XInput.IsButtonDown(XInput.Buttons.Y) && XInput.IsButtonDown(XInput.Buttons.B)) && (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateSmashSS))
 			{			
 				if (Ga3220Phase == 1)
@@ -559,8 +513,6 @@ Code "Unused Cinematic Grand Slam"
 					setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
 					evtPlayer->PlayEvent(ref setupData);
 				}
-				
-				shieldRemove = true;
 			}
 			
 			bool eventGrandS1 = evtPlayer->IsEventPlaying("zev_rfl_grndsp01")
@@ -581,11 +533,6 @@ Code "Unused Cinematic Grand Slam"
 	if (!shieldRemove)
 		return;
 	{	
-		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
-
-		if (BossRifleBeastConfigInfo.pData == null)
-			return;
-
 		for (int i = 0; i < 12; ++i)
 		{
 			for (int j = 0; j < 10; ++j)

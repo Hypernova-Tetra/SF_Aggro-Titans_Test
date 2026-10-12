@@ -19,7 +19,7 @@ Code "Supreme Grand Slam Damage" by Nowasu
 	var pRifle = GameManager.GetGameObject("Rifle0");
 	if (pRifle == null)
 		return;
-
+	
 	bool grandS1 = evtPlayer->IsEventPlaying("zev_rfl_grndsp01");
 	bool grandS2 = evtPlayer->IsEventPlaying("zev_rfl_grndsp02");
 

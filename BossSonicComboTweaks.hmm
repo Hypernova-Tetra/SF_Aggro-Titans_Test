@@ -9,9 +9,9 @@ Code "Sonic Combo Edits"
 	#lib "SonicParameters"
 	#import "Services"
 	#import "Plugins"
-    static bool IsConfigInitialised = false;
 	static int SonicBattle = 0;
 	static int BossRifleSp00 = 0;
+    static bool IsConfigInitialised = false;
     static bool fightBool = false;
 //
 {
@@ -22,6 +22,8 @@ Code "Sonic Combo Edits"
 	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 	if (!isRifleBeast0)
 	{
+		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.1f);
+		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 185);
 		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 0);
 		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 0);
 		RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 1.0f);
@@ -31,6 +33,8 @@ Code "Sonic Combo Edits"
 	}
 	else
 	{
+		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.1f);
+		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 185);
 		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
 		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 164);
 		RFL_SET_PARAM(SonicParametersInfo, common.smashSet.superSonic1.hit1.shapeSize.X, 35.0f);
@@ -194,9 +198,6 @@ Code "Sonic Combo Edits"
 		{
 			if (!isBoss)
 			{	
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.1f);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 175);
-				
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.QuickCyloop);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.ChargeAttack);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[5], SonicParameters.Action.HomingShot);
@@ -215,10 +216,7 @@ Code "Sonic Combo Edits"
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.aerialQuickCyloop.transitExistTarget[3], SonicParameters.Action.Root);
 			}
 			else
-			{
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.01f);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 16.5f);
-				
+			{			
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.CrossSlash);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[0], SonicParameters.Action.Pursuit);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitInAir[2], SonicParameters.Action.QuickCyloop);
@@ -235,10 +233,7 @@ Code "Sonic Combo Edits"
 		{
 			if (!isBoss)
 				return;
-			{
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.3f);
-				RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 16.5f);
-				
+			{				
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[2], SonicParameters.Action.QuickCyloop);
 				RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.spinSlash.transitExistTarget[3], SonicParameters.Action.ChargeAttack);
 

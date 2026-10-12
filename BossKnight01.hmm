@@ -15,7 +15,6 @@ Code "Knight_Combat"
     #lib "HMM"
 	#lib "INI"
     #import "Services"
-
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
 	static bool ModsChecked = false;
@@ -42,26 +41,17 @@ Code "Knight_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
-		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
+		if (!ModsChecked)
+		{ 
+			isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+			isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; 
+			
+			ModsChecked = true;
+		}
 		
 		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
-		if (isBattleRush)
-		{
-			if (!isBSRActive)
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);  }
-			else if (isChaosPolarity)
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 78000);  }
-			else
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 120000);  }
-			
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
-		}		
-		else
+		if (!isBattleRush)
 		{
 			if (BossHP == 1)
 			{ 
@@ -96,6 +86,20 @@ Code "Knight_Combat"
 				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
 			}
 		}
+		else
+		{
+			if (!isBSRActive)
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);  }
+			else if (isChaosPolarity)
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 78000);  }
+			else
+			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 120000);  }
+			
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.03f);
+		}	
     }
 };
 
@@ -107,33 +111,26 @@ Code "Knight Dynamics"
 	#lib "GameManager"
 	#lib "Player"
 	#lib "EventPlayer"
-	
 	#import "Services"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	
 	static long AddressSP02 = 0;
 	static long F2SwordLast = 0;
 	static long Address3120 = 0;
 	static long Address3180 = 0;
-
 	static long AtkIntrrupt = 0;
 	static string[] IntrRNG = new[]
     { /* sup */ "battle1_interrupt", "battle2_interrupt" };
-	
 	static long B1SwordRage = 0;
 	static string[] RageRNG = new[]
     { /* sup */ "battle1_sword_rage", "battle2_sword_vert", "battle1_sword_vert" };
-	
 	static long B1SwordSide = 0;
 	static string[] SideRNG = new[]
     { /* sup */ "battle1_sword_side", "battle2_sword_vert" };
-	
 	static long B1SwordVert = 0;
 	static string[] VertRNG = new[]
     { /* sup */ "battle1_sword_vert", "battle1_sword_rage" };
-		
 	static long SonicDamage = 0;
     static string[] HurtRNG = new[]
     { /* sup */ "zev_knight_sonic_damageX1", "zev_knight_sonic_damageX2", "zev_knight_sonic_damageX3", "zev_knight_sonic_damageX4", "zev_knight_sonic_damageX5", "zev_knight_sonic_damageX6", "zev_knight_sonic_damageX7", "zev_knight_sonic_damageX8" };

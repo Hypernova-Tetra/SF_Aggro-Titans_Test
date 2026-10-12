@@ -21,13 +21,11 @@ Code "Wyvern_Combat"
 	#lib "Memory"
 	#import "Services"
 	#import "GOComponents"
-
     static bool IsConfigInitialised = false;
 	static int BossHP = 0;
 	static bool ModsChecked = false;
 	static bool isBSRActive = false;
 	static bool isChaosPolarity = false;
-
 	static double WyvernSpecialRatio = 0.0;
 	static double WyvernQte1Ratio = 0.0;
 	static int WyvernLastSpecial = -1;
@@ -52,24 +50,19 @@ Code "Wyvern_Combat"
 		BossHP = INI.Parse<int>(ini["Main"]["BossCombat"], BossHP);
         IsConfigInitialised = true;
 		
-		if (!ModsChecked) { isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0; ModsChecked = true; }
-		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
+		if (!ModsChecked)
+		{ 
+			isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
+			isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; 
+			
+			ModsChecked = true;
+		}
 		
 		uint hp;
 		
 		string gmName = GameMode.GetName();
 		bool isBattleRush = gmName == "GameModeBattleRush";
-		if (isBattleRush)
-		{ 
-			if (!isBSRActive)
-			{ hp = 80000; }
-			else if (isChaosPolarity)
-			{ hp = 77500; }
-			else
-			{ hp = 110000; }
-			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
-		}
-		else
+		if (!isBattleRush)
 		{
 			if (BossHP == 1)
 			{ hp = 80000; }
@@ -79,6 +72,16 @@ Code "Wyvern_Combat"
 			{ hp = 100000; }
 			else
 			{ hp = 175000; }
+			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
+		}
+		else
+		{ 
+			if (!isBSRActive)
+			{ hp = 80000; }
+			else if (isChaosPolarity)
+			{ hp = 77500; }
+			else
+			{ hp = 110000; }
 			RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
 		}
 		
@@ -133,12 +136,10 @@ Code "Wyvern Dynamics" by "Hypernova"
 	#lib "Player"
 	#lib "EventPlayer"
 	#lib "Reflection"	
-	
 	#import "Services"
 	#import "GOComponents"
 	#import "Graphics"
 	#import "Plugins"
-	
 	static long AddressSp01 = 0;
 	static long AddressSnd1 = 0;
 	static long AddressMsle = 0;
@@ -147,7 +148,6 @@ Code "Wyvern Dynamics" by "Hypernova"
 	static long AdCntrLsr01 = 0;
 	static long Address2120 = 0;
 	static long Address2180 = 0;
-	
 	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo2120");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo2121");
 	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile");

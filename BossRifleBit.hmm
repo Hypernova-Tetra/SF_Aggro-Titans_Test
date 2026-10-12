@@ -13,7 +13,7 @@ Code "BossBit_Unused_Attack_Restore"
 	var BossBitConfigInfo = Reflection.GetDataInfo<BossBitConfig.Root>("boss_bit_param");
 	if (BossBitConfigInfo.pData == null)
 		return;
-		
+	
 	bool isRifleBeast = (GameManager.GetGameObject("RifleBeast0") != null);
 	if (!isRifleBeast)
 	{
