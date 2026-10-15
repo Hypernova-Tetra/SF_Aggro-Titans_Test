@@ -52,7 +52,7 @@ Code "Giganto_Combat"
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (!isBattleRush)
 		{
-			if ((BossHP == 1) || (isChaosPolarity))
+			if (BossHP == 1)
 			{ 
 				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
 				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
@@ -74,13 +74,13 @@ Code "Giganto_Combat"
 				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 			}
 		}
+		else if ((isBSRActive) && (!isChaosPolarity))
+		{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
+		else if (isChaosPolarity)
+		{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000); }
 		else
 		{ 
-			if ((!isBSRActive) || (isChaosPolarity))
-			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000); }
-			else
-			{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
-			
+			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 80000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
@@ -186,7 +186,7 @@ Code "Giganto Dynamics" by "Hypernova"
 			case "ga1225":
 				WriteProtected<byte>(Address1120, _gb0);
 				WriteProtected<byte>(Address1160, _gb1); 
-			break;
+				break;
 			
 			case "bo1120": 
 			case "bo1121":
@@ -196,22 +196,30 @@ Code "Giganto Dynamics" by "Hypernova"
 				WriteProtected<byte>(AdCyloopPry, _gb4);
 				WriteProtected<byte>(AdAtkCnSp02, _gb5);
 				WriteProtected<byte>(Address1180, _gb6);
-			break;
+				break;
 			
 			case "bo1141":
 				WriteProtected<byte>(AttackShout, _gb7);
 				WriteProtected<byte>(AdCyloopAtk, _gb8);
 				WriteProtected<byte>(AdCyloopPry, _gb9);
 				WriteProtected<byte>(Address1180, _gb10);
-			break;
+				break;
 			
 			case "bo1140":
 				WriteProtected<byte>(AdAtkCnSp02, _gb5);
-			break;
+				break;
 			
 			case "bo1142":
 				WriteProtected<byte>(AdAtkCnSp02, _gb11);
-			break;
+				break;
+			
+			case "bo1151": 
+			case "bo1160":
+			case "bo1161":
+			case "bo1170":
+				WriteProtected<byte>(AdCyloopAtk, _gb3);
+				WriteProtected<byte>(AdCyloopPry, _gb4);
+				break;
 		}
 	}
 	

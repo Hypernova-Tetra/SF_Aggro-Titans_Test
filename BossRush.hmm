@@ -43,19 +43,15 @@ Code "Rings from Parry in Wyvern"
 		if (Anim == "PARRY_FLY")
 		{
 			bool parryFly = (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateParry);
-
 			if ((parryFly) && (rings < 100))
 			{
 				pBlackboardItem->RingCount += 1;
-				
 				if(rings > maxrings)
 				{pBlackboardItem->RingCount = maxrings;}
-
 				if(rings < 0)
 				{pBlackboardItem->RingCount = 0;}
 			}
 		}
-		
 		if (Anim == "PARRY")
 		{
 			bool parryQTE = (Player.State.GetCurrentStateID<Sonic.StateID>() == Sonic.StateID.StateParry);
@@ -63,10 +59,8 @@ Code "Rings from Parry in Wyvern"
 			if ((parryQTE) && (rings < 50))
 			{
 				pBlackboardItem->RingCount += 2;
-				
 				if(rings > maxrings)
 				{pBlackboardItem->RingCount = maxrings;}
-
 				if(rings < 0)
 				{pBlackboardItem->RingCount = 0;}
 			}

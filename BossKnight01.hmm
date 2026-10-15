@@ -61,14 +61,6 @@ Code "Knight_Combat"
 				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 14);
 				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
 			}
-			else if (isChaosPolarity)
-			{ 
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 78000);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 12);
-				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
-			}
 			else if (BossHP == 2)
 			{ 
 				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 125000);
@@ -86,15 +78,19 @@ Code "Knight_Combat"
 				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
 			}
 		}
+		else if ((isBSRActive) && (!isChaosPolarity))
+		{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 110000);  }
+		else if (isChaosPolarity)
+		{ 
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 76000);  
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 12);
+			RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
+		}
 		else
 		{
-			if (!isBSRActive)
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);  }
-			else if (isChaosPolarity)
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 78000);  }
-			else
-			{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 120000);  }
-			
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000); 
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);

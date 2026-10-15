@@ -9,7 +9,7 @@ Code "Supreme Grand Slam Damage" by Nowasu
 	#import "Services"
 	#import "GOComponents"
 	static bool Applied = false;
-	static int GrandDmgPercent = 10;
+	static int GrandDmgPercent = 9;
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");

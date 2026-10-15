@@ -38,7 +38,7 @@
 				"Type":"BossHP",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"0"
+				"DefaultValue":"3"
 				},
 				{
 				"Name":"IncludeDir1",
@@ -56,7 +56,7 @@
 				"Type":"SupremeB",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"MBoss_RifleQTE_01"
+				"DefaultValue":"MBoss_RifleQTE_00"
 				},
 				{
 				"Name":"BossRifleWing",
@@ -86,7 +86,7 @@
 				{
 				"Name":"BossZevRifleSp00",
 				"DisplayName":"Supreme (Regular) Grand Slam",
-				"Description":["Choose how you want the Grand Slam to play out. Due to a bug occuring when triggering in the base story, this cinematic will only play in Final Horizons for now."],
+				"Description":["This option only affects Final Horizons due to issues I can't fix fully for the base game. The event now does damage and will deduct 10% of the boss health. The scene only triggers through XInput for now. I do not know how to get it working for other controller types."],
 				"Type":"BossRifleSp00",
 				"MinValue":null,
 				"MaxValue":null,
@@ -130,7 +130,7 @@
 			},
 			{
 			"DisplayName":"High HP",
-			"Value":"0",
+			"Value":"3",
 			"Description":["Giganto HP = 150k / Wyvern HP = 175k / Knight HP = 182k / Supreme HP = 195 or 200k / Riflebeast HP = 250k - DO NOT USE WITH COMBAT MODS THAT NERFS SONIC OR EXTREME MODE, UNLESS YOU WANT TO SPEND A COSMIC ETERNITY FIGHTING A SINGLE TITAN!"]
 			},
 		],
@@ -202,6 +202,11 @@
 		"SupremeB":
 		[
 			{
+			"DisplayName":"Supreme Remix",
+			"Value":"MBoss_RifleQTE_00",
+			"Description":["Rebranded from 'Oops All Bitlaser'. Now contains a mix of events from Restored Vanilla and Retooled. Some events of the former name of this option were kept."]
+			},
+			{
 			"DisplayName":"Restored Vanilla",
 			"Value":"MBoss_RifleQTE_01",
 			"Description":["The original unused scenes restored and Bitlaser is now a QTE."]
@@ -210,11 +215,6 @@
 			"DisplayName":"Retooled",
 			"Value":"MBoss_RifleQTE_02",
 			"Description":["Unique scenes utilizing unused animation files for new sequences."]
-			},
-			{
-			"DisplayName":"Oops All BitLaser",
-			"Value":"MBoss_RifleQTE_03",
-			"Description":["Supreme uses the large diamond turrets more often here. Bitlaser01 and 02 have their extended uncut animations."]
 			}
 		],	
 		"SupremeM":

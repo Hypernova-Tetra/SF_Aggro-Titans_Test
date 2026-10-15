@@ -46,17 +46,17 @@ Patch "Riflebeast_Combat"
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
 		}
-		else if (isChaosPolarity)
-        { 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 90000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
-		}
 		else if (BossHP == 2)
         { 
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 225000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2500);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
+		}
+		else if (isChaosPolarity)
+        { 
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 90000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
 		}
         else
         { 
