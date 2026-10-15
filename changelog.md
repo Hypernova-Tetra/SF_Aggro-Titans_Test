@@ -1,4 +1,4 @@
-# **Aggravated Bosses** Playtest - 2026.10.13
+# **Aggravated Bosses** Playtest - 2026.10.15
 
 * Current 7z Compressed Mod File Size: "1.02GB"
 
@@ -11,6 +11,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 #### **Aggra.Bosses.β04**
 
 * Rebranded "Oops All Bitlaser" Supreme QTE preset to: "Supreme Remix" which will now feature a mix of events from "Restored Vanilla" and "Retooled" while keeping remnants of the former name preset intact.
+* Several misc. text edits in configs.
 
 
 

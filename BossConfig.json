@@ -38,7 +38,7 @@
 				"Type":"BossHP",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"3"
+				"DefaultValue":"2"
 				},
 				{
 				"Name":"IncludeDir1",
@@ -86,11 +86,11 @@
 				{
 				"Name":"BossZevRifleSp00",
 				"DisplayName":"Supreme (Regular) Grand Slam",
-				"Description":["This option only affects Final Horizons due to issues I can't fix fully for the base game. The event now does damage and will deduct 10% of the boss health. The scene only triggers through XInput for now. I do not know how to get it working for other controller types."],
+				"Description":["This option only affects Final Horizons due to issues I can't fix fully for the base game. The event now does damage and will deduct 9% of the boss health. The scene only triggers through XInput for now. I do not know how to get it working for other controller types. If you want to use the standard Grand Slam for Supreme during Final Horizon instead, change this setting to 'Default'."],
 				"Type":"BossRifleSp00",
 				"MinValue":null,
 				"MaxValue":null,
-				"DefaultValue":"0"
+				"DefaultValue":"1"
 				},
 				{
 				"Name":"RifleBeastYap",
@@ -126,12 +126,12 @@
 			{
 			"DisplayName":"Medium HP",
 			"Value":"2",
-			"Description":["Giganto HP = 90k / Wyvern HP = 100k / Knight HP = 112k / Supreme HP = 133 or 150k / Riflebeast HP = 200k"]
+			"Description":["Giganto HP = 90k / Wyvern HP = 100k / Knight HP = 112k / Supreme HP = 180 or 200k / Riflebeast HP = 225k"]
 			},
 			{
 			"DisplayName":"High HP",
 			"Value":"3",
-			"Description":["Giganto HP = 150k / Wyvern HP = 175k / Knight HP = 182k / Supreme HP = 195 or 200k / Riflebeast HP = 250k - DO NOT USE WITH COMBAT MODS THAT NERFS SONIC OR EXTREME MODE, UNLESS YOU WANT TO SPEND A COSMIC ETERNITY FIGHTING A SINGLE TITAN!"]
+			"Description":["Giganto HP = 150k / Wyvern HP = 175k / Knight HP = 182.5k / Supreme HP = 270 or 300k / Riflebeast HP = 330k - DO NOT USE WITH COMBAT MODS THAT NERFS SONIC OR EXTREME MODE, UNLESS YOU WANT TO SPEND A COSMIC ETERNITY FIGHTING A SINGLE TITAN!"]
 			},
 		],
 		"SonicBattle":
@@ -196,7 +196,7 @@
 			{
 			"DisplayName":"Unused Cinematic Event",
 			"Value":"1",
-			"Description":["**Experimental** Restores the unused cutscene for Supreme's Grand Slam. Known Issues- 1: Does not inflict damage due to missing parameters in the rfl file. 2: After activation, the game may crash when trying to parry Riflebeast's arms in Phase 2."]
+			"Description":["**Still experimental!** Restores the unused cutscene for Supreme's Grand Slam. Now inflicts damage, but selecting this option will move the Shield Tackle attack to the bottom of Riflebeast's attack list, will also remove the ability to parry the Shield Tackle, in return damage to the shield is greatly reduced."]
 			}
 		],
 		"SupremeB":
@@ -235,12 +235,12 @@
 			{
 			"DisplayName":"Original",
 			"Value":"0",
-			"Description":["The Fake Moon just floats there, menacingly."]
+			"Description":["The original vanilla animation from release."]
 			},
 			{
 			"DisplayName":"Edited Animation",
 			"Value":"1",
-			"Description":["Certain changes to the cutscenes."]
+			"Description":["Certain other cutscenes have slight changes to them."]
 			},
 		],
 		"NoTackle":
@@ -253,7 +253,7 @@
 			{
 			"DisplayName":"Attack Disabled",
 			"Value":"1",
-			"Description":["ONLY USE IF YOUR GAME CRASHES WHEN PARRYING. The Shield Tackle will be removed and instead Supreme will use other attacks instead."]
+			"Description":["ONLY USE IF YOUR GAME CRASHES WHEN PARRYING when certain mods are applied along with Aggro Titans. The Shield Tackle will be removed and instead Supreme will use other attacks instead."]
 			}
 		],
 	},
