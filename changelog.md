@@ -14,6 +14,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 * Several misc. text edits in configs.
 * Fixed a coding issue after combining "NoTackle" with "Unused Grand Slam" code sections, causing the former to be ignored for some reason.
 * Restored Camera shakes to the Darkball QTE after they had been missing for months.
+* Fixed a crash that occurred when cylooping Supreme during an animation during Phase 1.
 
 
 
