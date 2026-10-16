@@ -73,7 +73,7 @@ Code "Wyvern_Combat"
 		}
 		else if ((isBSRActive) && (!isChaosPolarity))
 		{ hp = 105000;}
-		else if (isChaosPolarity)
+		else if ((isChaosPolarity) && (BossHP != 0))
 		{ hp = 76000; }
 		else
 		{ hp = 82500; }

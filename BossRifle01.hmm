@@ -186,7 +186,6 @@ Code "Supreme moveset" by "Hypernova"
 			{
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
-				
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 75);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
@@ -197,7 +196,6 @@ Code "Supreme moveset" by "Hypernova"
 			{
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-				
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 0);
 			}
@@ -211,18 +209,16 @@ Code "Supreme moveset" by "Hypernova"
 			if (rifleStrt2)
 			{
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[0], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[4], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[5], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_COUNTER_BLOW);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT4);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_LASER);
-				
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 80);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SHOT2);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_SHOT3);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SP01);
-				
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_COUNTER_BLOW);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT1);
 			}
@@ -310,6 +306,8 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	static byte[] _gb36 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2");
 	static byte[] _gb37 = System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_01_release");
 	static byte[] _gb38 = System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_01_releas2");
+	static byte[] _gb39 = System.Text.Encoding.UTF8.GetBytes("cyloop_attck_r");
+	static byte[] _gb40 = System.Text.Encoding.UTF8.GetBytes("cyloop_counter_pry_r");
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -350,9 +348,6 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 		if (!ZevRifle)
 			return;
 		{
-			WriteProtected<byte>(AdCyAtk, _gb1);
-			WriteProtected<byte>(AdCyPry, _gb2);
-			
 			if (evtPlayer != null)
 			{
 				if ((Lua.Call<int>("IsPlayingDiEvent", "bo4110") == 1) || (Lua.Call<int>("IsPlayingDiEvent", "ev1770") == 1))
@@ -417,6 +412,8 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 					case "bo4180":
 					case "bo4181":
 					case "zev_rfl_start00":
+						WriteProtected<byte>(AdCyAtk, _gb1);
+						WriteProtected<byte>(AdCyPry, _gb40);
 						WriteProtected<byte>(ATSHOT3, _gb3); 
 						WriteProtected<byte>(ATSHOT1, _gb4);
 						WriteProtected<byte>(AT0RING, _gb5);
@@ -490,8 +487,10 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						break;
 					case "bo4140":
 					case "bo4141":
-						WriteProtected<byte>(ATSHOT3, _gb20);
-						WriteProtected<byte>(ATSHOT1, _gb21);
+						WriteProtected<byte>(AdCyAtk, _gb1);
+						WriteProtected<byte>(AdCyPry, _gb2);
+						WriteProtected<byte>(ATSHOT3, _gb21);
+						WriteProtected<byte>(ATSHOT1, _gb20);
 						WriteProtected<byte>(AT0RING, _gb22);
 						WriteProtected<byte>(AdSp01R, _gb38);
 						if (isRifleBeast0)
@@ -567,6 +566,11 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 						WriteProtected<byte>(ATSHOT3, _gb34);
 						WriteProtected<byte>(ATSHOT1, _gb21);
 						WriteProtected<byte>(ATSHOT2, _gb31);
+						break;
+					case "bo4160":
+					case "bo4162":
+						WriteProtected<byte>(AdCyAtk, _gb1);
+						WriteProtected<byte>(AdCyPry, _gb2);
 						break;
 				}
 			}

@@ -355,6 +355,75 @@ Code "Darkball QTE"
 	}
 }
 
+Code "No_Tackle"
+//
+	#include "Reflection" noemit
+	#lib "Reflection"
+	#lib "BossRifleBeastConfig"
+    #lib "HMM"
+	#lib "INI"
+    #import "Services"
+
+    static bool IsConfigInitialised = false;
+	static bool shieldBool = false;
+	static int NoTackle = 0;
+    static int ReplaceNum = 0;
+    static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
+
+	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING00;
+	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING08;
+    AttackReplacers[2] = BossRifleBeastConfig.AtackType.AT_CROW_L;
+    AttackReplacers[3] = BossRifleBeastConfig.AtackType.AT_CROW_R;
+	AttackReplacers[4] = BossRifleBeastConfig.AtackType.AT_HIMING02;
+	AttackReplacers[5] = BossRifleBeastConfig.AtackType.AT_HIMING04;
+    AttackReplacers[6] = BossRifleBeastConfig.AtackType.AT_CROW_R;
+    AttackReplacers[7] = BossRifleBeastConfig.AtackType.AT_CROW_L;
+
+    var RifleBeastInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+//
+{
+    if (!IsConfigInitialised)
+    {
+		var mod = HMM.GetModByID("566416");
+
+		if (mod == null)
+			return;
+
+		string modConfigIniPath = System.IO.Path.Combine(mod.Path, "mod.ini");
+		var ini = INI.Read(modConfigIniPath);
+
+		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
+        IsConfigInitialised = true;
+
+        if (NoTackle != 0)
+        { shieldBool = true; }
+        else
+        { shieldBool = false; }
+    }
+	
+	if (!shieldBool)
+		return;
+	{
+		var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
+		if (BossRifleBeastConfigInfo.pData == null)
+			return;
+
+		for (int i = 0; i < 12; ++i)
+		{
+			for (int j = 0; j < 10; ++j)
+			{
+				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
+				{
+					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
+					++ReplaceNum;
+					if (ReplaceNum > 1)
+						ReplaceNum = 0;
+				}
+			}
+		}
+	}
+}
+
 Code "Unused Cinematic Grand Slam"
 //
 	using System.Numerics;
@@ -391,20 +460,7 @@ Code "Unused Cinematic Grand Slam"
 	static bool smashBool = false;
 	static bool initialized = false;
 	static bool IsConfigInitialised = false;
-	static bool shieldRemove = false;
 	static int BossRifleSp00 = 0;
-	static int NoTackle = 0;
-	static int ReplaceNum = 0;
-    static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
-	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING08;
-	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING04;
-    AttackReplacers[2] = BossRifleBeastConfig.AtackType.AT_CROW_L;
-    AttackReplacers[3] = BossRifleBeastConfig.AtackType.AT_CROW_R;
-	AttackReplacers[4] = BossRifleBeastConfig.AtackType.AT_HIMING02;
-	AttackReplacers[5] = BossRifleBeastConfig.AtackType.AT_HIMING00;
-    AttackReplacers[6] = BossRifleBeastConfig.AtackType.AT_CROW_R;
-    AttackReplacers[7] = BossRifleBeastConfig.AtackType.AT_CROW_L;
-    var RifleBeastInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
 	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp01");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("special_atk_cyloop");
 	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_grndsp02");
@@ -445,8 +501,8 @@ Code "Unused Cinematic Grand Slam"
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.hardBarrierHP, 120);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.veryHardBarrierHP, 100);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.tackleDamage, 9);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.drummingTime, 2.5f);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.playerHoldTime, 4.0f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.drummingTime, 0.0f);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.playerHoldTime, 2.0f);
 		}
         else
         {
@@ -462,12 +518,6 @@ Code "Unused Cinematic Grand Slam"
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.drummingTime, 8.0f);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackTackle.playerHoldTime, 2.0f);
 		}
-		
-		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
-        if (NoTackle != 0)
-        { shieldRemove = true; }
-        else
-        { shieldRemove = false; }
     }
 	
 	if (!smashBool)
@@ -527,24 +577,6 @@ Code "Unused Cinematic Grand Slam"
 			Ga3220Phase = 0
 			WriteProtected<byte>(AdObjGa3220, _gb3);
 			WriteProtected<byte>(AddressSplDmg, _gb4);
-		}
-	}
-	
-	if (!shieldRemove)
-		return;
-	{	
-		for (int i = 0; i < 12; ++i)
-		{
-			for (int j = 0; j < 10; ++j)
-			{
-				if ((RFL_GET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j])) == BossRifleBeastConfig.AtackType.AT_TACKLE)
-				{
-					RFL_SET_PARAM(RifleBeastInfo, battleParam.attackPatternAfter[i].attackPattern[j], AttackReplacers[ReplaceNum]);
-					++ReplaceNum;
-					if (ReplaceNum > 1)
-						ReplaceNum = 0;
-				}
-			}
 		}
 	}
 }

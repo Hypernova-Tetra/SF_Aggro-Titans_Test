@@ -76,10 +76,10 @@ Code "Giganto_Combat"
 		}
 		else if ((isBSRActive) && (!isChaosPolarity))
 		{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
-		else if (isChaosPolarity)
+		else if ((isChaosPolarity) && (BossHP != 0))
 		{ RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000); }
 		else
-		{ 
+		{
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 80000);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
