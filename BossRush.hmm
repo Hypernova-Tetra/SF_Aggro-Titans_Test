@@ -1,4 +1,4 @@
-Code "Rings from Parry in Wyvern"
+Code "Wyvern's Parry Reward"
 //
 	#include "Reflection" noemit
     #include "BlackboardStatus" noemit
@@ -68,7 +68,7 @@ Code "Rings from Parry in Wyvern"
 	}
 }
 
-Patch "BossRush_Time"
+Patch "BossRush Things"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

@@ -39,30 +39,34 @@ Patch "Riflebeast_Combat"
         IsConfigInitialised = true;
 		
 		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
-		
-		if (BossHP == 1)
-        { 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 150000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
+		if (!isChaosPolarity)
+		{
+			if (BossHP == 1)
+			{ 
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 150000);
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
+			}
+			else if (BossHP == 2)
+			{ 
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 225000);
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2500);
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
+			}
+			else if (BossHP == 3)
+			{ 
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 330000);
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 3000);
+				RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3500);
+			}
+			else
+			{return;}
 		}
-		else if (BossHP == 2)
-        { 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 225000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2500);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2500);
-		}
-		else if (isChaosPolarity)
-        { 
+		else
+		{ 
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 90000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
-		}
-        else
-        { 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 330000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 3000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3500);
 		}
     }
 }		

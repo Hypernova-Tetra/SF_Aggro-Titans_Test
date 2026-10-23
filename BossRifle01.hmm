@@ -67,40 +67,45 @@ Code "Supreme Combat"
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (!isBattleRush)
 		{
-			bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
-			
-			if (BossHP == 1)
+			if (!isChaosPolarity)
 			{
-				if (!isRifleBeast0)
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
+				bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
+				
+				if (BossHP == 1)
+				{
+					if (!isRifleBeast0)
+					{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
+					else
+					{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
+				
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 10);
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
+				}
+				else if (BossHP == 2)
+				{ 
+					if (!isRifleBeast0)
+					{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 180000); }
+					else
+					{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 200000); }
+				
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+				}
+				else if (BossHP == 3)
+				{ 
+					if (!isRifleBeast0)
+					{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 270000); }
+					else
+					{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 300000); }
+				
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+				}
 				else
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 100000); }
-			
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 10);
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 10);
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 20);
-			}
-			else if (BossHP == 2)
-			{ 
-				if (!isRifleBeast0)
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 180000); }
-				else
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 200000); }
-			
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
-			}
-			else
-			{ 
-				if (!isRifleBeast0)
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 270000); }
-				else
-				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 300000); }
-			
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+				{return;}
 			}
 		}
 		else if ((isBSRActive) && (!isChaosPolarity))
@@ -117,7 +122,7 @@ Code "Supreme Combat"
 	}
 }
 
-Code "Supreme moveset" by "Hypernova"
+Code "Supreme Moveset"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"
@@ -238,7 +243,7 @@ Code "Supreme moveset" by "Hypernova"
 	}
 }
 
-Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
+Code "Supreme Dynamics"
 //
 	#lib "GameManager"
 	#lib "Reflection"
@@ -571,7 +576,7 @@ Code "Supreme Dynamics" by "Hypernova" and "Gordon Ramsay"
 	}
 }
 
-Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
+Code "Supreme RNG Attacks"
 //
 	#lib "GameManager"
 	#lib "GameObject"
@@ -598,7 +603,6 @@ Code "Supreme_Sp_RNG" by "Hypernova" and "Holoska"
 	{ /* sup */ "attack_counter_sp_02", "attack_counter_sp_03", "attack_counter_sp_04" };
 {
 	
-	bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 	bool isBoss = Player.State.GetStatePlugin("StatePluginBossBattle") != null;
 	
 	string gmName = GameMode.GetName();

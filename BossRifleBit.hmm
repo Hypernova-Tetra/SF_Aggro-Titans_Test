@@ -1,4 +1,4 @@
-Code "BossBit_Unused_Attack_Restore"
+Code "BossBit_Unused_Atk"
 //
 	#include "Reflection" noemit
 	#lib "Reflection"

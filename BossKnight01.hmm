@@ -53,29 +53,34 @@ Code "Knight_Combat"
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (!isBattleRush)
 		{
-			if (BossHP == 1)
-			{ 
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 7);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 7);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 14);
-				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
-			}
-			else if (BossHP == 2)
-			{ 
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 125000);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
-				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.030f);
-			}
-			else
-			{ 
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 182500);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-				RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
-				RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
+			if (!isChaosPolarity)
+			{
+				if (BossHP == 1)
+				{ 
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 85000);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 7);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 7);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 14);
+					RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.028f);
+				}
+				else if (BossHP == 2)
+				{ 
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 125000);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+					RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.030f);
+				}
+				else if (BossHP == 3)
+				{ 
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 182500);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+					RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+					RFL_SET_PARAM(BossKnightConfigInfo, sonicSpecial.damageRatio, 0.032f);
+				}
+				else
+				{return;}
 			}
 		}
 		else if ((isBSRActive) && (!isChaosPolarity))

@@ -70,6 +70,8 @@ Code "Wyvern_Combat"
 			{ hp = 100000; }
 			else
 			{ hp = 175000; }
+			else if (BossHP == 3)
+			{return;}
 		}
 		else if ((isBSRActive) && (!isChaosPolarity))
 		{ hp = 105000;}
@@ -121,7 +123,7 @@ Code "Wyvern_Combat"
 	}
 };
 
-Code "Wyvern Dynamics" by "Hypernova"
+Code "Wyvern Dynamics"
 //
 	#include "Reflection" noemit
 	#lib "BossDragonConfig"

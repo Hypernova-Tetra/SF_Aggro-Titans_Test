@@ -1,4 +1,4 @@
-Patch "Giganto Address Edits" by "Hypernova"
+Patch "Giganto Address Edits"
 {
 	WriteProtected<byte> (/* 0x1414534E4 */ ScanSignature ("bo1140", "xxxxxx"), System.Text.Encoding.UTF8.GetBytes("bo1141"));
 	WriteProtected<byte> (/* 0x1414534D0 */ ScanSignature ("boss_giant01_bo1120","xxxxxxxxxxxxxxxxxxx"), System.Text.Encoding.UTF8.GetBytes("update_event_signal"));
@@ -52,26 +52,31 @@ Code "Giganto_Combat"
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (!isBattleRush)
 		{
-			if (BossHP == 1)
-			{ 
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 12);
-			}
-			else if (BossHP == 2)
-			{ 
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 90000);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
-			}
-			else
-			{ 
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 150000);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-				RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+			if (!isChaosPolarity)
+			{
+				if (BossHP == 1)
+				{ 
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 75000);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 12);
+				}
+				else if (BossHP == 2)
+				{ 
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 90000);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 5);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 5);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 10);
+				}
+				else if (BossHP == 3)
+				{ 
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.status.healthPoint, 150000);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+					RFL_SET_PARAM(BossGiantConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
+				}
+				else
+				{return;}
 			}
 		}
 		else if ((isBSRActive) && (!isChaosPolarity))
@@ -131,7 +136,7 @@ Code "Giganto_Scenes"
 	{ return; }
 }
 
-Code "Giganto Dynamics" by "Hypernova"
+Code "Giganto Dynamics"
 //
 	#include "Reflection" noemit
 	#lib "GameManager"
