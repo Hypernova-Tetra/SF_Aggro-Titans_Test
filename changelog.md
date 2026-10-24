@@ -1,4 +1,4 @@
-# **Aggravated Bosses** Playtest - 2026.10.23
+# **Aggravated Bosses** Playtest - 2026.10.24
 
 * Current 7z Compressed Mod File Size: "1.02GB"
 
@@ -12,6 +12,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 * Adjusted script files.
 * Adjusted "SonicComboTweaks" to fix some actions not activating, and removed repeated lines of code.
+* Fixed a small detail in Wyvern's Psycho QTE in where random pillars can be floating from other Wyvern animations in the QTE.
 
 
 
