@@ -41,10 +41,10 @@ Code "Sonic ComboTable"
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.airBoost.transitExistTarget[0], SonicParameters.Action.HomingShot);
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.airBoost.transitInAir[0], SonicParameters.Action.HomingShot);
 		
-		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitExistTarget[0], SonicParameters.Action.Pursuit);
-		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitExistTarget[5], SonicParameters.Action.HomingShot);
-		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitInAir[0], SonicParameters.Action.AerialHomingAttack);
-		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitInAir[5], SonicParameters.Action.HomingShot);
+		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitExistTarget[0], SonicParameters.Action.HomingShot);
+		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitExistTarget[5], SonicParameters.Action.Pursuit);
+		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitInAir[0], SonicParameters.Action.HomingShot);
+		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitInAir[5], SonicParameters.Action.Pursuit);
 		
 		if (!isRifleBeast0)
 		{
