@@ -1,4 +1,4 @@
-# **Aggravated Bosses** Playtest - 2026.10.24
+# **Aggravated Bosses** Playtest - 2026.10.26
 
 * Current 7z Compressed Mod File Size: "1.02GB"
 
@@ -8,11 +8,22 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
+#### **Aggra.Bosses.β06**
+
+* Re-Merged Add-on Sound Options in to the mod: Only "Original" and "Sound Edit" are available.
+* Removed "Sound-Overhaul" toggle option as it's being moved to the actual Sound Overhaul Mod, planned to have an Add-on to support Aggro Titans.
+
+
+
 #### **Aggra.Bosses.β05**
 
 * Adjusted script files.
 * Adjusted "SonicComboTweaks" to fix some actions not activating, and removed repeated lines of code.
 * Fixed a small detail in Wyvern's Psycho QTE in where random pillars can be floating from other Wyvern animations in the QTE.
+* A small adjustment of events between Gignato's SS transformation in Base Story and Battle Rush. Swapping what events play between them.
+* A small adjustment of events in Wyvern's Boss Fight in Battle Rush: Removed a QTE after the Phase 2 scene. Moved the Laser QTE in Battle Rush to Master King.
+* A small adjustment of events in Wyvern's Boss Fight in Battle Rush: A variant of the Psycho QTE plays where it restores a cut segment of Sonic and Wyvern clashing in a wide camera shot.
+* A small adjustment of events in Wyvern's Boss Fight in Master King: Randomizes Laser QTE between 2 distinct animations.
 
 
 

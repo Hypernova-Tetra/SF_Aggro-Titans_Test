@@ -145,6 +145,7 @@ Code "Wyvern Dynamics"
 	static long AdCntrLsr01 = 0;
 	static long Address2120 = 0;
 	static long Address2180 = 0;
+	static string[] DLsrRNG = new[] { /* sup */ "zev_dragon_sp_laser00", "zev_dragon_sp_laser01" };
 	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo2120");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo2121");
 	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_missile");
@@ -159,10 +160,11 @@ Code "Wyvern Dynamics"
 	static byte[] _gb11 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psych0");
 	static byte[] _gb12 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_00");
 	static byte[] _gb13 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_X2");
-	static byte[] _gb14 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_laser01");
+	static byte[] _gb14 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_psychoX");
 	static byte[] _gb15 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_smash2");
 	static byte[] _gb16 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_finish_01");
 	static byte[] _gb17 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_F2");
+	static byte[] _gb18 = System.Text.Encoding.UTF8.GetBytes("zev_dragon_sp_F1");
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -178,23 +180,30 @@ Code "Wyvern Dynamics"
 	if (Address2180 == 0) {/* 0x14144C99D */ Address2180 = ScanSignature ("bo2180", "xxxxxx");}
 	
 	string gmName = GameMode.GetName();
+	bool isBattleRush = gmName == "GameModeBattleRush";
 	bool isBossRush   = gmName == "GameModeBossRush";
-	if (!isBossRush)
-	{ WriteProtected<byte>(Address2120, _gb0); }
-	else
-	{ WriteProtected<byte>(Address2120, _gb1); }
-		
+	
 	if (evtPlayer->IsEventPlaying("bo2115"))
 	{
 		WriteProtected<byte>(AddressMsle, _gb2);
 		WriteProtected<byte>(AddressPsyc, _gb3);
-		WriteProtected<byte>(AddressSp01, _gb4);
 		WriteProtected<byte>(AdCntrLsr01, _gb5);
 		WriteProtected<byte>(Address2180, _gb6);
+		
+		if (!isBossRush)
+		{ 	
+			WriteProtected<byte>(AddressSp01, _gb4);
+			WriteProtected<byte>(Address2120, _gb0);
+		}
+		else
+		{ 
+			WriteProtected<byte>(AddressSp01, _gb18); 
+			WriteProtected<byte>(Address2120, _gb1);
+		}
 	}
 	
 	bool DragonFight = ((GameManager.GetGameObject("Dragon0") != null) && (Player.State.GetStatePlugin("StatePluginBossBattle") != null))
-	if (!DragonFight) 
+	if (!DragonFight)
 		return;
 	{
 		if (evtPlayer->IsEventPlaying("bo2141"))
@@ -212,7 +221,6 @@ Code "Wyvern Dynamics"
 			if (BossDragonConfigInfo.pData == null)
 				return;
 			
-			bool isBattleRush = gmName == "GameModeBattleRush";
 			if (isBattleRush)
 			{ 
 				WriteProtected<byte>(AddressSp01, _gb13);
@@ -220,10 +228,6 @@ Code "Wyvern Dynamics"
 				WriteProtected<byte>(AddressPsyc, _gb15);
 				WriteProtected<byte>(AddressFn01, _gb16); 
 					
-				var setupData = new EventPlayer.EventSetupData("zev_dragon_sp_psych1");
-				setupData.playFlags &= (EventPlayer.EventSetupData.PlayFlag)0xFFFFFFFB;
-				evtPlayer->PlayEvent(ref setupData);
-				
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].hpRatio, 1.0f);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].interrupt, BossDragonConfig.BossDragonInterrupt.BossDragonInterrupt_NOP);
 				RFL_SET_PARAM(BossDragonConfigInfo, interrupts[2].forceInterrupt, false);
@@ -231,7 +235,7 @@ Code "Wyvern Dynamics"
 			else if (isBossRush)
 			{ 
 				WriteProtected<byte>(AddressSp01, _gb9);
-				WriteProtected<byte>(AddressMsle, _gb10);
+				WriteProtected<byte>(AddressMsle, System.Text.Encoding.UTF8.GetBytes(DLsrRNG[new Random().Next(0, DLsrRNG.Length)]));
 				WriteProtected<byte>(AddressPsyc, _gb11); 
 				WriteProtected<byte>(AddressFn01, _gb12); 
 				

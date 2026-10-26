@@ -103,7 +103,7 @@ Code "Giganto_Scenes"
 	static long Address1160 = 0;
 	static bool ModsChecked = false;
 	static bool isBSRActive = false;
-	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo1120");
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo1122");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo1170");
 	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("bo1160");
 	static byte[] _gb3 = System.Text.Encoding.UTF8.GetBytes("bo1121");
@@ -155,7 +155,7 @@ Code "Giganto Dynamics"
 	static long Address1120 = 0;
 	static long Address1160 = 0;
 	static long Address1180 = 0;
-	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo1122");
+	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("bo1120");
 	static byte[] _gb1 = System.Text.Encoding.UTF8.GetBytes("bo1151");
 	static byte[] _gb2 = System.Text.Encoding.UTF8.GetBytes("attack_howl");
 	static byte[] _gb3 = System.Text.Encoding.UTF8.GetBytes("cyloop_counter");
