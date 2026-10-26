@@ -47,8 +47,6 @@ add Main/raw/movie/bo6290.usm
 add Main/raw/movie/bo6291.usm
 add Main/raw/movie/ev503X.usm
 add Main/raw/movie/ev603X.usm
-add Main/raw/movie/zev_knight_sonic_sp01.usm
-add Main/raw/movie/zev_knight_sonic_sp01_phase2.usm
 
 add Main/raw/sound/giantEX_sound/se_rangers_giant00.acb
 add Main/raw/sound/giantEX_sound/se_rangers_giant04_EX.acb
@@ -82,8 +80,6 @@ add MBoss_Audio_0rgn/raw/movie/ev1770.usm
 add MBoss_Audio_0rgn/raw/movie/ev1770_4k.usm
 add MBoss_Audio_0rgn/raw/movie/ev5020.usm
 add MBoss_Audio_0rgn/raw/movie/ev504X.usm
-add MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01.usm
-add MBoss_Audio_0rgn/raw/movie/zev_knight_sonic_sp01_phase2.usm
 add MBoss_Audio_0rgn/raw/sound/extra_sound/se_rangers_upd_obj_new.acb
 add MBoss_Audio_0rgn/raw/sound/giant01_sound/se_rangers_giant01.acb
 add MBoss_Audio_0rgn/raw/sound/dragon01_sound/se_rangers_giant02.acb
