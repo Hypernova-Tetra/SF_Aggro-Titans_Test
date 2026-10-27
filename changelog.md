@@ -1,4 +1,4 @@
-# **Aggravated Bosses** Playtest - 2026.10.26
+# **Aggravated Bosses** Playtest - 2026.10.27
 
 * Current 7z Compressed Mod File Size: "1.02GB"
 
@@ -8,14 +8,17 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggra.Bosses.β06**
+#### **Aggra.Bosses**
+
+#### **β06**
 
 * Re-Merged Add-on Sound Options in to the mod: Only "Original" and "Sound Edit" are available.
 * Removed "Sound-Overhaul" toggle option as it's being moved to the actual Sound Overhaul Mod, planned to have an Add-on to support Aggro Titans.
+* Fixed missing DvElementAura params in Wyvern's Psycho QTE (and variants in this mod) that simply did not exist since the game's launch.
 
 
 
-#### **Aggra.Bosses.β05**
+#### **β05**
 
 * Adjusted script files.
 * Adjusted "SonicComboTweaks" to fix some actions not activating, and removed repeated lines of code.
@@ -27,7 +30,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggra.Bosses.β04**
+#### **β04**
 
 * Rebranded "Oops All Bitlaser" Supreme QTE preset to: "Supreme Remix" which will now feature a mix of events from "Restored Vanilla" and "Retooled" while keeping remnants of the former name preset intact.
 * Several misc. text edits in configs.
@@ -37,7 +40,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggra.Bosses.β03**
+#### **β03**
 
 * Adjustment to Supreme's moveset in Base Game and Final Horizons in regards to Phase 1 "immediateActions".
 * Adjustment to Riflebeast moveset in regards to when the boss tackles the shield if the mod's "Unused Cinematic" option is active, but the player doesn't trigger the unused Grand Slam itself in gameplay.
@@ -45,7 +48,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggra.Bosses.β02**
+#### **β02**
 
 * Changed a Phase 2 custom event for Supreme's 3rd Preset option so that it starts with Supreme in the air when the event was triggered in the air.
 * Rifle01.pac for several asm edits and renamed a few anm.pxd files
@@ -53,14 +56,14 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggra.Bosses.β01**
+#### **β01**
 
 * Another Tweak to Supreme's unused Grand Slam event to avoid visual hiccups when transitioning out of the event.
 * A very unnoticeable hiccup with Wyvern was spotted in where his limbs will randomly flip out when Wyvern's Grand Slam event plays... only when in 60FPS it seems.
 
 
 
-#### **Aggra.Bosses.β00 - Open Playtest**
+#### **β00 - Open Playtest**
 
 * Bumped version number for Open Playtest Release.
 
