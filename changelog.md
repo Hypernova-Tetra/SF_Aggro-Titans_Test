@@ -1,6 +1,6 @@
-# **Aggravated Bosses** Playtest - 2026.10.27
+# **Aggravated Bosses** Playtest - 2026.10.28
 
-* Current 7z Compressed Mod File Size: "1.02GB"
+* Current 7z Compressed Mod File Size: "1.43GB"
 
 
 
@@ -13,7 +13,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 #### **β06**
 
 * Re-Merged Add-on Sound Options in to the mod: Only "Original" and "Sound Edit" are available.
-* Removed "Sound-Overhaul" toggle option as it's being moved to the actual Sound Overhaul Mod, planned to have an Add-on to support Aggro Titans.
+* Removed "Sound-Overhaul" toggle option as it's moved to the actual Sound Overhaul Mod now.
 * Fixed missing DvElementAura params in Wyvern's Psycho QTE (and variants in this mod) that simply did not exist since the game's launch.
 
 
