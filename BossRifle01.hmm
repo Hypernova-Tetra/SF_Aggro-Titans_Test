@@ -10,13 +10,13 @@ Patch "Supreme Address Edits"
 	WriteProtected<byte> (/* 0x1414348B4 */ ScanSignature ("ev5040", "xxxxxx"), _gb1);
 	WriteProtected<byte> (/* 0x14143739C */ ScanSignature ("ev6030", "xxxxxx"), _gb2);
 	
-	// Shot2 = zev_rfl_sp02
+	// Shot2 = zv_sp02
     if(ScanSignature("\xB0\xFD\x02\x03\x4C\x8B\xC0\x48\x8B\xCB\xE8\x3D\x84\xF9\xFF\x48\x8B\x4C\x24\x58\x48\x85\xC9\x74\x05\xE8\x9E\xDD", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx") == 0) 
     { WriteProtected<byte> (0x14145E9C0, new byte[] { 0x00, 0x3E, 0x32, 0x40, 0x01 }); }
     else 
     { WriteProtected<byte> (0x14145E9F0, new byte[] { 0x00, 0x3E, 0x32, 0x40, 0x01 }); }
-
-	// Shot4 = zev_rfl_sp01
+	
+	// Shot4 = zv_sp01
 	if(ScanSignature("\xB0\xFD\x02\x03\x4C\x8B\xC0\x48\x8B\xCB\xE8\x3D\x84\xF9\xFF\x48\x8B\x4C\x24\x58\x48\x85\xC9\x74\x05\xE8\x9E\xDD", "xxxxxxxxxxxxxxxxxxxxxxxxxxxx") == 0) 
     { WriteProtected<byte> (0x1403239BB, new byte[] { 0x48, 0x8D, 0x15, 0x3E, 0xE5, 0x13, 0x01 }); }
     else 
@@ -268,8 +268,6 @@ Code "Supreme Dynamics"
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
 	static long AdSp01R = 0;
-	static long AdBmStr = 0;
-	static long AdBmEnd = 0;
 	static bool ModsChecked = false;
 	static bool isBSRActive = false;
 	static byte[] _gb0 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_start00");
@@ -311,6 +309,7 @@ Code "Supreme Dynamics"
 	static byte[] _gb36 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_shootX2");
 	static byte[] _gb37 = System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_01_release");
 	static byte[] _gb38 = System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_01_releas2");
+	static byte[] _gb39 = System.Text.Encoding.UTF8.GetBytes("bo4182");
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -567,6 +566,9 @@ Code "Supreme Dynamics"
 						WriteProtected<byte>(ATSHOT3, _gb34);
 						WriteProtected<byte>(ATSHOT1, _gb21);
 						WriteProtected<byte>(ATSHOT2, _gb31);
+						break;
+					case "bo4162":
+						WriteProtected<byte>(AT0RING, _gb39);
 						break;
 				}
 			}
