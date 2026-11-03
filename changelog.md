@@ -1,4 +1,4 @@
-# **Aggravated Bosses** Playtest - 2026.10.28
+# **Aggravated Bosses** Playtest - 2026.11.03
 
 * Current 7z Compressed Mod File Size: "1.43GB"
 
@@ -9,6 +9,13 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 #### **Aggra.Bosses**
+
+#### **β07**
+
+* Fixed an error in one of Supreme's QTEs where he default poses in the "Supreme Remix" preset.
+* BossCommon.pac updated to fix an issue found in the Lite and KR Editions.
+
+
 
 #### **β06**
 
