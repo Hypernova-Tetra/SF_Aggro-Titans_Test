@@ -1,4 +1,4 @@
-# **Aggravated Bosses** Playtest - 2026.11.03
+# **Aggravated Bosses** Playtest - 2026.11.06
 
 * Current 7z Compressed Mod File Size: "1.43GB"
 
@@ -14,6 +14,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 * Fixed an error in one of Supreme's QTEs where he default poses in the "Supreme Remix" preset.
 * BossCommon.pac updated to fix an issue found in the Lite and KR Editions.
+* Fixed a visual issue with Super Sonic appearing in Giganto's Phase 2 Cutscene in Master King cutscene when he wasn't supposed to be shown until after Giganto roars.
 
 
 
