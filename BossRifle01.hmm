@@ -264,7 +264,7 @@ Code "Supreme Dynamics"
 	static long ATSHOT1 = 0;
 	static string[] shot01_rng01 = new[] { /* sup */ "zev_rfl_shoot02", "zev_rfl_shootX2", "zev_rfl_spQTE02", "zev_rfl_spQTEX2" };
 	static long ATSHOT2 = 0;
-	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_sp02" };
+	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_sp02", "zev_rfl_ls03" };
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
 	static long AdSp01R = 0;
@@ -554,6 +554,7 @@ Code "Supreme Dynamics"
 						break;	
 					case "zev_rfl_lsXX":
 					case "zev_rfl_wing":
+					case "zev_rfl_ls03":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes(shot02_rng01[new Random().Next(0, shot02_rng01.Length)]));
 						break;
 					case "zev_rfl_lsQTE02":

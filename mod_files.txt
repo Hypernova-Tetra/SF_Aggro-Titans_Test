@@ -157,6 +157,7 @@ add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_bitlaser02.pac
 add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_bitlaser03.pac
 add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_laser01.pac
 add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_laser02.pac
+add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_ls03.pac
 add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_shoot01.pac
 add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_shoot02.pac
 add MBoss_RifleQTE_00/raw/event/scene/zev_rfl_sp02.pac
@@ -168,6 +169,7 @@ add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser02.pac
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_bitlaser03.pac
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_laser01.pac
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_laser02.pac
+add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_ls03.pac
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_shoot01.pac
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_shoot02.pac
 add MBoss_RifleQTE_01/raw/event/scene/zev_rfl_sp02.pac
@@ -179,6 +181,7 @@ add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser02.pac
 add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_bitlaser03.pac
 add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laser01.pac
 add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_laser02.pac
+add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_ls03.pac
 add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_shoot01.pac
 add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_shoot02.pac
 add MBoss_RifleQTE_02/raw/event/scene/zev_rfl_sp02.pac
