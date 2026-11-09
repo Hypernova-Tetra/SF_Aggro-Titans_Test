@@ -4,7 +4,7 @@
 
 
 
-#### **1.50 - Frontiers 4th Anniversary Update**
+##### **1.50 - Frontiers 4th Anniversary Update**
 
 **Formerly known as "Aggro Titans"**
 
@@ -80,9 +80,9 @@
 
 
 
-#### **Aggro-Titans**
+##### **Aggro-Titans**
 
-###### **1.47 - The Nowasu Update**
+##### **1.47 - The Nowasu Update**
 
 * Code Tweaks/Optimization by Nowasu to make Frontiers run better.
 * Supreme's unused Cinematic Grand Slam now does damage, although it won't visually show during the event. Thanks again Nowasu!
@@ -96,7 +96,7 @@
 
 
 
-###### **1.46 - Stuff I Missed**
+##### **1.46 - Stuff I Missed**
 
 * Fixed an issue were custom code functions weren't activating for Giganto.
 * Fixed a visual issue where the yellow Chaos Emerald shows up during Wyvern's Missile QTE outside of the failure scene.
@@ -104,7 +104,7 @@
 
 
 
-###### **1.45 - Adjustments**
+##### **1.45 - Adjustments**
 
 * Trimmed out the Bool references of the Monologue options.
 * Small code tweaks, attempting to trim the fat anywhere I can.
@@ -113,7 +113,7 @@
 
 
 
-###### **1.44 - Code Cleanup I guess**
+##### **1.44 - Code Cleanup I guess**
 
 * Further trimmed out unused call references across hmm files.
 * Removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" in hmm file "SonicComboTweaks" that I forgot to update.
@@ -121,7 +121,7 @@
 
 
 
-###### **1.43 - SS2 Aura Cutscene Fix**
+##### **1.43 - SS2 Aura Cutscene Fix**
 
 * Update 3 - Code trimming on RNG functions and deleting unused reference calls in several code sections... let's hope I didn't break anything.
 * Update 2 - Small script change that removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" to trigger functions during Boss Battles only instead of needing Super Sonic to exist.
@@ -130,21 +130,19 @@
 
 
 
-###### **1.42 - Skipped**
+##### **1.42 - Skipped**
 
 * Skipped to avoid confusion with the current PC/Steam version of the game.
 
 
 
-###### **1.41**
+##### **1.41**
 
 ###### **- Battle Rush Patch**
 
 * Fixed a problem where the Titans in Battle Rush were not using their original values.
 * Fixed a problem where the Titans in Battle Rush were not using modified Medium HP values when "Boss Select Rematch" mod is active.
 * Fixed an issue where the variant Super Sonic transformation scenes for Giganto weren't playing in certain intended game modes.
-
-
 
 ###### **- Pre-Release**
 
@@ -155,7 +153,7 @@
 
 
 
-###### **1.40 Pre-Release**
+##### **1.40 Pre-Release**
 
 C-10
 
@@ -614,7 +612,7 @@ Rifle01 (Supreme)
 
 
 
-###### **1.30**
+##### **1.30**
 
 * Bumped to version 1.3 for release.
 
@@ -721,7 +719,7 @@ Rifle01 (Supreme)
 
 
 
-###### **1.20**
+##### **1.20**
 
 * Supreme's scratch attacks are slightly faster.
 * Supreme's Bit Drone projectiles have been retextured.
@@ -779,7 +777,7 @@ Rifle01 (Supreme)
 
 
 
-###### **1.12**
+##### **1.12**
 
 * Improved a method in which to support the mod for version 1.41.
 * Fixed animation for bo6190.
@@ -798,7 +796,7 @@ Rifle01 (Supreme)
 
 
 
-###### **1.10**
+##### **1.10**
 
 * Public Update Release after game update 1.42
 
@@ -825,13 +823,13 @@ Rifle01 (Supreme)
 
 
 
-###### **Aggro-Titans (Jan. 16 Release)**
+##### **Aggro-Titans (Jan. 16 Release)**
 
 * Public Mod Release
 
 
 
-###### **Pre-Release**
+##### **Pre-Release**
 
 (Things that were done right when I thought I was done with the mod as a whole, but almost ended up missing a few things that I forgot to do, extending the original planned release date.)
 
@@ -973,7 +971,7 @@ Work In Progress
 
 
 
-###### **Version 0 Demo**
+##### **Version 0 Demo**
 
 ***Rifle01 - Supreme***
 
