@@ -1,24 +1,27 @@
-# **Aggravated Bosses** Playtest - 2026.11.06
+# **Aggravated Bosses** - 2026.11.08 (Playtest)
 
-* Current 7z Compressed Mod File Size: "1.43GB"
-
-
-
-This may be the final update prior to a possible Open Beta phase with a new name for this mod.
+* Current 7z Compressed Mod File Size: "1.4GB"
 
 
 
-#### **Aggra.Bosses**
+#### **1.50 - Frontiers 4th Anniversary Update**
 
-#### **β07**
+**Formerly known as "Aggro Titans"**
+
+* Happy 4 Years to Sonic Frontiers!!!
+
+
+
+###### **β07**
 
 * Fixed an error in one of Supreme's QTEs where he default poses in the "Supreme Remix" preset.
 * BossCommon.pac updated to fix an issue found in the Lite and KR Editions.
 * Fixed a visual issue with Super Sonic appearing in Giganto's Phase 2 Cutscene in Master King cutscene when he wasn't supposed to be shown until after Giganto roars.
+* Added a new scene to Supreme's QTEs that restores an old variant of a custom scene.
 
 
 
-#### **β06**
+###### **β06**
 
 * Re-Merged Add-on Sound Options in to the mod: Only "Original" and "Sound Edit" are available.
 * Removed "Sound-Overhaul" toggle option as it's moved to the actual Sound Overhaul Mod now.
@@ -26,7 +29,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **β05**
+###### **β05**
 
 * Adjusted script files.
 * Adjusted "SonicComboTweaks" to fix some actions not activating, and removed repeated lines of code.
@@ -38,7 +41,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **β04**
+###### **β04**
 
 * Rebranded "Oops All Bitlaser" Supreme QTE preset to: "Supreme Remix" which will now feature a mix of events from "Restored Vanilla" and "Retooled" while keeping remnants of the former name preset intact.
 * Several misc. text edits in configs.
@@ -48,7 +51,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **β03**
+###### **β03**
 
 * Adjustment to Supreme's moveset in Base Game and Final Horizons in regards to Phase 1 "immediateActions".
 * Adjustment to Riflebeast moveset in regards to when the boss tackles the shield if the mod's "Unused Cinematic" option is active, but the player doesn't trigger the unused Grand Slam itself in gameplay.
@@ -56,7 +59,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **β02**
+###### **β02**
 
 * Changed a Phase 2 custom event for Supreme's 3rd Preset option so that it starts with Supreme in the air when the event was triggered in the air.
 * Rifle01.pac for several asm edits and renamed a few anm.pxd files
@@ -64,20 +67,22 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **β01**
+###### **β01**
 
 * Another Tweak to Supreme's unused Grand Slam event to avoid visual hiccups when transitioning out of the event.
 * A very unnoticeable hiccup with Wyvern was spotted in where his limbs will randomly flip out when Wyvern's Grand Slam event plays... only when in 60FPS it seems.
 
 
 
-#### **β00 - Open Playtest**
+###### **β00 - Open Playtest**
 
 * Bumped version number for Open Playtest Release.
 
 
 
-#### **Aggro-Titans 1.47 - The Nowasu Update**
+#### **Aggro-Titans**
+
+###### **1.47 - The Nowasu Update**
 
 * Code Tweaks/Optimization by Nowasu to make Frontiers run better.
 * Supreme's unused Cinematic Grand Slam now does damage, although it won't visually show during the event. Thanks again Nowasu!
@@ -91,7 +96,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggro-Titans 1.46 - Stuff I Missed**
+###### **1.46 - Stuff I Missed**
 
 * Fixed an issue were custom code functions weren't activating for Giganto.
 * Fixed a visual issue where the yellow Chaos Emerald shows up during Wyvern's Missile QTE outside of the failure scene.
@@ -99,7 +104,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggro-Titans 1.45 - Adjustments**
+###### **1.45 - Adjustments**
 
 * Trimmed out the Bool references of the Monologue options.
 * Small code tweaks, attempting to trim the fat anywhere I can.
@@ -108,7 +113,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggro-Titans 1.44 - Code Cleanup I guess**
+###### **1.44 - Code Cleanup I guess**
 
 * Further trimmed out unused call references across hmm files.
 * Removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" in hmm file "SonicComboTweaks" that I forgot to update.
@@ -116,7 +121,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggro-Titans 1.43 - SS2 Aura Cutscene Fix**
+###### **1.43 - SS2 Aura Cutscene Fix**
 
 * Update 3 - Code trimming on RNG functions and deleting unused reference calls in several code sections... let's hope I didn't break anything.
 * Update 2 - Small script change that removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" to trigger functions during Boss Battles only instead of needing Super Sonic to exist.
@@ -125,13 +130,15 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggro-Titans 1.42 - Skipped**
+###### **1.42 - Skipped**
 
 * Skipped to avoid confusion with the current PC/Steam version of the game.
 
 
 
-#### **Aggro-Titans 1.41a - Battle Rush Patch**
+###### **1.41**
+
+###### **- Battle Rush Patch**
 
 * Fixed a problem where the Titans in Battle Rush were not using their original values.
 * Fixed a problem where the Titans in Battle Rush were not using modified Medium HP values when "Boss Select Rematch" mod is active.
@@ -139,7 +146,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggro-Titans 1.41 (Pre-Release)**
+###### **- Pre-Release**
 
 * Version bumped for final round of tests and bug searching to patch out before release, no further major development will be made.
 * Fixed an error with The Final Horizons Intro of "The End" that had some caption issues and a lack of camera shaking in some parts.
@@ -148,7 +155,7 @@ This may be the final update prior to a possible Open Beta phase with a new name
 
 
 
-#### **Aggro-Titans 1.40 (Pre-Release)**
+###### **1.40 Pre-Release**
 
 C-10
 
@@ -156,6 +163,8 @@ C-10
 * Tweaked the Combat Mod settings. Also renamed it to "Combat Toggle".
 * Chaos Polarity should now automatically toggle the bosses HP to be reduced.
 * Small Tweaks to HP values and renamed "Combat Mod" name to "Titan HP" and description, then relocated the option in to "Titan Boss Setting" section.
+
+
 
 C-09
 
@@ -166,6 +175,8 @@ C-09
 * Updated Combat Mod option. When using Chaos Polarity, Boss HP will automatically be reduced.
 * Fixed in error in where HP values may not have been reduced when Combat Mod options were on.
 
+
+
 C-08
 
 * Fixed a crash problem with Supreme Phase 2.
@@ -174,12 +185,16 @@ C-08
 * Fixed a QTE in Retooled and Oops All Bitlaser that had issues.
 * Updated "zev\_knight\_sonic\_damage" events.
 
+
+
 C-07
 
 * Code Adjustment for Phase 2 Supreme's memory address trigger.
 * Updated "zev\_dragon\_finish\_00"
 * Added parameter for Sonic's aura color that changes SS2's aura color when choosing the aura option.
 * Updated "The End's Defeat" in Final Horizons for the blue and purple aura color option in where The End makes a desperation attack towards Sonic.
+
+
 
 C-06
 
@@ -188,11 +203,15 @@ C-06
 * Re-added "Supreme" and "The End" texture files to only ev5040 after discovering the rest of the "World 5" scenes seem to load the assets from that one file.
 * Fixed a QTE scene in Supreme's 3rd Preset
 
+
+
 C-05
 
 * Unused Cinematic Grand Slam code updated to trigger only for Final Horizons Story Mode due to a bug occurring when triggering the cinematic in the base game.
 * Reinserted Eggman's texture files in to ev1770 after previously removing them to minimize asset reuse. There's a bit of a problem with other mods also using "EventCommon", so the bug still persists with regular Supreme for the base game's story mode with "ev5030" and "ev5040"
 * Removed "zev\_end" and "zev\_end\_shooting" so that the mod manager reads these files using the vanilla files due to the previously mentioned bug in the above note.
+
+
 
 C-04
 
@@ -200,11 +219,15 @@ C-04
 * Added a new mlevel file inside the Bosscommon pac file for something specific later.
 * Removed "Original" and "Sound Overhaul" audio options. Will still be available as add-ons to place above the main Aggro Titans mod.
 
+
+
 C-03
 
 * Updated voice files for Final Horizons Monologue
 * Updated Super Sonic 2 transformation scene from ending too early.
 * Small tweaks.
+
+
 
 C-02
 
@@ -214,9 +237,13 @@ C-02
 * Reverted a code change to the Shield Tackle removal after the option stopped functioning.
 * Updated code for Wyvern's Super Sonic transform scene in Boss Rush after the code stopped functioning.
 
+
+
 C-01
 
 * Available for testing.
+
+
 
 C-00
 
@@ -228,7 +255,7 @@ C-00
 
 
 
-Before the mod went into a downscaling phase. It was much bigger and by the end of the R22 build, the mod size was over 5GB when compressed for download.
+###### ***Before the mod went into a downscaling phase. It was much bigger and by the end of the R22 build, the mod size was over 5GB when compressed for download.***
 
 
 
@@ -236,6 +263,8 @@ R-22
 
 * Went through to fix errors that may have cropped up in code files.
 * Updated Supreme Cinematic Grand Slam Phase 1 camera file.
+
+
 
 R-21
 
@@ -247,6 +276,8 @@ R-21
 * Removed toggle option for Riflebeast Darkball QTE, now a permanent feature.
 * Unused Cinematic Grand Slam now has a Phase 2 animation.
 * Fixed a softlock in Retooled preset due to one of the QTE files being deleted when updating.
+
+
 
 R-20
 
@@ -265,12 +296,16 @@ R-20
 * Deleted usm files that weren't needed.
 * Fixed broken scene for Winglaser v2.
 
+
+
 R-19
 
 * Removed "BossCutsceneAudio.hmm" scattered its code across their respective Titan-related hmm file.
 * Giganto's unused "attack\_back\_beam01\_start" for "AT\_Counter\_Sp\_03" in Boss Rush got a small tweak with Sonic's positioning.
 * Separated Supreme's Intro. Default plays in Base Story, Extended plays in Final Horizons Story.
 * Updated BossRifle01.hmm's "Supreme Dynamic Event" script (again).
+
+
 
 R-18
 
@@ -284,6 +319,8 @@ R-18
 * Knight's Shieldride02 event has been tweaked slightly.
 * Supreme's intro cutscene and extended intro now start and end more quickly.
 * Some HMM files have been tweaked.
+
+
 
 R-17
 
@@ -302,6 +339,8 @@ R-17
 * "Rifle01.hmm" script file updated to fix up some Dynamic event cycles when performing certain actions.
 * Fixed position offset errors causing the first "Winglaser" cutscene to take a while to transition back to gameplay.
 
+
+
 R-16
 
 * Further adjustments to some event and boss pac files.
@@ -312,10 +351,14 @@ R-16
 * "BossRush.hmm" script updated to add in "Time of Day" parameters differences based on whether or not "Boss Rush Cyberspace" mod is active.
 * Updated Unused Cinematic Grand Slam script to fix an error in which the scene does not trigger properly and having this option selected crashes the game when attempting to parry Riflebeast's shield tackle attack.
 
+
+
 R-15
 
 * Updated "bossconfig" to remove the option for Giganto's "Blue Rings", now they only show in base and Battle Rush Kronos Island while disappearing in Boss Rush (Master King Trials) Kronos.
 * Further animation adjustments to the "Oops All Bitlaser" QTE preset, new animations added to certain files.
+
+
 
 R-14
 
@@ -327,6 +370,8 @@ R-14
 * Fixed an issue where Wyvern's custom Phase 2 Grand Slam would crash the game.
 * Updated initial "Winglaser" QTE animation.
 
+
+
 R-13
 
 * Fixed an issue with Giganto's Phase 2 scene not being able to be skipped in base story Kronos Island.
@@ -336,6 +381,8 @@ R-13
 * Resolved certain issues involving incorrect dvscene parameter values, causing sounds not to play, or the game crashes when loading the scene.
 * Custom Event: "Winglaser v2" file updated with new animation.
 * Updated "bo6xxx.pac"
+
+
 
 R-12
 
@@ -348,6 +395,8 @@ R-12
 * Updated Bitlaser01 and laser01 event files.
 * RifleBeast HP updated: 367k -> 420k
 
+
+
 R-11
 
 * Fixed an error in Wyvern's Grand Slam that caused the game to crash.
@@ -356,29 +405,41 @@ R-11
 * Updated Rifle01.pac to update asm file to include new state names.
 * Updated Supreme's dynamic script files to bugcheck and add RNG to Supreme's Sp02 animation.
 
+
+
 R-10
 
 * Updated Sound Effects for Riflebeast in "Sound Edit" to add extra Sonic grunts. (And only Sonic, no Eggman grunts.)
+
+
 
 R-09
 
 * Update to Riflebeast's "Final Blow" QTE files to fix an error with transitioning to either the next scene or back to gameplay when failing.
 * Readded "Bossbit.hmm" for Supreme after it went missing previously.
 
+
+
 R-08
 
 * Adjustments to Knight's "sonic\_damage01" and custom "sonic\_damage02" event files.
 * Fixed an error with one of Supreme's attack move set scripts.
+
+
 
 R-07
 
 * Adjustments to Script files again, merged Dynamic files with Boss hmm files.
 * Adjustment to a QTE in "Vanilla Restored" preset to fix an error.
 
+
+
 R-06
 
 * Adjustments to bo6xxx.pac's animation files.
 * Further adjustments to Supreme's QTE Preset 1 (Vanilla Restored) files.
+
+
 
 R-05
 
@@ -387,24 +448,34 @@ R-05
 * Updated Giganto and Supreme's Dynamic script files.
 * Updated Supreme's Attack Moveset scripts.
 
+
+
 R-04
 
 * Updated Supreme for moveset adjustments.
+
+
 
 R-03
 
 * Update to Riflebeast's custom Grand Slam files.
 * Updated Riflebeast's pac file.
 
+
+
 R-02
 
 * Readded several mod files to fix issues.
 * Clean-up for file size optimization.
 
+
+
 R-01
 
 * Several small tweaks.
 * Added missing .usm files.
+
+
 
 R-00
 
@@ -425,10 +496,14 @@ R-02
 * Another round of changes
 * Readded "zev\_sp\_riflebeast" for skin mods using "SuperSonicDamage" and "SuperSonicCyber" assets.
 
+
+
 R-01
 
 * Updated Version String
 * Updated "mod\_files.txt"
+
+
 
 R-00
 
@@ -539,7 +614,7 @@ Rifle01 (Supreme)
 
 
 
-#### **Aggro-Titans 1.30**
+###### **1.30**
 
 * Bumped to version 1.3 for release.
 
@@ -646,7 +721,7 @@ Rifle01 (Supreme)
 
 
 
-#### **Aggro-Titans 1.20**
+###### **1.20**
 
 * Supreme's scratch attacks are slightly faster.
 * Supreme's Bit Drone projectiles have been retextured.
@@ -704,7 +779,7 @@ Rifle01 (Supreme)
 
 
 
-#### **Aggro-Titans 1.12**
+###### **1.12**
 
 * Improved a method in which to support the mod for version 1.41.
 * Fixed animation for bo6190.
@@ -713,7 +788,7 @@ Rifle01 (Supreme)
 
 
 
-#### **Aggro-Titans 1.11**
+###### **1.11**
 
 * Monologue files adjustments.
 * Fixing an audio problem in which the Italian voice line plays a line twice.
@@ -723,7 +798,7 @@ Rifle01 (Supreme)
 
 
 
-#### **Aggro-Titans 1.10**
+###### **1.10**
 
 * Public Update Release after game update 1.42
 
@@ -750,13 +825,13 @@ Rifle01 (Supreme)
 
 
 
-#### **Aggro-Titans (Release Version Jan. 16)**
+###### **Aggro-Titans (Jan. 16 Release)**
 
 * Public Mod Release
 
 
 
-#### **Aggro-Titans Pre-Release**
+###### **Pre-Release**
 
 (Things that were done right when I thought I was done with the mod as a whole, but almost ended up missing a few things that I forgot to do, extending the original planned release date.)
 
@@ -778,10 +853,14 @@ V0.22
 
 * Adjustments to Supreme's QTE files for better pacing and to cut down on length for some.
 
+
+
 V0.21
 
 * New Grand Slam animation for Hyper Sonic skin option when selecting "ParryMiss QTE option".
 * "Zev\_Parrymiss\_Riflebeast.pac" adjusted to remove a detail that didn't quite make sense.
+
+
 
 V0.20
 
@@ -790,11 +869,15 @@ V0.20
 * Added Holoska's code for "AT\_SHOT2" to play "Zev\_Rfl\_Sp02"
 * Updated "Event/Scene/bo4xxx.pac" (For bo4110)
 
+
+
 V0.19
 
 * Some adjustments to Supreme's attack speed and attack patterns.
 * Adjusted Supreme's "attackHomingLaser" and "attackHandLaser" parameters.
 * Adjusted "immediateActions" parameters
+
+
 
 V0.18
 
@@ -802,6 +885,8 @@ V0.18
 * Riflebeast "attackHominglaserPattern" slightly changed.
 * Adjusted Winglaser\_2 slightly. Fixed a problem where the QTE didn't fail immediately on the wrong button press. Second QTE prompt changed: "TheEndVariant" -> "PressPrompt".
 * Other slight changes.
+
+
 
 V0.17
 
@@ -812,6 +897,8 @@ V0.17
 * Event/Scene "bo4110" is slightly updated.
 * Event/Scene "bo4160" is slightly updated more changes coming soon.
 * Barrier HP in Extreme Mode changed: 67 -> 50
+
+
 
 V0.16
 
@@ -833,6 +920,8 @@ V0.16
 * "@attack\_counter\_bite\_start" and "bite\_dead" cam-anim files (for Supreme) are properly working now.
 * Low HP phase for og Supreme's attack pattern slightly adjusted.
 
+
+
 V0.15
 
 * Optimized certain QTEs related to Shoot02 and its variants across the mod to load quicker in the fight.
@@ -840,6 +929,8 @@ V0.15
 * Changed Supreme's "immediateActions" or rather what the asm file calls "counterPose" animation.
 * New short QTE animation for the "Restored" option during Phase 1.
 * Supreme's @attack\_counter01 animation file swapped with @attack\_counter04.
+
+
 
 V0.14
 
@@ -851,6 +942,8 @@ V0.14
 * Adjusted "bo6xxx.pac" for the Hyper Sonic skin option as it was an outdated version of what I used for the Monologue mod.
 * "Zev\_rfl\_Shoot01" had an issue with Sonic being in the wrong spot when failing parts of the QTE. So this scene was updated with new fail scenes.
 
+
+
 V0.13
 
 * Patched Rifle01.pac
@@ -858,15 +951,21 @@ V0.13
 * Final Horizons Monologue Mod update coming soon.
 * Fixed Mod.ini
 
+
+
 V0.12
 
 * Tweaked some things.
 * Fixed a soft lock from incorrect Resource Pointer parameters related to Shoot02
 * Fixed a soft lock from "immediateActions" triggering "AT\_Bit\_Wave" in which Supreme will lock himself after spawning his drones.
 
+
+
 V0.11
 
 * Updated Combat Mod Option. Now converted to HMM code for reduced file size.
+
+
 
 V0.10
 
@@ -874,7 +973,7 @@ Work In Progress
 
 
 
-#### **Version 0 Demo**
+###### **Version 0 Demo**
 
 ***Rifle01 - Supreme***
 
@@ -898,10 +997,13 @@ Work In Progress
 * Certain miscellaneous details have been fixed.
 * Missing effects from Supreme's "@attack\_counterSp02" and "smallBit\_laser" have been restored, thanks again Holoska.
 
+
+
 Things to do:
 
-* Fix the error of Supreme's Cylinders. The middle one on his shoulders don't show during gameplay.
 * Continue checking for bugs and issues.
+
+
 
 ***Riflebeast - The End***
 
