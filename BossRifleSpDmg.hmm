@@ -48,4 +48,4 @@ Code "Supreme Grand Slam Damage"
 	}
 	else
 	{Applied = false;}
-}
+};

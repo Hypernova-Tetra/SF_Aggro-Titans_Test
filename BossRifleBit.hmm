@@ -111,7 +111,7 @@ Code "BossBit_Unused_Atk"
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.waveRotationSpeed, 30.5f);
 		RFL_SET_PARAM(BossBitConfigInfo, smallBitPatternDatas[23].param.flyMoveSpeed, 0);
 	}
-}
+};
 
 Library "BossBitConfig"
 {

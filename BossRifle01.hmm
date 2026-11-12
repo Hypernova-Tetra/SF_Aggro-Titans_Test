@@ -21,7 +21,7 @@ Patch "Supreme Address Edits"
     { WriteProtected<byte> (0x1403239BB, new byte[] { 0x48, 0x8D, 0x15, 0x3E, 0xE5, 0x13, 0x01 }); }
     else 
     { WriteProtected<byte> (0x1403239BB, new byte[] { 0x48, 0x8D, 0x15, 0x6E, 0xE5, 0x13, 0x01 }); }
-} 
+};
 
 Code "Supreme Combat"
 //
@@ -107,20 +107,27 @@ Code "Supreme Combat"
 				else
 				{return;}
 			}
+			else
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 60000); }
 		}
-		else if ((isBSRActive) && (!isChaosPolarity))
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 104000); }
-		else if ((isChaosPolarity) && (BossHP != 0))
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 78000);  }
 		else
 		{
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);
+			if (!isChaosPolarity)
+			{
+				if (isBSRActive)
+				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 104000); }
+				else
+				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
+			}
+			else
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
+			
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 		}
 	}
-}
+};
 
 Code "Supreme Moveset"
 //
@@ -251,7 +258,7 @@ Code "Supreme Moveset"
 			RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[7], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT1);
 		}
 	}
-}
+};
 
 Code "Supreme Dynamics"
 //
@@ -588,7 +595,7 @@ Code "Supreme Dynamics"
 			{ return; }
 		}
 	}
-}
+};
 
 Code "Supreme RNG Attacks"
 //
@@ -635,7 +642,7 @@ Code "Supreme RNG Attacks"
 	}
 	else
 	{ WriteProtected<byte>(AdRightHand, System.Text.Encoding.UTF8.GetBytes("attack_counter_righthand_01")); }
-}
+};
 
 Patch "Supreme Wing Laser"
 //
@@ -671,7 +678,7 @@ Patch "Supreme Wing Laser"
 		else
 		{ WriteProtected<byte>(ATSHOT4, _gb1); }
 	}	
-}
+};
 
 Library "BossRifleConfig"
 {

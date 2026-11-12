@@ -66,7 +66,7 @@ Code "Wyvern's Parry Reward"
 			}
 		}
 	}
-}
+};
 
 Patch "BossRush Things"
 //
@@ -165,7 +165,7 @@ Patch "BossRush Things"
 		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[1].hour, 9);
 		RFL_SET_PARAM(BossRushParameterInfo, elementEasy[2].stages[2].hour, 10);
 	}
-}
+};
 
 Library "BossRushParameter"
 {

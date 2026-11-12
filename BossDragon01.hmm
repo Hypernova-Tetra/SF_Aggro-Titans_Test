@@ -64,21 +64,32 @@ Code "Wyvern_Combat"
 		bool isBattleRush = gmName == "GameModeBattleRush";
 		if (!isBattleRush)
 		{
-			if (BossHP == 1)
-			{ hp = 80000; }
-			else if (BossHP == 2)
-			{ hp = 100000; }
-			else if (BossHP == 3)
-			{ hp = 175000; }
-			else 
-			{return;}
+			if (!isChaosPolarity)
+			{
+				if (BossHP == 1)
+				{ hp = 80000; }
+				else if (BossHP == 2)
+				{ hp = 100000; }
+				else if (BossHP == 3)
+				{ hp = 175000; }
+				else 
+				{return;}
+			}
+			else
+			{ hp = 50000; }
 		}
-		else if ((isBSRActive) && (!isChaosPolarity))
-		{ hp = 105000;}
-		else if ((isChaosPolarity) && (BossHP != 0))
-		{ hp = 76000; }
 		else
-		{ hp = 82500; }
+		{ 
+			if (!isChaosPolarity)
+			{
+				if (isBSRActive)
+				{ hp = 105000);  }
+				else
+				{ hp = 82500); }
+			}
+			else
+			{ hp = 50000);  }
+		}
 		
 		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);
 		
@@ -263,7 +274,7 @@ Code "Wyvern Dynamics"
 		if ((evtPlayer->IsEventPlaying("zev_dragon_sp_laser00")) || (evtPlayer->IsEventPlaying("zev_dragon_sp_laser01")))
 		{ WriteProtected<byte>(AddressMsle, _gb2); }
 	}
-}
+};
 
 Library "BossDragonConfig"
 {

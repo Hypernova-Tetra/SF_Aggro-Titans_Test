@@ -69,7 +69,7 @@ Patch "Riflebeast_Combat"
 			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
 		}
     }
-}		
+};	
 
 Patch "Monologue"
 //
@@ -266,7 +266,7 @@ Patch "Monologue"
 			}
 		}
 	}
-}
+};
 
 Code "Darkball QTE"
 //
@@ -357,7 +357,7 @@ Code "Darkball QTE"
 				break;
 		}
 	}
-}
+};
 
 Code "No_Tackle"
 //
@@ -435,7 +435,7 @@ Code "No_Tackle"
 			}
 		}
 	}
-}
+};
 
 Code "Unused Cinematic Grand Slam"
 //
@@ -592,7 +592,7 @@ Code "Unused Cinematic Grand Slam"
 			WriteProtected<byte>(AddressSplDmg, _gb4);
 		}
 	}
-}
+};
 
 Library "BossRifleBeastConfig"
 {
