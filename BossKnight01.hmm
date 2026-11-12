@@ -82,12 +82,14 @@ Code "Knight_Combat"
 				else
 				{return;}
 			}
+			else
+			{return;}
 		}
 		else if ((isBSRActive) && (!isChaosPolarity))
 		{ RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 110000);  }
 		else if ((isChaosPolarity) && (BossHP != 0))
 		{ 
-			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 76000);  
+			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.status.healthPoint, 77000);  
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 6);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 6);
 			RFL_SET_PARAM(BossKnightConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 12);

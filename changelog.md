@@ -1,4 +1,4 @@
-# **Aggravated Bosses** - 2026.11.08 (Playtest)
+# **Aggravated Bosses** - 2026.11.12 (Playtest)
 
 * Current 7z Compressed Mod File Size: "1.4GB"
 
@@ -9,6 +9,13 @@
 **Formerly known as "Aggro Titans"**
 
 * Happy 4 Years to Sonic Frontiers!!!
+
+
+
+###### **β08**
+
+* Readjusted code logic in Supreme's moveset section that utilizes the "AshLibrary.hmm" file.
+* Tweaked Boss HP values when running "Chaos Polarity"
 
 
 

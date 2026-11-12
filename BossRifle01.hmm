@@ -111,7 +111,7 @@ Code "Supreme Combat"
 		else if ((isBSRActive) && (!isChaosPolarity))
 		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 104000); }
 		else if ((isChaosPolarity) && (BossHP != 0))
-		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 82000);  }
+		{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 78000);  }
 		else
 		{
 			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000);
@@ -159,9 +159,7 @@ Code "Supreme Moveset"
 	
 	if (!ModsChecked)
 	{ 
-		isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;
-		isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; 
-		
+		isBSRActive = HMM.GetMods().Where(x => x.Name == "Boss Select Rematch").Count() > 0;		
 		ModsChecked = true;
 	}
 		
@@ -175,7 +173,7 @@ Code "Supreme Moveset"
 		switch (eventName)
 		{
 			case "zev_rfl_start00":
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP01);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_LASER);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT2);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 0);
@@ -190,19 +188,22 @@ Code "Supreme Moveset"
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
 				break;
 			case "bo4111":
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SP02);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[15], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT4);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_LASER);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[17], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_SHOT3);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[1], 80);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SHOT2);	
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_SHOT3);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SHOT3);	
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_SHOT2);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_COUNTER_BLOW);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patternChangeHpRatios[2], 65);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].attackDatas[12].attackType, BossRifleConfig.ActionType.AT_SHOT2);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_SHOT1);
 				break;
+			case "zev_rfl_ls01":
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_HOMINGLASER_NORMAL);	
+				break;
 			case "zev_rfl_laser00":
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[11].attackType, BossRifleConfig.ActionType.AT_SP01);
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[1].attackDatas[10].attackType, BossRifleConfig.ActionType.AT_SP01);
 				break;
 			case "zev_rfl_laser0Z":
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[0].patterns[2].attackDatas[12].attackType, BossRifleConfig.ActionType.AT_SP02);
@@ -220,11 +221,10 @@ Code "Supreme Moveset"
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.immediateActions[13], BossRifleConfig.BossRifleBattleParam_ActionType.BossRifleBattleParam_ActionType_AT_NONE);
 				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
 				break;
+			case "zev_rfl_wng2":
 			case "zev_rfl_shoot01":
-			case "zev_rfl_lsQTE02":
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].attackDatas[2].attackType, BossRifleConfig.ActionType.AT_LASER);
-				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[0].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_HOMINGLASER_NORMAL);
-				break;
+				RFL_SET_PARAM(BossRifleConfigInfo, battleParam.giantPhaseParams[1].patterns[3].bitBreakAttackDatas[0].attackType, BossRifleConfig.ActionType.AT_QTE_NONE);
+				break;	
 		}
 	
 		if (!isRifleBeast0)
@@ -272,9 +272,8 @@ Code "Supreme Dynamics"
 	static long ATSHOTB = 0;
 	static long ATSHOT3 = 0;
 	static long ATSHOT1 = 0;
-	static string[] shot01_rng01 = new[] { /* sup */ "zev_rfl_shoot02", "zev_rfl_shootX2", "zev_rfl_spQTE02", "zev_rfl_spQTEX2" };
 	static long ATSHOT2 = 0;
-	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_spX2", "zev_rfl_sp02", "zev_rfl_ls03" };
+	static string[] shot02_rng01 = new[] { /* sup */ "zev_rfl_lsXX", "zev_rfl_spX2", "zev_rfl_sp02", "zev_rfl_ls03" };
 	static long AdCyAtk = 0;
 	static long AdCyPry = 0;
 	static long AdSp01R = 0;
@@ -321,6 +320,8 @@ Code "Supreme Dynamics"
 	static byte[] _gb38 = System.Text.Encoding.UTF8.GetBytes("attack_counter_sp_01_releas2");
 	static byte[] _gb39 = System.Text.Encoding.UTF8.GetBytes("bo4182");
 	static byte[] _gb40 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls03");
+	static byte[] _gb41 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng2");
+	static byte[] _gb42 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wnglsr0");
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -473,22 +474,21 @@ Code "Supreme Dynamics"
 					case "zev_rfl_bitlaserA2":
 						WriteProtected<byte>(ATSHOTB, _gb25);
 						break;
-					case "zev_rfl_shoot01":
+					case "zev_rfl_spQTE02":
 						WriteProtected<byte>(ATSHOT1, _gb30);
 						break;
 					case "zev_rfl_wng1":
 						WriteProtected<byte>(ATSHOT2, _gb40);
+						WriteProtected<byte>(ATSHOT1, _gb20);
 						break;	
 					case "zev_rfl_wnglsr2":
 						WriteProtected<byte>(ATSHOTB, _gb32);
 						WriteProtected<byte>(ATSHOT2, _gb40);
-						WriteProtected<byte>(ATSHOT3, _gb33);
 						WriteProtected<byte>(ATSHOT1, _gb34);
 						break;
 					case "zev_rfl_sp01":
 						WriteProtected<byte>(ATSHOTB, _gb35);
 						WriteProtected<byte>(ATSHOT2, _gb40);
-						WriteProtected<byte>(ATSHOT3, _gb21);
 						WriteProtected<byte>(ATSHOT1, _gb36);
 						break;
 					case "zev_rfl_bitlaserX3":
@@ -500,29 +500,30 @@ Code "Supreme Dynamics"
 					case "zev_rfl_shootX2":
 						WriteProtected<byte>(ATSHOT1, _gb33);
 						break;
-					case "zev_rfl_spQTE02":
-						WriteProtected<byte>(ATSHOT3, _gb30);
-						break;	
 					case "zev_rfl_shoot02":
 					case "zev_rfl_spQTEX2":
-						WriteProtected<byte>(ATSHOT3, _gb20);
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes(shot01_rng01[new Random().Next(0, shot01_rng01.Length)]));
+						WriteProtected<byte>(ATSHOT1, _gb20);
 						break;	
-					case "zev_rfl_lsXX":
 					case "zev_rfl_wing":
-					case "zev_rfl_ls03":
 						WriteProtected<byte>(ATSHOT2, System.Text.Encoding.UTF8.GetBytes(shot02_rng01[new Random().Next(0, shot02_rng01.Length)]));
 						break;
 					case "zev_rfl_lsQTE02":
-					case "zev_rfl_spX2":
-						WriteProtected<byte>(ATSHOT3, _gb33);
-						WriteProtected<byte>(ATSHOT1, System.Text.Encoding.UTF8.GetBytes(shot01_rng01[new Random().Next(0, shot01_rng01.Length)]));
+						WriteProtected<byte>(ATSHOT1, _gb34);
+						break;
+					case "zev_rfl_shoot01":
+						WriteProtected<byte>(ATSHOT3, _gb42);
+						break;
+					case "zev_rfl_ls03":
 						WriteProtected<byte>(ATSHOT2, _gb31);
 						break;
+					case "zev_rfl_lsXX":
+						WriteProtected<byte>(ATSHOT2, _gb29);
+						break;
 					case "zev_rfl_sp02":
-						WriteProtected<byte>(ATSHOT3, _gb34);
-						WriteProtected<byte>(ATSHOT1, _gb21);
-						WriteProtected<byte>(ATSHOT2, _gb31);
+						WriteProtected<byte>(ATSHOT2, _gb27);
+						break;
+					case "zev_rfl_spX2":
+						WriteProtected<byte>(ATSHOT2, _gb41);
 						break;
 					case "bo4162":
 						WriteProtected<byte>(AT0RING, _gb39);
@@ -538,6 +539,7 @@ Code "Supreme Dynamics"
 						break;
 					case "bo4145":
 					case "bo4146":
+					case "zev_rfl_sp01":
 					case "zev_rfl_laser0b":
 					case "zev_rfl_spQTE01":
 					case "zev_rfl_laser01":
@@ -553,9 +555,10 @@ Code "Supreme Dynamics"
 				bool isZevLsXX = evtPlayer->IsEventPlaying("zev_rfl_lsXX")
 				bool isZevSp02 = evtPlayer->IsEventPlaying("zev_rfl_sp02") 
 				bool isZevSpX2 = evtPlayer->IsEventPlaying("zev_rfl_spX2")
-				bool isZevWng0 = evtPlayer->IsEventPlaying("zev_rfl_wing") 
+				bool isZevWing = evtPlayer->IsEventPlaying("zev_rfl_wing") 
 				bool isZevWng1 = evtPlayer->IsEventPlaying("zev_rfl_wng1") 
-				bool isZevWng2 = evtPlayer->IsEventPlaying("zev_rfl_wnglsr2")
+				bool isZWngLs0 = evtPlayer->IsEventPlaying("zev_rfl_wnglsr0")
+				bool isZWngLs2 = evtPlayer->IsEventPlaying("zev_rfl_wnglsr2")
 				
 				if (isPhase2a)
 				{
@@ -567,7 +570,7 @@ Code "Supreme Dynamics"
 					var setupData = new EventPlayer.EventSetupData("bo4140");
 					evtPlayer->PlayEvent(ref setupData);
 				}
-				else if ((isLaser02) || (isZevLsXX) || (isZevSp02) || (isZevSpX2) || (isZevWng0) || (isZevWng1) || (isZevWng2))
+				else if ((isLaser02) || (isZevLsXX) || (isZevSp02) || (isZevSpX2) || (isZevWing) || (isZevWng1) || (isZWngLs0) || (isZWngLs2))
 				{ 
 					Lua.Call("HideObjectInEvent", "BossLargeBit2", true);
 					Lua.Call("HideObjectInEvent", "BossLargeBit3", true);
