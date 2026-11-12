@@ -265,6 +265,8 @@ delete Main/raw/movie/ev5030_4k.usm
 delete Main/raw/movie/ev504X.usm
 delete Main/raw/movie/ev6030.usm
 delete Main/raw/movie/ev6030_4k.usm
+delete Main/raw/movie/zev_knight_sonic_sp01.usm
+delete Main/raw/movie/zev_knight_sonic_sp01_phase2.usm
 delete Main/raw/movie/zev_sp_riflebst01.usm
 delete Main/raw/movie/zev_sp_riflebst01_4k.usm
 delete Main/raw/movie/zev_sp_riflebst02.usm

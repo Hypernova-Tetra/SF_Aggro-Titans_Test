@@ -4,7 +4,7 @@
 
 
 
-##### **1.50 - Frontiers 4th Anniversary Update**
+#### **1.50 - Frontiers 4th Anniversary Update**
 
 **Formerly known as "Aggro Titans"**
 
@@ -12,14 +12,15 @@
 
 
 
-###### **β08**
+##### **β08**
 
 * Readjusted code logic in Supreme's moveset section that utilizes the "AshLibrary.hmm" file.
 * Tweaked Boss HP values when running "Chaos Polarity"
+* Added a "Mod-Check" for QOL-Addons to disable Riflebeast's "Tackle Attack" when activated.
 
 
 
-###### **β07**
+#### **β07**
 
 * Fixed an error in one of Supreme's QTEs where he default poses in the "Supreme Remix" preset.
 * BossCommon.pac updated to fix an issue found in the Lite and KR Editions.
@@ -28,7 +29,7 @@
 
 
 
-###### **β06**
+#### **β06**
 
 * Re-Merged Add-on Sound Options in to the mod: Only "Original" and "Sound Edit" are available.
 * Removed "Sound-Overhaul" toggle option as it's moved to the actual Sound Overhaul Mod now.
@@ -36,7 +37,7 @@
 
 
 
-###### **β05**
+#### **β05**
 
 * Adjusted script files.
 * Adjusted "SonicComboTweaks" to fix some actions not activating, and removed repeated lines of code.
@@ -48,7 +49,7 @@
 
 
 
-###### **β04**
+##### **β04**
 
 * Rebranded "Oops All Bitlaser" Supreme QTE preset to: "Supreme Remix" which will now feature a mix of events from "Restored Vanilla" and "Retooled" while keeping remnants of the former name preset intact.
 * Several misc. text edits in configs.
@@ -58,7 +59,7 @@
 
 
 
-###### **β03**
+#### **β03**
 
 * Adjustment to Supreme's moveset in Base Game and Final Horizons in regards to Phase 1 "immediateActions".
 * Adjustment to Riflebeast moveset in regards to when the boss tackles the shield if the mod's "Unused Cinematic" option is active, but the player doesn't trigger the unused Grand Slam itself in gameplay.
@@ -66,7 +67,7 @@
 
 
 
-###### **β02**
+#### **β02**
 
 * Changed a Phase 2 custom event for Supreme's 3rd Preset option so that it starts with Supreme in the air when the event was triggered in the air.
 * Rifle01.pac for several asm edits and renamed a few anm.pxd files
@@ -74,14 +75,14 @@
 
 
 
-###### **β01**
+#### **β01**
 
 * Another Tweak to Supreme's unused Grand Slam event to avoid visual hiccups when transitioning out of the event.
 * A very unnoticeable hiccup with Wyvern was spotted in where his limbs will randomly flip out when Wyvern's Grand Slam event plays... only when in 60FPS it seems.
 
 
 
-###### **β00 - Open Playtest**
+#### **β00 - Open Playtest**
 
 * Bumped version number for Open Playtest Release.
 
@@ -103,7 +104,7 @@
 
 
 
-##### **1.46 - Stuff I Missed**
+#### **1.46 - Stuff I Missed**
 
 * Fixed an issue were custom code functions weren't activating for Giganto.
 * Fixed a visual issue where the yellow Chaos Emerald shows up during Wyvern's Missile QTE outside of the failure scene.
@@ -111,7 +112,7 @@
 
 
 
-##### **1.45 - Adjustments**
+#### **1.45 - Adjustments**
 
 * Trimmed out the Bool references of the Monologue options.
 * Small code tweaks, attempting to trim the fat anywhere I can.
@@ -120,7 +121,7 @@
 
 
 
-##### **1.44 - Code Cleanup I guess**
+#### **1.44 - Code Cleanup I guess**
 
 * Further trimmed out unused call references across hmm files.
 * Removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" in hmm file "SonicComboTweaks" that I forgot to update.
@@ -128,7 +129,7 @@
 
 
 
-##### **1.43 - SS2 Aura Cutscene Fix**
+#### **1.43 - SS2 Aura Cutscene Fix**
 
 * Update 3 - Code trimming on RNG functions and deleting unused reference calls in several code sections... let's hope I didn't break anything.
 * Update 2 - Small script change that removed "Blackboard Status" element for Super Sonic, in its place using: "StatePluginBossBattle" to trigger functions during Boss Battles only instead of needing Super Sonic to exist.
@@ -137,13 +138,13 @@
 
 
 
-##### **1.42 - Skipped**
+#### **1.42 - Skipped**
 
 * Skipped to avoid confusion with the current PC/Steam version of the game.
 
 
 
-##### **1.41**
+#### **1.41**
 
 ###### **- Battle Rush Patch**
 
@@ -160,7 +161,7 @@
 
 
 
-##### **1.40 Pre-Release**
+#### **1.40 Pre-Release**
 
 C-10
 
@@ -619,7 +620,7 @@ Rifle01 (Supreme)
 
 
 
-##### **1.30**
+#### **1.30**
 
 * Bumped to version 1.3 for release.
 
@@ -726,7 +727,7 @@ Rifle01 (Supreme)
 
 
 
-##### **1.20**
+#### **1.20**
 
 * Supreme's scratch attacks are slightly faster.
 * Supreme's Bit Drone projectiles have been retextured.
@@ -784,7 +785,7 @@ Rifle01 (Supreme)
 
 
 
-##### **1.12**
+#### **1.12**
 
 * Improved a method in which to support the mod for version 1.41.
 * Fixed animation for bo6190.
@@ -793,7 +794,7 @@ Rifle01 (Supreme)
 
 
 
-###### **1.11**
+##### **1.11**
 
 * Monologue files adjustments.
 * Fixing an audio problem in which the Italian voice line plays a line twice.
@@ -803,7 +804,7 @@ Rifle01 (Supreme)
 
 
 
-##### **1.10**
+#### **1.10**
 
 * Public Update Release after game update 1.42
 
@@ -830,13 +831,13 @@ Rifle01 (Supreme)
 
 
 
-##### **Aggro-Titans (Jan. 16 Release)**
+#### **Aggro-Titans (Jan. 16 Release)**
 
 * Public Mod Release
 
 
 
-##### **Pre-Release**
+#### **Pre-Release**
 
 (Things that were done right when I thought I was done with the mod as a whole, but almost ended up missing a few things that I forgot to do, extending the original planned release date.)
 
@@ -978,7 +979,7 @@ Work In Progress
 
 
 
-##### **Version 0 Demo**
+#### **Version 0 Demo**
 
 ***Rifle01 - Supreme***
 

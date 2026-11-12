@@ -370,10 +370,13 @@ Code "No_Tackle"
 
     static bool IsConfigInitialised = false;
 	static bool shieldBool = false;
+	static bool ModsChecked = false;
+	static bool isQOLAddons = false;
+	
 	static int NoTackle = 0;
     static int ReplaceNum = 0;
+	
     static BossRifleBeastConfig.AtackType[] AttackReplacers = new BossRifleBeastConfig.AtackType[8];
-
 	AttackReplacers[0] = BossRifleBeastConfig.AtackType.AT_HIMING00;
 	AttackReplacers[1] = BossRifleBeastConfig.AtackType.AT_HIMING08;
     AttackReplacers[2] = BossRifleBeastConfig.AtackType.AT_CROW_L;
@@ -398,8 +401,14 @@ Code "No_Tackle"
 
 		NoTackle = INI.Parse<int>(ini["Main"]["RifleShieldFix"], NoTackle);
         IsConfigInitialised = true;
+		
+		if (!ModsChecked)
+		{ 
+			isQOLAddons = HMM.GetMods().Where(x => x.Name == "Quality of Life Additions").Count() > 0;			
+			ModsChecked = true;
+		}
 
-        if (NoTackle != 0)
+        if ((NoTackle != 0) || (isQOLAddons))
         { shieldBool = true; }
         else
         { shieldBool = false; }

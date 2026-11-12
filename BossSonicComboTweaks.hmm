@@ -35,7 +35,7 @@ Code "Sonic ComboTable"
 		RFL_SET_PARAM(SonicParametersInfo, common.combo.comboTable.afterAirBoost.transitInAir[5], SonicParameters.Action.Pursuit);
 		
 		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.damageRateSS, 0.1f);
-		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 38);
+		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.damageRateSS, 36);
 		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smash.attributes, 164);
 		RFL_SET_PARAM(SonicParametersInfo, common.commonPackage.attack.smashLast.attributes, 164);
 		
