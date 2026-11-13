@@ -24,7 +24,7 @@ Patch "Riflebeast_Combat"
 	var BossRifleBeastConfigInfo = Reflection.GetDataInfo<BossRifleBeastConfig.Root>("boss_rifle_beast");
 	if (BossRifleBeastConfigInfo.pData == null)
 		return;
-			
+	
     if (!IsConfigInitialised)
     {
 		var mod = HMM.GetModByID("566416");
@@ -39,7 +39,17 @@ Patch "Riflebeast_Combat"
         IsConfigInitialised = true;
 		
 		if (!ModsChecked) { isChaosPolarity = HMM.GetMods().Where(x => x.Name == "Chaos Polarity").Count() > 0; ModsChecked = true; }
-		if (!isChaosPolarity)
+		
+		if (isChaosPolarity)
+		{ 
+			if (BossHP != 0)
+			{ RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 80000); }
+			else {return;}
+			
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
+			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
+		}
+		else
 		{
 			if (BossHP == 1)
 			{ 
@@ -59,14 +69,7 @@ Patch "Riflebeast_Combat"
 				RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 3000);
 				RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 3500);
 			}
-			else
-			{return;}
-		}
-		else
-		{ 
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, bossBaseConfig.status.healthPoint, 80000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, battleParam.attackHomingLaser.EnemyDamage, 2000);
-			RFL_SET_PARAM(BossRifleBeastConfigInfo, cableParam.healthPoint, 2000);
+			else {return;}
 		}
     }
 };	

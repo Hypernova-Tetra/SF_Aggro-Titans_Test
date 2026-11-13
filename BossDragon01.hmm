@@ -60,35 +60,37 @@ Code "Wyvern_Combat"
 		
 		uint hp;
 		
-		string gmName = GameMode.GetName();
-		bool isBattleRush = gmName == "GameModeBattleRush";
-		if (!isBattleRush)
+		if (isChaosPolarity)
 		{
-			if (!isChaosPolarity)
+			if (BossHP != 0)
+			{ hp = 60000; }
+			else {return;}
+		}	
+		else
+		{
+			string gmName = GameMode.GetName();
+			bool isBattleRush = gmName == "GameModeBattleRush";
+			if (!isBattleRush)
 			{
 				if (BossHP == 1)
 				{ hp = 80000; }
 				else if (BossHP == 2)
-				{ hp = 100000; }
+				{ hp = 130000; }
 				else if (BossHP == 3)
-				{ hp = 175000; }
-				else 
-				{return;}
+				{ hp = 225000; }
+				else {return;}
 			}
 			else
-			{ hp = 50000; }
-		}
-		else
-		{ 
-			if (!isChaosPolarity)
-			{
-				if (isBSRActive)
-				{ hp = 105000);  }
-				else
-				{ hp = 82500); }
+			{ 
+				if (BossHP != 0)
+				{
+					if (isBSRActive)
+					{ hp = 105000; }
+					else
+					{ hp = 82500; }
+				}
+				else {return;}
 			}
-			else
-			{ hp = 50000);  }
 		}
 		
 		RFL_SET_PARAM(BossDragonConfigInfo, bossBaseConfig.status.healthPoint, hp);

@@ -63,11 +63,21 @@ Code "Supreme Combat"
 			ModsChecked = true;
 		}
 		
-		string gmName = GameMode.GetName();
-		bool isBattleRush = gmName == "GameModeBattleRush";
-		if (!isBattleRush)
+		if (isChaosPolarity)
+		{ 
+			if (BossHP != 0)
+			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 60000); }
+			else {return;}
+			
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 4);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 4);
+			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 8);
+		}
+		else
 		{
-			if (!isChaosPolarity)
+			string gmName = GameMode.GetName();
+			bool isBattleRush = gmName == "GameModeBattleRush";
+			if (!isBattleRush)
 			{
 				bool isRifleBeast0 = (GameManager.GetGameObject("RifleBeast0") != null);
 				
@@ -104,27 +114,19 @@ Code "Supreme Combat"
 					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
 					RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 				}
-				else
-				{return;}
+				else {return;}
 			}
 			else
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 60000); }
-		}
-		else
-		{
-			if (!isChaosPolarity)
 			{
 				if (isBSRActive)
 				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 104000); }
 				else
 				{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 90000); }
+
+				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
+				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
+				RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 			}
-			else
-			{ RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.status.healthPoint, 50000); }
-			
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopUp, 0);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumQuickCyloopDown, 0);
-			RFL_SET_PARAM(BossRifleConfigInfo, bossBaseConfig.dropRing.ringNumSonicSpecial, 0);
 		}
 	}
 };
