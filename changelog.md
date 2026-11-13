@@ -1,4 +1,4 @@
-# **Aggravated Bosses** - 2026.11.12 (Playtest)
+# **Aggravated Bosses** - 2026.11.13 (Playtest)
 
 * Current 7z Compressed Mod File Size: "1.4GB"
 
