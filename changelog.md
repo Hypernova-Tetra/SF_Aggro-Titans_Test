@@ -1,4 +1,4 @@
-# **Aggravated Bosses** - 2026.11.13 (Playtest)
+# **Aggravated Bosses** - 2026.11.14 (Playtest)
 
 * Current 7z Compressed Mod File Size: "1.4GB"
 
@@ -17,6 +17,7 @@
 * Readjusted code logic in Supreme's moveset section that utilizes the "AshLibrary.hmm" file.
 * Tweaked Boss HP values when running "Chaos Polarity"
 * Added a "Mod-Check" for QOL-Addons to disable Riflebeast's "Tackle Attack" when activated.
+* Fixed a small visual issue with edited variants of Riflebeast's Grand Slam.
 
 
 
