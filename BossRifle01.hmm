@@ -331,6 +331,7 @@ Code "Supreme Dynamics"
 	static byte[] _gb40 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_ls03");
 	static byte[] _gb41 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wng2");
 	static byte[] _gb42 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wnglsr0");
+	static byte[] _gb43 = System.Text.Encoding.UTF8.GetBytes("zev_rfl_wnglsr1");
 //
 {
 	var evtPlayer = (EventPlayer.Data*)GameManager.GetService("EventPlayer");
@@ -454,7 +455,7 @@ Code "Supreme Dynamics"
 					case "bo4140":
 					case "bo4141":
 						WriteProtected<byte>(ATSHOT3, _gb20);
-						WriteProtected<byte>(ATSHOT1, _gb21);
+						WriteProtected<byte>(ATSHOT1, _gb43);
 						WriteProtected<byte>(AT0RING, _gb22);
 						WriteProtected<byte>(AdSp01R, _gb38);
 						if (isRifleBeast0)
@@ -483,6 +484,7 @@ Code "Supreme Dynamics"
 					case "zev_rfl_bitlaserA2":
 						WriteProtected<byte>(ATSHOTB, _gb25);
 						break;
+					case "zev_rfl_wnglsr1":	
 					case "zev_rfl_spQTE02":
 						WriteProtected<byte>(ATSHOT1, _gb30);
 						break;

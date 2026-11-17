@@ -375,6 +375,7 @@ Code "No_Tackle"
 	static bool shieldBool = false;
 	static bool ModsChecked = false;
 	static bool isQOLAddons = false;
+	static bool isSprHprUDX = false;
 	
 	static int NoTackle = 0;
     static int ReplaceNum = 0;
@@ -407,11 +408,12 @@ Code "No_Tackle"
 		
 		if (!ModsChecked)
 		{ 
-			isQOLAddons = HMM.GetMods().Where(x => x.Name == "Quality of Life Additions").Count() > 0;			
+			isQOLAddons = HMM.GetMods().Where(x => x.Name == "Quality of Life Additions").Count() > 0;	
+			isSprHprUDX = HMM.GetMods().Where(x => x.Name == "Super/Hyper Sonic Ultimate DX").Count() > 0;			
 			ModsChecked = true;
 		}
 
-        if ((NoTackle != 0) || (isQOLAddons))
+        if ((NoTackle != 0) || (isQOLAddons) || (isSprHprUDX))
         { shieldBool = true; }
         else
         { shieldBool = false; }

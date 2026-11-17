@@ -1,4 +1,4 @@
-# **Aggravated Bosses** - 2026.11.14 (Playtest)
+# **Aggravated Bosses** - 2026.11.17 (Playtest)
 
 * Current 7z Compressed Mod File Size: "1.4GB"
 
@@ -12,11 +12,18 @@
 
 
 
+##### **β09**
+
+* Adjusted a QTE trigger when Supreme's 2nd Immediate Action normally plays in Phase 1, instead plays during Phase 2 when speedblitzing the boss.
+* Added a "Mod-Check" for "Super/Hyper Ultimate DX" to disable Riflebeast's "Tackle Attack" when activated to prevent softlocking or crashing when parrying the attack.
+
+
+
 ##### **β08**
 
 * Readjusted code logic in Supreme's moveset section that utilizes the "AshLibrary.hmm" file.
 * Tweaked Boss HP values when running "Chaos Polarity"
-* Added a "Mod-Check" for QOL-Addons to disable Riflebeast's "Tackle Attack" when activated.
+* Added a "Mod-Check" for "QOL-Addons" to disable Riflebeast's "Tackle Attack" when activated to prevent softlocking or crashing when parrying the attack.
 * Fixed a small visual issue with edited variants of Riflebeast's Grand Slam.
 
 
