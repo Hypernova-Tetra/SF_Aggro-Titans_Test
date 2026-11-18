@@ -16,6 +16,7 @@
 
 * Adjusted a QTE trigger when Supreme's 2nd Immediate Action normally plays in Phase 1, instead plays during Phase 2 when speedblitzing the boss.
 * Added a "Mod-Check" for "Super/Hyper Ultimate DX" to disable Riflebeast's "Tackle Attack" when activated to prevent softlocking or crashing when parrying the attack.
+* (Patch 26.11.18) - Fixed a crash in "Restored Vanilla" Phase 2 Bitlaser scene due to mismatching source names.
 
 
 
